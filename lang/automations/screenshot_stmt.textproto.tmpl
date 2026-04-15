@@ -1,0 +1,36 @@
+name: "screenshot_sqlite_stmt"
+
+steps: {
+  label: "set_viewport"
+  set_viewport: { width: 1400 height: 1400 device_scale_factor: 2 }
+}
+
+steps: {
+  label: "navigate"
+  navigate: { url: "__URL__" }
+}
+
+steps: {
+  label: "wait_for_svg"
+  wait_for_selector: { selector: "svg.railroad-diagram, svg" timeout_ms: 10000 }
+}
+
+steps: {
+  label: "wait_settle"
+  wait: { milliseconds: 400 }
+}
+
+steps: {
+  label: "extract_svg_text"
+  evaluate_script: { expression: "JSON.stringify(Array.from(document.querySelectorAll('svg text')).map(t => t.textContent))" }
+}
+
+steps: {
+  label: "capture_svg"
+  evaluate_script: { expression: "(() => { const s = document.querySelector('svg'); if (!s) return 'NO_SVG'; const r = s.getBoundingClientRect(); return JSON.stringify({x:r.x, y:r.y, w:r.width, h:r.height}); })()" }
+}
+
+steps: {
+  label: "screenshot"
+  full_page_screenshot: { output_path: "__OUT__" format: "png" }
+}
