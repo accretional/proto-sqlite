@@ -1,0 +1,22 @@
+[
+  "WITH",
+  "RECURSIVE",
+  "common-table-expression",
+  ",",
+  "DELETE",
+  "FROM",
+  "qualified-table-name",
+  "WHERE",
+  "expr",
+  "returning-clause",
+  "ORDER",
+  "BY",
+  "ordering-term",
+  ",",
+  "LIMIT",
+  "expr",
+  "OFFSET",
+  "expr",
+  ",",
+  "expr"
+]

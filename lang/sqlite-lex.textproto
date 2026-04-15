@@ -1,0 +1,28 @@
+# Lex descriptor for the EBNF meta-language we use to describe sqlite.
+# Identical to gluon's canonical EBNF lex (lexkit/ebnf_grammar.textproto) —
+# this lets gluon's lexkit.Parse() consume lang/sqlite.ebnf without any
+# gluon-side extensions. SQL itself is the *target* language, expressed via
+# production rules in sqlite.ebnf, not via this lex.
+#
+# Wrapped in a `lex: { ... }` block because LoadLex parses a GrammarDescriptor
+# and extracts its `lex` field.
+
+lex: {
+  whitespace: { ascii: SPACE }
+  whitespace: { ascii: CHARACTER_TABULATION }
+  whitespace: { ascii: LINE_FEED }
+  whitespace: { ascii: CARRIAGE_RETURN }
+  definition: { ascii: EQUALS_SIGN }
+  concatenation: { ascii: COMMA }
+  termination: { ascii: SEMICOLON }
+  alternation: { ascii: VERTICAL_LINE }
+  optional_lhs: { ascii: LEFT_SQUARE_BRACKET }
+  optional_rhs: { ascii: RIGHT_SQUARE_BRACKET }
+  repetition_lhs: { ascii: LEFT_CURLY_BRACKET }
+  repetition_rhs: { ascii: RIGHT_CURLY_BRACKET }
+  grouping_lhs: { ascii: LEFT_PARENTHESIS }
+  grouping_rhs: { ascii: RIGHT_PARENTHESIS }
+  terminal: { ascii: QUOTATION_MARK }
+  comment_lhs: { ascii: LEFT_PARENTHESIS }
+  comment_rhs: { ascii: RIGHT_PARENTHESIS }
+}

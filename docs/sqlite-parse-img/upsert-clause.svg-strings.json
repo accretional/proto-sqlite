@@ -1,0 +1,22 @@
+[
+  "ON",
+  "CONFLICT",
+  "(",
+  "indexed-column",
+  ")",
+  "WHERE",
+  "expr",
+  "DO",
+  ",",
+  "conflict\u00a0target",
+  "UPDATE",
+  "SET",
+  "column-name-list",
+  "=",
+  "expr",
+  "WHERE",
+  "expr",
+  "NOTHING",
+  ",",
+  "column-name"
+]

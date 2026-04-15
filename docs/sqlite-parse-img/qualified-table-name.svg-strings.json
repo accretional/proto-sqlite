@@ -1,0 +1,12 @@
+[
+  "schema-name",
+  ".",
+  "table-name",
+  "AS",
+  "alias",
+  "INDEXED",
+  "BY",
+  "index-name",
+  "NOT",
+  "INDEXED"
+]

@@ -1,0 +1,8 @@
+[
+  "RETURNING",
+  "expr",
+  "AS",
+  "column-alias",
+  "*",
+  ","
+]

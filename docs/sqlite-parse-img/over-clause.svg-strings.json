@@ -1,0 +1,16 @@
+[
+  "OVER",
+  "window-name",
+  "(",
+  "base-window-name",
+  "PARTITION",
+  "BY",
+  "expr",
+  ",",
+  "ORDER",
+  "BY",
+  "ordering-term",
+  ",",
+  "frame-spec",
+  ")"
+]

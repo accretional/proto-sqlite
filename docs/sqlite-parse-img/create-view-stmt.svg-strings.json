@@ -1,0 +1,18 @@
+[
+  "CREATE",
+  "TEMP",
+  "TEMPORARY",
+  "VIEW",
+  "IF",
+  "NOT",
+  "EXISTS",
+  "schema-name",
+  ".",
+  "view-name",
+  "(",
+  "column-name",
+  ")",
+  "AS",
+  "select-stmt",
+  ","
+]

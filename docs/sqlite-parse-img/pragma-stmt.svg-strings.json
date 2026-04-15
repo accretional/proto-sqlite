@@ -1,0 +1,11 @@
+[
+  "PRAGMA",
+  "schema-name",
+  ".",
+  "pragma-name",
+  "(",
+  "pragma-value",
+  ")",
+  "=",
+  "pragma-value"
+]

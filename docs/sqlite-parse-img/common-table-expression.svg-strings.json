@@ -1,0 +1,13 @@
+[
+  "table-name",
+  "(",
+  "column-name",
+  ")",
+  "AS",
+  "NOT",
+  "MATERIALIZED",
+  "(",
+  "select-stmt",
+  ")",
+  ","
+]

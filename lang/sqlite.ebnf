@@ -1,0 +1,77 @@
+(* SQLite grammar — subset transcribed from sqlite.org/syntax/*.html railroad
+   diagrams (ingested as images). Names are snake_case so gluon's EBNF
+   identifier rule (letter/digit/underscore) accepts them; the hyphenated
+   names on sqlite.org map 1:1 by replacing '-' with '_'. *)
+
+sql_stmt_list = sql_stmt , { ";" , sql_stmt } ;
+
+sql_stmt = alter_table_stmt
+         | analyze_stmt
+         | attach_stmt
+         | begin_stmt
+         | commit_stmt
+         | detach_stmt
+         | drop_index_stmt
+         | drop_table_stmt
+         | drop_trigger_stmt
+         | drop_view_stmt
+         | pragma_stmt
+         | reindex_stmt
+         | release_stmt
+         | rollback_stmt
+         | savepoint_stmt
+         | vacuum_stmt ;
+
+begin_stmt = "BEGIN" , [ "DEFERRED" | "IMMEDIATE" | "EXCLUSIVE" ] , [ "TRANSACTION" ] ;
+
+commit_stmt = ( "COMMIT" | "END" ) , [ "TRANSACTION" ] ;
+
+rollback_stmt = "ROLLBACK" , [ "TRANSACTION" ] , [ "TO" , [ "SAVEPOINT" ] , savepoint_name ] ;
+
+savepoint_stmt = "SAVEPOINT" , savepoint_name ;
+
+release_stmt = "RELEASE" , [ "SAVEPOINT" ] , savepoint_name ;
+
+vacuum_stmt = "VACUUM" , [ schema_name ] , [ "INTO" , filename ] ;
+
+detach_stmt = "DETACH" , [ "DATABASE" ] , schema_name ;
+
+attach_stmt = "ATTACH" , [ "DATABASE" ] , expr , "AS" , schema_name ;
+
+analyze_stmt = "ANALYZE" , [ schema_name
+                           | index_or_table_name
+                           | schema_name , "." , table_or_index_name ] ;
+
+reindex_stmt = "REINDEX" , [ collation_name
+                           | [ schema_name , "." ] , ( table_name | index_name )
+                           | "EXPRESSIONS" ] ;
+
+drop_table_stmt   = "DROP" , "TABLE"   , [ "IF" , "EXISTS" ] , [ schema_name , "." ] , table_name ;
+drop_index_stmt   = "DROP" , "INDEX"   , [ "IF" , "EXISTS" ] , [ schema_name , "." ] , index_name ;
+drop_view_stmt    = "DROP" , "VIEW"    , [ "IF" , "EXISTS" ] , [ schema_name , "." ] , view_name ;
+drop_trigger_stmt = "DROP" , "TRIGGER" , [ "IF" , "EXISTS" ] , [ schema_name , "." ] , trigger_name ;
+
+pragma_stmt = "PRAGMA" , [ schema_name , "." ] , pragma_name ,
+              [ "=" , pragma_value | "(" , pragma_value , ")" ] ;
+
+signed_number = [ "+" | "-" ] , numeric_literal ;
+
+(* Leaf productions referenced above; transcription of their diagrams is
+   deferred (Phase 2.5). They exist here so gluon's parser recognises
+   the identifiers used in productions above. *)
+alter_table_stmt = "ALTER" , "TABLE" ;
+expr = numeric_literal ;
+schema_name = identifier ;
+savepoint_name = identifier ;
+filename = identifier ;
+index_or_table_name = identifier ;
+table_or_index_name = identifier ;
+collation_name = identifier ;
+table_name = identifier ;
+index_name = identifier ;
+view_name = identifier ;
+trigger_name = identifier ;
+pragma_name = identifier ;
+pragma_value = signed_number | identifier ;
+numeric_literal = identifier ;
+identifier = "x" ;

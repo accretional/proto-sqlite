@@ -1,0 +1,21 @@
+[
+  "CREATE",
+  "TEMP",
+  "TEMPORARY",
+  "TABLE",
+  "IF",
+  "NOT",
+  "EXISTS",
+  "schema-name",
+  ".",
+  "table-name",
+  "(",
+  "column-def",
+  "table-constraint",
+  ",",
+  ")",
+  "table-options",
+  ",",
+  "AS",
+  "select-stmt"
+]

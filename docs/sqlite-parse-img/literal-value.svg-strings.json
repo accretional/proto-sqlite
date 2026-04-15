@@ -1,0 +1,11 @@
+[
+  "CURRENT_TIMESTAMP",
+  "numeric-literal",
+  "string-literal",
+  "blob-literal",
+  "NULL",
+  "TRUE",
+  "FALSE",
+  "CURRENT_TIME",
+  "CURRENT_DATE"
+]

@@ -1,0 +1,9 @@
+[
+  "DROP",
+  "VIEW",
+  "IF",
+  "EXISTS",
+  "schema-name",
+  ".",
+  "view-name"
+]

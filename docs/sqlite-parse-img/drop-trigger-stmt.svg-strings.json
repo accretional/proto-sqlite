@@ -1,0 +1,9 @@
+[
+  "DROP",
+  "TRIGGER",
+  "IF",
+  "EXISTS",
+  "schema-name",
+  ".",
+  "trigger-name"
+]

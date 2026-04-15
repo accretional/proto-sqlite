@@ -1,0 +1,9 @@
+[
+  "USING",
+  "(",
+  "column-name",
+  ")",
+  ",",
+  "ON",
+  "expr"
+]

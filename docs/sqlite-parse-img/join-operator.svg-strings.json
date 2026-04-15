@@ -1,0 +1,11 @@
+[
+  "NATURAL",
+  "LEFT",
+  "OUTER",
+  "JOIN",
+  ",",
+  "RIGHT",
+  "FULL",
+  "INNER",
+  "CROSS"
+]

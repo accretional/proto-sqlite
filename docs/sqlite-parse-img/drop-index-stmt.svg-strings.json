@@ -1,0 +1,9 @@
+[
+  "DROP",
+  "INDEX",
+  "IF",
+  "EXISTS",
+  "schema-name",
+  ".",
+  "index-name"
+]

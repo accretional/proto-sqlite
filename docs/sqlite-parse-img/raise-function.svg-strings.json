@@ -1,0 +1,11 @@
+[
+  "RAISE",
+  "(",
+  "ROLLBACK",
+  ",",
+  "expr",
+  ")",
+  "IGNORE",
+  "ABORT",
+  "FAIL"
+]

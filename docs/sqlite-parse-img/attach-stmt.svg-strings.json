@@ -1,0 +1,7 @@
+[
+  "ATTACH",
+  "DATABASE",
+  "expr",
+  "AS",
+  "schema-name"
+]

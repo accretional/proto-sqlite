@@ -1,0 +1,7 @@
+[
+  "BEGIN",
+  "EXCLUSIVE",
+  "TRANSACTION",
+  "DEFERRED",
+  "IMMEDIATE"
+]

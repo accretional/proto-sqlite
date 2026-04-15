@@ -1,0 +1,9 @@
+[
+  "expr",
+  "AS",
+  "column-alias",
+  "*",
+  "table-name",
+  ".",
+  "*"
+]

@@ -1,0 +1,8 @@
+[
+  "ANALYZE",
+  "schema-name",
+  ".",
+  "table-or-index-name",
+  "schema-name",
+  "index-or-table-name"
+]

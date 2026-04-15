@@ -1,0 +1,18 @@
+[
+  "WITH",
+  "RECURSIVE",
+  "common-table-expression",
+  ",",
+  "select-core",
+  "ORDER",
+  "BY",
+  "LIMIT",
+  "expr",
+  "compound-operator",
+  "ordering-term",
+  ",",
+  "OFFSET",
+  "expr",
+  ",",
+  "expr"
+]

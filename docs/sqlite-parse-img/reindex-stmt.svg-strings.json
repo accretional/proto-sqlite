@@ -1,0 +1,9 @@
+[
+  "REINDEX",
+  "schema-name",
+  ".",
+  "index-name",
+  "EXPRESSIONS",
+  "table-name",
+  "collation-name"
+]
