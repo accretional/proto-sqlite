@@ -192,6 +192,74 @@ func TestServerQuery_TypedCreateTableTwoColumns(t *testing.T) {
 	}
 }
 
+func TestServerQuery_TypedTwoStmtSemicolonSeparator(t *testing.T) {
+	// Typed SqlStmtList with two statements → renders to
+	// "CREATE TABLE stress_sep (x TEXT); DROP TABLE stress_sep".
+	// Exercises the non-comma separator path (";" between sql_stmt
+	// entries) end-to-end: sqlite3 sees and executes both statements,
+	// and a follow-up sqlite_master probe confirms the table is gone.
+	client := startInProc(t)
+
+	ctx := context.Background()
+	resp, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Stmts{
+			Stmts: &sqlitepb.SqlStmtList{
+				SqlStmt: []*sqlitepb.SqlStmt{
+					{
+						Alt1: &sqlitepb.SqlStmt_Alt1{
+							Value: &sqlitepb.SqlStmt_Alt1_CreateTableStmt{
+								CreateTableStmt: &sqlitepb.CreateTableStmt{
+									TableKeyword: &sqlitepb.TableKeyword{},
+									TableName:    &sqlitepb.TableName{Name: &sqlitepb.Name{Value: "stress_sep"}},
+									Alt2: &sqlitepb.CreateTableStmt_Alt2{
+										Value: &sqlitepb.CreateTableStmt_Alt2_LeftParenthesis_{
+											LeftParenthesis: &sqlitepb.CreateTableStmt_Alt2_LeftParenthesis{
+												ColumnDef: []*sqlitepb.ColumnDef{{
+													ColumnName: &sqlitepb.ColumnName{Name: &sqlitepb.Name{Value: "x"}},
+													TypeName:   &sqlitepb.TypeName{Name: &sqlitepb.Name{Value: "TEXT"}},
+												}},
+												RightParenthesisKeyword: &sqlitepb.RightParenthesisKeyword{},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+					{
+						Alt1: &sqlitepb.SqlStmt_Alt1{
+							Value: &sqlitepb.SqlStmt_Alt1_DropTableStmt{
+								DropTableStmt: &sqlitepb.DropTableStmt{
+									TableName: &sqlitepb.TableName{Name: &sqlitepb.Name{Value: "stress_sep"}},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query two-stmt list: %v", err)
+	}
+	if len(resp.GetColumn()) != 0 || len(resp.GetRow()) != 0 {
+		t.Errorf("CREATE+DROP should be empty, got cols=%v rows=%d",
+			resp.GetColumn(), len(resp.GetRow()))
+	}
+
+	check, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "SELECT name FROM sqlite_master WHERE type='table' AND name='stress_sep';",
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query sqlite_master: %v", err)
+	}
+	if n := len(check.GetRow()); n != 0 {
+		t.Errorf("stress_sep should be dropped; got %d sqlite_master rows", n)
+	}
+}
+
 func TestServerQuery_EmptyBody(t *testing.T) {
 	client := startInProc(t)
 

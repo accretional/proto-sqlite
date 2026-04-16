@@ -38,6 +38,46 @@ func TestRender_CreateTableSingleColumn(t *testing.T) {
 	}
 }
 
+// TestRender_SqlStmtListSemicolonSeparator pins the only non-comma
+// separator in the generated FieldSeparator map: ";" between members
+// of sql_stmt on SqlStmtList. A BEGIN + COMMIT pair must render as
+// "BEGIN; COMMIT" — the semicolon is dropped by CollapseCommaList
+// and reintroduced by the renderer.
+func TestRender_SqlStmtListSemicolonSeparator(t *testing.T) {
+	list := &sqlitepb.SqlStmtList{
+		SqlStmt: []*sqlitepb.SqlStmt{
+			{
+				Alt1: &sqlitepb.SqlStmt_Alt1{
+					Value: &sqlitepb.SqlStmt_Alt1_BeginStmt{
+						BeginStmt: &sqlitepb.BeginStmt{},
+					},
+				},
+			},
+			{
+				Alt1: &sqlitepb.SqlStmt_Alt1{
+					Value: &sqlitepb.SqlStmt_Alt1_CommitStmt{
+						CommitStmt: &sqlitepb.CommitStmt{
+							Alt1: &sqlitepb.CommitStmt_Alt1{
+								Value: &sqlitepb.CommitStmt_Alt1_CommitKeyword{
+									CommitKeyword: &sqlitepb.CommitKeyword{},
+								},
+							},
+						},
+					},
+				},
+			},
+		},
+	}
+	got, err := RenderSQL(list)
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := "BEGIN; COMMIT"
+	if got != want {
+		t.Errorf("\n got  %q\n want %q", got, want)
+	}
+}
+
 func TestRender_CreateTableTwoColumns(t *testing.T) {
 	stmt := &sqlitepb.CreateTableStmt{
 		TableKeyword: &sqlitepb.TableKeyword{},
