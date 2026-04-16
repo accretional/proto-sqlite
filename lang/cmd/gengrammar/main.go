@@ -1,7 +1,5 @@
-// Command gengrammar reads lang/sqlite-lex.textproto + lang/sqlite.ebnf
-// and emits lang/sqlite-grammar.textproto via gluon's lexkit.Parse.
-//
-// No gluon extension required — we reuse its EBNF meta-language verbatim.
+// Command gengrammar reads lang/sqlite.ebnf and emits a
+// GrammarDescriptor textproto via gluon's v2 Metaparser.ParseEBNF.
 package main
 
 import (
@@ -10,30 +8,34 @@ import (
 	"log"
 	"os"
 
-	"github.com/accretional/gluon/lexkit"
+	"google.golang.org/protobuf/encoding/prototext"
+
+	metaparserv2 "github.com/accretional/gluon/v2/metaparser"
 )
 
 func main() {
-	lexPath := flag.String("lex", "lang/sqlite-lex.textproto", "lex descriptor textproto")
 	ebnfPath := flag.String("ebnf", "lang/sqlite.ebnf", "EBNF source")
 	outPath := flag.String("out", "lang/sqlite-grammar.textproto", "grammar descriptor output")
 	flag.Parse()
 
-	lex, err := lexkit.LoadLex(*lexPath)
-	if err != nil {
-		log.Fatalf("load lex %s: %v", *lexPath, err)
-	}
 	src, err := os.ReadFile(*ebnfPath)
 	if err != nil {
 		log.Fatalf("read ebnf %s: %v", *ebnfPath, err)
 	}
-	gd, err := lexkit.Parse(string(src), lex)
+	doc := metaparserv2.WrapString(string(src))
+	doc.Name = *ebnfPath
+
+	gd, err := metaparserv2.ParseEBNF(doc)
 	if err != nil {
-		log.Fatalf("lexkit.Parse: %v", err)
+		log.Fatalf("ParseEBNF: %v", err)
 	}
-	out := lexkit.ToTextproto(gd)
-	if err := os.WriteFile(*outPath, []byte(out), 0o644); err != nil {
+
+	out, err := prototext.MarshalOptions{Multiline: true, Indent: "  "}.Marshal(gd)
+	if err != nil {
+		log.Fatalf("prototext.Marshal: %v", err)
+	}
+	if err := os.WriteFile(*outPath, out, 0o644); err != nil {
 		log.Fatalf("write %s: %v", *outPath, err)
 	}
-	fmt.Printf("wrote %s (%d productions)\n", *outPath, len(gd.Productions))
+	fmt.Printf("wrote %s (%d rules)\n", *outPath, len(gd.GetRules()))
 }

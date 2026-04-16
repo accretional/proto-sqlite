@@ -119,20 +119,18 @@ Used inside `ProductionDescriptor.body` (proto-expr `Expression`):
 - ✅ gluon v2 `astkit` package + Transformer service (tasks #19, #20).
 - ✅ proto-expr `Protosh.Run` scripting runtime (task #21).
 - ✅ gluon v2 `Metaparser.Transform` RPC wrapping Protosh.Run (task #22).
-- ⏳ The proto-lowering handler (grammar/AST → `FileDescriptorProto`).
-  Open question: does it live as a `protoc://Compile` handler inside
-  gluon v2's Transform wiring, or as its own standalone RPC? Either
-  way it replaces v1's `metaparser.Build`.
-- ⏳ Wire the v2 pipeline into proto-sqlite (task #13 was against v1;
-  will need to rewire once the lowering handler lands). Task #8 —
-  stmt protos + Sqlite.Query — is the consumer end.
+- ✅ gluon v2 `compiler` package + `Compile` RPC + `protoc://Compile`
+  Transform handler (task #23). Lowers a schema-shaped `ASTDescriptor`
+  to a `FileDescriptorProto`; `compiler.GrammarToAST` bridges from a
+  flat `GrammarDescriptor` for callers that hold a grammar.
+- ✅ proto-sqlite cutover to v2 pipeline (task #23, phase D).
+  `lang/cmd/gengrammar` and `lang/cmd/genproto` now call gluon v2
+  (`ParseEBNF`, `GrammarToAST`, `compiler.Compile`); all v1 gluon
+  imports are gone. Output is byte-identical to the previous v1 run.
+- ⏳ Task #8 — stmt protos + Sqlite.Query — is the consumer end.
 
 ## Risks / open questions
 
-- **Where does the proto-lowering handler live?** Current leaning: a
-  new handler package in gluon (or a fresh `proto-compile` repo) that
-  registers under `protoc://Compile` inside `Transform`'s host wiring.
-  Keeps the Transform RPC the single entry point for proto-sqlite.
 - **Recursive `expr` with 30+ alternation arms** produces a large
   oneof. Works; noisy. v1 acceptable.
 - **Field numbering stability**: lowering assigns 1..N in source

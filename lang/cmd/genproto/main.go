@@ -1,7 +1,8 @@
-// Command genproto reads the sqlite grammar textproto, runs gluon's
-// Metaparser to emit a FileDescriptorProto, serializes it as a
-// FileDescriptorSet, writes the bundled .proto to the repo root, and
-// splits individual message .proto files into lang/protos/ via proto-merge.
+// Command genproto reads the sqlite EBNF, runs gluon v2's pipeline
+// (ParseEBNF → GrammarToAST → compiler.Compile) to produce a
+// FileDescriptorProto, serializes it as a FileDescriptorSet, writes
+// the bundled .proto to the repo root, and splits individual message
+// .proto files into lang/protos/ via proto-merge.
 package main
 
 import (
@@ -14,51 +15,57 @@ import (
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/descriptorpb"
 
-	"github.com/accretional/gluon/lexkit"
-	"github.com/accretional/gluon/metaparser"
-	pb "github.com/accretional/gluon/pb"
+	"github.com/accretional/gluon/v2/compiler"
+	metaparserv2 "github.com/accretional/gluon/v2/metaparser"
 	"github.com/accretional/merge/descriptor"
 	mergeproto "github.com/accretional/merge/proto"
 )
 
 func main() {
-	lexPath := flag.String("lex", "lang/sqlite-lex.textproto", "lex descriptor textproto")
 	ebnfPath := flag.String("ebnf", "lang/sqlite.ebnf", "EBNF source")
 	fdsetOut := flag.String("fdset", "lang/sqlite.fdset", "output FileDescriptorSet binary")
 	bundledOut := flag.String("bundled", "sqlite.proto", "bundled .proto output in repo root")
 	splitDir := flag.String("split-dir", "lang/protos", "output directory for split .proto files")
+	pkgName := flag.String("package", "sqlite", "proto package name")
+	goPkg := flag.String("go-package", "", "go_package file option (empty = omit)")
 	flag.Parse()
 
-	lex, err := lexkit.LoadLex(*lexPath)
-	if err != nil {
-		log.Fatalf("load lex %s: %v", *lexPath, err)
-	}
 	src, err := os.ReadFile(*ebnfPath)
 	if err != nil {
 		log.Fatalf("read ebnf %s: %v", *ebnfPath, err)
 	}
-	gd, err := lexkit.Parse(string(src), lex)
+
+	doc := metaparserv2.WrapString(string(src))
+	doc.Name = *ebnfPath
+
+	gd, err := metaparserv2.ParseEBNF(doc)
 	if err != nil {
-		log.Fatalf("lexkit.Parse: %v", err)
+		log.Fatalf("ParseEBNF: %v", err)
 	}
 
-	ld := &pb.LanguageDescriptor{
-		Name:    "sqlite",
-		Grammar: gd,
-	}
-	fdp, err := metaparser.Build(ld)
+	ast, err := compiler.GrammarToAST(gd)
 	if err != nil {
-		log.Fatalf("metaparser.Build: %v", err)
+		log.Fatalf("GrammarToAST: %v", err)
 	}
-	fmt.Printf("generated %d messages from %d productions\n",
-		len(fdp.GetMessageType()), len(gd.GetProductions()))
+	ast.Language = *pkgName
+
+	fdp, err := compiler.Compile(ast, compiler.Options{
+		Package:   *pkgName,
+		GoPackage: *goPkg,
+		FileName:  *bundledOut,
+	})
+	if err != nil {
+		log.Fatalf("compiler.Compile: %v", err)
+	}
+	fmt.Printf("generated %d messages from %d rules\n",
+		len(fdp.GetMessageType()), len(gd.GetRules()))
 
 	set := &descriptorpb.FileDescriptorSet{
 		File: []*descriptorpb.FileDescriptorProto{fdp},
 	}
 	blob, err := proto.Marshal(set)
 	if err != nil {
-		log.Fatalf("marshal: %v", err)
+		log.Fatalf("marshal fdset: %v", err)
 	}
 	if err := os.WriteFile(*fdsetOut, blob, 0o644); err != nil {
 		log.Fatalf("write %s: %v", *fdsetOut, err)
@@ -69,7 +76,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("descriptor.ToString: %v", err)
 	}
-
 	if err := os.WriteFile(*bundledOut, []byte(protoSrc), 0o644); err != nil {
 		log.Fatalf("write %s: %v", *bundledOut, err)
 	}
