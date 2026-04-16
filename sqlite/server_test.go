@@ -65,19 +65,30 @@ func TestServerQuery_RawSQL(t *testing.T) {
 	}
 }
 
-func TestServerQuery_TypedStmtsUnimplemented(t *testing.T) {
+func TestServerQuery_TypedBegin(t *testing.T) {
+	// Typed SqlStmtList → rendered to "BEGIN" → executed against the
+	// example db. BEGIN returns no rows but also no error.
 	client := startInProc(t)
 
-	_, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
+	resp, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
 		Body: &sqlitepb.QueryRequest_Stmts{
-			Stmts: &sqlitepb.SqlStmtList{},
+			Stmts: &sqlitepb.SqlStmtList{
+				SqlStmt: []*sqlitepb.SqlStmt{{
+					Alt1: &sqlitepb.SqlStmt_Alt1{
+						Value: &sqlitepb.SqlStmt_Alt1_BeginStmt{
+							BeginStmt: &sqlitepb.BeginStmt{},
+						},
+					},
+				}},
+			},
 		},
 	})
-	if err == nil {
-		t.Fatal("want Unimplemented error, got nil")
+	if err != nil {
+		t.Fatalf("Query: %v", err)
 	}
-	if status.Code(err) != codes.Unimplemented {
-		t.Errorf("code: got %v, want Unimplemented", status.Code(err))
+	if len(resp.GetColumn()) != 0 || len(resp.GetRow()) != 0 {
+		t.Errorf("BEGIN should have empty result, got cols=%v rows=%d",
+			resp.GetColumn(), len(resp.GetRow()))
 	}
 }
 

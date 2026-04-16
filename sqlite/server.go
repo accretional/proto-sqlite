@@ -28,8 +28,11 @@ func (s *Server) Query(ctx context.Context, req *sqlitepb.QueryRequest) (*sqlite
 	case *sqlitepb.QueryRequest_Sql:
 		sql = body.Sql
 	case *sqlitepb.QueryRequest_Stmts:
-		return nil, status.Error(codes.Unimplemented,
-			"typed SqlStmtList rendering not yet implemented — use the sql field")
+		rendered, err := RenderSQL(body.Stmts)
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument, "render SqlStmtList: %v", err)
+		}
+		sql = rendered
 	default:
 		return nil, status.Error(codes.InvalidArgument, "QueryRequest.body is required")
 	}
