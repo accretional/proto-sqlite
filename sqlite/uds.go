@@ -149,7 +149,7 @@ func handleUDSConn(ctx context.Context, conn net.Conn, bin, db string) {
 		_ = writeUDSResponse(conn, udsStatusErr, []byte(fmt.Sprintf("read sql: %v", err)))
 		return
 	}
-	out, err := exec.CommandContext(ctx, bin, "-csv", "-header", db, string(sql)).CombinedOutput()
+	out, err := exec.CommandContext(ctx, bin, "-cmd", ".headers on", "-cmd", ".mode quote", db, string(sql)).CombinedOutput()
 	if err != nil {
 		msg := fmt.Sprintf("sqlite3: %v (out=%q)", err, string(out))
 		_ = writeUDSResponse(conn, udsStatusErr, []byte(msg))

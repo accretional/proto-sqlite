@@ -61,7 +61,7 @@ func TestServerQuery_RawSQL(t *testing.T) {
 	}
 	// example db: (1, sprocket, 3), (2, gizmo, 7), (3, cog, 12)
 	first := resp.GetRow()[0].GetCell()
-	if !eq(first, []string{"1", "sprocket", "3"}) {
+	if !eqCells(first, "1", "sprocket", "3") {
 		t.Errorf("row 0: got %v", first)
 	}
 }
@@ -188,7 +188,7 @@ func TestServerQuery_TypedCreateTableTwoColumns(t *testing.T) {
 	if n := len(check.GetRow()); n != 1 {
 		t.Fatalf("expected 1 row for typed_ct, got %d", n)
 	}
-	if got := check.GetRow()[0].GetCell()[0]; got != "typed_ct" {
+	if got := check.GetRow()[0].GetCell()[0]; string(got) != "typed_ct" {
 		t.Errorf("name: got %q, want %q", got, "typed_ct")
 	}
 }
@@ -318,10 +318,10 @@ func TestServerQuery_TypedInsertValuesTwoRows(t *testing.T) {
 	}
 	r0 := check.GetRow()[0].GetCell()
 	r1 := check.GetRow()[1].GetCell()
-	if !eq(r0, []string{"foo", "bar"}) {
+	if !eqCells(r0, "foo", "bar") {
 		t.Errorf("row 0: got %v, want [foo bar]", r0)
 	}
-	if !eq(r1, []string{"hello", "world"}) {
+	if !eqCells(r1, "hello", "world") {
 		t.Errorf("row 1: got %v, want [hello world]", r1)
 	}
 }
@@ -357,10 +357,10 @@ func TestServerQuery_DbPath(t *testing.T) {
 	if n := len(resp.GetRow()); n != 2 {
 		t.Fatalf("rows: got %d, want 2", n)
 	}
-	if got := resp.GetRow()[0].GetCell(); !eq(got, []string{"alpha"}) {
+	if got := resp.GetRow()[0].GetCell(); !eqCells(got, "alpha") {
 		t.Errorf("row 0: got %v, want [alpha]", got)
 	}
-	if got := resp.GetRow()[1].GetCell(); !eq(got, []string{"beta"}) {
+	if got := resp.GetRow()[1].GetCell(); !eqCells(got, "beta") {
 		t.Errorf("row 1: got %v, want [beta]", got)
 	}
 }
@@ -383,6 +383,18 @@ func eq(a, b []string) bool {
 	}
 	for i := range a {
 		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}
+
+func eqCells(got [][]byte, want ...string) bool {
+	if len(got) != len(want) {
+		return false
+	}
+	for i := range got {
+		if string(got[i]) != want[i] {
 			return false
 		}
 	}

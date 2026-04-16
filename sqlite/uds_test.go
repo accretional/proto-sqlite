@@ -85,7 +85,7 @@ func TestServerQuery_UDSRawSQL(t *testing.T) {
 	if got := len(resp.GetRow()); got != 3 {
 		t.Fatalf("rows: got %d, want 3", got)
 	}
-	if got := resp.GetRow()[0].GetCell(); !eq(got, []string{"1", "sprocket", "3"}) {
+	if got := resp.GetRow()[0].GetCell(); !eqCells(got, "1", "sprocket", "3") {
 		t.Errorf("row 0: got %v", got)
 	}
 }

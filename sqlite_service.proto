@@ -45,5 +45,8 @@ message QueryResponse {
 }
 
 message Row {
-  repeated string cell = 1;
+  repeated bytes cell      = 1;
+  // cell_null[i] is true when cell[i] is SQL NULL. bytes fields cannot
+  // represent nil vs empty-blob without this parallel signal.
+  repeated bool  cell_null = 2;
 }

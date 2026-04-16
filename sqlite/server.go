@@ -2,7 +2,6 @@ package sqliteembed
 
 import (
 	"context"
-	"encoding/csv"
 	"fmt"
 	"os/exec"
 	"strings"
@@ -42,37 +41,48 @@ func (s *Server) Query(ctx context.Context, req *sqlitepb.QueryRequest) (*sqlite
 		if err != nil {
 			return nil, status.Errorf(codes.Unavailable, "uds query: %v", err)
 		}
-		return parseCSV(out)
+		return parseQuote(out)
 	}
 
 	bin, db, err := ResolveBackend("", req.GetDbPath())
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "resolve sqlite backend: %v", err)
 	}
-	out, err := exec.CommandContext(ctx, bin, "-csv", "-header", db, sql).CombinedOutput()
+	out, err := exec.CommandContext(ctx, bin, "-cmd", ".headers on", "-cmd", ".mode quote", db, sql).CombinedOutput()
 	if err != nil {
 		return nil, status.Errorf(codes.InvalidArgument, "sqlite3: %v (out=%q)", err, string(out))
 	}
-	return parseCSV(string(out))
+	return parseQuote(string(out))
 }
 
-// parseCSV turns sqlite3's -csv -header output into a QueryResponse.
-// Empty output (statements like INSERT with no returning) produces an
-// empty response.
-func parseCSV(raw string) (*sqlitepb.QueryResponse, error) {
+// parseQuote turns sqlite3's ".headers on" + ".mode quote" output into
+// a QueryResponse. Empty output produces an empty response.
+//
+// Header line: bare comma-separated column names (no quoting).
+// Value lines: SQL literals per cell — 'text', X'hex', NULL, or a bare
+// number. Text uses '' to escape a literal single-quote inside.
+func parseQuote(raw string) (*sqlitepb.QueryResponse, error) {
 	trimmed := strings.TrimRight(raw, "\n")
 	if trimmed == "" {
 		return &sqlitepb.QueryResponse{}, nil
 	}
-	r := csv.NewReader(strings.NewReader(trimmed))
-	r.FieldsPerRecord = -1
-	records, err := r.ReadAll()
+	lines := strings.Split(trimmed, "\n")
+	// Header line: column names, also emitted as SQL literals in .mode quote.
+	rawCols, _, err := parseQuoteLine(lines[0])
 	if err != nil {
-		return nil, fmt.Errorf("parse sqlite csv output: %w", err)
+		return nil, fmt.Errorf("parse quote header %q: %w", lines[0], err)
 	}
-	resp := &sqlitepb.QueryResponse{Column: records[0]}
-	for _, rec := range records[1:] {
-		resp.Row = append(resp.Row, &sqlitepb.Row{Cell: rec})
+	cols := make([]string, len(rawCols))
+	for i, c := range rawCols {
+		cols[i] = string(c)
+	}
+	resp := &sqlitepb.QueryResponse{Column: cols}
+	for _, line := range lines[1:] {
+		cells, nulls, err := parseQuoteLine(line)
+		if err != nil {
+			return nil, fmt.Errorf("parse quote line %q: %w", line, err)
+		}
+		resp.Row = append(resp.Row, &sqlitepb.Row{Cell: cells, CellNull: nulls})
 	}
 	return resp, nil
 }

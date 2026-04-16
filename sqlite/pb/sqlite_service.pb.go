@@ -187,8 +187,11 @@ func (x *QueryResponse) GetRow() []*Row {
 }
 
 type Row struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Cell          []string               `protobuf:"bytes,1,rep,name=cell,proto3" json:"cell,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	Cell  [][]byte               `protobuf:"bytes,1,rep,name=cell,proto3" json:"cell,omitempty"`
+	// cell_null[i] is true when cell[i] is SQL NULL. bytes fields cannot
+	// represent nil vs empty-blob without this parallel signal.
+	CellNull      []bool `protobuf:"varint,2,rep,packed,name=cell_null,json=cellNull,proto3" json:"cell_null,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -223,9 +226,16 @@ func (*Row) Descriptor() ([]byte, []int) {
 	return file_sqlite_service_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Row) GetCell() []string {
+func (x *Row) GetCell() [][]byte {
 	if x != nil {
 		return x.Cell
+	}
+	return nil
+}
+
+func (x *Row) GetCellNull() []bool {
+	if x != nil {
+		return x.CellNull
 	}
 	return nil
 }
@@ -244,9 +254,10 @@ const file_sqlite_service_proto_rawDesc = "" +
 	"\x04body\"F\n" +
 	"\rQueryResponse\x12\x16\n" +
 	"\x06column\x18\x01 \x03(\tR\x06column\x12\x1d\n" +
-	"\x03row\x18\x02 \x03(\v2\v.sqlite.RowR\x03row\"\x19\n" +
+	"\x03row\x18\x02 \x03(\v2\v.sqlite.RowR\x03row\"6\n" +
 	"\x03Row\x12\x12\n" +
-	"\x04cell\x18\x01 \x03(\tR\x04cell2>\n" +
+	"\x04cell\x18\x01 \x03(\fR\x04cell\x12\x1b\n" +
+	"\tcell_null\x18\x02 \x03(\bR\bcellNull2>\n" +
 	"\x06Sqlite\x124\n" +
 	"\x05Query\x12\x14.sqlite.QueryRequest\x1a\x15.sqlite.QueryResponseB8Z6github.com/accretional/proto-sqlite/sqlite/pb;sqlitepbb\x06proto3"
 
