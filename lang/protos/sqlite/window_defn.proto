@@ -46,4 +46,4 @@ message WindowDefn {
       OrderingTerm ordering_term = 2;
     }
   }
-
+}

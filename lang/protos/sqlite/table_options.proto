@@ -38,4 +38,4 @@ message TableOptions {
 
     RowidKeyword rowid_keyword = 4;
   }
-
+}

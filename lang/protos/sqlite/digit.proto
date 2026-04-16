@@ -24,4 +24,4 @@ message Digit {
 
     DigitNineKeyword digit_nine_keyword = 10;
   }
-
+}

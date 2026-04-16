@@ -3,4 +3,4 @@ syntax = "proto3";
 package sqlite;
 
 message WindowKeyword {
-
+}

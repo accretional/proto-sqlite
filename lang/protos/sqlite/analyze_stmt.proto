@@ -24,4 +24,4 @@ message AnalyzeStmt {
       TableOrIndexName table_or_index_name = 3;
     }
   }
-
+}

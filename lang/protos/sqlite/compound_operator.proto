@@ -18,4 +18,4 @@ message CompoundOperator {
 
     AllKeyword all_keyword = 2;
   }
-
+}

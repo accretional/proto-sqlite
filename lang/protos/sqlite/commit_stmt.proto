@@ -14,4 +14,4 @@ message CommitStmt {
       EndKeyword end_keyword = 2;
     }
   }
-
+}

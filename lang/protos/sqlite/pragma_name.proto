@@ -4,4 +4,4 @@ package sqlite;
 
 message PragmaName {
   Name name = 1;
-
+}

@@ -54,4 +54,4 @@ message CreateIndexStmt {
 
     Expr expr = 2;
   }
-
+}

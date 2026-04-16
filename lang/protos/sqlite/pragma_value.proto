@@ -10,4 +10,4 @@ message PragmaValue {
 
     StringLiteral string_literal = 3;
   }
-
+}

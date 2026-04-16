@@ -24,4 +24,4 @@ message DropTableStmt {
 
     FullStopKeyword full_stop_keyword = 2;
   }
-
+}

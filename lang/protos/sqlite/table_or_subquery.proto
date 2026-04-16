@@ -128,4 +128,4 @@ message TableOrSubquery {
 
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
-
+}

@@ -44,4 +44,4 @@ message OrderingTerm {
       LastKeyword last_keyword = 2;
     }
   }
-
+}

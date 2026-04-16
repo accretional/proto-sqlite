@@ -8,4 +8,4 @@ message ReleaseStmt {
   SavepointKeyword savepoint_keyword = 2;
 
   SavepointName savepoint_name = 3;
-
+}

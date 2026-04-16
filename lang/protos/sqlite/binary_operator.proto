@@ -64,4 +64,4 @@ message BinaryOperator {
 
     NotKeyword not_keyword = 2;
   }
-
+}

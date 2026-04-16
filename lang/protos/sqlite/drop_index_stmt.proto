@@ -24,4 +24,4 @@ message DropIndexStmt {
 
     FullStopKeyword full_stop_keyword = 2;
   }
-
+}

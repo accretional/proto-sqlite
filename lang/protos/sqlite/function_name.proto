@@ -4,4 +4,4 @@ package sqlite;
 
 message FunctionName {
   Name name = 1;
-
+}

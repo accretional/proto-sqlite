@@ -14,4 +14,4 @@ message JoinClause {
 
     JoinConstraint join_constraint = 3;
   }
-
+}

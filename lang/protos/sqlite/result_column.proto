@@ -30,4 +30,4 @@ message ResultColumn {
 
     AsteriskKeyword asterisk_keyword = 3;
   }
-
+}

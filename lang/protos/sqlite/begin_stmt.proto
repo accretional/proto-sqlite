@@ -18,4 +18,4 @@ message BeginStmt {
       ExclusiveKeyword exclusive_keyword = 3;
     }
   }
-
+}

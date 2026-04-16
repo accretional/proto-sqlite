@@ -22,4 +22,4 @@ message LiteralValue {
 
     CurrentTimestampKeyword current_timestamp_keyword = 9;
   }
-
+}

@@ -14,4 +14,4 @@ message SignedNumber {
       HyphenMinusKeyword hyphen_minus_keyword = 2;
     }
   }
-
+}

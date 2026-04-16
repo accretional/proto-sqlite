@@ -36,4 +36,4 @@ message TypeName {
       RightParenthesisKeyword right_parenthesis_keyword = 5;
     }
   }
-
+}

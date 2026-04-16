@@ -24,4 +24,4 @@ message DropTriggerStmt {
 
     FullStopKeyword full_stop_keyword = 2;
   }
-
+}

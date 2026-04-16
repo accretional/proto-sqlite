@@ -16,4 +16,4 @@ message ColumnNameList {
 
     ColumnName column_name = 2;
   }
-
+}

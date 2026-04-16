@@ -4,4 +4,4 @@ package sqlite;
 
 message ModuleName {
   Name name = 1;
-
+}

@@ -12,4 +12,4 @@ message FilterClause {
   Expr expr = 4;
 
   RightParenthesisKeyword right_parenthesis_keyword = 5;
-
+}

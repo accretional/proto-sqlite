@@ -8,4 +8,4 @@ message DetachStmt {
   DatabaseKeyword database_keyword = 2;
 
   SchemaName schema_name = 3;
-
+}

@@ -76,4 +76,4 @@ message SqlStmt {
       VacuumStmt vacuum_stmt = 27;
     }
   }
-
+}

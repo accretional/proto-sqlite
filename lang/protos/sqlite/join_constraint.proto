@@ -32,4 +32,4 @@ message JoinConstraint {
       ColumnName column_name = 2;
     }
   }
-
+}

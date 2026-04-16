@@ -14,4 +14,4 @@ message VacuumStmt {
 
     Filename filename = 2;
   }
-
+}

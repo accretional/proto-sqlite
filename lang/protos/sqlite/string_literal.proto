@@ -4,4 +4,4 @@ package sqlite;
 
 message StringLiteral {
   XKeyword x_keyword = 1;
-
+}

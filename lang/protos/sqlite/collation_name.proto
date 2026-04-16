@@ -4,4 +4,4 @@ package sqlite;
 
 message CollationName {
   Name name = 1;
-
+}

@@ -58,4 +58,4 @@ message CreateViewStmt {
       ColumnName column_name = 2;
     }
   }
-
+}

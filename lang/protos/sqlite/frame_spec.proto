@@ -170,4 +170,4 @@ message FrameSpec {
       TiesKeyword ties_keyword = 2;
     }
   }
-
+}

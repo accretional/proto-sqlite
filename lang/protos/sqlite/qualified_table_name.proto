@@ -44,4 +44,4 @@ message QualifiedTableName {
       IndexedKeyword indexed_keyword = 2;
     }
   }
-
+}

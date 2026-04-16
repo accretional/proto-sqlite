@@ -16,4 +16,4 @@ message RollbackStmt {
 
     SavepointName savepoint_name = 3;
   }
-
+}

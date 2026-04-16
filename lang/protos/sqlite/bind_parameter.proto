@@ -30,4 +30,4 @@ message BindParameter {
 
     Name name = 2;
   }
-
+}

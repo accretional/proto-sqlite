@@ -8,4 +8,4 @@ message ColumnDef {
   TypeName type_name = 2;
 
   repeated ColumnConstraint column_constraint = 3;
-
+}

@@ -12,4 +12,4 @@ message UnaryOperator {
 
     NotKeyword not_keyword = 4;
   }
-
+}

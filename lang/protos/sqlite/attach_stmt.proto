@@ -12,4 +12,4 @@ message AttachStmt {
   AsKeyword as_keyword = 4;
 
   SchemaName schema_name = 5;
-
+}
