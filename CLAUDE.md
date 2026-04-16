@@ -12,20 +12,22 @@ alter-table-stmt analyze-stmt attach-stmt begin-stmt commit-stmt create-index-st
 
 Structure per stmt is documented at `https://sqlite.org/syntax/<name>.html`. URL list: `sqlite-doc-urls.csv`.
 
-## Tasks
+## Approach
 
-1. **Screenshot each syntax diagram** into `docs/sqlite-parse-img/<NAME>.png` (bounding-box-clipped). SVG text can also be extracted directly from the DOM. Feed screenshots to multimodal models to transcribe into production rules. In the SVG: nodes listed in "References" are production rules; other labels are usually user-provided strings.
-2. **Convert to gluon descriptors**: build `sqlite-lex.textproto` and `sqlite-grammar.textproto` (see `github.com/accretional/gluon` — `LexDescriptor` in `lex.proto`, `GrammarDescriptor` in `grammar.proto`).
-3. **Keyword/symbol enums + empty messages**: `keywords.proto` (enum + one empty `message ALTER {}` etc. per keyword), `symbols.proto` (same pattern for symbols). Pattern borrowed from googlesql.
-4. **Stmt messages**: e.g. `message AlterTable { Alter alter = 1; Table table = 2; string schema_name = 3; Dot dot = 4; string table_name = 5; ... }` with intermediate parses (`ColumnDef`, `ColumnConstraint`, …) as their own messages.
-5. **gRPC server in Go**: `go:embed` the sqlite binary + an example db, expose `service Sqlite { rpc Query(SqlStmtList) returns (...) }`.
+The stmt messages are *mechanically derived* from SQLite's EBNF grammar — not hand-maintained. `lang/cmd/genproto` drives a gluon v2 pipeline (`ParseEBNF` → `GrammarToAST` → AST transforms → `Compile`) that turns `lang/sqlite.ebnf` into a `FileDescriptorProto`; protoc emits the Go types; the `Sqlite.Query` server renders typed `SqlStmtList` instances back to SQL via proto reflection and shells out to an embedded `sqlite3`.
+
+See **[GLUON_GUIDE.md](GLUON_GUIDE.md)** for the full pipeline, the role each gluon API plays, and what proto-sqlite contributes locally (`scalarizeX`, the reflection renderer).
+
+The initial syntax-diagram capture work used `github.com/accretional/chromerpc` to screenshot each `https://sqlite.org/syntax/<name>.html` diagram into `docs/sqlite-parse-img/<NAME>.png`; those images guided the hand-transcription of `lang/sqlite.ebnf` but are no longer in the build path.
 
 ## Directory Layout
 
-- `lang/` — parsing logic, screenshot-to-grammar pipeline, textproto outputs
-- `sqlite/` — protobuf service, gRPC server, embedded sqlite binary + example db
-- `protos/` — shared .proto files (keywords, symbols, stmts, service)
-- `docs/sqlite-parse-img/` — per-stmt syntax screenshots
+- `lang/` — `sqlite.ebnf`, the genproto/gengrammar drivers, and split protos
+- `lang/protos/sqlite/` — generated per-message `.proto` files
+- `sqlite.proto` — generated bundled proto at the repo root
+- `sqlite/` — `Sqlite.Query` gRPC server, reflection renderer, embedded sqlite binary + example db
+- `sqlite/pb/` — generated Go types + `prefix_map.go`
+- `docs/sqlite-parse-img/` — per-stmt syntax screenshots (historical reference)
 - `scripts/` — helper scripts invoked by the top-level shell scripts
 - `third_party/` — vendored/cloned external tools (chromerpc, sqlite binary)
 

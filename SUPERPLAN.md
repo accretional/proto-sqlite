@@ -127,7 +127,21 @@ Used inside `ProductionDescriptor.body` (proto-expr `Expression`):
   `lang/cmd/gengrammar` and `lang/cmd/genproto` now call gluon v2
   (`ParseEBNF`, `GrammarToAST`, `compiler.Compile`); all v1 gluon
   imports are gone. Output is byte-identical to the previous v1 run.
-- ⏳ Task #8 — stmt protos + Sqlite.Query — is the consumer end.
+- ✅ Task #8 — stmt protos + Sqlite.Query. Typed `SqlStmtList`
+  requests render back to SQL via proto reflection
+  (`sqlite/render.go` + generated `MessagePrefix` map) and execute
+  against the embedded sqlite3. Raw-SQL escape hatch retained on the
+  same `QueryRequest` oneof.
+- ✅ Scalar placeholder lowering. The EBNF placeholder `"x"` in
+  `name`, `string_literal`, `blob_literal` would otherwise lower to
+  a no-op `XKeyword` message. A proto-sqlite-local AST transform
+  (`lang/cmd/genproto/scalarize.go`) rewrites those terminals to
+  gluon's new `KindScalar`; the compiler emits `string value = 1`,
+  the renderer emits populated values as tokens. Callers supply real
+  identifiers at runtime.
+
+See `GLUON_GUIDE.md` for a walkthrough of the pipeline and what it
+demonstrates about gluon.
 
 ## Risks / open questions
 
