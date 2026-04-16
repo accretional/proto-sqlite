@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package sqlite;
+
+import "sqlite.proto";
+
+option go_package = "github.com/accretional/proto-sqlite/sqlite/pb;sqlitepb";
+
+// Sqlite wraps an embedded sqlite3 binary over gRPC. The Query RPC
+// accepts a typed SqlStmtList (the mechanically-derived CST) or, as a
+// transitional escape hatch, a raw SQL string.
+service Sqlite {
+  rpc Query(QueryRequest) returns (QueryResponse);
+}
+
+message QueryRequest {
+  oneof body {
+    // Raw SQL — forwarded verbatim to sqlite3.
+    string sql = 1;
+
+    // Typed CST — server must render back to SQL text. Not yet
+    // implemented; returns UNIMPLEMENTED until the SqlStmtList → SQL
+    // printer lands.
+    SqlStmtList stmts = 2;
+  }
+}
+
+message QueryResponse {
+  repeated string column = 1;
+  repeated Row row = 2;
+}
+
+message Row {
+  repeated string cell = 1;
+}

@@ -11,7 +11,6 @@ require (
 
 require (
 	github.com/accretional/proto-expr v0.0.0-20260416071217-9a69001c59bb // indirect
-	github.com/accretional/runrpc v0.0.0-20260312135111-3b4543f39b87 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
 	github.com/jhump/protoreflect v1.18.0 // indirect
 	github.com/jhump/protoreflect/v2 v2.0.0-beta.1 // indirect

@@ -27,7 +27,7 @@ func main() {
 	bundledOut := flag.String("bundled", "sqlite.proto", "bundled .proto output in repo root")
 	splitDir := flag.String("split-dir", "lang/protos", "output directory for split .proto files")
 	pkgName := flag.String("package", "sqlite", "proto package name")
-	goPkg := flag.String("go-package", "", "go_package file option (empty = omit)")
+	goPkg := flag.String("go-package", "github.com/accretional/proto-sqlite/sqlite/pb;sqlitepb", "go_package file option (empty = omit)")
 	flag.Parse()
 
 	src, err := os.ReadFile(*ebnfPath)

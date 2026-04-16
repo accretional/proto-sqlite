@@ -1,0 +1,106 @@
+package sqliteembed
+
+import (
+	"context"
+	"net"
+	"testing"
+
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials/insecure"
+	"google.golang.org/grpc/status"
+	"google.golang.org/grpc/test/bufconn"
+
+	sqlitepb "github.com/accretional/proto-sqlite/sqlite/pb"
+)
+
+func startInProc(t *testing.T) sqlitepb.SqliteClient {
+	t.Helper()
+	lis := bufconn.Listen(1 << 20)
+	srv := grpc.NewServer()
+	sqlitepb.RegisterSqliteServer(srv, NewServer())
+	go func() {
+		if err := srv.Serve(lis); err != nil {
+			t.Logf("grpc server stopped: %v", err)
+		}
+	}()
+	t.Cleanup(srv.Stop)
+
+	dial := func(ctx context.Context, _ string) (net.Conn, error) {
+		return lis.DialContext(ctx)
+	}
+	conn, err := grpc.NewClient("passthrough:///bufconn",
+		grpc.WithContextDialer(dial),
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+	)
+	if err != nil {
+		t.Fatalf("dial: %v", err)
+	}
+	t.Cleanup(func() { conn.Close() })
+	return sqlitepb.NewSqliteClient(conn)
+}
+
+func TestServerQuery_RawSQL(t *testing.T) {
+	client := startInProc(t)
+
+	resp, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "SELECT id, name, qty FROM widgets ORDER BY id;",
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query: %v", err)
+	}
+	wantCols := []string{"id", "name", "qty"}
+	if got, want := resp.GetColumn(), wantCols; !eq(got, want) {
+		t.Errorf("columns: got %v, want %v", got, want)
+	}
+	if got := len(resp.GetRow()); got != 3 {
+		t.Fatalf("rows: got %d, want 3", got)
+	}
+	// example db: (1, sprocket, 3), (2, gizmo, 7), (3, cog, 12)
+	first := resp.GetRow()[0].GetCell()
+	if !eq(first, []string{"1", "sprocket", "3"}) {
+		t.Errorf("row 0: got %v", first)
+	}
+}
+
+func TestServerQuery_TypedStmtsUnimplemented(t *testing.T) {
+	client := startInProc(t)
+
+	_, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Stmts{
+			Stmts: &sqlitepb.SqlStmtList{},
+		},
+	})
+	if err == nil {
+		t.Fatal("want Unimplemented error, got nil")
+	}
+	if status.Code(err) != codes.Unimplemented {
+		t.Errorf("code: got %v, want Unimplemented", status.Code(err))
+	}
+}
+
+func TestServerQuery_EmptyBody(t *testing.T) {
+	client := startInProc(t)
+
+	_, err := client.Query(context.Background(), &sqlitepb.QueryRequest{})
+	if err == nil {
+		t.Fatal("want InvalidArgument error, got nil")
+	}
+	if status.Code(err) != codes.InvalidArgument {
+		t.Errorf("code: got %v, want InvalidArgument", status.Code(err))
+	}
+}
+
+func eq(a, b []string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if a[i] != b[i] {
+			return false
+		}
+	}
+	return true
+}

@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package sqlite;
 
+option go_package = "github.com/accretional/proto-sqlite/sqlite/pb;sqlitepb";
+
 message SqlStmtList {
   repeated SqlStmt sql_stmt = 1;
 }
