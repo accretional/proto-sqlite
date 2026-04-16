@@ -1,6 +1,6 @@
 // Command genproto reads the sqlite grammar textproto, runs gluon's
-// Metaparser to emit a FileDescriptorProto, and writes a serialized
-// FileDescriptorSet that protoc can consume via --descriptor_set_in.
+// Metaparser to emit a FileDescriptorProto, serializes it as a
+// FileDescriptorSet, and renders .proto source text via proto-merge.
 package main
 
 import (
@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/descriptorpb"
@@ -15,12 +16,14 @@ import (
 	"github.com/accretional/gluon/lexkit"
 	"github.com/accretional/gluon/metaparser"
 	pb "github.com/accretional/gluon/pb"
+	"github.com/accretional/merge/descriptor"
 )
 
 func main() {
 	lexPath := flag.String("lex", "lang/sqlite-lex.textproto", "lex descriptor textproto")
 	ebnfPath := flag.String("ebnf", "lang/sqlite.ebnf", "EBNF source")
-	outPath := flag.String("out", "lang/sqlite.fdset", "output FileDescriptorSet binary")
+	fdsetOut := flag.String("fdset", "lang/sqlite.fdset", "output FileDescriptorSet binary")
+	protoDir := flag.String("proto-dir", "lang/protos", "output directory for .proto files")
 	flag.Parse()
 
 	lex, err := lexkit.LoadLex(*lexPath)
@@ -54,8 +57,21 @@ func main() {
 	if err != nil {
 		log.Fatalf("marshal: %v", err)
 	}
-	if err := os.WriteFile(*outPath, blob, 0o644); err != nil {
-		log.Fatalf("write %s: %v", *outPath, err)
+	if err := os.WriteFile(*fdsetOut, blob, 0o644); err != nil {
+		log.Fatalf("write %s: %v", *fdsetOut, err)
 	}
-	fmt.Printf("wrote %s (%d bytes)\n", *outPath, len(blob))
+	fmt.Printf("wrote %s (%d bytes)\n", *fdsetOut, len(blob))
+
+	protoSrc, err := descriptor.ToString(fdp)
+	if err != nil {
+		log.Fatalf("descriptor.ToString: %v", err)
+	}
+	if err := os.MkdirAll(*protoDir, 0o755); err != nil {
+		log.Fatalf("mkdir %s: %v", *protoDir, err)
+	}
+	protoPath := filepath.Join(*protoDir, fdp.GetName())
+	if err := os.WriteFile(protoPath, []byte(protoSrc), 0o644); err != nil {
+		log.Fatalf("write %s: %v", protoPath, err)
+	}
+	fmt.Printf("wrote %s\n", protoPath)
 }

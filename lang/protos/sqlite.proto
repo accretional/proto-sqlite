@@ -1,0 +1,4412 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SqlStmtList {
+  SqlStmt sql_stmt = 1;
+
+  repeated Seq1 seq1 = 2;
+
+  message Seq1 {
+    SemicolonKeyword semicolon_keyword = 1;
+
+    SqlStmt sql_stmt = 2;
+  }
+}
+
+message SqlStmt {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  message Seq1 {
+    ExplainKeyword explain_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    message Seq1 {
+      QueryKeyword query_keyword = 1;
+
+      PlanKeyword plan_keyword = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      AlterTableStmt alter_table_stmt = 1;
+
+      AnalyzeStmt analyze_stmt = 2;
+
+      AttachStmt attach_stmt = 3;
+
+      BeginStmt begin_stmt = 4;
+
+      CommitStmt commit_stmt = 5;
+
+      CreateIndexStmt create_index_stmt = 6;
+
+      CreateTableStmt create_table_stmt = 7;
+
+      CreateTriggerStmt create_trigger_stmt = 8;
+
+      CreateViewStmt create_view_stmt = 9;
+
+      CreateVirtualTableStmt create_virtual_table_stmt = 10;
+
+      DeleteStmt delete_stmt = 11;
+
+      DeleteStmtLimited delete_stmt_limited = 12;
+
+      DetachStmt detach_stmt = 13;
+
+      DropIndexStmt drop_index_stmt = 14;
+
+      DropTableStmt drop_table_stmt = 15;
+
+      DropTriggerStmt drop_trigger_stmt = 16;
+
+      DropViewStmt drop_view_stmt = 17;
+
+      InsertStmt insert_stmt = 18;
+
+      PragmaStmt pragma_stmt = 19;
+
+      ReindexStmt reindex_stmt = 20;
+
+      ReleaseStmt release_stmt = 21;
+
+      RollbackStmt rollback_stmt = 22;
+
+      SavepointStmt savepoint_stmt = 23;
+
+      SelectStmt select_stmt = 24;
+
+      UpdateStmt update_stmt = 25;
+
+      UpdateStmtLimited update_stmt_limited = 26;
+
+      VacuumStmt vacuum_stmt = 27;
+    }
+  }
+}
+
+message BeginStmt {
+  BeginKeyword begin_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  TransactionKeyword transaction_keyword = 3;
+
+  message Alt1 {
+    oneof value {
+      DeferredKeyword deferred_keyword = 1;
+
+      ImmediateKeyword immediate_keyword = 2;
+
+      ExclusiveKeyword exclusive_keyword = 3;
+    }
+  }
+}
+
+message CommitStmt {
+  Alt1 alt1 = 1;
+
+  TransactionKeyword transaction_keyword = 2;
+
+  message Alt1 {
+    oneof value {
+      CommitKeyword commit_keyword = 1;
+
+      EndKeyword end_keyword = 2;
+    }
+  }
+}
+
+message RollbackStmt {
+  RollbackKeyword rollback_keyword = 1;
+
+  TransactionKeyword transaction_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  message Seq1 {
+    ToKeyword to_keyword = 1;
+
+    SavepointKeyword savepoint_keyword = 2;
+
+    SavepointName savepoint_name = 3;
+  }
+}
+
+message SavepointStmt {
+  SavepointKeyword savepoint_keyword = 1;
+
+  SavepointName savepoint_name = 2;
+}
+
+message ReleaseStmt {
+  ReleaseKeyword release_keyword = 1;
+
+  SavepointKeyword savepoint_keyword = 2;
+
+  SavepointName savepoint_name = 3;
+}
+
+message AttachStmt {
+  AttachKeyword attach_keyword = 1;
+
+  DatabaseKeyword database_keyword = 2;
+
+  Expr expr = 3;
+
+  AsKeyword as_keyword = 4;
+
+  SchemaName schema_name = 5;
+}
+
+message DetachStmt {
+  DetachKeyword detach_keyword = 1;
+
+  DatabaseKeyword database_keyword = 2;
+
+  SchemaName schema_name = 3;
+}
+
+message VacuumStmt {
+  VacuumKeyword vacuum_keyword = 1;
+
+  SchemaName schema_name = 2;
+
+  Seq1 seq1 = 3;
+
+  message Seq1 {
+    IntoKeyword into_keyword = 1;
+
+    Filename filename = 2;
+  }
+}
+
+message AnalyzeStmt {
+  AnalyzeKeyword analyze_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  message Alt1 {
+    oneof value {
+      SchemaName schema_name = 1;
+
+      IndexOrTableName index_or_table_name = 2;
+
+      Seq1 seq1 = 3;
+    }
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+
+      TableOrIndexName table_or_index_name = 3;
+    }
+  }
+}
+
+message ReindexStmt {
+  ReindexKeyword reindex_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  message Alt1 {
+    oneof value {
+      CollationName collation_name = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      Seq1 seq1 = 1;
+
+      Alt1 alt1 = 2;
+
+      message Seq1 {
+        SchemaName schema_name = 1;
+
+        FullStopKeyword full_stop_keyword = 2;
+      }
+
+      message Alt1 {
+        oneof value {
+          TableName table_name = 1;
+
+          IndexName index_name = 2;
+        }
+      }
+    }
+  }
+}
+
+message PragmaStmt {
+  PragmaKeyword pragma_keyword = 1;
+
+  Seq1 seq1 = 2;
+
+  PragmaName pragma_name = 3;
+
+  Alt1 alt1 = 4;
+
+  message Seq1 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      EqualsSignKeyword equals_sign_keyword = 1;
+
+      PragmaValue pragma_value = 2;
+    }
+
+    message Seq2 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      PragmaValue pragma_value = 2;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 3;
+    }
+  }
+}
+
+message DropTableStmt {
+  DropKeyword drop_keyword = 1;
+
+  TableKeyword table_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  TableName table_name = 5;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    ExistsKeyword exists_keyword = 2;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+}
+
+message DropIndexStmt {
+  DropKeyword drop_keyword = 1;
+
+  IndexKeyword index_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  IndexName index_name = 5;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    ExistsKeyword exists_keyword = 2;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+}
+
+message DropViewStmt {
+  DropKeyword drop_keyword = 1;
+
+  ViewKeyword view_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  ViewName view_name = 5;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    ExistsKeyword exists_keyword = 2;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+}
+
+message DropTriggerStmt {
+  DropKeyword drop_keyword = 1;
+
+  TriggerKeyword trigger_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  TriggerName trigger_name = 5;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    ExistsKeyword exists_keyword = 2;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+}
+
+message AlterTableStmt {
+  AlterKeyword alter_keyword = 1;
+
+  TableKeyword table_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  TableName table_name = 4;
+
+  Alt1 alt1 = 5;
+
+  message Seq1 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+
+      Seq5 seq5 = 5;
+
+      Seq6 seq6 = 6;
+
+      Seq7 seq7 = 7;
+    }
+
+    message Seq1 {
+      RenameKeyword rename_keyword = 1;
+
+      ToKeyword to_keyword = 2;
+
+      NewTableName new_table_name = 3;
+    }
+
+    message Seq2 {
+      RenameKeyword rename_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+
+      ToKeyword to_keyword = 4;
+
+      NewColumnName new_column_name = 5;
+    }
+
+    message Seq3 {
+      AddKeyword add_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnDef column_def = 3;
+    }
+
+    message Seq4 {
+      AddKeyword add_keyword = 1;
+
+      ConstraintKeyword constraint_keyword = 2;
+
+      ConstraintName constraint_name = 3;
+
+      CheckKeyword check_keyword = 4;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+      Expr expr = 6;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+      ConflictClause conflict_clause = 8;
+    }
+
+    message Seq5 {
+      DropKeyword drop_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+    }
+
+    message Seq6 {
+      DropKeyword drop_keyword = 1;
+
+      ConstraintKeyword constraint_keyword = 2;
+
+      ConstraintName constraint_name = 3;
+    }
+
+    message Seq7 {
+      AlterKeyword alter_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+
+      Alt1 alt1 = 4;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+        }
+
+        message Seq1 {
+          SetKeyword set_keyword = 1;
+
+          NotKeyword not_keyword = 2;
+
+          NullKeyword null_keyword = 3;
+
+          ConflictClause conflict_clause = 4;
+        }
+
+        message Seq2 {
+          DropKeyword drop_keyword = 1;
+
+          NotKeyword not_keyword = 2;
+
+          NullKeyword null_keyword = 3;
+        }
+      }
+    }
+  }
+}
+
+message CreateTableStmt {
+  CreateKeyword create_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  TableKeyword table_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  TableName table_name = 6;
+
+  Alt2 alt2 = 7;
+
+  message Alt1 {
+    oneof value {
+      TempKeyword temp_keyword = 1;
+
+      TemporaryKeyword temporary_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      AsKeyword as_keyword = 1;
+
+      SelectStmt select_stmt = 2;
+    }
+
+    message Seq2 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      ColumnDef column_def = 2;
+
+      repeated Seq1 seq1 = 3;
+
+      repeated Seq2 seq2 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      TableOptions table_options = 6;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        ColumnDef column_def = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        TableConstraint table_constraint = 2;
+      }
+    }
+  }
+}
+
+message CreateIndexStmt {
+  CreateKeyword create_keyword = 1;
+
+  UniqueKeyword unique_keyword = 2;
+
+  IndexKeyword index_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  IndexName index_name = 6;
+
+  OnKeyword on_keyword = 7;
+
+  TableName table_name = 8;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 9;
+
+  IndexedColumn indexed_column = 10;
+
+  repeated Seq3 seq3 = 11;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 12;
+
+  Seq4 seq4 = 13;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq3 {
+    CommaKeyword comma_keyword = 1;
+
+    IndexedColumn indexed_column = 2;
+  }
+
+  message Seq4 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+}
+
+message CreateTriggerStmt {
+  CreateKeyword create_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  TriggerKeyword trigger_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  TriggerName trigger_name = 6;
+
+  Alt2 alt2 = 7;
+
+  Alt3 alt3 = 8;
+
+  OnKeyword on_keyword = 9;
+
+  TableName table_name = 10;
+
+  Seq3 seq3 = 11;
+
+  Seq4 seq4 = 12;
+
+  BeginKeyword begin_keyword = 13;
+
+  Alt4 alt4 = 14;
+
+  SemicolonKeyword semicolon_keyword = 15;
+
+  repeated Seq5 seq5 = 16;
+
+  EndKeyword end_keyword = 17;
+
+  message Alt1 {
+    oneof value {
+      TempKeyword temp_keyword = 1;
+
+      TemporaryKeyword temporary_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt2 {
+    oneof value {
+      BeforeKeyword before_keyword = 1;
+
+      AfterKeyword after_keyword = 2;
+
+      Seq1 seq1 = 3;
+    }
+
+    message Seq1 {
+      InsteadKeyword instead_keyword = 1;
+
+      OfKeyword of_keyword = 2;
+    }
+  }
+
+  message Alt3 {
+    oneof value {
+      DeleteKeyword delete_keyword = 1;
+
+      InsertKeyword insert_keyword = 2;
+
+      Seq1 seq1 = 3;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      Seq1 seq1 = 2;
+
+      message Seq1 {
+        OfKeyword of_keyword = 1;
+
+        ColumnName column_name = 2;
+
+        repeated Seq1 seq1 = 3;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          ColumnName column_name = 2;
+        }
+      }
+    }
+  }
+
+  message Seq3 {
+    ForKeyword for_keyword = 1;
+
+    EachKeyword each_keyword = 2;
+
+    RowKeyword row_keyword = 3;
+  }
+
+  message Seq4 {
+    WhenKeyword when_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Alt4 {
+    oneof value {
+      UpdateStmt update_stmt = 1;
+
+      InsertStmt insert_stmt = 2;
+
+      DeleteStmt delete_stmt = 3;
+
+      SelectStmt select_stmt = 4;
+    }
+  }
+
+  message Seq5 {
+    Alt1 alt1 = 1;
+
+    SemicolonKeyword semicolon_keyword = 2;
+
+    message Alt1 {
+      oneof value {
+        UpdateStmt update_stmt = 1;
+
+        InsertStmt insert_stmt = 2;
+
+        DeleteStmt delete_stmt = 3;
+
+        SelectStmt select_stmt = 4;
+      }
+    }
+  }
+}
+
+message CreateViewStmt {
+  CreateKeyword create_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  ViewKeyword view_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  ViewName view_name = 6;
+
+  Seq3 seq3 = 7;
+
+  AsKeyword as_keyword = 8;
+
+  SelectStmt select_stmt = 9;
+
+  message Alt1 {
+    oneof value {
+      TempKeyword temp_keyword = 1;
+
+      TemporaryKeyword temporary_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq3 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+}
+
+message CreateVirtualTableStmt {
+  CreateKeyword create_keyword = 1;
+
+  VirtualKeyword virtual_keyword = 2;
+
+  TableKeyword table_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  TableName table_name = 6;
+
+  UsingKeyword using_keyword = 7;
+
+  ModuleName module_name = 8;
+
+  Seq3 seq3 = 9;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq3 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
+
+    message Seq1 {
+      ModuleArgument module_argument = 1;
+
+      repeated Seq1 seq1 = 2;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        ModuleArgument module_argument = 2;
+      }
+    }
+  }
+}
+
+message SelectStmt {
+  Seq1 seq1 = 1;
+
+  SelectCore select_core = 2;
+
+  repeated Seq2 seq2 = 3;
+
+  Seq3 seq3 = 4;
+
+  Seq4 seq4 = 5;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Seq2 {
+    CompoundOperator compound_operator = 1;
+
+    SelectCore select_core = 2;
+  }
+
+  message Seq3 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Seq4 {
+    LimitKeyword limit_keyword = 1;
+
+    Expr expr = 2;
+
+    Alt1 alt1 = 3;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        Seq2 seq2 = 2;
+      }
+
+      message Seq1 {
+        OffsetKeyword offset_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+}
+
+message SelectCore {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    Seq2 seq2 = 2;
+  }
+
+  message Seq1 {
+    SelectKeyword select_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    ResultColumn result_column = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    Seq2 seq2 = 5;
+
+    Seq3 seq3 = 6;
+
+    Seq4 seq4 = 7;
+
+    Seq5 seq5 = 8;
+
+    message Alt1 {
+      oneof value {
+        DistinctKeyword distinct_keyword = 1;
+
+        AllKeyword all_keyword = 2;
+      }
+    }
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ResultColumn result_column = 2;
+    }
+
+    message Seq2 {
+      FromKeyword from_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          JoinClause join_clause = 2;
+        }
+
+        message Seq1 {
+          TableOrSubquery table_or_subquery = 1;
+
+          repeated Seq1 seq1 = 2;
+
+          message Seq1 {
+            CommaKeyword comma_keyword = 1;
+
+            TableOrSubquery table_or_subquery = 2;
+          }
+        }
+      }
+    }
+
+    message Seq3 {
+      WhereKeyword where_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq4 {
+      GroupKeyword group_keyword = 1;
+
+      ByKeyword by_keyword = 2;
+
+      Expr expr = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      Seq2 seq2 = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        HavingKeyword having_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+
+    message Seq5 {
+      WindowKeyword window_keyword = 1;
+
+      WindowName window_name = 2;
+
+      AsKeyword as_keyword = 3;
+
+      WindowDefn window_defn = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        WindowName window_name = 2;
+
+        AsKeyword as_keyword = 3;
+
+        WindowDefn window_defn = 4;
+      }
+    }
+  }
+
+  message Seq2 {
+    ValuesKeyword values_keyword = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    Expr expr = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+    repeated Seq2 seq2 = 6;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq2 {
+      CommaKeyword comma_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+}
+
+message FactoredSelectStmt {
+  Seq1 seq1 = 1;
+
+  SelectCore select_core = 2;
+
+  repeated Seq2 seq2 = 3;
+
+  Seq3 seq3 = 4;
+
+  Seq4 seq4 = 5;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Seq2 {
+    CompoundOperator compound_operator = 1;
+
+    SelectCore select_core = 2;
+  }
+
+  message Seq3 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Seq4 {
+    LimitKeyword limit_keyword = 1;
+
+    Expr expr = 2;
+
+    Alt1 alt1 = 3;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        Seq2 seq2 = 2;
+      }
+
+      message Seq1 {
+        OffsetKeyword offset_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+}
+
+message ResultColumn {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    AsteriskKeyword asterisk_keyword = 2;
+
+    Seq2 seq2 = 3;
+  }
+
+  message Seq1 {
+    Expr expr = 1;
+
+    Seq1 seq1 = 2;
+
+    message Seq1 {
+      AsKeyword as_keyword = 1;
+
+      ColumnAlias column_alias = 2;
+    }
+  }
+
+  message Seq2 {
+    TableName table_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+
+    AsteriskKeyword asterisk_keyword = 3;
+  }
+}
+
+message CompoundOperator {
+  oneof value {
+    UnionKeyword union_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    IntersectKeyword intersect_keyword = 3;
+
+    ExceptKeyword except_keyword = 4;
+  }
+
+  message Seq1 {
+    UnionKeyword union_keyword = 1;
+
+    AllKeyword all_keyword = 2;
+  }
+}
+
+message CommonTableExpression {
+  TableName table_name = 1;
+
+  Seq1 seq1 = 2;
+
+  AsKeyword as_keyword = 3;
+
+  Alt1 alt1 = 4;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+  SelectStmt select_stmt = 6;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+
+    message Seq1 {
+      NotKeyword not_keyword = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+  }
+}
+
+message WithClause {
+  WithKeyword with_keyword = 1;
+
+  RecursiveKeyword recursive_keyword = 2;
+
+  CteTableName cte_table_name = 3;
+
+  AsKeyword as_keyword = 4;
+
+  Alt1 alt1 = 5;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 6;
+
+  SelectStmt select_stmt = 7;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 8;
+
+  repeated Seq1 seq1 = 9;
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+
+    message Seq1 {
+      NotKeyword not_keyword = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    CommaKeyword comma_keyword = 1;
+
+    CteTableName cte_table_name = 2;
+
+    AsKeyword as_keyword = 3;
+
+    Alt1 alt1 = 4;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+    SelectStmt select_stmt = 6;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        MaterializedKeyword materialized_keyword = 2;
+      }
+
+      message Seq1 {
+        NotKeyword not_keyword = 1;
+
+        MaterializedKeyword materialized_keyword = 2;
+      }
+    }
+  }
+}
+
+message DeleteStmt {
+  Seq1 seq1 = 1;
+
+  DeleteKeyword delete_keyword = 2;
+
+  FromKeyword from_keyword = 3;
+
+  QualifiedTableName qualified_table_name = 4;
+
+  Seq2 seq2 = 5;
+
+  ReturningClause returning_clause = 6;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Seq2 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+}
+
+message DeleteStmtLimited {
+  Seq1 seq1 = 1;
+
+  DeleteKeyword delete_keyword = 2;
+
+  FromKeyword from_keyword = 3;
+
+  QualifiedTableName qualified_table_name = 4;
+
+  Seq2 seq2 = 5;
+
+  ReturningClause returning_clause = 6;
+
+  Seq3 seq3 = 7;
+
+  LimitKeyword limit_keyword = 8;
+
+  Expr expr = 9;
+
+  Alt1 alt1 = 10;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Seq2 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq3 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      OffsetKeyword offset_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq2 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+}
+
+message InsertStmt {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  IntoKeyword into_keyword = 3;
+
+  Seq2 seq2 = 4;
+
+  TableName table_name = 5;
+
+  Seq3 seq3 = 6;
+
+  Seq4 seq4 = 7;
+
+  Alt2 alt2 = 8;
+
+  ReturningClause returning_clause = 9;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      ReplaceKeyword replace_keyword = 1;
+
+      InsertKeyword insert_keyword = 2;
+
+      Seq1 seq1 = 3;
+    }
+
+    message Seq1 {
+      InsertKeyword insert_keyword = 1;
+
+      OrKeyword or_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      message Alt1 {
+        oneof value {
+          AbortKeyword abort_keyword = 1;
+
+          FailKeyword fail_keyword = 2;
+
+          IgnoreKeyword ignore_keyword = 3;
+
+          ReplaceKeyword replace_keyword = 4;
+
+          RollbackKeyword rollback_keyword = 5;
+        }
+      }
+    }
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq3 {
+    AsKeyword as_keyword = 1;
+
+    Alias alias = 2;
+  }
+
+  message Seq4 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+    }
+
+    message Seq1 {
+      ValuesKeyword values_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      repeated Seq2 seq2 = 6;
+
+      UpsertClause upsert_clause = 7;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+        Expr expr = 3;
+
+        repeated Seq1 seq1 = 4;
+
+        RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          Expr expr = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      SelectStmt select_stmt = 1;
+
+      UpsertClause upsert_clause = 2;
+    }
+
+    message Seq3 {
+      DefaultKeyword default_keyword = 1;
+
+      ValuesKeyword values_keyword = 2;
+    }
+  }
+}
+
+message UpdateStmt {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  QualifiedTableName qualified_table_name = 3;
+
+  SetKeyword set_keyword = 4;
+
+  Alt2 alt2 = 5;
+
+  EqualsSignKeyword equals_sign_keyword = 6;
+
+  Expr expr = 7;
+
+  repeated Seq2 seq2 = 8;
+
+  Seq3 seq3 = 9;
+
+  Seq4 seq4 = 10;
+
+  ReturningClause returning_clause = 11;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      UpdateKeyword update_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      OrKeyword or_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      message Alt1 {
+        oneof value {
+          AbortKeyword abort_keyword = 1;
+
+          FailKeyword fail_keyword = 2;
+
+          IgnoreKeyword ignore_keyword = 3;
+
+          ReplaceKeyword replace_keyword = 4;
+
+          RollbackKeyword rollback_keyword = 5;
+        }
+      }
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      ColumnName column_name = 1;
+
+      ColumnNameList column_name_list = 2;
+    }
+  }
+
+  message Seq2 {
+    CommaKeyword comma_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    EqualsSignKeyword equals_sign_keyword = 3;
+
+    Expr expr = 4;
+
+    message Alt1 {
+      oneof value {
+        ColumnName column_name = 1;
+
+        ColumnNameList column_name_list = 2;
+      }
+    }
+  }
+
+  message Seq3 {
+    FromKeyword from_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        JoinClause join_clause = 2;
+      }
+
+      message Seq1 {
+        TableOrSubquery table_or_subquery = 1;
+
+        repeated Seq1 seq1 = 2;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          TableOrSubquery table_or_subquery = 2;
+        }
+      }
+    }
+  }
+
+  message Seq4 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+}
+
+message UpdateStmtLimited {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  QualifiedTableName qualified_table_name = 3;
+
+  SetKeyword set_keyword = 4;
+
+  Alt2 alt2 = 5;
+
+  EqualsSignKeyword equals_sign_keyword = 6;
+
+  Expr expr = 7;
+
+  repeated Seq2 seq2 = 8;
+
+  Seq3 seq3 = 9;
+
+  Seq4 seq4 = 10;
+
+  ReturningClause returning_clause = 11;
+
+  Seq5 seq5 = 12;
+
+  LimitKeyword limit_keyword = 13;
+
+  Expr expr_2 = 14;
+
+  Alt3 alt3 = 15;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      UpdateKeyword update_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      OrKeyword or_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      message Alt1 {
+        oneof value {
+          AbortKeyword abort_keyword = 1;
+
+          FailKeyword fail_keyword = 2;
+
+          IgnoreKeyword ignore_keyword = 3;
+
+          ReplaceKeyword replace_keyword = 4;
+
+          RollbackKeyword rollback_keyword = 5;
+        }
+      }
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      ColumnName column_name = 1;
+
+      ColumnNameList column_name_list = 2;
+    }
+  }
+
+  message Seq2 {
+    CommaKeyword comma_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    EqualsSignKeyword equals_sign_keyword = 3;
+
+    Expr expr = 4;
+
+    message Alt1 {
+      oneof value {
+        ColumnName column_name = 1;
+
+        ColumnNameList column_name_list = 2;
+      }
+    }
+  }
+
+  message Seq3 {
+    FromKeyword from_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        JoinClause join_clause = 2;
+      }
+
+      message Seq1 {
+        TableOrSubquery table_or_subquery = 1;
+
+        repeated Seq1 seq1 = 2;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          TableOrSubquery table_or_subquery = 2;
+        }
+      }
+    }
+  }
+
+  message Seq4 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq5 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Alt3 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      OffsetKeyword offset_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq2 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+}
+
+message TableOrSubquery {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    Seq2 seq2 = 2;
+
+    Seq3 seq3 = 3;
+
+    Seq4 seq4 = 4;
+
+    Seq5 seq5 = 5;
+  }
+
+  message Seq1 {
+    Seq1 seq1 = 1;
+
+    TableName table_name = 2;
+
+    Seq2 seq2 = 3;
+
+    Alt1 alt1 = 4;
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+    }
+
+    message Seq2 {
+      AsKeyword as_keyword = 1;
+
+      TableAlias table_alias = 2;
+    }
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        Seq2 seq2 = 2;
+      }
+
+      message Seq1 {
+        IndexedKeyword indexed_keyword = 1;
+
+        ByKeyword by_keyword = 2;
+
+        IndexName index_name = 3;
+      }
+
+      message Seq2 {
+        NotKeyword not_keyword = 1;
+
+        IndexedKeyword indexed_keyword = 2;
+      }
+    }
+  }
+
+  message Seq2 {
+    Seq1 seq1 = 1;
+
+    TableFunctionName table_function_name = 2;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+    Seq2 seq2 = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+    Seq3 seq3 = 6;
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+    }
+
+    message Seq2 {
+      Expr expr = 1;
+
+      repeated Seq1 seq1 = 2;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+
+    message Seq3 {
+      AsKeyword as_keyword = 1;
+
+      TableAlias table_alias = 2;
+    }
+  }
+
+  message Seq3 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    SelectStmt select_stmt = 2;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
+  }
+
+  message Seq4 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    TableOrSubquery table_or_subquery = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      TableOrSubquery table_or_subquery = 2;
+    }
+  }
+
+  message Seq5 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    JoinClause join_clause = 2;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
+  }
+}
+
+message JoinClause {
+  TableOrSubquery table_or_subquery = 1;
+
+  repeated Seq1 seq1 = 2;
+
+  message Seq1 {
+    JoinOperator join_operator = 1;
+
+    TableOrSubquery table_or_subquery = 2;
+
+    JoinConstraint join_constraint = 3;
+  }
+}
+
+message JoinOperator {
+  oneof value {
+    CommaKeyword comma_keyword = 1;
+
+    Seq1 seq1 = 2;
+  }
+
+  message Seq1 {
+    NaturalKeyword natural_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    JoinKeyword join_keyword = 3;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        InnerKeyword inner_keyword = 2;
+
+        CrossKeyword cross_keyword = 3;
+      }
+
+      message Seq1 {
+        Alt1 alt1 = 1;
+
+        OuterKeyword outer_keyword = 2;
+
+        message Alt1 {
+          oneof value {
+            LeftKeyword left_keyword = 1;
+
+            RightKeyword right_keyword = 2;
+
+            FullKeyword full_keyword = 3;
+          }
+        }
+      }
+    }
+  }
+}
+
+message JoinConstraint {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    Seq2 seq2 = 2;
+  }
+
+  message Seq1 {
+    OnKeyword on_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq2 {
+    UsingKeyword using_keyword = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    ColumnName column_name = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+}
+
+message OrderingTerm {
+  Expr expr = 1;
+
+  Seq1 seq1 = 2;
+
+  Alt1 alt1 = 3;
+
+  Alt2 alt2 = 4;
+
+  message Seq1 {
+    CollateKeyword collate_keyword = 1;
+
+    CollationName collation_name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      AscKeyword asc_keyword = 1;
+
+      DescKeyword desc_keyword = 2;
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      NullsKeyword nulls_keyword = 1;
+
+      FirstKeyword first_keyword = 2;
+    }
+
+    message Seq2 {
+      NullsKeyword nulls_keyword = 1;
+
+      LastKeyword last_keyword = 2;
+    }
+  }
+}
+
+message ColumnDef {
+  ColumnName column_name = 1;
+
+  TypeName type_name = 2;
+
+  repeated ColumnConstraint column_constraint = 3;
+}
+
+message ColumnConstraint {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  message Seq1 {
+    ConstraintKeyword constraint_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+
+      Seq5 seq5 = 5;
+
+      Seq6 seq6 = 6;
+
+      ForeignKeyClause foreign_key_clause = 7;
+
+      Seq7 seq7 = 8;
+    }
+
+    message Seq1 {
+      PrimaryKeyword primary_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      ConflictClause conflict_clause = 4;
+
+      AutoincrementKeyword autoincrement_keyword = 5;
+
+      message Alt1 {
+        oneof value {
+          AscKeyword asc_keyword = 1;
+
+          DescKeyword desc_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      NotKeyword not_keyword = 1;
+
+      NullKeyword null_keyword = 2;
+
+      ConflictClause conflict_clause = 3;
+    }
+
+    message Seq3 {
+      UniqueKeyword unique_keyword = 1;
+
+      ConflictClause conflict_clause = 2;
+    }
+
+    message Seq4 {
+      CheckKeyword check_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
+    }
+
+    message Seq5 {
+      DefaultKeyword default_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          LiteralValue literal_value = 2;
+
+          SignedNumber signed_number = 3;
+        }
+
+        message Seq1 {
+          LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+          Expr expr = 2;
+
+          RightParenthesisKeyword right_parenthesis_keyword = 3;
+        }
+      }
+    }
+
+    message Seq6 {
+      CollateKeyword collate_keyword = 1;
+
+      CollationName collation_name = 2;
+    }
+
+    message Seq7 {
+      Seq1 seq1 = 1;
+
+      AsKeyword as_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      Expr expr = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      Alt1 alt1 = 6;
+
+      message Seq1 {
+        GeneratedKeyword generated_keyword = 1;
+
+        AlwaysKeyword always_keyword = 2;
+      }
+
+      message Alt1 {
+        oneof value {
+          StoredKeyword stored_keyword = 1;
+
+          VirtualKeyword virtual_keyword = 2;
+        }
+      }
+    }
+  }
+}
+
+message TableConstraint {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  message Seq1 {
+    ConstraintKeyword constraint_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      PrimaryKeyword primary_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      IndexedColumn indexed_column = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+      ConflictClause conflict_clause = 7;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        IndexedColumn indexed_column = 2;
+      }
+    }
+
+    message Seq2 {
+      UniqueKeyword unique_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      IndexedColumn indexed_column = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      ConflictClause conflict_clause = 6;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        IndexedColumn indexed_column = 2;
+      }
+    }
+
+    message Seq3 {
+      CheckKeyword check_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
+    }
+
+    message Seq4 {
+      ForeignKeyword foreign_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      ColumnName column_name = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+      ForeignKeyClause foreign_key_clause = 7;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        ColumnName column_name = 2;
+      }
+    }
+  }
+}
+
+message ConflictClause {
+  Seq1 seq1 = 1;
+
+  message Seq1 {
+    OnKeyword on_keyword = 1;
+
+    ConflictKeyword conflict_keyword = 2;
+
+    Alt1 alt1 = 3;
+
+    message Alt1 {
+      oneof value {
+        RollbackKeyword rollback_keyword = 1;
+
+        AbortKeyword abort_keyword = 2;
+
+        FailKeyword fail_keyword = 3;
+
+        IgnoreKeyword ignore_keyword = 4;
+
+        ReplaceKeyword replace_keyword = 5;
+      }
+    }
+  }
+}
+
+message ForeignKeyClause {
+  ReferencesKeyword references_keyword = 1;
+
+  ForeignTable foreign_table = 2;
+
+  Seq1 seq1 = 3;
+
+  repeated Alt1 alt1 = 4;
+
+  Seq2 seq2 = 5;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      OnKeyword on_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      Alt2 alt2 = 3;
+
+      message Alt1 {
+        oneof value {
+          DeleteKeyword delete_keyword = 1;
+
+          UpdateKeyword update_keyword = 2;
+        }
+      }
+
+      message Alt2 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          CascadeKeyword cascade_keyword = 3;
+
+          RestrictKeyword restrict_keyword = 4;
+
+          Seq3 seq3 = 5;
+        }
+
+        message Seq1 {
+          SetKeyword set_keyword = 1;
+
+          NullKeyword null_keyword = 2;
+        }
+
+        message Seq2 {
+          SetKeyword set_keyword = 1;
+
+          DefaultKeyword default_keyword = 2;
+        }
+
+        message Seq3 {
+          NoKeyword no_keyword = 1;
+
+          ActionKeyword action_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      MatchKeyword match_keyword = 1;
+
+      Name name = 2;
+    }
+  }
+
+  message Seq2 {
+    NotKeyword not_keyword = 1;
+
+    DeferrableKeyword deferrable_keyword = 2;
+
+    Seq1 seq1 = 3;
+
+    message Seq1 {
+      InitiallyKeyword initially_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          DeferredKeyword deferred_keyword = 1;
+
+          ImmediateKeyword immediate_keyword = 2;
+        }
+      }
+    }
+  }
+}
+
+message TableOptions {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    StrictKeyword strict_keyword = 2;
+
+    Seq2 seq2 = 3;
+
+    Seq3 seq3 = 4;
+  }
+
+  message Seq1 {
+    WithoutKeyword without_keyword = 1;
+
+    RowidKeyword rowid_keyword = 2;
+  }
+
+  message Seq2 {
+    WithoutKeyword without_keyword = 1;
+
+    RowidKeyword rowid_keyword = 2;
+
+    CommaKeyword comma_keyword = 3;
+
+    StrictKeyword strict_keyword = 4;
+  }
+
+  message Seq3 {
+    StrictKeyword strict_keyword = 1;
+
+    CommaKeyword comma_keyword = 2;
+
+    WithoutKeyword without_keyword = 3;
+
+    RowidKeyword rowid_keyword = 4;
+  }
+}
+
+message TypeName {
+  Name name = 1;
+
+  repeated Name name_2 = 2;
+
+  Alt1 alt1 = 3;
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      SignedNumber signed_number = 2;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 3;
+    }
+
+    message Seq2 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      SignedNumber signed_number = 2;
+
+      CommaKeyword comma_keyword = 3;
+
+      SignedNumber signed_number_2 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+    }
+  }
+}
+
+message IndexedColumn {
+  Alt1 alt1 = 1;
+
+  Seq1 seq1 = 2;
+
+  Alt2 alt2 = 3;
+
+  message Alt1 {
+    oneof value {
+      ColumnName column_name = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Seq1 {
+    CollateKeyword collate_keyword = 1;
+
+    CollationName collation_name = 2;
+  }
+
+  message Alt2 {
+    oneof value {
+      AscKeyword asc_keyword = 1;
+
+      DescKeyword desc_keyword = 2;
+    }
+  }
+}
+
+message QualifiedTableName {
+  Seq1 seq1 = 1;
+
+  TableName table_name = 2;
+
+  Seq2 seq2 = 3;
+
+  Alt1 alt1 = 4;
+
+  message Seq1 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq2 {
+    AsKeyword as_keyword = 1;
+
+    Alias alias = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      IndexedKeyword indexed_keyword = 1;
+
+      ByKeyword by_keyword = 2;
+
+      IndexName index_name = 3;
+    }
+
+    message Seq2 {
+      NotKeyword not_keyword = 1;
+
+      IndexedKeyword indexed_keyword = 2;
+    }
+  }
+}
+
+message ReturningClause {
+  ReturningKeyword returning_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  repeated Seq1 seq1 = 3;
+
+  message Alt1 {
+    oneof value {
+      AsteriskKeyword asterisk_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      Expr expr = 1;
+
+      Seq1 seq1 = 2;
+
+      message Seq1 {
+        AsKeyword as_keyword = 1;
+
+        ColumnAlias column_alias = 2;
+      }
+    }
+  }
+
+  message Seq1 {
+    CommaKeyword comma_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    message Alt1 {
+      oneof value {
+        AsteriskKeyword asterisk_keyword = 1;
+
+        Seq1 seq1 = 2;
+      }
+
+      message Seq1 {
+        Expr expr = 1;
+
+        Seq1 seq1 = 2;
+
+        message Seq1 {
+          AsKeyword as_keyword = 1;
+
+          ColumnAlias column_alias = 2;
+        }
+      }
+    }
+  }
+}
+
+message UpsertClause {
+  OnKeyword on_keyword = 1;
+
+  ConflictKeyword conflict_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  DoKeyword do_keyword = 4;
+
+  Alt1 alt1 = 5;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    IndexedColumn indexed_column = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    Seq2 seq2 = 5;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      IndexedColumn indexed_column = 2;
+    }
+
+    message Seq2 {
+      WhereKeyword where_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      NothingKeyword nothing_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      SetKeyword set_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      EqualsSignKeyword equals_sign_keyword = 4;
+
+      Expr expr = 5;
+
+      repeated Seq1 seq1 = 6;
+
+      Seq2 seq2 = 7;
+
+      message Alt1 {
+        oneof value {
+          ColumnName column_name = 1;
+
+          ColumnNameList column_name_list = 2;
+        }
+      }
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Alt1 alt1 = 2;
+
+        EqualsSignKeyword equals_sign_keyword = 3;
+
+        Expr expr = 4;
+
+        message Alt1 {
+          oneof value {
+            ColumnName column_name = 1;
+
+            ColumnNameList column_name_list = 2;
+          }
+        }
+      }
+
+      message Seq2 {
+        WhereKeyword where_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+}
+
+message ColumnNameList {
+  LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+  ColumnName column_name = 2;
+
+  repeated Seq1 seq1 = 3;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+  message Seq1 {
+    CommaKeyword comma_keyword = 1;
+
+    ColumnName column_name = 2;
+  }
+}
+
+message WindowDefn {
+  LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+  BaseWindowName base_window_name = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  FrameSpec frame_spec = 5;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+  message Seq1 {
+    PartitionKeyword partition_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    Expr expr = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Seq2 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+}
+
+message OverClause {
+  OverKeyword over_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  message Alt1 {
+    oneof value {
+      WindowName window_name = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      BaseWindowName base_window_name = 2;
+
+      Seq1 seq1 = 3;
+
+      Seq2 seq2 = 4;
+
+      FrameSpec frame_spec = 5;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+      message Seq1 {
+        PartitionKeyword partition_keyword = 1;
+
+        ByKeyword by_keyword = 2;
+
+        Expr expr = 3;
+
+        repeated Seq1 seq1 = 4;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          Expr expr = 2;
+        }
+      }
+
+      message Seq2 {
+        OrderKeyword order_keyword = 1;
+
+        ByKeyword by_keyword = 2;
+
+        OrderingTerm ordering_term = 3;
+
+        repeated Seq1 seq1 = 4;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          OrderingTerm ordering_term = 2;
+        }
+      }
+    }
+  }
+}
+
+message FrameSpec {
+  Alt1 alt1 = 1;
+
+  Alt2 alt2 = 2;
+
+  Alt3 alt3 = 3;
+
+  message Alt1 {
+    oneof value {
+      RangeKeyword range_keyword = 1;
+
+      RowsKeyword rows_keyword = 2;
+
+      GroupsKeyword groups_keyword = 3;
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      BetweenKeyword between_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      AndKeyword and_keyword = 3;
+
+      Alt2 alt2 = 4;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          Seq3 seq3 = 3;
+
+          Seq4 seq4 = 4;
+        }
+
+        message Seq1 {
+          UnboundedKeyword unbounded_keyword = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq2 {
+          Expr expr = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq3 {
+          CurrentKeyword current_keyword = 1;
+
+          RowKeyword row_keyword = 2;
+        }
+
+        message Seq4 {
+          Expr expr = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+      }
+
+      message Alt2 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          Seq3 seq3 = 3;
+
+          Seq4 seq4 = 4;
+        }
+
+        message Seq1 {
+          Expr expr = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq2 {
+          CurrentKeyword current_keyword = 1;
+
+          RowKeyword row_keyword = 2;
+        }
+
+        message Seq3 {
+          Expr expr = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+
+        message Seq4 {
+          UnboundedKeyword unbounded_keyword = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      UnboundedKeyword unbounded_keyword = 1;
+
+      PrecedingKeyword preceding_keyword = 2;
+    }
+
+    message Seq3 {
+      Expr expr = 1;
+
+      PrecedingKeyword preceding_keyword = 2;
+    }
+
+    message Seq4 {
+      CurrentKeyword current_keyword = 1;
+
+      RowKeyword row_keyword = 2;
+    }
+  }
+
+  message Alt3 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      NoKeyword no_keyword = 2;
+
+      OthersKeyword others_keyword = 3;
+    }
+
+    message Seq2 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      CurrentKeyword current_keyword = 2;
+
+      RowKeyword row_keyword = 3;
+    }
+
+    message Seq3 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      GroupKeyword group_keyword = 2;
+    }
+
+    message Seq4 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      TiesKeyword ties_keyword = 2;
+    }
+  }
+}
+
+message FilterClause {
+  FilterKeyword filter_keyword = 1;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+  WhereKeyword where_keyword = 3;
+
+  Expr expr = 4;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 5;
+}
+
+message Expr {
+  oneof value {
+    LiteralValue literal_value = 1;
+
+    BindParameter bind_parameter = 2;
+
+    Seq1 seq1 = 3;
+
+    Seq2 seq2 = 4;
+
+    Seq3 seq3 = 5;
+
+    Seq4 seq4 = 6;
+
+    Seq5 seq5 = 7;
+
+    Seq6 seq6 = 8;
+
+    Seq7 seq7 = 9;
+
+    Seq8 seq8 = 10;
+
+    Seq9 seq9 = 11;
+
+    Seq10 seq10 = 12;
+
+    Seq11 seq11 = 13;
+
+    Seq12 seq12 = 14;
+
+    Seq13 seq13 = 15;
+
+    Seq14 seq14 = 16;
+
+    Seq15 seq15 = 17;
+
+    Seq16 seq16 = 18;
+
+    Seq17 seq17 = 19;
+
+    Seq18 seq18 = 20;
+
+    RaiseFunction raise_function = 21;
+  }
+
+  message Seq1 {
+    Seq1 seq1 = 1;
+
+    ColumnName column_name = 2;
+
+    message Seq1 {
+      Seq1 seq1 = 1;
+
+      TableName table_name = 2;
+
+      FullStopKeyword full_stop_keyword = 3;
+
+      message Seq1 {
+        SchemaName schema_name = 1;
+
+        FullStopKeyword full_stop_keyword = 2;
+      }
+    }
+  }
+
+  message Seq2 {
+    UnaryOperator unary_operator = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq3 {
+    Expr expr = 1;
+
+    BinaryOperator binary_operator = 2;
+
+    Expr expr_2 = 3;
+  }
+
+  message Seq4 {
+    FunctionName function_name = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    FunctionArguments function_arguments = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    FilterClause filter_clause = 5;
+
+    OverClause over_clause = 6;
+  }
+
+  message Seq5 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    Expr expr = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Seq6 {
+    CastKeyword cast_keyword = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    Expr expr = 3;
+
+    AsKeyword as_keyword = 4;
+
+    TypeName type_name = 5;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 6;
+  }
+
+  message Seq7 {
+    Expr expr = 1;
+
+    CollateKeyword collate_keyword = 2;
+
+    CollationName collation_name = 3;
+  }
+
+  message Seq8 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    Alt1 alt1 = 3;
+
+    Expr expr_2 = 4;
+
+    Seq1 seq1 = 5;
+
+    message Alt1 {
+      oneof value {
+        LikeKeyword like_keyword = 1;
+
+        GlobKeyword glob_keyword = 2;
+
+        RegexpKeyword regexp_keyword = 3;
+
+        MatchKeyword match_keyword = 4;
+      }
+    }
+
+    message Seq1 {
+      EscapeKeyword escape_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Seq9 {
+    Expr expr = 1;
+
+    IsnullKeyword isnull_keyword = 2;
+  }
+
+  message Seq10 {
+    Expr expr = 1;
+
+    NotnullKeyword notnull_keyword = 2;
+  }
+
+  message Seq11 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    NullKeyword null_keyword = 3;
+  }
+
+  message Seq12 {
+    Expr expr = 1;
+
+    IsKeyword is_keyword = 2;
+
+    NotKeyword not_keyword = 3;
+
+    Seq1 seq1 = 4;
+
+    Expr expr_2 = 5;
+
+    message Seq1 {
+      DistinctKeyword distinct_keyword = 1;
+
+      FromKeyword from_keyword = 2;
+    }
+  }
+
+  message Seq13 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    BetweenKeyword between_keyword = 3;
+
+    Expr expr_2 = 4;
+
+    AndKeyword and_keyword = 5;
+
+    Expr expr_3 = 6;
+  }
+
+  message Seq14 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    InKeyword in_keyword = 3;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 4;
+
+    Alt1 alt1 = 5;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+    message Alt1 {
+      oneof value {
+        SelectStmt select_stmt = 1;
+
+        Seq1 seq1 = 2;
+      }
+
+      message Seq1 {
+        Expr expr = 1;
+
+        repeated Seq1 seq1 = 2;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          Expr expr = 2;
+        }
+      }
+    }
+  }
+
+  message Seq15 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    InKeyword in_keyword = 3;
+
+    Seq1 seq1 = 4;
+
+    TableName table_name = 5;
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+    }
+  }
+
+  message Seq16 {
+    Expr expr = 1;
+
+    NotKeyword not_keyword = 2;
+
+    InKeyword in_keyword = 3;
+
+    Seq1 seq1 = 4;
+
+    TableFunctionName table_function_name = 5;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 6;
+
+    Seq2 seq2 = 7;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 8;
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+    }
+
+    message Seq2 {
+      Expr expr = 1;
+
+      repeated Seq1 seq1 = 2;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+
+  message Seq17 {
+    NotKeyword not_keyword = 1;
+
+    ExistsKeyword exists_keyword = 2;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+    SelectStmt select_stmt = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+  }
+
+  message Seq18 {
+    CaseKeyword case_keyword = 1;
+
+    Expr expr = 2;
+
+    WhenKeyword when_keyword = 3;
+
+    Expr expr_2 = 4;
+
+    ThenKeyword then_keyword = 5;
+
+    Expr expr_3 = 6;
+
+    repeated Seq1 seq1 = 7;
+
+    Seq2 seq2 = 8;
+
+    EndKeyword end_keyword = 9;
+
+    message Seq1 {
+      WhenKeyword when_keyword = 1;
+
+      Expr expr = 2;
+
+      ThenKeyword then_keyword = 3;
+
+      Expr expr_2 = 4;
+    }
+
+    message Seq2 {
+      ElseKeyword else_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+}
+
+message FunctionArguments {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    AsteriskKeyword asterisk_keyword = 2;
+  }
+
+  message Seq1 {
+    DistinctKeyword distinct_keyword = 1;
+
+    Expr expr = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+}
+
+message LiteralValue {
+  oneof value {
+    NumericLiteral numeric_literal = 1;
+
+    StringLiteral string_literal = 2;
+
+    BlobLiteral blob_literal = 3;
+
+    NullKeyword null_keyword = 4;
+
+    TrueKeyword true_keyword = 5;
+
+    FalseKeyword false_keyword = 6;
+
+    CurrentTimeKeyword current_time_keyword = 7;
+
+    CurrentDateKeyword current_date_keyword = 8;
+
+    CurrentTimestampKeyword current_timestamp_keyword = 9;
+  }
+}
+
+message SignedNumber {
+  Alt1 alt1 = 1;
+
+  NumericLiteral numeric_literal = 2;
+
+  message Alt1 {
+    oneof value {
+      PlusSignKeyword plus_sign_keyword = 1;
+
+      HyphenMinusKeyword hyphen_minus_keyword = 2;
+    }
+  }
+}
+
+message RaiseFunction {
+  RaiseKeyword raise_keyword = 1;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+  Alt1 alt1 = 3;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+  message Alt1 {
+    oneof value {
+      IgnoreKeyword ignore_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      Alt1 alt1 = 1;
+
+      CommaKeyword comma_keyword = 2;
+
+      ErrorMessage error_message = 3;
+
+      message Alt1 {
+        oneof value {
+          RollbackKeyword rollback_keyword = 1;
+
+          AbortKeyword abort_keyword = 2;
+
+          FailKeyword fail_keyword = 3;
+        }
+      }
+    }
+  }
+}
+
+message SchemaName {
+  Name name = 1;
+}
+
+message SavepointName {
+  Name name = 1;
+}
+
+message Filename {
+  StringLiteral string_literal = 1;
+}
+
+message IndexOrTableName {
+  Name name = 1;
+}
+
+message TableOrIndexName {
+  Name name = 1;
+}
+
+message CollationName {
+  Name name = 1;
+}
+
+message TableName {
+  Name name = 1;
+}
+
+message IndexName {
+  Name name = 1;
+}
+
+message ViewName {
+  Name name = 1;
+}
+
+message TriggerName {
+  Name name = 1;
+}
+
+message PragmaName {
+  Name name = 1;
+}
+
+message PragmaValue {
+  oneof value {
+    SignedNumber signed_number = 1;
+
+    Name name = 2;
+
+    StringLiteral string_literal = 3;
+  }
+}
+
+message ColumnName {
+  Name name = 1;
+}
+
+message ColumnAlias {
+  Name name = 1;
+}
+
+message TableAlias {
+  Name name = 1;
+}
+
+message TableFunctionName {
+  Name name = 1;
+}
+
+message WindowName {
+  Name name = 1;
+}
+
+message BaseWindowName {
+  Name name = 1;
+}
+
+message CteTableName {
+  Name name = 1;
+}
+
+message NewTableName {
+  Name name = 1;
+}
+
+message NewColumnName {
+  Name name = 1;
+}
+
+message ConstraintName {
+  Name name = 1;
+}
+
+message ModuleName {
+  Name name = 1;
+}
+
+message ModuleArgument {
+  Name name = 1;
+}
+
+message ForeignTable {
+  Name name = 1;
+}
+
+message Alias {
+  Name name = 1;
+}
+
+message FunctionName {
+  Name name = 1;
+}
+
+message ErrorMessage {
+  StringLiteral string_literal = 1;
+}
+
+message NumericLiteral {
+  Name name = 1;
+}
+
+message BindParameter {
+  oneof value {
+    QuestionMarkKeyword question_mark_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    Seq2 seq2 = 3;
+
+    Seq3 seq3 = 4;
+  }
+
+  message Seq1 {
+    ColonKeyword colon_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Seq2 {
+    CommercialAtKeyword commercial_at_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Seq3 {
+    DollarSignKeyword dollar_sign_keyword = 1;
+
+    Name name = 2;
+  }
+}
+
+message UnaryOperator {
+  oneof value {
+    HyphenMinusKeyword hyphen_minus_keyword = 1;
+
+    PlusSignKeyword plus_sign_keyword = 2;
+
+    TildeKeyword tilde_keyword = 3;
+
+    NotKeyword not_keyword = 4;
+  }
+}
+
+message BinaryOperator {
+  oneof value {
+    VerticalLineVerticalLineKeyword vertical_line_vertical_line_keyword = 1;
+
+    AsteriskKeyword asterisk_keyword = 2;
+
+    SolidusKeyword solidus_keyword = 3;
+
+    PercentSignKeyword percent_sign_keyword = 4;
+
+    PlusSignKeyword plus_sign_keyword = 5;
+
+    HyphenMinusKeyword hyphen_minus_keyword = 6;
+
+    LessThanSignLessThanSignKeyword less_than_sign_less_than_sign_keyword = 7;
+
+    GreaterThanSignGreaterThanSignKeyword greater_than_sign_greater_than_sign_keyword = 8;
+
+    AmpersandKeyword ampersand_keyword = 9;
+
+    VerticalLineKeyword vertical_line_keyword = 10;
+
+    LessThanSignKeyword less_than_sign_keyword = 11;
+
+    LessThanSignEqualsSignKeyword less_than_sign_equals_sign_keyword = 12;
+
+    GreaterThanSignKeyword greater_than_sign_keyword = 13;
+
+    GreaterThanSignEqualsSignKeyword greater_than_sign_equals_sign_keyword = 14;
+
+    EqualsSignKeyword equals_sign_keyword = 15;
+
+    EqualsSignEqualsSignKeyword equals_sign_equals_sign_keyword = 16;
+
+    ExclamationMarkEqualsSignKeyword exclamation_mark_equals_sign_keyword = 17;
+
+    LessThanSignGreaterThanSignKeyword less_than_sign_greater_than_sign_keyword = 18;
+
+    IsKeyword is_keyword = 19;
+
+    Seq1 seq1 = 20;
+
+    InKeyword in_keyword = 21;
+
+    LikeKeyword like_keyword = 22;
+
+    GlobKeyword glob_keyword = 23;
+
+    MatchKeyword match_keyword = 24;
+
+    RegexpKeyword regexp_keyword = 25;
+
+    AndKeyword and_keyword = 26;
+
+    OrKeyword or_keyword = 27;
+  }
+
+  message Seq1 {
+    IsKeyword is_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+  }
+}
+
+message Name {
+  XKeyword x_keyword = 1;
+}
+
+message StringLiteral {
+  XKeyword x_keyword = 1;
+}
+
+message BlobLiteral {
+  XKeyword x_keyword = 1;
+}
+
+message AbortKeyword {
+}
+
+message ActionKeyword {
+}
+
+message AddKeyword {
+}
+
+message AfterKeyword {
+}
+
+message AllKeyword {
+}
+
+message AlterKeyword {
+}
+
+message AlwaysKeyword {
+}
+
+message AmpersandKeyword {
+}
+
+message AnalyzeKeyword {
+}
+
+message AndKeyword {
+}
+
+message AsKeyword {
+}
+
+message AscKeyword {
+}
+
+message AsteriskKeyword {
+}
+
+message AttachKeyword {
+}
+
+message AutoincrementKeyword {
+}
+
+message BeforeKeyword {
+}
+
+message BeginKeyword {
+}
+
+message BetweenKeyword {
+}
+
+message ByKeyword {
+}
+
+message CascadeKeyword {
+}
+
+message CaseKeyword {
+}
+
+message CastKeyword {
+}
+
+message CheckKeyword {
+}
+
+message CollateKeyword {
+}
+
+message ColonKeyword {
+}
+
+message ColumnKeyword {
+}
+
+message CommaKeyword {
+}
+
+message CommercialAtKeyword {
+}
+
+message CommitKeyword {
+}
+
+message ConflictKeyword {
+}
+
+message ConstraintKeyword {
+}
+
+message CreateKeyword {
+}
+
+message CrossKeyword {
+}
+
+message CurrentDateKeyword {
+}
+
+message CurrentKeyword {
+}
+
+message CurrentTimeKeyword {
+}
+
+message CurrentTimestampKeyword {
+}
+
+message DatabaseKeyword {
+}
+
+message DefaultKeyword {
+}
+
+message DeferrableKeyword {
+}
+
+message DeferredKeyword {
+}
+
+message DeleteKeyword {
+}
+
+message DescKeyword {
+}
+
+message DetachKeyword {
+}
+
+message DistinctKeyword {
+}
+
+message DoKeyword {
+}
+
+message DollarSignKeyword {
+}
+
+message DropKeyword {
+}
+
+message EachKeyword {
+}
+
+message ElseKeyword {
+}
+
+message EndKeyword {
+}
+
+message EqualsSignEqualsSignKeyword {
+}
+
+message EqualsSignKeyword {
+}
+
+message EscapeKeyword {
+}
+
+message ExceptKeyword {
+}
+
+message ExclamationMarkEqualsSignKeyword {
+}
+
+message ExcludeKeyword {
+}
+
+message ExclusiveKeyword {
+}
+
+message ExistsKeyword {
+}
+
+message ExplainKeyword {
+}
+
+message FailKeyword {
+}
+
+message FalseKeyword {
+}
+
+message FilterKeyword {
+}
+
+message FirstKeyword {
+}
+
+message FollowingKeyword {
+}
+
+message ForKeyword {
+}
+
+message ForeignKeyword {
+}
+
+message FromKeyword {
+}
+
+message FullKeyword {
+}
+
+message FullStopKeyword {
+}
+
+message GeneratedKeyword {
+}
+
+message GlobKeyword {
+}
+
+message GreaterThanSignEqualsSignKeyword {
+}
+
+message GreaterThanSignGreaterThanSignKeyword {
+}
+
+message GreaterThanSignKeyword {
+}
+
+message GroupKeyword {
+}
+
+message GroupsKeyword {
+}
+
+message HavingKeyword {
+}
+
+message HyphenMinusKeyword {
+}
+
+message IfKeyword {
+}
+
+message IgnoreKeyword {
+}
+
+message ImmediateKeyword {
+}
+
+message InKeyword {
+}
+
+message IndexKeyword {
+}
+
+message IndexedKeyword {
+}
+
+message InitiallyKeyword {
+}
+
+message InnerKeyword {
+}
+
+message InsertKeyword {
+}
+
+message InsteadKeyword {
+}
+
+message IntersectKeyword {
+}
+
+message IntoKeyword {
+}
+
+message IsKeyword {
+}
+
+message IsnullKeyword {
+}
+
+message JoinKeyword {
+}
+
+message KeyKeyword {
+}
+
+message LastKeyword {
+}
+
+message LeftKeyword {
+}
+
+message LeftParenthesisKeyword {
+}
+
+message LessThanSignEqualsSignKeyword {
+}
+
+message LessThanSignGreaterThanSignKeyword {
+}
+
+message LessThanSignKeyword {
+}
+
+message LessThanSignLessThanSignKeyword {
+}
+
+message LikeKeyword {
+}
+
+message LimitKeyword {
+}
+
+message MatchKeyword {
+}
+
+message MaterializedKeyword {
+}
+
+message NaturalKeyword {
+}
+
+message NoKeyword {
+}
+
+message NotKeyword {
+}
+
+message NothingKeyword {
+}
+
+message NotnullKeyword {
+}
+
+message NullKeyword {
+}
+
+message NullsKeyword {
+}
+
+message OfKeyword {
+}
+
+message OffsetKeyword {
+}
+
+message OnKeyword {
+}
+
+message OrKeyword {
+}
+
+message OrderKeyword {
+}
+
+message OthersKeyword {
+}
+
+message OuterKeyword {
+}
+
+message OverKeyword {
+}
+
+message PartitionKeyword {
+}
+
+message PercentSignKeyword {
+}
+
+message PlanKeyword {
+}
+
+message PlusSignKeyword {
+}
+
+message PragmaKeyword {
+}
+
+message PrecedingKeyword {
+}
+
+message PrimaryKeyword {
+}
+
+message QueryKeyword {
+}
+
+message QuestionMarkKeyword {
+}
+
+message RaiseKeyword {
+}
+
+message RangeKeyword {
+}
+
+message RecursiveKeyword {
+}
+
+message ReferencesKeyword {
+}
+
+message RegexpKeyword {
+}
+
+message ReindexKeyword {
+}
+
+message ReleaseKeyword {
+}
+
+message RenameKeyword {
+}
+
+message ReplaceKeyword {
+}
+
+message RestrictKeyword {
+}
+
+message ReturningKeyword {
+}
+
+message RightKeyword {
+}
+
+message RightParenthesisKeyword {
+}
+
+message RollbackKeyword {
+}
+
+message RowKeyword {
+}
+
+message RowidKeyword {
+}
+
+message RowsKeyword {
+}
+
+message SavepointKeyword {
+}
+
+message SelectKeyword {
+}
+
+message SemicolonKeyword {
+}
+
+message SetKeyword {
+}
+
+message SolidusKeyword {
+}
+
+message StoredKeyword {
+}
+
+message StrictKeyword {
+}
+
+message TableKeyword {
+}
+
+message TempKeyword {
+}
+
+message TemporaryKeyword {
+}
+
+message ThenKeyword {
+}
+
+message TiesKeyword {
+}
+
+message TildeKeyword {
+}
+
+message ToKeyword {
+}
+
+message TransactionKeyword {
+}
+
+message TriggerKeyword {
+}
+
+message TrueKeyword {
+}
+
+message UnboundedKeyword {
+}
+
+message UnionKeyword {
+}
+
+message UniqueKeyword {
+}
+
+message UpdateKeyword {
+}
+
+message UsingKeyword {
+}
+
+message VacuumKeyword {
+}
+
+message ValuesKeyword {
+}
+
+message VerticalLineKeyword {
+}
+
+message VerticalLineVerticalLineKeyword {
+}
+
+message ViewKeyword {
+}
+
+message VirtualKeyword {
+}
+
+message WhenKeyword {
+}
+
+message WhereKeyword {
+}
+
+message WindowKeyword {
+}
+
+message WithKeyword {
+}
+
+message WithoutKeyword {
+}
+
+message XKeyword {
+}
