@@ -4,18 +4,18 @@ package sqlite;
 
 message JoinConstraint {
   oneof value {
-    Seq1 seq1 = 1;
+    On on = 1;
 
-    Seq2 seq2 = 2;
+    UsingLeftParenthesis using_left_parenthesis = 2;
   }
 
-  message Seq1 {
+  message On {
     OnKeyword on_keyword = 1;
 
     Expr expr = 2;
   }
 
-  message Seq2 {
+  message UsingLeftParenthesis {
     UsingKeyword using_keyword = 1;
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;

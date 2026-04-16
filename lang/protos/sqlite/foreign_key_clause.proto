@@ -7,13 +7,13 @@ message ForeignKeyClause {
 
   ForeignTable foreign_table = 2;
 
-  Seq1 seq1 = 3;
+  LeftParenthesis left_parenthesis = 3;
 
   repeated Alt1 alt1 = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -23,12 +23,12 @@ message ForeignKeyClause {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      On on = 1;
 
-      Seq2 seq2 = 2;
+      Match match = 2;
     }
 
-    message Seq1 {
+    message On {
       OnKeyword on_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -45,30 +45,30 @@ message ForeignKeyClause {
 
       message Alt2 {
         oneof value {
-          Seq1 seq1 = 1;
+          SetNull set_null = 1;
 
-          Seq2 seq2 = 2;
+          SetDefault set_default = 2;
 
           CascadeKeyword cascade_keyword = 3;
 
           RestrictKeyword restrict_keyword = 4;
 
-          Seq3 seq3 = 5;
+          NoAction no_action = 5;
         }
 
-        message Seq1 {
+        message SetNull {
           SetKeyword set_keyword = 1;
 
           NullKeyword null_keyword = 2;
         }
 
-        message Seq2 {
+        message SetDefault {
           SetKeyword set_keyword = 1;
 
           DefaultKeyword default_keyword = 2;
         }
 
-        message Seq3 {
+        message NoAction {
           NoKeyword no_keyword = 1;
 
           ActionKeyword action_keyword = 2;
@@ -76,21 +76,21 @@ message ForeignKeyClause {
       }
     }
 
-    message Seq2 {
+    message Match {
       MatchKeyword match_keyword = 1;
 
       Name name = 2;
     }
   }
 
-  message Seq2 {
+  message Seq1 {
     NotKeyword not_keyword = 1;
 
     DeferrableKeyword deferrable_keyword = 2;
 
-    Seq1 seq1 = 3;
+    Initially initially = 3;
 
-    message Seq1 {
+    message Initially {
       InitiallyKeyword initially_keyword = 1;
 
       Alt1 alt1 = 2;

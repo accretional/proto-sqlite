@@ -9,9 +9,9 @@ message CreateIndexStmt {
 
   IndexKeyword index_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   IndexName index_name = 6;
 
@@ -25,9 +25,9 @@ message CreateIndexStmt {
 
   RightParenthesisKeyword right_parenthesis_keyword = 11;
 
-  Seq3 seq3 = 12;
+  Where where = 12;
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -35,13 +35,13 @@ message CreateIndexStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;

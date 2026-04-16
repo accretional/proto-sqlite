@@ -4,22 +4,22 @@ package sqlite;
 
 message TableOptions {
   oneof value {
-    Seq1 seq1 = 1;
+    WithoutRowid without_rowid = 1;
 
     StrictKeyword strict_keyword = 2;
 
-    Seq2 seq2 = 3;
+    WithoutRowidCommaStrict without_rowid_comma_strict = 3;
 
-    Seq3 seq3 = 4;
+    StrictCommaWithoutRowid strict_comma_without_rowid = 4;
   }
 
-  message Seq1 {
+  message WithoutRowid {
     WithoutKeyword without_keyword = 1;
 
     RowidKeyword rowid_keyword = 2;
   }
 
-  message Seq2 {
+  message WithoutRowidCommaStrict {
     WithoutKeyword without_keyword = 1;
 
     RowidKeyword rowid_keyword = 2;
@@ -29,7 +29,7 @@ message TableOptions {
     StrictKeyword strict_keyword = 4;
   }
 
-  message Seq3 {
+  message StrictCommaWithoutRowid {
     StrictKeyword strict_keyword = 1;
 
     CommaKeyword comma_keyword = 2;

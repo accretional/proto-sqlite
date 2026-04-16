@@ -42,7 +42,7 @@ message BinaryOperator {
 
     IsKeyword is_keyword = 19;
 
-    Seq1 seq1 = 20;
+    IsNot is_not = 20;
 
     InKeyword in_keyword = 21;
 
@@ -59,7 +59,7 @@ message BinaryOperator {
     OrKeyword or_keyword = 27;
   }
 
-  message Seq1 {
+  message IsNot {
     IsKeyword is_keyword = 1;
 
     NotKeyword not_keyword = 2;

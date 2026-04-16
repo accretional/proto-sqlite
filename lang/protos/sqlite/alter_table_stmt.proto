@@ -21,22 +21,22 @@ message AlterTableStmt {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      RenameTo rename_to = 1;
 
-      Seq2 seq2 = 2;
+      Rename rename = 2;
 
-      Seq3 seq3 = 3;
+      Add add = 3;
 
-      Seq4 seq4 = 4;
+      AddConstraint add_constraint = 4;
 
-      Seq5 seq5 = 5;
+      Drop drop = 5;
 
-      Seq6 seq6 = 6;
+      DropConstraint drop_constraint = 6;
 
-      Seq7 seq7 = 7;
+      AlterColumn alter_column = 7;
     }
 
-    message Seq1 {
+    message RenameTo {
       RenameKeyword rename_keyword = 1;
 
       ToKeyword to_keyword = 2;
@@ -44,7 +44,7 @@ message AlterTableStmt {
       NewTableName new_table_name = 3;
     }
 
-    message Seq2 {
+    message Rename {
       RenameKeyword rename_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -56,7 +56,7 @@ message AlterTableStmt {
       NewColumnName new_column_name = 5;
     }
 
-    message Seq3 {
+    message Add {
       AddKeyword add_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -64,7 +64,7 @@ message AlterTableStmt {
       ColumnDef column_def = 3;
     }
 
-    message Seq4 {
+    message AddConstraint {
       AddKeyword add_keyword = 1;
 
       ConstraintKeyword constraint_keyword = 2;
@@ -82,7 +82,7 @@ message AlterTableStmt {
       ConflictClause conflict_clause = 8;
     }
 
-    message Seq5 {
+    message Drop {
       DropKeyword drop_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -90,7 +90,7 @@ message AlterTableStmt {
       ColumnName column_name = 3;
     }
 
-    message Seq6 {
+    message DropConstraint {
       DropKeyword drop_keyword = 1;
 
       ConstraintKeyword constraint_keyword = 2;
@@ -98,7 +98,7 @@ message AlterTableStmt {
       ConstraintName constraint_name = 3;
     }
 
-    message Seq7 {
+    message AlterColumn {
       AlterKeyword alter_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -109,12 +109,12 @@ message AlterTableStmt {
 
       message Alt1 {
         oneof value {
-          Seq1 seq1 = 1;
+          SetNotNull set_not_null = 1;
 
-          Seq2 seq2 = 2;
+          DropNotNull drop_not_null = 2;
         }
 
-        message Seq1 {
+        message SetNotNull {
           SetKeyword set_keyword = 1;
 
           NotKeyword not_keyword = 2;
@@ -124,7 +124,7 @@ message AlterTableStmt {
           ConflictClause conflict_clause = 4;
         }
 
-        message Seq2 {
+        message DropNotNull {
           DropKeyword drop_keyword = 1;
 
           NotKeyword not_keyword = 2;

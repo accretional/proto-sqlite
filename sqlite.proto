@@ -7,16 +7,16 @@ message SqlStmtList {
 }
 
 message SqlStmt {
-  Seq1 seq1 = 1;
+  Explain explain = 1;
 
   Alt1 alt1 = 2;
 
-  message Seq1 {
+  message Explain {
     ExplainKeyword explain_keyword = 1;
 
-    Seq1 seq1 = 2;
+    QueryPlan query_plan = 2;
 
-    message Seq1 {
+    message QueryPlan {
       QueryKeyword query_keyword = 1;
 
       PlanKeyword plan_keyword = 2;
@@ -119,9 +119,9 @@ message RollbackStmt {
 
   TransactionKeyword transaction_keyword = 2;
 
-  Seq1 seq1 = 3;
+  To to = 3;
 
-  message Seq1 {
+  message To {
     ToKeyword to_keyword = 1;
 
     SavepointKeyword savepoint_keyword = 2;
@@ -169,9 +169,9 @@ message VacuumStmt {
 
   SchemaName schema_name = 2;
 
-  Seq1 seq1 = 3;
+  Into into = 3;
 
-  message Seq1 {
+  message Into {
     IntoKeyword into_keyword = 1;
 
     Filename filename = 2;
@@ -253,18 +253,18 @@ message PragmaStmt {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      EqualsSign equals_sign = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis left_parenthesis = 2;
     }
 
-    message Seq1 {
+    message EqualsSign {
       EqualsSignKeyword equals_sign_keyword = 1;
 
       PragmaValue pragma_value = 2;
     }
 
-    message Seq2 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       PragmaValue pragma_value = 2;
@@ -279,19 +279,19 @@ message DropTableStmt {
 
   TableKeyword table_keyword = 2;
 
-  Seq1 seq1 = 3;
+  IfExists if_exists = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   TableName table_name = 5;
 
-  message Seq1 {
+  message IfExists {
     IfKeyword if_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -303,19 +303,19 @@ message DropIndexStmt {
 
   IndexKeyword index_keyword = 2;
 
-  Seq1 seq1 = 3;
+  IfExists if_exists = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   IndexName index_name = 5;
 
-  message Seq1 {
+  message IfExists {
     IfKeyword if_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -327,19 +327,19 @@ message DropViewStmt {
 
   ViewKeyword view_keyword = 2;
 
-  Seq1 seq1 = 3;
+  IfExists if_exists = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   ViewName view_name = 5;
 
-  message Seq1 {
+  message IfExists {
     IfKeyword if_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -351,19 +351,19 @@ message DropTriggerStmt {
 
   TriggerKeyword trigger_keyword = 2;
 
-  Seq1 seq1 = 3;
+  IfExists if_exists = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   TriggerName trigger_name = 5;
 
-  message Seq1 {
+  message IfExists {
     IfKeyword if_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -389,22 +389,22 @@ message AlterTableStmt {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      RenameTo rename_to = 1;
 
-      Seq2 seq2 = 2;
+      Rename rename = 2;
 
-      Seq3 seq3 = 3;
+      Add add = 3;
 
-      Seq4 seq4 = 4;
+      AddConstraint add_constraint = 4;
 
-      Seq5 seq5 = 5;
+      Drop drop = 5;
 
-      Seq6 seq6 = 6;
+      DropConstraint drop_constraint = 6;
 
-      Seq7 seq7 = 7;
+      AlterColumn alter_column = 7;
     }
 
-    message Seq1 {
+    message RenameTo {
       RenameKeyword rename_keyword = 1;
 
       ToKeyword to_keyword = 2;
@@ -412,7 +412,7 @@ message AlterTableStmt {
       NewTableName new_table_name = 3;
     }
 
-    message Seq2 {
+    message Rename {
       RenameKeyword rename_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -424,7 +424,7 @@ message AlterTableStmt {
       NewColumnName new_column_name = 5;
     }
 
-    message Seq3 {
+    message Add {
       AddKeyword add_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -432,7 +432,7 @@ message AlterTableStmt {
       ColumnDef column_def = 3;
     }
 
-    message Seq4 {
+    message AddConstraint {
       AddKeyword add_keyword = 1;
 
       ConstraintKeyword constraint_keyword = 2;
@@ -450,7 +450,7 @@ message AlterTableStmt {
       ConflictClause conflict_clause = 8;
     }
 
-    message Seq5 {
+    message Drop {
       DropKeyword drop_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -458,7 +458,7 @@ message AlterTableStmt {
       ColumnName column_name = 3;
     }
 
-    message Seq6 {
+    message DropConstraint {
       DropKeyword drop_keyword = 1;
 
       ConstraintKeyword constraint_keyword = 2;
@@ -466,7 +466,7 @@ message AlterTableStmt {
       ConstraintName constraint_name = 3;
     }
 
-    message Seq7 {
+    message AlterColumn {
       AlterKeyword alter_keyword = 1;
 
       ColumnKeyword column_keyword = 2;
@@ -477,12 +477,12 @@ message AlterTableStmt {
 
       message Alt1 {
         oneof value {
-          Seq1 seq1 = 1;
+          SetNotNull set_not_null = 1;
 
-          Seq2 seq2 = 2;
+          DropNotNull drop_not_null = 2;
         }
 
-        message Seq1 {
+        message SetNotNull {
           SetKeyword set_keyword = 1;
 
           NotKeyword not_keyword = 2;
@@ -492,7 +492,7 @@ message AlterTableStmt {
           ConflictClause conflict_clause = 4;
         }
 
-        message Seq2 {
+        message DropNotNull {
           DropKeyword drop_keyword = 1;
 
           NotKeyword not_keyword = 2;
@@ -511,9 +511,9 @@ message CreateTableStmt {
 
   TableKeyword table_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   TableName table_name = 6;
 
@@ -527,7 +527,7 @@ message CreateTableStmt {
     }
   }
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -535,7 +535,7 @@ message CreateTableStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -543,29 +543,29 @@ message CreateTableStmt {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      As as = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis left_parenthesis = 2;
     }
 
-    message Seq1 {
+    message As {
       AsKeyword as_keyword = 1;
 
       SelectStmt select_stmt = 2;
     }
 
-    message Seq2 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       repeated ColumnDef column_def = 2;
 
-      repeated Seq1 seq1 = 3;
+      repeated Comma comma = 3;
 
       RightParenthesisKeyword right_parenthesis_keyword = 4;
 
       TableOptions table_options = 5;
 
-      message Seq1 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         TableConstraint table_constraint = 2;
@@ -581,9 +581,9 @@ message CreateIndexStmt {
 
   IndexKeyword index_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   IndexName index_name = 6;
 
@@ -597,9 +597,9 @@ message CreateIndexStmt {
 
   RightParenthesisKeyword right_parenthesis_keyword = 11;
 
-  Seq3 seq3 = 12;
+  Where where = 12;
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -607,13 +607,13 @@ message CreateIndexStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
@@ -627,9 +627,9 @@ message CreateTriggerStmt {
 
   TriggerKeyword trigger_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   TriggerName trigger_name = 6;
 
@@ -641,9 +641,9 @@ message CreateTriggerStmt {
 
   TableName table_name = 10;
 
-  Seq3 seq3 = 11;
+  ForEachRow for_each_row = 11;
 
-  Seq4 seq4 = 12;
+  When when = 12;
 
   BeginKeyword begin_keyword = 13;
 
@@ -651,7 +651,7 @@ message CreateTriggerStmt {
 
   SemicolonKeyword semicolon_keyword = 15;
 
-  repeated Seq5 seq5 = 16;
+  repeated Seq2 seq2 = 16;
 
   EndKeyword end_keyword = 17;
 
@@ -663,7 +663,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -671,7 +671,7 @@ message CreateTriggerStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -683,10 +683,10 @@ message CreateTriggerStmt {
 
       AfterKeyword after_keyword = 2;
 
-      Seq1 seq1 = 3;
+      InsteadOf instead_of = 3;
     }
 
-    message Seq1 {
+    message InsteadOf {
       InsteadKeyword instead_keyword = 1;
 
       OfKeyword of_keyword = 2;
@@ -699,15 +699,15 @@ message CreateTriggerStmt {
 
       InsertKeyword insert_keyword = 2;
 
-      Seq1 seq1 = 3;
+      Update update = 3;
     }
 
-    message Seq1 {
+    message Update {
       UpdateKeyword update_keyword = 1;
 
-      Seq1 seq1 = 2;
+      Of of = 2;
 
-      message Seq1 {
+      message Of {
         OfKeyword of_keyword = 1;
 
         repeated ColumnName column_name = 2;
@@ -715,7 +715,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq3 {
+  message ForEachRow {
     ForKeyword for_keyword = 1;
 
     EachKeyword each_keyword = 2;
@@ -723,7 +723,7 @@ message CreateTriggerStmt {
     RowKeyword row_keyword = 3;
   }
 
-  message Seq4 {
+  message When {
     WhenKeyword when_keyword = 1;
 
     Expr expr = 2;
@@ -741,7 +741,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq5 {
+  message Seq2 {
     Alt1 alt1 = 1;
 
     SemicolonKeyword semicolon_keyword = 2;
@@ -767,13 +767,13 @@ message CreateViewStmt {
 
   ViewKeyword view_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   ViewName view_name = 6;
 
-  Seq3 seq3 = 7;
+  LeftParenthesis left_parenthesis = 7;
 
   AsKeyword as_keyword = 8;
 
@@ -787,7 +787,7 @@ message CreateViewStmt {
     }
   }
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -795,13 +795,13 @@ message CreateViewStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -817,9 +817,9 @@ message CreateVirtualTableStmt {
 
   TableKeyword table_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   TableName table_name = 6;
 
@@ -827,9 +827,9 @@ message CreateVirtualTableStmt {
 
   ModuleName module_name = 8;
 
-  Seq3 seq3 = 9;
+  LeftParenthesis left_parenthesis = 9;
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -837,13 +837,13 @@ message CreateVirtualTableStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     Seq1 seq1 = 2;
@@ -857,17 +857,17 @@ message CreateVirtualTableStmt {
 }
 
 message SelectStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   SelectCore select_core = 2;
 
-  repeated Seq2 seq2 = 3;
+  repeated Seq1 seq1 = 3;
 
-  Seq3 seq3 = 4;
+  OrderBy order_by = 4;
 
-  Seq4 seq4 = 5;
+  Limit limit = 5;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -875,13 +875,13 @@ message SelectStmt {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     CompoundOperator compound_operator = 1;
 
     SelectCore select_core = 2;
   }
 
-  message Seq3 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -889,7 +889,7 @@ message SelectStmt {
     repeated OrderingTerm ordering_term = 3;
   }
 
-  message Seq4 {
+  message Limit {
     LimitKeyword limit_keyword = 1;
 
     Expr expr = 2;
@@ -898,18 +898,18 @@ message SelectStmt {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        Offset offset = 1;
 
-        Seq2 seq2 = 2;
+        Comma comma = 2;
       }
 
-      message Seq1 {
+      message Offset {
         OffsetKeyword offset_keyword = 1;
 
         Expr expr = 2;
       }
 
-      message Seq2 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         Expr expr = 2;
@@ -920,25 +920,25 @@ message SelectStmt {
 
 message SelectCore {
   oneof value {
-    Seq1 seq1 = 1;
+    Select select = 1;
 
-    Seq2 seq2 = 2;
+    ValuesLeftParenthesis values_left_parenthesis = 2;
   }
 
-  message Seq1 {
+  message Select {
     SelectKeyword select_keyword = 1;
 
     Alt1 alt1 = 2;
 
     repeated ResultColumn result_column = 3;
 
-    Seq1 seq1 = 4;
+    From from = 4;
 
-    Seq2 seq2 = 5;
+    Where where = 5;
 
-    Seq3 seq3 = 6;
+    GroupBy group_by = 6;
 
-    Seq4 seq4 = 7;
+    Window window = 7;
 
     message Alt1 {
       oneof value {
@@ -948,7 +948,7 @@ message SelectCore {
       }
     }
 
-    message Seq1 {
+    message From {
       FromKeyword from_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -966,29 +966,29 @@ message SelectCore {
       }
     }
 
-    message Seq2 {
+    message Where {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
     }
 
-    message Seq3 {
+    message GroupBy {
       GroupKeyword group_keyword = 1;
 
       ByKeyword by_keyword = 2;
 
       repeated Expr expr = 3;
 
-      Seq1 seq1 = 4;
+      Having having = 4;
 
-      message Seq1 {
+      message Having {
         HavingKeyword having_keyword = 1;
 
         Expr expr = 2;
       }
     }
 
-    message Seq4 {
+    message Window {
       WindowKeyword window_keyword = 1;
 
       WindowName window_name = 2;
@@ -997,9 +997,9 @@ message SelectCore {
 
       WindowDefn window_defn = 4;
 
-      repeated Seq1 seq1 = 5;
+      repeated Comma comma = 5;
 
-      message Seq1 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         WindowName window_name = 2;
@@ -1011,7 +1011,7 @@ message SelectCore {
     }
   }
 
-  message Seq2 {
+  message ValuesLeftParenthesis {
     ValuesKeyword values_keyword = 1;
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -1020,9 +1020,9 @@ message SelectCore {
 
     RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-    repeated Seq1 seq1 = 5;
+    repeated CommaLeftParenthesis comma_left_parenthesis = 5;
 
-    message Seq1 {
+    message CommaLeftParenthesis {
       CommaKeyword comma_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -1035,17 +1035,17 @@ message SelectCore {
 }
 
 message FactoredSelectStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   SelectCore select_core = 2;
 
-  repeated Seq2 seq2 = 3;
+  repeated Seq1 seq1 = 3;
 
-  Seq3 seq3 = 4;
+  OrderBy order_by = 4;
 
-  Seq4 seq4 = 5;
+  Limit limit = 5;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1053,13 +1053,13 @@ message FactoredSelectStmt {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     CompoundOperator compound_operator = 1;
 
     SelectCore select_core = 2;
   }
 
-  message Seq3 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -1067,7 +1067,7 @@ message FactoredSelectStmt {
     repeated OrderingTerm ordering_term = 3;
   }
 
-  message Seq4 {
+  message Limit {
     LimitKeyword limit_keyword = 1;
 
     Expr expr = 2;
@@ -1076,18 +1076,18 @@ message FactoredSelectStmt {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        Offset offset = 1;
 
-        Seq2 seq2 = 2;
+        Comma comma = 2;
       }
 
-      message Seq1 {
+      message Offset {
         OffsetKeyword offset_keyword = 1;
 
         Expr expr = 2;
       }
 
-      message Seq2 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         Expr expr = 2;
@@ -1130,14 +1130,14 @@ message CompoundOperator {
   oneof value {
     UnionKeyword union_keyword = 1;
 
-    Seq1 seq1 = 2;
+    UnionAll union_all = 2;
 
     IntersectKeyword intersect_keyword = 3;
 
     ExceptKeyword except_keyword = 4;
   }
 
-  message Seq1 {
+  message UnionAll {
     UnionKeyword union_keyword = 1;
 
     AllKeyword all_keyword = 2;
@@ -1147,7 +1147,7 @@ message CompoundOperator {
 message CommonTableExpression {
   TableName table_name = 1;
 
-  Seq1 seq1 = 2;
+  LeftParenthesis left_parenthesis = 2;
 
   AsKeyword as_keyword = 3;
 
@@ -1159,7 +1159,7 @@ message CommonTableExpression {
 
   RightParenthesisKeyword right_parenthesis_keyword = 7;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -1169,12 +1169,12 @@ message CommonTableExpression {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      NotMaterialized not_materialized = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
 
-    message Seq1 {
+    message NotMaterialized {
       NotKeyword not_keyword = 1;
 
       MaterializedKeyword materialized_keyword = 2;
@@ -1199,23 +1199,23 @@ message WithClause {
 
   RightParenthesisKeyword right_parenthesis_keyword = 8;
 
-  repeated Seq1 seq1 = 9;
+  repeated Comma comma = 9;
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      NotMaterialized not_materialized = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
 
-    message Seq1 {
+    message NotMaterialized {
       NotKeyword not_keyword = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
   }
 
-  message Seq1 {
+  message Comma {
     CommaKeyword comma_keyword = 1;
 
     CteTableName cte_table_name = 2;
@@ -1232,12 +1232,12 @@ message WithClause {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        NotMaterialized not_materialized = 1;
 
         MaterializedKeyword materialized_keyword = 2;
       }
 
-      message Seq1 {
+      message NotMaterialized {
         NotKeyword not_keyword = 1;
 
         MaterializedKeyword materialized_keyword = 2;
@@ -1247,7 +1247,7 @@ message WithClause {
 }
 
 message DeleteStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   DeleteKeyword delete_keyword = 2;
 
@@ -1255,11 +1255,11 @@ message DeleteStmt {
 
   QualifiedTableName qualified_table_name = 4;
 
-  Seq2 seq2 = 5;
+  Where where = 5;
 
   ReturningClause returning_clause = 6;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1267,7 +1267,7 @@ message DeleteStmt {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
@@ -1275,7 +1275,7 @@ message DeleteStmt {
 }
 
 message DeleteStmtLimited {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   DeleteKeyword delete_keyword = 2;
 
@@ -1283,11 +1283,11 @@ message DeleteStmtLimited {
 
   QualifiedTableName qualified_table_name = 4;
 
-  Seq2 seq2 = 5;
+  Where where = 5;
 
   ReturningClause returning_clause = 6;
 
-  Seq3 seq3 = 7;
+  OrderBy order_by = 7;
 
   LimitKeyword limit_keyword = 8;
 
@@ -1295,7 +1295,7 @@ message DeleteStmtLimited {
 
   Alt1 alt1 = 10;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1303,13 +1303,13 @@ message DeleteStmtLimited {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
   }
 
-  message Seq3 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -1319,18 +1319,18 @@ message DeleteStmtLimited {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      Offset offset = 1;
 
-      Seq2 seq2 = 2;
+      Comma comma = 2;
     }
 
-    message Seq1 {
+    message Offset {
       OffsetKeyword offset_keyword = 1;
 
       Expr expr = 2;
     }
 
-    message Seq2 {
+    message Comma {
       CommaKeyword comma_keyword = 1;
 
       Expr expr = 2;
@@ -1339,25 +1339,25 @@ message DeleteStmtLimited {
 }
 
 message InsertStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   Alt1 alt1 = 2;
 
   IntoKeyword into_keyword = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   TableName table_name = 5;
 
-  Seq3 seq3 = 6;
+  As as = 6;
 
-  Seq4 seq4 = 7;
+  LeftParenthesis left_parenthesis = 7;
 
   Alt2 alt2 = 8;
 
   ReturningClause returning_clause = 9;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1371,10 +1371,10 @@ message InsertStmt {
 
       InsertKeyword insert_keyword = 2;
 
-      Seq1 seq1 = 3;
+      InsertOr insert_or = 3;
     }
 
-    message Seq1 {
+    message InsertOr {
       InsertKeyword insert_keyword = 1;
 
       OrKeyword or_keyword = 2;
@@ -1397,19 +1397,19 @@ message InsertStmt {
     }
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message As {
     AsKeyword as_keyword = 1;
 
     Alias alias = 2;
   }
 
-  message Seq4 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -1419,14 +1419,14 @@ message InsertStmt {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      ValuesLeftParenthesis values_left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      Seq1 seq1 = 2;
 
-      Seq3 seq3 = 3;
+      DefaultValues default_values = 3;
     }
 
-    message Seq1 {
+    message ValuesLeftParenthesis {
       ValuesKeyword values_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -1435,11 +1435,11 @@ message InsertStmt {
 
       RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      repeated Seq1 seq1 = 5;
+      repeated CommaLeftParenthesis comma_left_parenthesis = 5;
 
       UpsertClause upsert_clause = 6;
 
-      message Seq1 {
+      message CommaLeftParenthesis {
         CommaKeyword comma_keyword = 1;
 
         LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -1450,13 +1450,13 @@ message InsertStmt {
       }
     }
 
-    message Seq2 {
+    message Seq1 {
       SelectStmt select_stmt = 1;
 
       UpsertClause upsert_clause = 2;
     }
 
-    message Seq3 {
+    message DefaultValues {
       DefaultKeyword default_keyword = 1;
 
       ValuesKeyword values_keyword = 2;
@@ -1465,7 +1465,7 @@ message InsertStmt {
 }
 
 message UpdateStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   Alt1 alt1 = 2;
 
@@ -1479,15 +1479,15 @@ message UpdateStmt {
 
   Expr expr = 7;
 
-  repeated Seq2 seq2 = 8;
+  repeated Comma comma = 8;
 
-  Seq3 seq3 = 9;
+  From from = 9;
 
-  Seq4 seq4 = 10;
+  Where where = 10;
 
   ReturningClause returning_clause = 11;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1499,10 +1499,10 @@ message UpdateStmt {
     oneof value {
       UpdateKeyword update_keyword = 1;
 
-      Seq1 seq1 = 2;
+      UpdateOr update_or = 2;
     }
 
-    message Seq1 {
+    message UpdateOr {
       UpdateKeyword update_keyword = 1;
 
       OrKeyword or_keyword = 2;
@@ -1533,7 +1533,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq2 {
+  message Comma {
     CommaKeyword comma_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -1551,7 +1551,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq3 {
+  message From {
     FromKeyword from_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -1569,7 +1569,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq4 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
@@ -1577,7 +1577,7 @@ message UpdateStmt {
 }
 
 message UpdateStmtLimited {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   Alt1 alt1 = 2;
 
@@ -1591,15 +1591,15 @@ message UpdateStmtLimited {
 
   Expr expr = 7;
 
-  repeated Seq2 seq2 = 8;
+  repeated Comma comma = 8;
 
-  Seq3 seq3 = 9;
+  From from = 9;
 
-  Seq4 seq4 = 10;
+  Where where = 10;
 
   ReturningClause returning_clause = 11;
 
-  Seq5 seq5 = 12;
+  OrderBy order_by = 12;
 
   LimitKeyword limit_keyword = 13;
 
@@ -1607,7 +1607,7 @@ message UpdateStmtLimited {
 
   Alt3 alt3 = 15;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -1619,10 +1619,10 @@ message UpdateStmtLimited {
     oneof value {
       UpdateKeyword update_keyword = 1;
 
-      Seq1 seq1 = 2;
+      UpdateOr update_or = 2;
     }
 
-    message Seq1 {
+    message UpdateOr {
       UpdateKeyword update_keyword = 1;
 
       OrKeyword or_keyword = 2;
@@ -1653,7 +1653,7 @@ message UpdateStmtLimited {
     }
   }
 
-  message Seq2 {
+  message Comma {
     CommaKeyword comma_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -1671,7 +1671,7 @@ message UpdateStmtLimited {
     }
   }
 
-  message Seq3 {
+  message From {
     FromKeyword from_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -1689,13 +1689,13 @@ message UpdateStmtLimited {
     }
   }
 
-  message Seq4 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
   }
 
-  message Seq5 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -1705,18 +1705,18 @@ message UpdateStmtLimited {
 
   message Alt3 {
     oneof value {
-      Seq1 seq1 = 1;
+      Offset offset = 1;
 
-      Seq2 seq2 = 2;
+      Comma comma = 2;
     }
 
-    message Seq1 {
+    message Offset {
       OffsetKeyword offset_keyword = 1;
 
       Expr expr = 2;
     }
 
-    message Seq2 {
+    message Comma {
       CommaKeyword comma_keyword = 1;
 
       Expr expr = 2;
@@ -1730,11 +1730,11 @@ message TableOrSubquery {
 
     Seq2 seq2 = 2;
 
-    Seq3 seq3 = 3;
+    LeftParenthesis left_parenthesis = 3;
 
-    Seq4 seq4 = 4;
+    LeftParenthesis2 left_parenthesis2 = 4;
 
-    Seq5 seq5 = 5;
+    LeftParenthesis3 left_parenthesis3 = 5;
   }
 
   message Seq1 {
@@ -1760,12 +1760,12 @@ message TableOrSubquery {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        IndexedBy indexed_by = 1;
 
-        Seq2 seq2 = 2;
+        NotIndexed not_indexed = 2;
       }
 
-      message Seq1 {
+      message IndexedBy {
         IndexedKeyword indexed_keyword = 1;
 
         ByKeyword by_keyword = 2;
@@ -1773,7 +1773,7 @@ message TableOrSubquery {
         IndexName index_name = 3;
       }
 
-      message Seq2 {
+      message NotIndexed {
         NotKeyword not_keyword = 1;
 
         IndexedKeyword indexed_keyword = 2;
@@ -1811,7 +1811,7 @@ message TableOrSubquery {
     }
   }
 
-  message Seq3 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     SelectStmt select_stmt = 2;
@@ -1819,7 +1819,7 @@ message TableOrSubquery {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq4 {
+  message LeftParenthesis2 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated TableOrSubquery table_or_subquery = 2;
@@ -1827,7 +1827,7 @@ message TableOrSubquery {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq5 {
+  message LeftParenthesis3 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     JoinClause join_clause = 2;
@@ -1894,18 +1894,18 @@ message JoinOperator {
 
 message JoinConstraint {
   oneof value {
-    Seq1 seq1 = 1;
+    On on = 1;
 
-    Seq2 seq2 = 2;
+    UsingLeftParenthesis using_left_parenthesis = 2;
   }
 
-  message Seq1 {
+  message On {
     OnKeyword on_keyword = 1;
 
     Expr expr = 2;
   }
 
-  message Seq2 {
+  message UsingLeftParenthesis {
     UsingKeyword using_keyword = 1;
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -1919,13 +1919,13 @@ message JoinConstraint {
 message OrderingTerm {
   Expr expr = 1;
 
-  Seq1 seq1 = 2;
+  Collate collate = 2;
 
   Alt1 alt1 = 3;
 
   Alt2 alt2 = 4;
 
-  message Seq1 {
+  message Collate {
     CollateKeyword collate_keyword = 1;
 
     CollationName collation_name = 2;
@@ -1941,18 +1941,18 @@ message OrderingTerm {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      NullsFirst nulls_first = 1;
 
-      Seq2 seq2 = 2;
+      NullsLast nulls_last = 2;
     }
 
-    message Seq1 {
+    message NullsFirst {
       NullsKeyword nulls_keyword = 1;
 
       FirstKeyword first_keyword = 2;
     }
 
-    message Seq2 {
+    message NullsLast {
       NullsKeyword nulls_keyword = 1;
 
       LastKeyword last_keyword = 2;
@@ -1969,11 +1969,11 @@ message ColumnDef {
 }
 
 message ColumnConstraint {
-  Seq1 seq1 = 1;
+  Constraint constraint = 1;
 
   Alt1 alt1 = 2;
 
-  message Seq1 {
+  message Constraint {
     ConstraintKeyword constraint_keyword = 1;
 
     Name name = 2;
@@ -1981,24 +1981,24 @@ message ColumnConstraint {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      PrimaryKey primary_key = 1;
 
-      Seq2 seq2 = 2;
+      NotNull not_null = 2;
 
-      Seq3 seq3 = 3;
+      Unique unique = 3;
 
-      Seq4 seq4 = 4;
+      CheckLeftParenthesis check_left_parenthesis = 4;
 
-      Seq5 seq5 = 5;
+      Default default = 5;
 
-      Seq6 seq6 = 6;
+      Collate collate = 6;
 
       ForeignKeyClause foreign_key_clause = 7;
 
-      Seq7 seq7 = 8;
+      Seq1 seq1 = 8;
     }
 
-    message Seq1 {
+    message PrimaryKey {
       PrimaryKeyword primary_keyword = 1;
 
       KeyKeyword key_keyword = 2;
@@ -2018,7 +2018,7 @@ message ColumnConstraint {
       }
     }
 
-    message Seq2 {
+    message NotNull {
       NotKeyword not_keyword = 1;
 
       NullKeyword null_keyword = 2;
@@ -2026,13 +2026,13 @@ message ColumnConstraint {
       ConflictClause conflict_clause = 3;
     }
 
-    message Seq3 {
+    message Unique {
       UniqueKeyword unique_keyword = 1;
 
       ConflictClause conflict_clause = 2;
     }
 
-    message Seq4 {
+    message CheckLeftParenthesis {
       CheckKeyword check_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -2042,21 +2042,21 @@ message ColumnConstraint {
       RightParenthesisKeyword right_parenthesis_keyword = 4;
     }
 
-    message Seq5 {
+    message Default {
       DefaultKeyword default_keyword = 1;
 
       Alt1 alt1 = 2;
 
       message Alt1 {
         oneof value {
-          Seq1 seq1 = 1;
+          LeftParenthesis left_parenthesis = 1;
 
           LiteralValue literal_value = 2;
 
           SignedNumber signed_number = 3;
         }
 
-        message Seq1 {
+        message LeftParenthesis {
           LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
           Expr expr = 2;
@@ -2066,14 +2066,14 @@ message ColumnConstraint {
       }
     }
 
-    message Seq6 {
+    message Collate {
       CollateKeyword collate_keyword = 1;
 
       CollationName collation_name = 2;
     }
 
-    message Seq7 {
-      Seq1 seq1 = 1;
+    message Seq1 {
+      GeneratedAlways generated_always = 1;
 
       AsKeyword as_keyword = 2;
 
@@ -2085,7 +2085,7 @@ message ColumnConstraint {
 
       Alt1 alt1 = 6;
 
-      message Seq1 {
+      message GeneratedAlways {
         GeneratedKeyword generated_keyword = 1;
 
         AlwaysKeyword always_keyword = 2;
@@ -2103,11 +2103,11 @@ message ColumnConstraint {
 }
 
 message TableConstraint {
-  Seq1 seq1 = 1;
+  Constraint constraint = 1;
 
   Alt1 alt1 = 2;
 
-  message Seq1 {
+  message Constraint {
     ConstraintKeyword constraint_keyword = 1;
 
     Name name = 2;
@@ -2115,16 +2115,16 @@ message TableConstraint {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      PrimaryKeyLeftParenthesis primary_key_left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      UniqueLeftParenthesis unique_left_parenthesis = 2;
 
-      Seq3 seq3 = 3;
+      CheckLeftParenthesis check_left_parenthesis = 3;
 
-      Seq4 seq4 = 4;
+      ForeignKeyLeftParenthesis foreign_key_left_parenthesis = 4;
     }
 
-    message Seq1 {
+    message PrimaryKeyLeftParenthesis {
       PrimaryKeyword primary_keyword = 1;
 
       KeyKeyword key_keyword = 2;
@@ -2138,7 +2138,7 @@ message TableConstraint {
       ConflictClause conflict_clause = 6;
     }
 
-    message Seq2 {
+    message UniqueLeftParenthesis {
       UniqueKeyword unique_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -2150,7 +2150,7 @@ message TableConstraint {
       ConflictClause conflict_clause = 5;
     }
 
-    message Seq3 {
+    message CheckLeftParenthesis {
       CheckKeyword check_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -2160,7 +2160,7 @@ message TableConstraint {
       RightParenthesisKeyword right_parenthesis_keyword = 4;
     }
 
-    message Seq4 {
+    message ForeignKeyLeftParenthesis {
       ForeignKeyword foreign_keyword = 1;
 
       KeyKeyword key_keyword = 2;
@@ -2177,9 +2177,9 @@ message TableConstraint {
 }
 
 message ConflictClause {
-  Seq1 seq1 = 1;
+  OnConflict on_conflict = 1;
 
-  message Seq1 {
+  message OnConflict {
     OnKeyword on_keyword = 1;
 
     ConflictKeyword conflict_keyword = 2;
@@ -2207,13 +2207,13 @@ message ForeignKeyClause {
 
   ForeignTable foreign_table = 2;
 
-  Seq1 seq1 = 3;
+  LeftParenthesis left_parenthesis = 3;
 
   repeated Alt1 alt1 = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -2223,12 +2223,12 @@ message ForeignKeyClause {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      On on = 1;
 
-      Seq2 seq2 = 2;
+      Match match = 2;
     }
 
-    message Seq1 {
+    message On {
       OnKeyword on_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -2245,30 +2245,30 @@ message ForeignKeyClause {
 
       message Alt2 {
         oneof value {
-          Seq1 seq1 = 1;
+          SetNull set_null = 1;
 
-          Seq2 seq2 = 2;
+          SetDefault set_default = 2;
 
           CascadeKeyword cascade_keyword = 3;
 
           RestrictKeyword restrict_keyword = 4;
 
-          Seq3 seq3 = 5;
+          NoAction no_action = 5;
         }
 
-        message Seq1 {
+        message SetNull {
           SetKeyword set_keyword = 1;
 
           NullKeyword null_keyword = 2;
         }
 
-        message Seq2 {
+        message SetDefault {
           SetKeyword set_keyword = 1;
 
           DefaultKeyword default_keyword = 2;
         }
 
-        message Seq3 {
+        message NoAction {
           NoKeyword no_keyword = 1;
 
           ActionKeyword action_keyword = 2;
@@ -2276,21 +2276,21 @@ message ForeignKeyClause {
       }
     }
 
-    message Seq2 {
+    message Match {
       MatchKeyword match_keyword = 1;
 
       Name name = 2;
     }
   }
 
-  message Seq2 {
+  message Seq1 {
     NotKeyword not_keyword = 1;
 
     DeferrableKeyword deferrable_keyword = 2;
 
-    Seq1 seq1 = 3;
+    Initially initially = 3;
 
-    message Seq1 {
+    message Initially {
       InitiallyKeyword initially_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -2308,22 +2308,22 @@ message ForeignKeyClause {
 
 message TableOptions {
   oneof value {
-    Seq1 seq1 = 1;
+    WithoutRowid without_rowid = 1;
 
     StrictKeyword strict_keyword = 2;
 
-    Seq2 seq2 = 3;
+    WithoutRowidCommaStrict without_rowid_comma_strict = 3;
 
-    Seq3 seq3 = 4;
+    StrictCommaWithoutRowid strict_comma_without_rowid = 4;
   }
 
-  message Seq1 {
+  message WithoutRowid {
     WithoutKeyword without_keyword = 1;
 
     RowidKeyword rowid_keyword = 2;
   }
 
-  message Seq2 {
+  message WithoutRowidCommaStrict {
     WithoutKeyword without_keyword = 1;
 
     RowidKeyword rowid_keyword = 2;
@@ -2333,7 +2333,7 @@ message TableOptions {
     StrictKeyword strict_keyword = 4;
   }
 
-  message Seq3 {
+  message StrictCommaWithoutRowid {
     StrictKeyword strict_keyword = 1;
 
     CommaKeyword comma_keyword = 2;
@@ -2353,12 +2353,12 @@ message TypeName {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      LeftParenthesis left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis2 left_parenthesis2 = 2;
     }
 
-    message Seq1 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       SignedNumber signed_number = 2;
@@ -2366,7 +2366,7 @@ message TypeName {
       RightParenthesisKeyword right_parenthesis_keyword = 3;
     }
 
-    message Seq2 {
+    message LeftParenthesis2 {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       SignedNumber signed_number = 2;
@@ -2383,7 +2383,7 @@ message TypeName {
 message IndexedColumn {
   Alt1 alt1 = 1;
 
-  Seq1 seq1 = 2;
+  Collate collate = 2;
 
   Alt2 alt2 = 3;
 
@@ -2395,7 +2395,7 @@ message IndexedColumn {
     }
   }
 
-  message Seq1 {
+  message Collate {
     CollateKeyword collate_keyword = 1;
 
     CollationName collation_name = 2;
@@ -2415,7 +2415,7 @@ message QualifiedTableName {
 
   TableName table_name = 2;
 
-  Seq2 seq2 = 3;
+  As as = 3;
 
   Alt1 alt1 = 4;
 
@@ -2425,7 +2425,7 @@ message QualifiedTableName {
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq2 {
+  message As {
     AsKeyword as_keyword = 1;
 
     Alias alias = 2;
@@ -2433,12 +2433,12 @@ message QualifiedTableName {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      IndexedBy indexed_by = 1;
 
-      Seq2 seq2 = 2;
+      NotIndexed not_indexed = 2;
     }
 
-    message Seq1 {
+    message IndexedBy {
       IndexedKeyword indexed_keyword = 1;
 
       ByKeyword by_keyword = 2;
@@ -2446,7 +2446,7 @@ message QualifiedTableName {
       IndexName index_name = 3;
     }
 
-    message Seq2 {
+    message NotIndexed {
       NotKeyword not_keyword = 1;
 
       IndexedKeyword indexed_keyword = 2;
@@ -2485,22 +2485,22 @@ message UpsertClause {
 
   ConflictKeyword conflict_keyword = 2;
 
-  Seq1 seq1 = 3;
+  LeftParenthesis left_parenthesis = 3;
 
   DoKeyword do_keyword = 4;
 
   Alt1 alt1 = 5;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated IndexedColumn indexed_column = 2;
 
     RightParenthesisKeyword right_parenthesis_keyword = 3;
 
-    Seq1 seq1 = 4;
+    Where where = 4;
 
-    message Seq1 {
+    message Where {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
@@ -2511,10 +2511,10 @@ message UpsertClause {
     oneof value {
       NothingKeyword nothing_keyword = 1;
 
-      Seq1 seq1 = 2;
+      UpdateSet update_set = 2;
     }
 
-    message Seq1 {
+    message UpdateSet {
       UpdateKeyword update_keyword = 1;
 
       SetKeyword set_keyword = 2;
@@ -2525,9 +2525,9 @@ message UpsertClause {
 
       Expr expr = 5;
 
-      repeated Seq1 seq1 = 6;
+      repeated Comma comma = 6;
 
-      Seq2 seq2 = 7;
+      Where where = 7;
 
       message Alt1 {
         oneof value {
@@ -2537,7 +2537,7 @@ message UpsertClause {
         }
       }
 
-      message Seq1 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         Alt1 alt1 = 2;
@@ -2555,7 +2555,7 @@ message UpsertClause {
         }
       }
 
-      message Seq2 {
+      message Where {
         WhereKeyword where_keyword = 1;
 
         Expr expr = 2;
@@ -2577,15 +2577,15 @@ message WindowDefn {
 
   BaseWindowName base_window_name = 2;
 
-  Seq1 seq1 = 3;
+  PartitionBy partition_by = 3;
 
-  Seq2 seq2 = 4;
+  OrderBy order_by = 4;
 
   FrameSpec frame_spec = 5;
 
   RightParenthesisKeyword right_parenthesis_keyword = 6;
 
-  message Seq1 {
+  message PartitionBy {
     PartitionKeyword partition_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -2593,7 +2593,7 @@ message WindowDefn {
     repeated Expr expr = 3;
   }
 
-  message Seq2 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -2611,23 +2611,23 @@ message OverClause {
     oneof value {
       WindowName window_name = 1;
 
-      Seq1 seq1 = 2;
+      LeftParenthesis left_parenthesis = 2;
     }
 
-    message Seq1 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       BaseWindowName base_window_name = 2;
 
-      Seq1 seq1 = 3;
+      PartitionBy partition_by = 3;
 
-      Seq2 seq2 = 4;
+      OrderBy order_by = 4;
 
       FrameSpec frame_spec = 5;
 
       RightParenthesisKeyword right_parenthesis_keyword = 6;
 
-      message Seq1 {
+      message PartitionBy {
         PartitionKeyword partition_keyword = 1;
 
         ByKeyword by_keyword = 2;
@@ -2635,7 +2635,7 @@ message OverClause {
         repeated Expr expr = 3;
       }
 
-      message Seq2 {
+      message OrderBy {
         OrderKeyword order_keyword = 1;
 
         ByKeyword by_keyword = 2;
@@ -2665,16 +2665,16 @@ message FrameSpec {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      Between between = 1;
 
-      Seq2 seq2 = 2;
+      UnboundedPreceding unbounded_preceding = 2;
 
-      Seq3 seq3 = 3;
+      Seq1 seq1 = 3;
 
-      Seq4 seq4 = 4;
+      CurrentRow current_row = 4;
     }
 
-    message Seq1 {
+    message Between {
       BetweenKeyword between_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -2685,34 +2685,34 @@ message FrameSpec {
 
       message Alt1 {
         oneof value {
-          Seq1 seq1 = 1;
+          UnboundedPreceding unbounded_preceding = 1;
 
-          Seq2 seq2 = 2;
+          Seq1 seq1 = 2;
 
-          Seq3 seq3 = 3;
+          CurrentRow current_row = 3;
 
-          Seq4 seq4 = 4;
+          Seq2 seq2 = 4;
         }
 
-        message Seq1 {
+        message UnboundedPreceding {
           UnboundedKeyword unbounded_keyword = 1;
 
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq2 {
+        message Seq1 {
           Expr expr = 1;
 
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq3 {
+        message CurrentRow {
           CurrentKeyword current_keyword = 1;
 
           RowKeyword row_keyword = 2;
         }
 
-        message Seq4 {
+        message Seq2 {
           Expr expr = 1;
 
           FollowingKeyword following_keyword = 2;
@@ -2723,11 +2723,11 @@ message FrameSpec {
         oneof value {
           Seq1 seq1 = 1;
 
-          Seq2 seq2 = 2;
+          CurrentRow current_row = 2;
 
-          Seq3 seq3 = 3;
+          Seq2 seq2 = 3;
 
-          Seq4 seq4 = 4;
+          UnboundedFollowing unbounded_following = 4;
         }
 
         message Seq1 {
@@ -2736,19 +2736,19 @@ message FrameSpec {
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq2 {
+        message CurrentRow {
           CurrentKeyword current_keyword = 1;
 
           RowKeyword row_keyword = 2;
         }
 
-        message Seq3 {
+        message Seq2 {
           Expr expr = 1;
 
           FollowingKeyword following_keyword = 2;
         }
 
-        message Seq4 {
+        message UnboundedFollowing {
           UnboundedKeyword unbounded_keyword = 1;
 
           FollowingKeyword following_keyword = 2;
@@ -2756,19 +2756,19 @@ message FrameSpec {
       }
     }
 
-    message Seq2 {
+    message UnboundedPreceding {
       UnboundedKeyword unbounded_keyword = 1;
 
       PrecedingKeyword preceding_keyword = 2;
     }
 
-    message Seq3 {
+    message Seq1 {
       Expr expr = 1;
 
       PrecedingKeyword preceding_keyword = 2;
     }
 
-    message Seq4 {
+    message CurrentRow {
       CurrentKeyword current_keyword = 1;
 
       RowKeyword row_keyword = 2;
@@ -2777,16 +2777,16 @@ message FrameSpec {
 
   message Alt3 {
     oneof value {
-      Seq1 seq1 = 1;
+      ExcludeNoOthers exclude_no_others = 1;
 
-      Seq2 seq2 = 2;
+      ExcludeCurrentRow exclude_current_row = 2;
 
-      Seq3 seq3 = 3;
+      ExcludeGroup exclude_group = 3;
 
-      Seq4 seq4 = 4;
+      ExcludeTies exclude_ties = 4;
     }
 
-    message Seq1 {
+    message ExcludeNoOthers {
       ExcludeKeyword exclude_keyword = 1;
 
       NoKeyword no_keyword = 2;
@@ -2794,7 +2794,7 @@ message FrameSpec {
       OthersKeyword others_keyword = 3;
     }
 
-    message Seq2 {
+    message ExcludeCurrentRow {
       ExcludeKeyword exclude_keyword = 1;
 
       CurrentKeyword current_keyword = 2;
@@ -2802,13 +2802,13 @@ message FrameSpec {
       RowKeyword row_keyword = 3;
     }
 
-    message Seq3 {
+    message ExcludeGroup {
       ExcludeKeyword exclude_keyword = 1;
 
       GroupKeyword group_keyword = 2;
     }
 
-    message Seq4 {
+    message ExcludeTies {
       ExcludeKeyword exclude_keyword = 1;
 
       TiesKeyword ties_keyword = 2;
@@ -2842,33 +2842,33 @@ message Expr {
 
     Seq4 seq4 = 6;
 
-    Seq5 seq5 = 7;
+    LeftParenthesis left_parenthesis = 7;
 
-    Seq6 seq6 = 8;
+    CastLeftParenthesis cast_left_parenthesis = 8;
 
-    Seq7 seq7 = 9;
+    Seq5 seq5 = 9;
 
-    Seq8 seq8 = 10;
+    Seq6 seq6 = 10;
 
-    Seq9 seq9 = 11;
+    Seq7 seq7 = 11;
 
-    Seq10 seq10 = 12;
+    Seq8 seq8 = 12;
 
-    Seq11 seq11 = 13;
+    Seq9 seq9 = 13;
 
-    Seq12 seq12 = 14;
+    Seq10 seq10 = 14;
 
-    Seq13 seq13 = 15;
+    Seq11 seq11 = 15;
 
-    Seq14 seq14 = 16;
+    Seq12 seq12 = 16;
 
-    Seq15 seq15 = 17;
+    Seq13 seq13 = 17;
 
-    Seq16 seq16 = 18;
+    Seq14 seq14 = 18;
 
-    Seq17 seq17 = 19;
+    Seq15 seq15 = 19;
 
-    Seq18 seq18 = 20;
+    Case case = 20;
 
     RaiseFunction raise_function = 21;
   }
@@ -2921,7 +2921,7 @@ message Expr {
     OverClause over_clause = 6;
   }
 
-  message Seq5 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated Expr expr = 2;
@@ -2929,7 +2929,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq6 {
+  message CastLeftParenthesis {
     CastKeyword cast_keyword = 1;
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -2943,7 +2943,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 6;
   }
 
-  message Seq7 {
+  message Seq5 {
     Expr expr = 1;
 
     CollateKeyword collate_keyword = 2;
@@ -2951,7 +2951,7 @@ message Expr {
     CollationName collation_name = 3;
   }
 
-  message Seq8 {
+  message Seq6 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -2960,7 +2960,7 @@ message Expr {
 
     Expr expr_2 = 4;
 
-    Seq1 seq1 = 5;
+    Escape escape = 5;
 
     message Alt1 {
       oneof value {
@@ -2974,26 +2974,26 @@ message Expr {
       }
     }
 
-    message Seq1 {
+    message Escape {
       EscapeKeyword escape_keyword = 1;
 
       Expr expr = 2;
     }
   }
 
-  message Seq9 {
+  message Seq7 {
     Expr expr = 1;
 
     IsnullKeyword isnull_keyword = 2;
   }
 
-  message Seq10 {
+  message Seq8 {
     Expr expr = 1;
 
     NotnullKeyword notnull_keyword = 2;
   }
 
-  message Seq11 {
+  message Seq9 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -3001,25 +3001,25 @@ message Expr {
     NullKeyword null_keyword = 3;
   }
 
-  message Seq12 {
+  message Seq10 {
     Expr expr = 1;
 
     IsKeyword is_keyword = 2;
 
     NotKeyword not_keyword = 3;
 
-    Seq1 seq1 = 4;
+    DistinctFrom distinct_from = 4;
 
     Expr expr_2 = 5;
 
-    message Seq1 {
+    message DistinctFrom {
       DistinctKeyword distinct_keyword = 1;
 
       FromKeyword from_keyword = 2;
     }
   }
 
-  message Seq13 {
+  message Seq11 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -3033,7 +3033,7 @@ message Expr {
     Expr expr_3 = 6;
   }
 
-  message Seq14 {
+  message Seq12 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -3059,7 +3059,7 @@ message Expr {
     }
   }
 
-  message Seq15 {
+  message Seq13 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -3077,7 +3077,7 @@ message Expr {
     }
   }
 
-  message Seq16 {
+  message Seq14 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -3105,7 +3105,7 @@ message Expr {
     }
   }
 
-  message Seq17 {
+  message Seq15 {
     NotKeyword not_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
@@ -3117,7 +3117,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 5;
   }
 
-  message Seq18 {
+  message Case {
     CaseKeyword case_keyword = 1;
 
     Expr expr = 2;
@@ -3130,13 +3130,13 @@ message Expr {
 
     Expr expr_3 = 6;
 
-    repeated Seq1 seq1 = 7;
+    repeated When when = 7;
 
-    Seq2 seq2 = 8;
+    Else else = 8;
 
     EndKeyword end_keyword = 9;
 
-    message Seq1 {
+    message When {
       WhenKeyword when_keyword = 1;
 
       Expr expr = 2;
@@ -3146,7 +3146,7 @@ message Expr {
       Expr expr_2 = 4;
     }
 
-    message Seq2 {
+    message Else {
       ElseKeyword else_keyword = 1;
 
       Expr expr = 2;
@@ -3363,17 +3363,17 @@ message NumericLiteral {
 
   repeated Digit digit_2 = 2;
 
-  Seq1 seq1 = 3;
+  FullStop full_stop = 3;
 
-  Seq2 seq2 = 4;
+  E e = 4;
 
-  message Seq1 {
+  message FullStop {
     FullStopKeyword full_stop_keyword = 1;
 
     repeated Digit digit = 2;
   }
 
-  message Seq2 {
+  message E {
     EKeyword e_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -3420,26 +3420,26 @@ message BindParameter {
   oneof value {
     QuestionMarkKeyword question_mark_keyword = 1;
 
-    Seq1 seq1 = 2;
+    Colon colon = 2;
 
-    Seq2 seq2 = 3;
+    CommercialAt commercial_at = 3;
 
-    Seq3 seq3 = 4;
+    DollarSign dollar_sign = 4;
   }
 
-  message Seq1 {
+  message Colon {
     ColonKeyword colon_keyword = 1;
 
     Name name = 2;
   }
 
-  message Seq2 {
+  message CommercialAt {
     CommercialAtKeyword commercial_at_keyword = 1;
 
     Name name = 2;
   }
 
-  message Seq3 {
+  message DollarSign {
     DollarSignKeyword dollar_sign_keyword = 1;
 
     Name name = 2;
@@ -3498,7 +3498,7 @@ message BinaryOperator {
 
     IsKeyword is_keyword = 19;
 
-    Seq1 seq1 = 20;
+    IsNot is_not = 20;
 
     InKeyword in_keyword = 21;
 
@@ -3515,7 +3515,7 @@ message BinaryOperator {
     OrKeyword or_keyword = 27;
   }
 
-  message Seq1 {
+  message IsNot {
     IsKeyword is_keyword = 1;
 
     NotKeyword not_keyword = 2;

@@ -5,13 +5,13 @@ package sqlite;
 message OrderingTerm {
   Expr expr = 1;
 
-  Seq1 seq1 = 2;
+  Collate collate = 2;
 
   Alt1 alt1 = 3;
 
   Alt2 alt2 = 4;
 
-  message Seq1 {
+  message Collate {
     CollateKeyword collate_keyword = 1;
 
     CollationName collation_name = 2;
@@ -27,18 +27,18 @@ message OrderingTerm {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      NullsFirst nulls_first = 1;
 
-      Seq2 seq2 = 2;
+      NullsLast nulls_last = 2;
     }
 
-    message Seq1 {
+    message NullsFirst {
       NullsKeyword nulls_keyword = 1;
 
       FirstKeyword first_keyword = 2;
     }
 
-    message Seq2 {
+    message NullsLast {
       NullsKeyword nulls_keyword = 1;
 
       LastKeyword last_keyword = 2;

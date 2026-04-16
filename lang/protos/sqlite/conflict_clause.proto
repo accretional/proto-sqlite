@@ -3,9 +3,9 @@ syntax = "proto3";
 package sqlite;
 
 message ConflictClause {
-  Seq1 seq1 = 1;
+  OnConflict on_conflict = 1;
 
-  message Seq1 {
+  message OnConflict {
     OnKeyword on_keyword = 1;
 
     ConflictKeyword conflict_keyword = 2;

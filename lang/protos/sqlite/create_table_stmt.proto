@@ -9,9 +9,9 @@ message CreateTableStmt {
 
   TableKeyword table_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   TableName table_name = 6;
 
@@ -25,7 +25,7 @@ message CreateTableStmt {
     }
   }
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -33,7 +33,7 @@ message CreateTableStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -41,29 +41,29 @@ message CreateTableStmt {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      As as = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis left_parenthesis = 2;
     }
 
-    message Seq1 {
+    message As {
       AsKeyword as_keyword = 1;
 
       SelectStmt select_stmt = 2;
     }
 
-    message Seq2 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       repeated ColumnDef column_def = 2;
 
-      repeated Seq1 seq1 = 3;
+      repeated Comma comma = 3;
 
       RightParenthesisKeyword right_parenthesis_keyword = 4;
 
       TableOptions table_options = 5;
 
-      message Seq1 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         TableConstraint table_constraint = 2;

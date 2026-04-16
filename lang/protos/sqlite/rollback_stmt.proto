@@ -7,9 +7,9 @@ message RollbackStmt {
 
   TransactionKeyword transaction_keyword = 2;
 
-  Seq1 seq1 = 3;
+  To to = 3;
 
-  message Seq1 {
+  message To {
     ToKeyword to_keyword = 1;
 
     SavepointKeyword savepoint_keyword = 2;

@@ -7,9 +7,9 @@ message VacuumStmt {
 
   SchemaName schema_name = 2;
 
-  Seq1 seq1 = 3;
+  Into into = 3;
 
-  message Seq1 {
+  message Into {
     IntoKeyword into_keyword = 1;
 
     Filename filename = 2;

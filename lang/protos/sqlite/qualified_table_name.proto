@@ -7,7 +7,7 @@ message QualifiedTableName {
 
   TableName table_name = 2;
 
-  Seq2 seq2 = 3;
+  As as = 3;
 
   Alt1 alt1 = 4;
 
@@ -17,7 +17,7 @@ message QualifiedTableName {
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq2 {
+  message As {
     AsKeyword as_keyword = 1;
 
     Alias alias = 2;
@@ -25,12 +25,12 @@ message QualifiedTableName {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      IndexedBy indexed_by = 1;
 
-      Seq2 seq2 = 2;
+      NotIndexed not_indexed = 2;
     }
 
-    message Seq1 {
+    message IndexedBy {
       IndexedKeyword indexed_keyword = 1;
 
       ByKeyword by_keyword = 2;
@@ -38,7 +38,7 @@ message QualifiedTableName {
       IndexName index_name = 3;
     }
 
-    message Seq2 {
+    message NotIndexed {
       NotKeyword not_keyword = 1;
 
       IndexedKeyword indexed_keyword = 2;

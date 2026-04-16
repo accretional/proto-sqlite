@@ -3,17 +3,17 @@ syntax = "proto3";
 package sqlite;
 
 message SelectStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   SelectCore select_core = 2;
 
-  repeated Seq2 seq2 = 3;
+  repeated Seq1 seq1 = 3;
 
-  Seq3 seq3 = 4;
+  OrderBy order_by = 4;
 
-  Seq4 seq4 = 5;
+  Limit limit = 5;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -21,13 +21,13 @@ message SelectStmt {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     CompoundOperator compound_operator = 1;
 
     SelectCore select_core = 2;
   }
 
-  message Seq3 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -35,7 +35,7 @@ message SelectStmt {
     repeated OrderingTerm ordering_term = 3;
   }
 
-  message Seq4 {
+  message Limit {
     LimitKeyword limit_keyword = 1;
 
     Expr expr = 2;
@@ -44,18 +44,18 @@ message SelectStmt {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        Offset offset = 1;
 
-        Seq2 seq2 = 2;
+        Comma comma = 2;
       }
 
-      message Seq1 {
+      message Offset {
         OffsetKeyword offset_keyword = 1;
 
         Expr expr = 2;
       }
 
-      message Seq2 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         Expr expr = 2;

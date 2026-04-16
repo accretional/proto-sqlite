@@ -6,26 +6,26 @@ message BindParameter {
   oneof value {
     QuestionMarkKeyword question_mark_keyword = 1;
 
-    Seq1 seq1 = 2;
+    Colon colon = 2;
 
-    Seq2 seq2 = 3;
+    CommercialAt commercial_at = 3;
 
-    Seq3 seq3 = 4;
+    DollarSign dollar_sign = 4;
   }
 
-  message Seq1 {
+  message Colon {
     ColonKeyword colon_keyword = 1;
 
     Name name = 2;
   }
 
-  message Seq2 {
+  message CommercialAt {
     CommercialAtKeyword commercial_at_keyword = 1;
 
     Name name = 2;
   }
 
-  message Seq3 {
+  message DollarSign {
     DollarSignKeyword dollar_sign_keyword = 1;
 
     Name name = 2;

@@ -7,15 +7,15 @@ message WindowDefn {
 
   BaseWindowName base_window_name = 2;
 
-  Seq1 seq1 = 3;
+  PartitionBy partition_by = 3;
 
-  Seq2 seq2 = 4;
+  OrderBy order_by = 4;
 
   FrameSpec frame_spec = 5;
 
   RightParenthesisKeyword right_parenthesis_keyword = 6;
 
-  message Seq1 {
+  message PartitionBy {
     PartitionKeyword partition_keyword = 1;
 
     ByKeyword by_keyword = 2;
@@ -23,7 +23,7 @@ message WindowDefn {
     repeated Expr expr = 3;
   }
 
-  message Seq2 {
+  message OrderBy {
     OrderKeyword order_keyword = 1;
 
     ByKeyword by_keyword = 2;

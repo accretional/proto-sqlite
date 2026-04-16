@@ -5,7 +5,7 @@ package sqlite;
 message CommonTableExpression {
   TableName table_name = 1;
 
-  Seq1 seq1 = 2;
+  LeftParenthesis left_parenthesis = 2;
 
   AsKeyword as_keyword = 3;
 
@@ -17,7 +17,7 @@ message CommonTableExpression {
 
   RightParenthesisKeyword right_parenthesis_keyword = 7;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -27,12 +27,12 @@ message CommonTableExpression {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      NotMaterialized not_materialized = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
 
-    message Seq1 {
+    message NotMaterialized {
       NotKeyword not_keyword = 1;
 
       MaterializedKeyword materialized_keyword = 2;

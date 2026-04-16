@@ -3,7 +3,7 @@ module github.com/accretional/proto-sqlite
 go 1.26.2
 
 require (
-	github.com/accretional/gluon v0.0.0-00010101000000-000000000000
+	github.com/accretional/gluon v0.0.0-20260416084637-0e370820dc60
 	github.com/accretional/merge v0.0.0-00010101000000-000000000000
 	google.golang.org/grpc v1.80.0
 	google.golang.org/protobuf v1.36.11

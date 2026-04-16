@@ -50,6 +50,7 @@ func main() {
 	ast.Language = *pkgName
 
 	ast.Root = compiler.CollapseCommaList(ast.Root)
+	ast.Root = compiler.NameSequence(ast.Root)
 
 	fdp, err := compiler.Compile(ast, compiler.Options{
 		Package:   *pkgName,

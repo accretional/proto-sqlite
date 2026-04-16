@@ -11,12 +11,12 @@ message TypeName {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      LeftParenthesis left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis2 left_parenthesis2 = 2;
     }
 
-    message Seq1 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       SignedNumber signed_number = 2;
@@ -24,7 +24,7 @@ message TypeName {
       RightParenthesisKeyword right_parenthesis_keyword = 3;
     }
 
-    message Seq2 {
+    message LeftParenthesis2 {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       SignedNumber signed_number = 2;

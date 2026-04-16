@@ -7,19 +7,19 @@ message DropViewStmt {
 
   ViewKeyword view_keyword = 2;
 
-  Seq1 seq1 = 3;
+  IfExists if_exists = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   ViewName view_name = 5;
 
-  message Seq1 {
+  message IfExists {
     IfKeyword if_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;

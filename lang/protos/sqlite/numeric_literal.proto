@@ -7,17 +7,17 @@ message NumericLiteral {
 
   repeated Digit digit_2 = 2;
 
-  Seq1 seq1 = 3;
+  FullStop full_stop = 3;
 
-  Seq2 seq2 = 4;
+  E e = 4;
 
-  message Seq1 {
+  message FullStop {
     FullStopKeyword full_stop_keyword = 1;
 
     repeated Digit digit = 2;
   }
 
-  message Seq2 {
+  message E {
     EKeyword e_keyword = 1;
 
     Alt1 alt1 = 2;

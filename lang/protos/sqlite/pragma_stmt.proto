@@ -19,18 +19,18 @@ message PragmaStmt {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      EqualsSign equals_sign = 1;
 
-      Seq2 seq2 = 2;
+      LeftParenthesis left_parenthesis = 2;
     }
 
-    message Seq1 {
+    message EqualsSign {
       EqualsSignKeyword equals_sign_keyword = 1;
 
       PragmaValue pragma_value = 2;
     }
 
-    message Seq2 {
+    message LeftParenthesis {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
       PragmaValue pragma_value = 2;

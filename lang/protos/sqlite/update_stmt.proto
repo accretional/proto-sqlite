@@ -3,7 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message UpdateStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   Alt1 alt1 = 2;
 
@@ -17,15 +17,15 @@ message UpdateStmt {
 
   Expr expr = 7;
 
-  repeated Seq2 seq2 = 8;
+  repeated Comma comma = 8;
 
-  Seq3 seq3 = 9;
+  From from = 9;
 
-  Seq4 seq4 = 10;
+  Where where = 10;
 
   ReturningClause returning_clause = 11;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -37,10 +37,10 @@ message UpdateStmt {
     oneof value {
       UpdateKeyword update_keyword = 1;
 
-      Seq1 seq1 = 2;
+      UpdateOr update_or = 2;
     }
 
-    message Seq1 {
+    message UpdateOr {
       UpdateKeyword update_keyword = 1;
 
       OrKeyword or_keyword = 2;
@@ -71,7 +71,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq2 {
+  message Comma {
     CommaKeyword comma_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -89,7 +89,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq3 {
+  message From {
     FromKeyword from_keyword = 1;
 
     Alt1 alt1 = 2;
@@ -107,7 +107,7 @@ message UpdateStmt {
     }
   }
 
-  message Seq4 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;

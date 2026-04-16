@@ -8,11 +8,11 @@ message TableOrSubquery {
 
     Seq2 seq2 = 2;
 
-    Seq3 seq3 = 3;
+    LeftParenthesis left_parenthesis = 3;
 
-    Seq4 seq4 = 4;
+    LeftParenthesis2 left_parenthesis2 = 4;
 
-    Seq5 seq5 = 5;
+    LeftParenthesis3 left_parenthesis3 = 5;
   }
 
   message Seq1 {
@@ -38,12 +38,12 @@ message TableOrSubquery {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        IndexedBy indexed_by = 1;
 
-        Seq2 seq2 = 2;
+        NotIndexed not_indexed = 2;
       }
 
-      message Seq1 {
+      message IndexedBy {
         IndexedKeyword indexed_keyword = 1;
 
         ByKeyword by_keyword = 2;
@@ -51,7 +51,7 @@ message TableOrSubquery {
         IndexName index_name = 3;
       }
 
-      message Seq2 {
+      message NotIndexed {
         NotKeyword not_keyword = 1;
 
         IndexedKeyword indexed_keyword = 2;
@@ -89,7 +89,7 @@ message TableOrSubquery {
     }
   }
 
-  message Seq3 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     SelectStmt select_stmt = 2;
@@ -97,7 +97,7 @@ message TableOrSubquery {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq4 {
+  message LeftParenthesis2 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated TableOrSubquery table_or_subquery = 2;
@@ -105,7 +105,7 @@ message TableOrSubquery {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq5 {
+  message LeftParenthesis3 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     JoinClause join_clause = 2;

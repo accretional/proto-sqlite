@@ -19,23 +19,23 @@ message WithClause {
 
   RightParenthesisKeyword right_parenthesis_keyword = 8;
 
-  repeated Seq1 seq1 = 9;
+  repeated Comma comma = 9;
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      NotMaterialized not_materialized = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
 
-    message Seq1 {
+    message NotMaterialized {
       NotKeyword not_keyword = 1;
 
       MaterializedKeyword materialized_keyword = 2;
     }
   }
 
-  message Seq1 {
+  message Comma {
     CommaKeyword comma_keyword = 1;
 
     CteTableName cte_table_name = 2;
@@ -52,12 +52,12 @@ message WithClause {
 
     message Alt1 {
       oneof value {
-        Seq1 seq1 = 1;
+        NotMaterialized not_materialized = 1;
 
         MaterializedKeyword materialized_keyword = 2;
       }
 
-      message Seq1 {
+      message NotMaterialized {
         NotKeyword not_keyword = 1;
 
         MaterializedKeyword materialized_keyword = 2;

@@ -16,33 +16,33 @@ message Expr {
 
     Seq4 seq4 = 6;
 
-    Seq5 seq5 = 7;
+    LeftParenthesis left_parenthesis = 7;
 
-    Seq6 seq6 = 8;
+    CastLeftParenthesis cast_left_parenthesis = 8;
 
-    Seq7 seq7 = 9;
+    Seq5 seq5 = 9;
 
-    Seq8 seq8 = 10;
+    Seq6 seq6 = 10;
 
-    Seq9 seq9 = 11;
+    Seq7 seq7 = 11;
 
-    Seq10 seq10 = 12;
+    Seq8 seq8 = 12;
 
-    Seq11 seq11 = 13;
+    Seq9 seq9 = 13;
 
-    Seq12 seq12 = 14;
+    Seq10 seq10 = 14;
 
-    Seq13 seq13 = 15;
+    Seq11 seq11 = 15;
 
-    Seq14 seq14 = 16;
+    Seq12 seq12 = 16;
 
-    Seq15 seq15 = 17;
+    Seq13 seq13 = 17;
 
-    Seq16 seq16 = 18;
+    Seq14 seq14 = 18;
 
-    Seq17 seq17 = 19;
+    Seq15 seq15 = 19;
 
-    Seq18 seq18 = 20;
+    Case case = 20;
 
     RaiseFunction raise_function = 21;
   }
@@ -95,7 +95,7 @@ message Expr {
     OverClause over_clause = 6;
   }
 
-  message Seq5 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated Expr expr = 2;
@@ -103,7 +103,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
-  message Seq6 {
+  message CastLeftParenthesis {
     CastKeyword cast_keyword = 1;
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -117,7 +117,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 6;
   }
 
-  message Seq7 {
+  message Seq5 {
     Expr expr = 1;
 
     CollateKeyword collate_keyword = 2;
@@ -125,7 +125,7 @@ message Expr {
     CollationName collation_name = 3;
   }
 
-  message Seq8 {
+  message Seq6 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -134,7 +134,7 @@ message Expr {
 
     Expr expr_2 = 4;
 
-    Seq1 seq1 = 5;
+    Escape escape = 5;
 
     message Alt1 {
       oneof value {
@@ -148,26 +148,26 @@ message Expr {
       }
     }
 
-    message Seq1 {
+    message Escape {
       EscapeKeyword escape_keyword = 1;
 
       Expr expr = 2;
     }
   }
 
-  message Seq9 {
+  message Seq7 {
     Expr expr = 1;
 
     IsnullKeyword isnull_keyword = 2;
   }
 
-  message Seq10 {
+  message Seq8 {
     Expr expr = 1;
 
     NotnullKeyword notnull_keyword = 2;
   }
 
-  message Seq11 {
+  message Seq9 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -175,25 +175,25 @@ message Expr {
     NullKeyword null_keyword = 3;
   }
 
-  message Seq12 {
+  message Seq10 {
     Expr expr = 1;
 
     IsKeyword is_keyword = 2;
 
     NotKeyword not_keyword = 3;
 
-    Seq1 seq1 = 4;
+    DistinctFrom distinct_from = 4;
 
     Expr expr_2 = 5;
 
-    message Seq1 {
+    message DistinctFrom {
       DistinctKeyword distinct_keyword = 1;
 
       FromKeyword from_keyword = 2;
     }
   }
 
-  message Seq13 {
+  message Seq11 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -207,7 +207,7 @@ message Expr {
     Expr expr_3 = 6;
   }
 
-  message Seq14 {
+  message Seq12 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -233,7 +233,7 @@ message Expr {
     }
   }
 
-  message Seq15 {
+  message Seq13 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -251,7 +251,7 @@ message Expr {
     }
   }
 
-  message Seq16 {
+  message Seq14 {
     Expr expr = 1;
 
     NotKeyword not_keyword = 2;
@@ -279,7 +279,7 @@ message Expr {
     }
   }
 
-  message Seq17 {
+  message Seq15 {
     NotKeyword not_keyword = 1;
 
     ExistsKeyword exists_keyword = 2;
@@ -291,7 +291,7 @@ message Expr {
     RightParenthesisKeyword right_parenthesis_keyword = 5;
   }
 
-  message Seq18 {
+  message Case {
     CaseKeyword case_keyword = 1;
 
     Expr expr = 2;
@@ -304,13 +304,13 @@ message Expr {
 
     Expr expr_3 = 6;
 
-    repeated Seq1 seq1 = 7;
+    repeated When when = 7;
 
-    Seq2 seq2 = 8;
+    Else else = 8;
 
     EndKeyword end_keyword = 9;
 
-    message Seq1 {
+    message When {
       WhenKeyword when_keyword = 1;
 
       Expr expr = 2;
@@ -320,7 +320,7 @@ message Expr {
       Expr expr_2 = 4;
     }
 
-    message Seq2 {
+    message Else {
       ElseKeyword else_keyword = 1;
 
       Expr expr = 2;

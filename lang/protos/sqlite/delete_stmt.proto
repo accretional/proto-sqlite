@@ -3,7 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message DeleteStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   DeleteKeyword delete_keyword = 2;
 
@@ -11,11 +11,11 @@ message DeleteStmt {
 
   QualifiedTableName qualified_table_name = 4;
 
-  Seq2 seq2 = 5;
+  Where where = 5;
 
   ReturningClause returning_clause = 6;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -23,7 +23,7 @@ message DeleteStmt {
     repeated CommonTableExpression common_table_expression = 3;
   }
 
-  message Seq2 {
+  message Where {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;

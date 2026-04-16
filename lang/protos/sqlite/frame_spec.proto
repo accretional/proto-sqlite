@@ -21,16 +21,16 @@ message FrameSpec {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      Between between = 1;
 
-      Seq2 seq2 = 2;
+      UnboundedPreceding unbounded_preceding = 2;
 
-      Seq3 seq3 = 3;
+      Seq1 seq1 = 3;
 
-      Seq4 seq4 = 4;
+      CurrentRow current_row = 4;
     }
 
-    message Seq1 {
+    message Between {
       BetweenKeyword between_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -41,34 +41,34 @@ message FrameSpec {
 
       message Alt1 {
         oneof value {
-          Seq1 seq1 = 1;
+          UnboundedPreceding unbounded_preceding = 1;
 
-          Seq2 seq2 = 2;
+          Seq1 seq1 = 2;
 
-          Seq3 seq3 = 3;
+          CurrentRow current_row = 3;
 
-          Seq4 seq4 = 4;
+          Seq2 seq2 = 4;
         }
 
-        message Seq1 {
+        message UnboundedPreceding {
           UnboundedKeyword unbounded_keyword = 1;
 
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq2 {
+        message Seq1 {
           Expr expr = 1;
 
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq3 {
+        message CurrentRow {
           CurrentKeyword current_keyword = 1;
 
           RowKeyword row_keyword = 2;
         }
 
-        message Seq4 {
+        message Seq2 {
           Expr expr = 1;
 
           FollowingKeyword following_keyword = 2;
@@ -79,11 +79,11 @@ message FrameSpec {
         oneof value {
           Seq1 seq1 = 1;
 
-          Seq2 seq2 = 2;
+          CurrentRow current_row = 2;
 
-          Seq3 seq3 = 3;
+          Seq2 seq2 = 3;
 
-          Seq4 seq4 = 4;
+          UnboundedFollowing unbounded_following = 4;
         }
 
         message Seq1 {
@@ -92,19 +92,19 @@ message FrameSpec {
           PrecedingKeyword preceding_keyword = 2;
         }
 
-        message Seq2 {
+        message CurrentRow {
           CurrentKeyword current_keyword = 1;
 
           RowKeyword row_keyword = 2;
         }
 
-        message Seq3 {
+        message Seq2 {
           Expr expr = 1;
 
           FollowingKeyword following_keyword = 2;
         }
 
-        message Seq4 {
+        message UnboundedFollowing {
           UnboundedKeyword unbounded_keyword = 1;
 
           FollowingKeyword following_keyword = 2;
@@ -112,19 +112,19 @@ message FrameSpec {
       }
     }
 
-    message Seq2 {
+    message UnboundedPreceding {
       UnboundedKeyword unbounded_keyword = 1;
 
       PrecedingKeyword preceding_keyword = 2;
     }
 
-    message Seq3 {
+    message Seq1 {
       Expr expr = 1;
 
       PrecedingKeyword preceding_keyword = 2;
     }
 
-    message Seq4 {
+    message CurrentRow {
       CurrentKeyword current_keyword = 1;
 
       RowKeyword row_keyword = 2;
@@ -133,16 +133,16 @@ message FrameSpec {
 
   message Alt3 {
     oneof value {
-      Seq1 seq1 = 1;
+      ExcludeNoOthers exclude_no_others = 1;
 
-      Seq2 seq2 = 2;
+      ExcludeCurrentRow exclude_current_row = 2;
 
-      Seq3 seq3 = 3;
+      ExcludeGroup exclude_group = 3;
 
-      Seq4 seq4 = 4;
+      ExcludeTies exclude_ties = 4;
     }
 
-    message Seq1 {
+    message ExcludeNoOthers {
       ExcludeKeyword exclude_keyword = 1;
 
       NoKeyword no_keyword = 2;
@@ -150,7 +150,7 @@ message FrameSpec {
       OthersKeyword others_keyword = 3;
     }
 
-    message Seq2 {
+    message ExcludeCurrentRow {
       ExcludeKeyword exclude_keyword = 1;
 
       CurrentKeyword current_keyword = 2;
@@ -158,13 +158,13 @@ message FrameSpec {
       RowKeyword row_keyword = 3;
     }
 
-    message Seq3 {
+    message ExcludeGroup {
       ExcludeKeyword exclude_keyword = 1;
 
       GroupKeyword group_keyword = 2;
     }
 
-    message Seq4 {
+    message ExcludeTies {
       ExcludeKeyword exclude_keyword = 1;
 
       TiesKeyword ties_keyword = 2;

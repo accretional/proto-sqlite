@@ -3,25 +3,25 @@ syntax = "proto3";
 package sqlite;
 
 message InsertStmt {
-  Seq1 seq1 = 1;
+  With with = 1;
 
   Alt1 alt1 = 2;
 
   IntoKeyword into_keyword = 3;
 
-  Seq2 seq2 = 4;
+  Seq1 seq1 = 4;
 
   TableName table_name = 5;
 
-  Seq3 seq3 = 6;
+  As as = 6;
 
-  Seq4 seq4 = 7;
+  LeftParenthesis left_parenthesis = 7;
 
   Alt2 alt2 = 8;
 
   ReturningClause returning_clause = 9;
 
-  message Seq1 {
+  message With {
     WithKeyword with_keyword = 1;
 
     RecursiveKeyword recursive_keyword = 2;
@@ -35,10 +35,10 @@ message InsertStmt {
 
       InsertKeyword insert_keyword = 2;
 
-      Seq1 seq1 = 3;
+      InsertOr insert_or = 3;
     }
 
-    message Seq1 {
+    message InsertOr {
       InsertKeyword insert_keyword = 1;
 
       OrKeyword or_keyword = 2;
@@ -61,19 +61,19 @@ message InsertStmt {
     }
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
   }
 
-  message Seq3 {
+  message As {
     AsKeyword as_keyword = 1;
 
     Alias alias = 2;
   }
 
-  message Seq4 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated ColumnName column_name = 2;
@@ -83,14 +83,14 @@ message InsertStmt {
 
   message Alt2 {
     oneof value {
-      Seq1 seq1 = 1;
+      ValuesLeftParenthesis values_left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      Seq1 seq1 = 2;
 
-      Seq3 seq3 = 3;
+      DefaultValues default_values = 3;
     }
 
-    message Seq1 {
+    message ValuesLeftParenthesis {
       ValuesKeyword values_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -99,11 +99,11 @@ message InsertStmt {
 
       RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      repeated Seq1 seq1 = 5;
+      repeated CommaLeftParenthesis comma_left_parenthesis = 5;
 
       UpsertClause upsert_clause = 6;
 
-      message Seq1 {
+      message CommaLeftParenthesis {
         CommaKeyword comma_keyword = 1;
 
         LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -114,13 +114,13 @@ message InsertStmt {
       }
     }
 
-    message Seq2 {
+    message Seq1 {
       SelectStmt select_stmt = 1;
 
       UpsertClause upsert_clause = 2;
     }
 
-    message Seq3 {
+    message DefaultValues {
       DefaultKeyword default_keyword = 1;
 
       ValuesKeyword values_keyword = 2;

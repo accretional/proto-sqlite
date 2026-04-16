@@ -9,9 +9,9 @@ message CreateTriggerStmt {
 
   TriggerKeyword trigger_keyword = 3;
 
-  Seq1 seq1 = 4;
+  IfNotExists if_not_exists = 4;
 
-  Seq2 seq2 = 5;
+  Seq1 seq1 = 5;
 
   TriggerName trigger_name = 6;
 
@@ -23,9 +23,9 @@ message CreateTriggerStmt {
 
   TableName table_name = 10;
 
-  Seq3 seq3 = 11;
+  ForEachRow for_each_row = 11;
 
-  Seq4 seq4 = 12;
+  When when = 12;
 
   BeginKeyword begin_keyword = 13;
 
@@ -33,7 +33,7 @@ message CreateTriggerStmt {
 
   SemicolonKeyword semicolon_keyword = 15;
 
-  repeated Seq5 seq5 = 16;
+  repeated Seq2 seq2 = 16;
 
   EndKeyword end_keyword = 17;
 
@@ -45,7 +45,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq1 {
+  message IfNotExists {
     IfKeyword if_keyword = 1;
 
     NotKeyword not_keyword = 2;
@@ -53,7 +53,7 @@ message CreateTriggerStmt {
     ExistsKeyword exists_keyword = 3;
   }
 
-  message Seq2 {
+  message Seq1 {
     SchemaName schema_name = 1;
 
     FullStopKeyword full_stop_keyword = 2;
@@ -65,10 +65,10 @@ message CreateTriggerStmt {
 
       AfterKeyword after_keyword = 2;
 
-      Seq1 seq1 = 3;
+      InsteadOf instead_of = 3;
     }
 
-    message Seq1 {
+    message InsteadOf {
       InsteadKeyword instead_keyword = 1;
 
       OfKeyword of_keyword = 2;
@@ -81,15 +81,15 @@ message CreateTriggerStmt {
 
       InsertKeyword insert_keyword = 2;
 
-      Seq1 seq1 = 3;
+      Update update = 3;
     }
 
-    message Seq1 {
+    message Update {
       UpdateKeyword update_keyword = 1;
 
-      Seq1 seq1 = 2;
+      Of of = 2;
 
-      message Seq1 {
+      message Of {
         OfKeyword of_keyword = 1;
 
         repeated ColumnName column_name = 2;
@@ -97,7 +97,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq3 {
+  message ForEachRow {
     ForKeyword for_keyword = 1;
 
     EachKeyword each_keyword = 2;
@@ -105,7 +105,7 @@ message CreateTriggerStmt {
     RowKeyword row_keyword = 3;
   }
 
-  message Seq4 {
+  message When {
     WhenKeyword when_keyword = 1;
 
     Expr expr = 2;
@@ -123,7 +123,7 @@ message CreateTriggerStmt {
     }
   }
 
-  message Seq5 {
+  message Seq2 {
     Alt1 alt1 = 1;
 
     SemicolonKeyword semicolon_keyword = 2;

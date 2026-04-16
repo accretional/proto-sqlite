@@ -7,22 +7,22 @@ message UpsertClause {
 
   ConflictKeyword conflict_keyword = 2;
 
-  Seq1 seq1 = 3;
+  LeftParenthesis left_parenthesis = 3;
 
   DoKeyword do_keyword = 4;
 
   Alt1 alt1 = 5;
 
-  message Seq1 {
+  message LeftParenthesis {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
     repeated IndexedColumn indexed_column = 2;
 
     RightParenthesisKeyword right_parenthesis_keyword = 3;
 
-    Seq1 seq1 = 4;
+    Where where = 4;
 
-    message Seq1 {
+    message Where {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
@@ -33,10 +33,10 @@ message UpsertClause {
     oneof value {
       NothingKeyword nothing_keyword = 1;
 
-      Seq1 seq1 = 2;
+      UpdateSet update_set = 2;
     }
 
-    message Seq1 {
+    message UpdateSet {
       UpdateKeyword update_keyword = 1;
 
       SetKeyword set_keyword = 2;
@@ -47,9 +47,9 @@ message UpsertClause {
 
       Expr expr = 5;
 
-      repeated Seq1 seq1 = 6;
+      repeated Comma comma = 6;
 
-      Seq2 seq2 = 7;
+      Where where = 7;
 
       message Alt1 {
         oneof value {
@@ -59,7 +59,7 @@ message UpsertClause {
         }
       }
 
-      message Seq1 {
+      message Comma {
         CommaKeyword comma_keyword = 1;
 
         Alt1 alt1 = 2;
@@ -77,7 +77,7 @@ message UpsertClause {
         }
       }
 
-      message Seq2 {
+      message Where {
         WhereKeyword where_keyword = 1;
 
         Expr expr = 2;

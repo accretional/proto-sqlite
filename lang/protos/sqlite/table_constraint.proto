@@ -3,11 +3,11 @@ syntax = "proto3";
 package sqlite;
 
 message TableConstraint {
-  Seq1 seq1 = 1;
+  Constraint constraint = 1;
 
   Alt1 alt1 = 2;
 
-  message Seq1 {
+  message Constraint {
     ConstraintKeyword constraint_keyword = 1;
 
     Name name = 2;
@@ -15,16 +15,16 @@ message TableConstraint {
 
   message Alt1 {
     oneof value {
-      Seq1 seq1 = 1;
+      PrimaryKeyLeftParenthesis primary_key_left_parenthesis = 1;
 
-      Seq2 seq2 = 2;
+      UniqueLeftParenthesis unique_left_parenthesis = 2;
 
-      Seq3 seq3 = 3;
+      CheckLeftParenthesis check_left_parenthesis = 3;
 
-      Seq4 seq4 = 4;
+      ForeignKeyLeftParenthesis foreign_key_left_parenthesis = 4;
     }
 
-    message Seq1 {
+    message PrimaryKeyLeftParenthesis {
       PrimaryKeyword primary_keyword = 1;
 
       KeyKeyword key_keyword = 2;
@@ -38,7 +38,7 @@ message TableConstraint {
       ConflictClause conflict_clause = 6;
     }
 
-    message Seq2 {
+    message UniqueLeftParenthesis {
       UniqueKeyword unique_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -50,7 +50,7 @@ message TableConstraint {
       ConflictClause conflict_clause = 5;
     }
 
-    message Seq3 {
+    message CheckLeftParenthesis {
       CheckKeyword check_keyword = 1;
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
@@ -60,7 +60,7 @@ message TableConstraint {
       RightParenthesisKeyword right_parenthesis_keyword = 4;
     }
 
-    message Seq4 {
+    message ForeignKeyLeftParenthesis {
       ForeignKeyword foreign_keyword = 1;
 
       KeyKeyword key_keyword = 2;
