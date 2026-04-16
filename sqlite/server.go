@@ -37,6 +37,14 @@ func (s *Server) Query(ctx context.Context, req *sqlitepb.QueryRequest) (*sqlite
 		return nil, status.Error(codes.InvalidArgument, "QueryRequest.body is required")
 	}
 
+	if uri := req.GetSocketUri(); uri != "" {
+		out, err := queryOverUDS(ctx, uri, sql)
+		if err != nil {
+			return nil, status.Errorf(codes.Unavailable, "uds query: %v", err)
+		}
+		return parseCSV(out)
+	}
+
 	bin, db, err := extract()
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "extract embedded sqlite: %v", err)

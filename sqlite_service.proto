@@ -14,7 +14,12 @@ service Sqlite {
 }
 
 message QueryRequest {
-  // TODO:Claude - point SQLite binary to this, and refactor for field number changes if necessary
+  // Optional Unix Domain Socket path to a running sqlited daemon. When
+  // non-empty, the server forwards the rendered SQL over this UDS and
+  // returns whatever the daemon produces; when empty, the server
+  // executes against its own embedded sqlite3 + db. See
+  // sqlite/cmd/sqlited for the daemon and sqlite/uds.go for the frame
+  // protocol.
   string socket_uri = 1;
   oneof body {
     // Raw SQL — forwarded verbatim to sqlite3.

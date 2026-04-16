@@ -60,3 +60,25 @@ func Query(stmt string) (string, error) {
 	}
 	return string(out), nil
 }
+
+// ResolveBackend returns (bin, db) paths for a sqlite3 backend. If
+// either argument is empty, the embedded binary/db is extracted to a
+// temp dir and its path returned in place of the missing argument.
+// Exposed so callers outside the package (e.g. cmd/sqlited) can honor
+// explicit overrides while still defaulting to the embedded assets.
+func ResolveBackend(bin, db string) (string, string, error) {
+	if bin != "" && db != "" {
+		return bin, db, nil
+	}
+	embBin, embDB, err := extract()
+	if err != nil {
+		return "", "", err
+	}
+	if bin == "" {
+		bin = embBin
+	}
+	if db == "" {
+		db = embDB
+	}
+	return bin, db, nil
+}

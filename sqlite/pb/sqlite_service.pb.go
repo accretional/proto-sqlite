@@ -23,6 +23,13 @@ const (
 
 type QueryRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
+	// Optional Unix Domain Socket path to a running sqlited daemon. When
+	// non-empty, the server forwards the rendered SQL over this UDS and
+	// returns whatever the daemon produces; when empty, the server
+	// executes against its own embedded sqlite3 + db. See
+	// sqlite/cmd/sqlited for the daemon and sqlite/uds.go for the frame
+	// protocol.
+	SocketUri string `protobuf:"bytes,1,opt,name=socket_uri,json=socketUri,proto3" json:"socket_uri,omitempty"`
 	// Types that are valid to be assigned to Body:
 	//
 	//	*QueryRequest_Sql
@@ -62,6 +69,13 @@ func (*QueryRequest) Descriptor() ([]byte, []int) {
 	return file_sqlite_service_proto_rawDescGZIP(), []int{0}
 }
 
+func (x *QueryRequest) GetSocketUri() string {
+	if x != nil {
+		return x.SocketUri
+	}
+	return ""
+}
+
 func (x *QueryRequest) GetBody() isQueryRequest_Body {
 	if x != nil {
 		return x.Body
@@ -93,14 +107,14 @@ type isQueryRequest_Body interface {
 
 type QueryRequest_Sql struct {
 	// Raw SQL — forwarded verbatim to sqlite3.
-	Sql string `protobuf:"bytes,1,opt,name=sql,proto3,oneof"`
+	Sql string `protobuf:"bytes,2,opt,name=sql,proto3,oneof"`
 }
 
 type QueryRequest_Stmts struct {
 	// Typed CST — server must render back to SQL text. Not yet
 	// implemented; returns UNIMPLEMENTED until the SqlStmtList → SQL
 	// printer lands.
-	Stmts *SqlStmtList `protobuf:"bytes,2,opt,name=stmts,proto3,oneof"`
+	Stmts *SqlStmtList `protobuf:"bytes,3,opt,name=stmts,proto3,oneof"`
 }
 
 func (*QueryRequest_Sql) isQueryRequest_Body() {}
@@ -207,10 +221,12 @@ var File_sqlite_service_proto protoreflect.FileDescriptor
 
 const file_sqlite_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"W\n" +
-	"\fQueryRequest\x12\x12\n" +
-	"\x03sql\x18\x01 \x01(\tH\x00R\x03sql\x12+\n" +
-	"\x05stmts\x18\x02 \x01(\v2\x13.sqlite.SqlStmtListH\x00R\x05stmtsB\x06\n" +
+	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"v\n" +
+	"\fQueryRequest\x12\x1d\n" +
+	"\n" +
+	"socket_uri\x18\x01 \x01(\tR\tsocketUri\x12\x12\n" +
+	"\x03sql\x18\x02 \x01(\tH\x00R\x03sql\x12+\n" +
+	"\x05stmts\x18\x03 \x01(\v2\x13.sqlite.SqlStmtListH\x00R\x05stmtsB\x06\n" +
 	"\x04body\"F\n" +
 	"\rQueryResponse\x12\x16\n" +
 	"\x06column\x18\x01 \x03(\tR\x06column\x12\x1d\n" +
