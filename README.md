@@ -1,37 +1,124 @@
 # proto-sqlite
 
-Elevating sqlite into a fully protobuf-encoded, grpc-compatible interface similar to googlesql
+A fully protobuf-encoded, gRPC-compatible interface to SQLite — in the spirit
+of googlesql, but derived mechanically from SQLite's EBNF grammar rather
+than hand-maintained.
 
-## Instructions
+The wire format for `Sqlite.Query` is a typed `SqlStmtList` message whose
+shape mirrors the SQLite syntax specification at the language level. A
+server embeds the `sqlite3` binary and an example db, serializes typed
+requests back to SQL text via proto reflection, and returns the rows.
+A raw-SQL escape hatch on the same oneof is kept for convenience.
 
-We're encoding sqlite's language / structure into protobuf at a deep, language-spec level. For example:
+## How it's built
 
-The base production rule / parse structure is sql-stmt-list, consisting of sql-stmt;sql-stmt... from 0 to any number of statements. sql-stmt can consist of a EXPLAIN [ QUERY PLAN ] followed by one of the following:
+```
+lang/sqlite.ebnf
+      │
+      │   gluon v2: ParseEBNF → GrammarToAST
+      │   AST transforms:  CollapseCommaList → NameSequence →
+      │                    scalarizeX (proto-sqlite local) →
+      │                    StripKeywords
+      │   gluon v2: Compile
+      ▼
+FileDescriptorProto ──► sqlite.proto, lang/protos/sqlite/*.proto
+                    └─► protoc → sqlite/pb/*.pb.go
+      │
+      ▼
+Typed SqlStmtList ──► RenderSQL (reflection) ──► sqlite3 ──► QueryResponse
+```
 
-alter-table-stmt analyze-stmt attach-stmt begin-stmt commit-stmt create-index-stmt create-table-stmt create-trigger-stmt create-view-stmt create-virtual-table-stmt delete-stmt delete-stmt-limited detach-stmt drop-index-stmt drop-table-stmt drop-trigger-stmt drop-view-stmt insert-stmt pragma-stmt reindex-stmt release-stmt rollback-stmt savepoint-stmt select-stmt update-stmt update-stmt-limited vacuum-stmt
+One ~160-line driver (`lang/cmd/genproto`) runs the whole pipeline;
+editing `lang/sqlite.ebnf` and re-running `./build.sh` regenerates all
+222 proto messages, a keyword-prefix map, and the generated Go types.
+The SQL renderer is ~100 lines and covers every production reflectively —
+adding a statement is zero renderer work.
 
-These each have their own structure, saved at eg https://sqlite.org/syntax/alter-table-stmt.html -  a full list of sqlite documentation links is included in sqlite-doc-urls.csv, but all the stmt docs will have this structure.
+See **[GLUON_GUIDE.md](GLUON_GUIDE.md)** for the full pipeline, the role
+each gluon API plays, and what this integration demonstrates about
+gluon's capabilities.
 
-On these pages, the structure is encoded in an svg/html representation <img width="1237" height="858" alt="Screenshot 2026-04-15 at 3 02 48 PM" src="https://github.com/user-attachments/assets/2aacf208-5356-41ba-bede-ff7b76eb88dd" />
+## Quick start
 
-1. We'll need to take screenshots and feed these to multimodal modals to help transcribe these into the full set of production rules. Perhaps it's possible by parsing the svgs - they are structured, but I think it's a lost cause once loops and more complicated relationships get involved. Let's try to extract a bounding box-clipped image for each parse tree into docs/sqlite-parse-img/NAME.png
+```
+./setup.sh        # fetch sqlite binary + chromerpc (idempotent)
+./build.sh        # regenerate protos; compile Go
+./test.sh         # build + go test ./...
+./LET_IT_RIP.sh   # build + test + live query against embedded sqlite
+```
 
-Note: in these screenshots, if it's listed in References, it's a production rule, otherwise, it's usually a user provided string
+The scripts chain: `LET_IT_RIP.sh` ⊃ `test.sh` ⊃ `build.sh` ⊃ `setup.sh`.
+There are no other entry points — do not build or test outside these.
 
-2. Then, we will attempt to convert the sqlite spec methodically into the LexDescriptorProto / GrammarDescriptorProto structures found in github.com/accretional/gluon and use that to lex and parse the language as well as formally encode it. Save these as sqlite-lex.textproto and sqlite-grammar.textproto
+## Using the service
 
-3. I'll suggest a new pattern not seen in the gluon repo, which I believe googlesql uses: we should also create an enum for all the terminal keywords in sqlite, called keywords.proto, and one for its symbols, called symbols.proto. To try an experiment we'll also create an empty message (eg message ALTER {}) for each keyword in keywords.proto as well as one for each symbol in symbols.proto
+```go
+import (
+    sqliteembed "github.com/accretional/proto-sqlite/sqlite"
+    sqlitepb "github.com/accretional/proto-sqlite/sqlite/pb"
+)
 
-4. We can try encoding each stmt as eg https://sqlite.org/syntax/alter-table-stmt.html message AlterTable { Alter alter = 1; Table table = 2; string schema_name = 3; Dot dot = 4; string table_name = 5; ... } with intermediate parses like column-def being encoded as their respective message types eg message ColumnDef{ string column_name = 1; string type_name = 2; repeated ColumnConstraint = 3;}
+srv := sqliteembed.NewServer()
 
-5. We'll implemnt a grpc server for this in golang where we go:embed the sqlite binary file (include a script for downloading it into this repo during the setup.sh / checking for it in build.sh) and an example sqlite db file and call service Sqlite { rpc Query(SqlStmtList) returns (... } - 
+// Typed request — renders to "DROP TABLE IF EXISTS ephemeral"
+resp, err := srv.Query(ctx, &sqlitepb.QueryRequest{
+    Body: &sqlitepb.QueryRequest_Stmts{
+        Stmts: &sqlitepb.SqlStmtList{
+            SqlStmt: []*sqlitepb.SqlStmt{{
+                Alt1: &sqlitepb.SqlStmt_Alt1{
+                    Value: &sqlitepb.SqlStmt_Alt1_DropTableStmt{
+                        DropTableStmt: &sqlitepb.DropTableStmt{
+                            IfExists:  &sqlitepb.DropTableStmt_IfExists{},
+                            TableName: &sqlitepb.TableName{
+                                Name: &sqlitepb.Name{Value: "ephemeral"},
+                            },
+                        },
+                    },
+                },
+            }},
+        },
+    },
+})
 
-Make sure you create a setup.sh, build.sh, test.sh, and LET_IT_RIP.sh that contain all project setup scripts/commands used - NEVER build/test/run the code in this repo outside of these scripts, NEVER commit or push without running these either. Make them idempotent so that each build.sh can run setup.sh and skip things already set up, each test.sh can run build.sh, each LET_IT_RIP runs test.sh
+// Or the raw-SQL escape hatch
+resp, err = srv.Query(ctx, &sqlitepb.QueryRequest{
+    Body: &sqlitepb.QueryRequest_Sql{
+        Sql: "SELECT id, name, qty FROM widgets ORDER BY id;",
+    },
+})
+```
 
-Implement the parsing logic in lang/ and the protobuf service in sqlite/
+Standalone server: `go run ./sqlite/cmd/server` (listens on `:50051`).
+In-process round-trip demo: `go run ./sqlite/cmd/ripgrpc`.
 
-Take screenshots of the sqlite urls with https://github.com/accretional/chrome-rpc
+## Repo layout
 
-Have LET_IT_RIP.sh run queries over the actual embedded sqlite db.
+| Path | Role |
+|---|---|
+| `lang/sqlite.ebnf` | Source grammar (human-edited) |
+| `lang/cmd/genproto/` | Pipeline driver + `scalarizeX` transform |
+| `lang/cmd/gengrammar/` | Grammar round-trip check |
+| `sqlite.proto`, `lang/protos/sqlite/*.proto` | Generated protos |
+| `lang/sqlite.fdset` | Serialized `FileDescriptorSet` |
+| `sqlite/pb/` | Generated Go types + `prefix_map.go` |
+| `sqlite/render.go` | Reflection-based SQL serializer |
+| `sqlite/server.go` | `Sqlite.Query` gRPC server |
+| `sqlite/cmd/server/` | Standalone server |
+| `sqlite/cmd/ripgrpc/` | In-process round-trip demo |
+| `docs/sqlite-parse-img/` | Per-stmt syntax screenshots (historical) |
+| `docs/ORIGINAL_README.md` | Original project brief |
+| `third_party/` | Vendored chromerpc + sqlite binary |
 
-use go 1.26.
+## Further reading
+
+- **[GLUON_GUIDE.md](GLUON_GUIDE.md)** — how proto-sqlite and gluon compose
+- **[SUPERPLAN.md](SUPERPLAN.md)** — cross-repo plan across gluon, proto-expr, proto-type
+- **[CLAUDE.md](CLAUDE.md)** — build discipline and working conventions
+- **[docs/ORIGINAL_README.md](docs/ORIGINAL_README.md)** — the original brief
+
+## Dependencies
+
+- Go 1.26
+- [gluon](https://github.com/accretional/gluon) — EBNF parsing + AST-to-proto compiler
+- [chromerpc](https://github.com/accretional/chromerpc) — used to capture the SQLite railroad diagrams
+- `sqlite3` binary — downloaded by `setup.sh` and embedded via `go:embed`
