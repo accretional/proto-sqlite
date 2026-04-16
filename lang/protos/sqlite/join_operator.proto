@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package sqlite;
+
+message JoinOperator {
+  oneof value {
+    CommaKeyword comma_keyword = 1;
+
+    Seq1 seq1 = 2;
+  }
+
+  message Seq1 {
+    NaturalKeyword natural_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    JoinKeyword join_keyword = 3;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        InnerKeyword inner_keyword = 2;
+
+        CrossKeyword cross_keyword = 3;
+      }
+
+      message Seq1 {
+        Alt1 alt1 = 1;
+
+        OuterKeyword outer_keyword = 2;
+
+        message Alt1 {
+          oneof value {
+            LeftKeyword left_keyword = 1;
+
+            RightKeyword right_keyword = 2;
+
+            FullKeyword full_keyword = 3;
+          }
+        }
+      }
+    }
+  }
+

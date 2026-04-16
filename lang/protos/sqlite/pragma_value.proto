@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package sqlite;
+
+message PragmaValue {
+  oneof value {
+    SignedNumber signed_number = 1;
+
+    Name name = 2;
+
+    StringLiteral string_literal = 3;
+  }
+

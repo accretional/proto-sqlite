@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ConflictClause {
+  Seq1 seq1 = 1;
+
+  message Seq1 {
+    OnKeyword on_keyword = 1;
+
+    ConflictKeyword conflict_keyword = 2;
+
+    Alt1 alt1 = 3;
+
+    message Alt1 {
+      oneof value {
+        RollbackKeyword rollback_keyword = 1;
+
+        AbortKeyword abort_keyword = 2;
+
+        FailKeyword fail_keyword = 3;
+
+        IgnoreKeyword ignore_keyword = 4;
+
+        ReplaceKeyword replace_keyword = 5;
+      }
+    }
+  }
+

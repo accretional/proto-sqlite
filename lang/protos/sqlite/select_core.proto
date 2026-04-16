@@ -1,0 +1,159 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SelectCore {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    Seq2 seq2 = 2;
+  }
+
+  message Seq1 {
+    SelectKeyword select_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    ResultColumn result_column = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    Seq2 seq2 = 5;
+
+    Seq3 seq3 = 6;
+
+    Seq4 seq4 = 7;
+
+    Seq5 seq5 = 8;
+
+    message Alt1 {
+      oneof value {
+        DistinctKeyword distinct_keyword = 1;
+
+        AllKeyword all_keyword = 2;
+      }
+    }
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ResultColumn result_column = 2;
+    }
+
+    message Seq2 {
+      FromKeyword from_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          JoinClause join_clause = 2;
+        }
+
+        message Seq1 {
+          TableOrSubquery table_or_subquery = 1;
+
+          repeated Seq1 seq1 = 2;
+
+          message Seq1 {
+            CommaKeyword comma_keyword = 1;
+
+            TableOrSubquery table_or_subquery = 2;
+          }
+        }
+      }
+    }
+
+    message Seq3 {
+      WhereKeyword where_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq4 {
+      GroupKeyword group_keyword = 1;
+
+      ByKeyword by_keyword = 2;
+
+      Expr expr = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      Seq2 seq2 = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        HavingKeyword having_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+
+    message Seq5 {
+      WindowKeyword window_keyword = 1;
+
+      WindowName window_name = 2;
+
+      AsKeyword as_keyword = 3;
+
+      WindowDefn window_defn = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        WindowName window_name = 2;
+
+        AsKeyword as_keyword = 3;
+
+        WindowDefn window_defn = 4;
+      }
+    }
+  }
+
+  message Seq2 {
+    ValuesKeyword values_keyword = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    Expr expr = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+    repeated Seq2 seq2 = 6;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq2 {
+      CommaKeyword comma_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SqlStmtList {
+  SqlStmt sql_stmt = 1;
+
+  repeated Seq1 seq1 = 2;
+
+  message Seq1 {
+    SemicolonKeyword semicolon_keyword = 1;
+
+    SqlStmt sql_stmt = 2;
+  }
+

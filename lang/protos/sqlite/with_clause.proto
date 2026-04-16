@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package sqlite;
+
+message WithClause {
+  WithKeyword with_keyword = 1;
+
+  RecursiveKeyword recursive_keyword = 2;
+
+  CteTableName cte_table_name = 3;
+
+  AsKeyword as_keyword = 4;
+
+  Alt1 alt1 = 5;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 6;
+
+  SelectStmt select_stmt = 7;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 8;
+
+  repeated Seq1 seq1 = 9;
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+
+    message Seq1 {
+      NotKeyword not_keyword = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    CommaKeyword comma_keyword = 1;
+
+    CteTableName cte_table_name = 2;
+
+    AsKeyword as_keyword = 3;
+
+    Alt1 alt1 = 4;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+    SelectStmt select_stmt = 6;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        MaterializedKeyword materialized_keyword = 2;
+      }
+
+      message Seq1 {
+        NotKeyword not_keyword = 1;
+
+        MaterializedKeyword materialized_keyword = 2;
+      }
+    }
+  }
+

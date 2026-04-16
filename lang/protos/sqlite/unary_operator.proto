@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package sqlite;
+
+message UnaryOperator {
+  oneof value {
+    HyphenMinusKeyword hyphen_minus_keyword = 1;
+
+    PlusSignKeyword plus_sign_keyword = 2;
+
+    TildeKeyword tilde_keyword = 3;
+
+    NotKeyword not_keyword = 4;
+  }
+

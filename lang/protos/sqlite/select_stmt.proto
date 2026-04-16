@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SelectStmt {
+  Seq1 seq1 = 1;
+
+  SelectCore select_core = 2;
+
+  repeated Seq2 seq2 = 3;
+
+  Seq3 seq3 = 4;
+
+  Seq4 seq4 = 5;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Seq2 {
+    CompoundOperator compound_operator = 1;
+
+    SelectCore select_core = 2;
+  }
+
+  message Seq3 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Seq4 {
+    LimitKeyword limit_keyword = 1;
+
+    Expr expr = 2;
+
+    Alt1 alt1 = 3;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        Seq2 seq2 = 2;
+      }
+
+      message Seq1 {
+        OffsetKeyword offset_keyword = 1;
+
+        Expr expr = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+

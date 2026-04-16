@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package sqlite;
+
+message BinaryOperator {
+  oneof value {
+    VerticalLineVerticalLineKeyword vertical_line_vertical_line_keyword = 1;
+
+    AsteriskKeyword asterisk_keyword = 2;
+
+    SolidusKeyword solidus_keyword = 3;
+
+    PercentSignKeyword percent_sign_keyword = 4;
+
+    PlusSignKeyword plus_sign_keyword = 5;
+
+    HyphenMinusKeyword hyphen_minus_keyword = 6;
+
+    LessThanSignLessThanSignKeyword less_than_sign_less_than_sign_keyword = 7;
+
+    GreaterThanSignGreaterThanSignKeyword greater_than_sign_greater_than_sign_keyword = 8;
+
+    AmpersandKeyword ampersand_keyword = 9;
+
+    VerticalLineKeyword vertical_line_keyword = 10;
+
+    LessThanSignKeyword less_than_sign_keyword = 11;
+
+    LessThanSignEqualsSignKeyword less_than_sign_equals_sign_keyword = 12;
+
+    GreaterThanSignKeyword greater_than_sign_keyword = 13;
+
+    GreaterThanSignEqualsSignKeyword greater_than_sign_equals_sign_keyword = 14;
+
+    EqualsSignKeyword equals_sign_keyword = 15;
+
+    EqualsSignEqualsSignKeyword equals_sign_equals_sign_keyword = 16;
+
+    ExclamationMarkEqualsSignKeyword exclamation_mark_equals_sign_keyword = 17;
+
+    LessThanSignGreaterThanSignKeyword less_than_sign_greater_than_sign_keyword = 18;
+
+    IsKeyword is_keyword = 19;
+
+    Seq1 seq1 = 20;
+
+    InKeyword in_keyword = 21;
+
+    LikeKeyword like_keyword = 22;
+
+    GlobKeyword glob_keyword = 23;
+
+    MatchKeyword match_keyword = 24;
+
+    RegexpKeyword regexp_keyword = 25;
+
+    AndKeyword and_keyword = 26;
+
+    OrKeyword or_keyword = 27;
+  }
+
+  message Seq1 {
+    IsKeyword is_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+  }
+

@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package sqlite;
+
+message CreateTableStmt {
+  CreateKeyword create_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  TableKeyword table_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  TableName table_name = 6;
+
+  Alt2 alt2 = 7;
+
+  message Alt1 {
+    oneof value {
+      TempKeyword temp_keyword = 1;
+
+      TemporaryKeyword temporary_keyword = 2;
+    }
+  }
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      AsKeyword as_keyword = 1;
+
+      SelectStmt select_stmt = 2;
+    }
+
+    message Seq2 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      ColumnDef column_def = 2;
+
+      repeated Seq1 seq1 = 3;
+
+      repeated Seq2 seq2 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      TableOptions table_options = 6;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        ColumnDef column_def = 2;
+      }
+
+      message Seq2 {
+        CommaKeyword comma_keyword = 1;
+
+        TableConstraint table_constraint = 2;
+      }
+    }
+  }
+

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package sqlite;
+
+message Alias {
+  Name name = 1;
+

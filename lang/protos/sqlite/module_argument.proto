@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ModuleArgument {
+  Name name = 1;
+

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sqlite;
+
+message VacuumStmt {
+  VacuumKeyword vacuum_keyword = 1;
+
+  SchemaName schema_name = 2;
+
+  Seq1 seq1 = 3;
+
+  message Seq1 {
+    IntoKeyword into_keyword = 1;
+
+    Filename filename = 2;
+  }
+

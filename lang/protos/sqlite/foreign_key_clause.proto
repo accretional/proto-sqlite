@@ -1,0 +1,115 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ForeignKeyClause {
+  ReferencesKeyword references_keyword = 1;
+
+  ForeignTable foreign_table = 2;
+
+  Seq1 seq1 = 3;
+
+  repeated Alt1 alt1 = 4;
+
+  Seq2 seq2 = 5;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      OnKeyword on_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      Alt2 alt2 = 3;
+
+      message Alt1 {
+        oneof value {
+          DeleteKeyword delete_keyword = 1;
+
+          UpdateKeyword update_keyword = 2;
+        }
+      }
+
+      message Alt2 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          CascadeKeyword cascade_keyword = 3;
+
+          RestrictKeyword restrict_keyword = 4;
+
+          Seq3 seq3 = 5;
+        }
+
+        message Seq1 {
+          SetKeyword set_keyword = 1;
+
+          NullKeyword null_keyword = 2;
+        }
+
+        message Seq2 {
+          SetKeyword set_keyword = 1;
+
+          DefaultKeyword default_keyword = 2;
+        }
+
+        message Seq3 {
+          NoKeyword no_keyword = 1;
+
+          ActionKeyword action_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      MatchKeyword match_keyword = 1;
+
+      Name name = 2;
+    }
+  }
+
+  message Seq2 {
+    NotKeyword not_keyword = 1;
+
+    DeferrableKeyword deferrable_keyword = 2;
+
+    Seq1 seq1 = 3;
+
+    message Seq1 {
+      InitiallyKeyword initially_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          DeferredKeyword deferred_keyword = 1;
+
+          ImmediateKeyword immediate_keyword = 2;
+        }
+      }
+    }
+  }
+

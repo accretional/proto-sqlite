@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package sqlite;
+
+message TableOptions {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    StrictKeyword strict_keyword = 2;
+
+    Seq2 seq2 = 3;
+
+    Seq3 seq3 = 4;
+  }
+
+  message Seq1 {
+    WithoutKeyword without_keyword = 1;
+
+    RowidKeyword rowid_keyword = 2;
+  }
+
+  message Seq2 {
+    WithoutKeyword without_keyword = 1;
+
+    RowidKeyword rowid_keyword = 2;
+
+    CommaKeyword comma_keyword = 3;
+
+    StrictKeyword strict_keyword = 4;
+  }
+
+  message Seq3 {
+    StrictKeyword strict_keyword = 1;
+
+    CommaKeyword comma_keyword = 2;
+
+    WithoutKeyword without_keyword = 3;
+
+    RowidKeyword rowid_keyword = 4;
+  }
+

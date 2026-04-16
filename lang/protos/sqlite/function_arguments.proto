@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package sqlite;
+
+message FunctionArguments {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    AsteriskKeyword asterisk_keyword = 2;
+  }
+
+  message Seq1 {
+    DistinctKeyword distinct_keyword = 1;
+
+    Expr expr = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+

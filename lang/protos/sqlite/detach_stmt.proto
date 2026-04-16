@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package sqlite;
+
+message DetachStmt {
+  DetachKeyword detach_keyword = 1;
+
+  DatabaseKeyword database_keyword = 2;
+
+  SchemaName schema_name = 3;
+

@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package sqlite;
+
+message AlterTableStmt {
+  AlterKeyword alter_keyword = 1;
+
+  TableKeyword table_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  TableName table_name = 4;
+
+  Alt1 alt1 = 5;
+
+  message Seq1 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+
+      Seq5 seq5 = 5;
+
+      Seq6 seq6 = 6;
+
+      Seq7 seq7 = 7;
+    }
+
+    message Seq1 {
+      RenameKeyword rename_keyword = 1;
+
+      ToKeyword to_keyword = 2;
+
+      NewTableName new_table_name = 3;
+    }
+
+    message Seq2 {
+      RenameKeyword rename_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+
+      ToKeyword to_keyword = 4;
+
+      NewColumnName new_column_name = 5;
+    }
+
+    message Seq3 {
+      AddKeyword add_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnDef column_def = 3;
+    }
+
+    message Seq4 {
+      AddKeyword add_keyword = 1;
+
+      ConstraintKeyword constraint_keyword = 2;
+
+      ConstraintName constraint_name = 3;
+
+      CheckKeyword check_keyword = 4;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+      Expr expr = 6;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+      ConflictClause conflict_clause = 8;
+    }
+
+    message Seq5 {
+      DropKeyword drop_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+    }
+
+    message Seq6 {
+      DropKeyword drop_keyword = 1;
+
+      ConstraintKeyword constraint_keyword = 2;
+
+      ConstraintName constraint_name = 3;
+    }
+
+    message Seq7 {
+      AlterKeyword alter_keyword = 1;
+
+      ColumnKeyword column_keyword = 2;
+
+      ColumnName column_name = 3;
+
+      Alt1 alt1 = 4;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+        }
+
+        message Seq1 {
+          SetKeyword set_keyword = 1;
+
+          NotKeyword not_keyword = 2;
+
+          NullKeyword null_keyword = 3;
+
+          ConflictClause conflict_clause = 4;
+        }
+
+        message Seq2 {
+          DropKeyword drop_keyword = 1;
+
+          NotKeyword not_keyword = 2;
+
+          NullKeyword null_keyword = 3;
+        }
+      }
+    }
+  }
+

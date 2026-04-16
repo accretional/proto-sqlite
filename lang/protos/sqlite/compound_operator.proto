@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package sqlite;
+
+message CompoundOperator {
+  oneof value {
+    UnionKeyword union_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    IntersectKeyword intersect_keyword = 3;
+
+    ExceptKeyword except_keyword = 4;
+  }
+
+  message Seq1 {
+    UnionKeyword union_keyword = 1;
+
+    AllKeyword all_keyword = 2;
+  }
+

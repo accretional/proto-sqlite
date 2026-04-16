@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SignedNumber {
+  Alt1 alt1 = 1;
+
+  NumericLiteral numeric_literal = 2;
+
+  message Alt1 {
+    oneof value {
+      PlusSignKeyword plus_sign_keyword = 1;
+
+      HyphenMinusKeyword hyphen_minus_keyword = 2;
+    }
+  }
+

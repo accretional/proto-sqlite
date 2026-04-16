@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package sqlite;
+
+message NumericLiteral {
+  Digit digit = 1;
+
+  repeated Digit digit_2 = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  message Seq1 {
+    FullStopKeyword full_stop_keyword = 1;
+
+    repeated Digit digit = 2;
+  }
+
+  message Seq2 {
+    EKeyword e_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    Digit digit = 3;
+
+    repeated Digit digit_2 = 4;
+
+    message Alt1 {
+      oneof value {
+        PlusSignKeyword plus_sign_keyword = 1;
+
+        HyphenMinusKeyword hyphen_minus_keyword = 2;
+      }
+    }
+  }
+

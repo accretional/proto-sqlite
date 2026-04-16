@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ColumnDef {
+  ColumnName column_name = 1;
+
+  TypeName type_name = 2;
+
+  repeated ColumnConstraint column_constraint = 3;
+

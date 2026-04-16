@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package sqlite;
+
+message WindowDefn {
+  LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+  BaseWindowName base_window_name = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  FrameSpec frame_spec = 5;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+  message Seq1 {
+    PartitionKeyword partition_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    Expr expr = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Seq2 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+

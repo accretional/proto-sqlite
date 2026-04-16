@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ReturningClause {
+  ReturningKeyword returning_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  repeated Seq1 seq1 = 3;
+
+  message Alt1 {
+    oneof value {
+      AsteriskKeyword asterisk_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      Expr expr = 1;
+
+      Seq1 seq1 = 2;
+
+      message Seq1 {
+        AsKeyword as_keyword = 1;
+
+        ColumnAlias column_alias = 2;
+      }
+    }
+  }
+
+  message Seq1 {
+    CommaKeyword comma_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    message Alt1 {
+      oneof value {
+        AsteriskKeyword asterisk_keyword = 1;
+
+        Seq1 seq1 = 2;
+      }
+
+      message Seq1 {
+        Expr expr = 1;
+
+        Seq1 seq1 = 2;
+
+        message Seq1 {
+          AsKeyword as_keyword = 1;
+
+          ColumnAlias column_alias = 2;
+        }
+      }
+    }
+  }
+

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package sqlite;
+
+message SavepointStmt {
+  SavepointKeyword savepoint_keyword = 1;
+
+  SavepointName savepoint_name = 2;
+

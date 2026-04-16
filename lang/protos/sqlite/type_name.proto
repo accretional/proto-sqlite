@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package sqlite;
+
+message TypeName {
+  Name name = 1;
+
+  repeated Name name_2 = 2;
+
+  Alt1 alt1 = 3;
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      SignedNumber signed_number = 2;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 3;
+    }
+
+    message Seq2 {
+      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+      SignedNumber signed_number = 2;
+
+      CommaKeyword comma_keyword = 3;
+
+      SignedNumber signed_number_2 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+    }
+  }
+

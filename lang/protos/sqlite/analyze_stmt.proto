@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package sqlite;
+
+message AnalyzeStmt {
+  AnalyzeKeyword analyze_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  message Alt1 {
+    oneof value {
+      SchemaName schema_name = 1;
+
+      IndexOrTableName index_or_table_name = 2;
+
+      Seq1 seq1 = 3;
+    }
+
+    message Seq1 {
+      SchemaName schema_name = 1;
+
+      FullStopKeyword full_stop_keyword = 2;
+
+      TableOrIndexName table_or_index_name = 3;
+    }
+  }
+

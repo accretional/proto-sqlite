@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+package sqlite;
+
+message ColumnConstraint {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  message Seq1 {
+    ConstraintKeyword constraint_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+
+      Seq5 seq5 = 5;
+
+      Seq6 seq6 = 6;
+
+      ForeignKeyClause foreign_key_clause = 7;
+
+      Seq7 seq7 = 8;
+    }
+
+    message Seq1 {
+      PrimaryKeyword primary_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      ConflictClause conflict_clause = 4;
+
+      AutoincrementKeyword autoincrement_keyword = 5;
+
+      message Alt1 {
+        oneof value {
+          AscKeyword asc_keyword = 1;
+
+          DescKeyword desc_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      NotKeyword not_keyword = 1;
+
+      NullKeyword null_keyword = 2;
+
+      ConflictClause conflict_clause = 3;
+    }
+
+    message Seq3 {
+      UniqueKeyword unique_keyword = 1;
+
+      ConflictClause conflict_clause = 2;
+    }
+
+    message Seq4 {
+      CheckKeyword check_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
+    }
+
+    message Seq5 {
+      DefaultKeyword default_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          LiteralValue literal_value = 2;
+
+          SignedNumber signed_number = 3;
+        }
+
+        message Seq1 {
+          LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+          Expr expr = 2;
+
+          RightParenthesisKeyword right_parenthesis_keyword = 3;
+        }
+      }
+    }
+
+    message Seq6 {
+      CollateKeyword collate_keyword = 1;
+
+      CollationName collation_name = 2;
+    }
+
+    message Seq7 {
+      Seq1 seq1 = 1;
+
+      AsKeyword as_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      Expr expr = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      Alt1 alt1 = 6;
+
+      message Seq1 {
+        GeneratedKeyword generated_keyword = 1;
+
+        AlwaysKeyword always_keyword = 2;
+      }
+
+      message Alt1 {
+        oneof value {
+          StoredKeyword stored_keyword = 1;
+
+          VirtualKeyword virtual_keyword = 2;
+        }
+      }
+    }
+  }
+

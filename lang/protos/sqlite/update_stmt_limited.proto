@@ -1,0 +1,175 @@
+syntax = "proto3";
+
+package sqlite;
+
+message UpdateStmtLimited {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  QualifiedTableName qualified_table_name = 3;
+
+  SetKeyword set_keyword = 4;
+
+  Alt2 alt2 = 5;
+
+  EqualsSignKeyword equals_sign_keyword = 6;
+
+  Expr expr = 7;
+
+  repeated Seq2 seq2 = 8;
+
+  Seq3 seq3 = 9;
+
+  Seq4 seq4 = 10;
+
+  ReturningClause returning_clause = 11;
+
+  Seq5 seq5 = 12;
+
+  LimitKeyword limit_keyword = 13;
+
+  Expr expr_2 = 14;
+
+  Alt3 alt3 = 15;
+
+  message Seq1 {
+    WithKeyword with_keyword = 1;
+
+    RecursiveKeyword recursive_keyword = 2;
+
+    CommonTableExpression common_table_expression = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      CommonTableExpression common_table_expression = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      UpdateKeyword update_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      OrKeyword or_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      message Alt1 {
+        oneof value {
+          AbortKeyword abort_keyword = 1;
+
+          FailKeyword fail_keyword = 2;
+
+          IgnoreKeyword ignore_keyword = 3;
+
+          ReplaceKeyword replace_keyword = 4;
+
+          RollbackKeyword rollback_keyword = 5;
+        }
+      }
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      ColumnName column_name = 1;
+
+      ColumnNameList column_name_list = 2;
+    }
+  }
+
+  message Seq2 {
+    CommaKeyword comma_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    EqualsSignKeyword equals_sign_keyword = 3;
+
+    Expr expr = 4;
+
+    message Alt1 {
+      oneof value {
+        ColumnName column_name = 1;
+
+        ColumnNameList column_name_list = 2;
+      }
+    }
+  }
+
+  message Seq3 {
+    FromKeyword from_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    message Alt1 {
+      oneof value {
+        Seq1 seq1 = 1;
+
+        JoinClause join_clause = 2;
+      }
+
+      message Seq1 {
+        TableOrSubquery table_or_subquery = 1;
+
+        repeated Seq1 seq1 = 2;
+
+        message Seq1 {
+          CommaKeyword comma_keyword = 1;
+
+          TableOrSubquery table_or_subquery = 2;
+        }
+      }
+    }
+  }
+
+  message Seq4 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq5 {
+    OrderKeyword order_keyword = 1;
+
+    ByKeyword by_keyword = 2;
+
+    OrderingTerm ordering_term = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      OrderingTerm ordering_term = 2;
+    }
+  }
+
+  message Alt3 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      OffsetKeyword offset_keyword = 1;
+
+      Expr expr = 2;
+    }
+
+    message Seq2 {
+      CommaKeyword comma_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+

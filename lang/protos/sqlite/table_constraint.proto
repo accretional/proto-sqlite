@@ -1,0 +1,101 @@
+syntax = "proto3";
+
+package sqlite;
+
+message TableConstraint {
+  Seq1 seq1 = 1;
+
+  Alt1 alt1 = 2;
+
+  message Seq1 {
+    ConstraintKeyword constraint_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      PrimaryKeyword primary_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      IndexedColumn indexed_column = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+      ConflictClause conflict_clause = 7;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        IndexedColumn indexed_column = 2;
+      }
+    }
+
+    message Seq2 {
+      UniqueKeyword unique_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      IndexedColumn indexed_column = 3;
+
+      repeated Seq1 seq1 = 4;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+      ConflictClause conflict_clause = 6;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        IndexedColumn indexed_column = 2;
+      }
+    }
+
+    message Seq3 {
+      CheckKeyword check_keyword = 1;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+      Expr expr = 3;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
+    }
+
+    message Seq4 {
+      ForeignKeyword foreign_keyword = 1;
+
+      KeyKeyword key_keyword = 2;
+
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
+
+      ColumnName column_name = 4;
+
+      repeated Seq1 seq1 = 5;
+
+      RightParenthesisKeyword right_parenthesis_keyword = 6;
+
+      ForeignKeyClause foreign_key_clause = 7;
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        ColumnName column_name = 2;
+      }
+    }
+  }
+

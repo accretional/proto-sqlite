@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package sqlite;
+
+message QualifiedTableName {
+  Seq1 seq1 = 1;
+
+  TableName table_name = 2;
+
+  Seq2 seq2 = 3;
+
+  Alt1 alt1 = 4;
+
+  message Seq1 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq2 {
+    AsKeyword as_keyword = 1;
+
+    Alias alias = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      IndexedKeyword indexed_keyword = 1;
+
+      ByKeyword by_keyword = 2;
+
+      IndexName index_name = 3;
+    }
+
+    message Seq2 {
+      NotKeyword not_keyword = 1;
+
+      IndexedKeyword indexed_keyword = 2;
+    }
+  }
+

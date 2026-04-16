@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sqlite;
+
+message CommitStmt {
+  Alt1 alt1 = 1;
+
+  TransactionKeyword transaction_keyword = 2;
+
+  message Alt1 {
+    oneof value {
+      CommitKeyword commit_keyword = 1;
+
+      EndKeyword end_keyword = 2;
+    }
+  }
+

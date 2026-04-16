@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package sqlite;
+
+message LiteralValue {
+  oneof value {
+    NumericLiteral numeric_literal = 1;
+
+    StringLiteral string_literal = 2;
+
+    BlobLiteral blob_literal = 3;
+
+    NullKeyword null_keyword = 4;
+
+    TrueKeyword true_keyword = 5;
+
+    FalseKeyword false_keyword = 6;
+
+    CurrentTimeKeyword current_time_keyword = 7;
+
+    CurrentDateKeyword current_date_keyword = 8;
+
+    CurrentTimestampKeyword current_timestamp_keyword = 9;
+  }
+

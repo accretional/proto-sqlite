@@ -1,0 +1,173 @@
+syntax = "proto3";
+
+package sqlite;
+
+message FrameSpec {
+  Alt1 alt1 = 1;
+
+  Alt2 alt2 = 2;
+
+  Alt3 alt3 = 3;
+
+  message Alt1 {
+    oneof value {
+      RangeKeyword range_keyword = 1;
+
+      RowsKeyword rows_keyword = 2;
+
+      GroupsKeyword groups_keyword = 3;
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      BetweenKeyword between_keyword = 1;
+
+      Alt1 alt1 = 2;
+
+      AndKeyword and_keyword = 3;
+
+      Alt2 alt2 = 4;
+
+      message Alt1 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          Seq3 seq3 = 3;
+
+          Seq4 seq4 = 4;
+        }
+
+        message Seq1 {
+          UnboundedKeyword unbounded_keyword = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq2 {
+          Expr expr = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq3 {
+          CurrentKeyword current_keyword = 1;
+
+          RowKeyword row_keyword = 2;
+        }
+
+        message Seq4 {
+          Expr expr = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+      }
+
+      message Alt2 {
+        oneof value {
+          Seq1 seq1 = 1;
+
+          Seq2 seq2 = 2;
+
+          Seq3 seq3 = 3;
+
+          Seq4 seq4 = 4;
+        }
+
+        message Seq1 {
+          Expr expr = 1;
+
+          PrecedingKeyword preceding_keyword = 2;
+        }
+
+        message Seq2 {
+          CurrentKeyword current_keyword = 1;
+
+          RowKeyword row_keyword = 2;
+        }
+
+        message Seq3 {
+          Expr expr = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+
+        message Seq4 {
+          UnboundedKeyword unbounded_keyword = 1;
+
+          FollowingKeyword following_keyword = 2;
+        }
+      }
+    }
+
+    message Seq2 {
+      UnboundedKeyword unbounded_keyword = 1;
+
+      PrecedingKeyword preceding_keyword = 2;
+    }
+
+    message Seq3 {
+      Expr expr = 1;
+
+      PrecedingKeyword preceding_keyword = 2;
+    }
+
+    message Seq4 {
+      CurrentKeyword current_keyword = 1;
+
+      RowKeyword row_keyword = 2;
+    }
+  }
+
+  message Alt3 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+
+      Seq3 seq3 = 3;
+
+      Seq4 seq4 = 4;
+    }
+
+    message Seq1 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      NoKeyword no_keyword = 2;
+
+      OthersKeyword others_keyword = 3;
+    }
+
+    message Seq2 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      CurrentKeyword current_keyword = 2;
+
+      RowKeyword row_keyword = 3;
+    }
+
+    message Seq3 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      GroupKeyword group_keyword = 2;
+    }
+
+    message Seq4 {
+      ExcludeKeyword exclude_keyword = 1;
+
+      TiesKeyword ties_keyword = 2;
+    }
+  }
+

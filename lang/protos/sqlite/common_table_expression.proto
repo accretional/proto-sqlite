@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package sqlite;
+
+message CommonTableExpression {
+  TableName table_name = 1;
+
+  Seq1 seq1 = 2;
+
+  AsKeyword as_keyword = 3;
+
+  Alt1 alt1 = 4;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 5;
+
+  SelectStmt select_stmt = 6;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 7;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    ColumnName column_name = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+
+    message Seq1 {
+      NotKeyword not_keyword = 1;
+
+      MaterializedKeyword materialized_keyword = 2;
+    }
+  }
+

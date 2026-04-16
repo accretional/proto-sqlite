@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package sqlite;
+
+message BindParameter {
+  oneof value {
+    QuestionMarkKeyword question_mark_keyword = 1;
+
+    Seq1 seq1 = 2;
+
+    Seq2 seq2 = 3;
+
+    Seq3 seq3 = 4;
+  }
+
+  message Seq1 {
+    ColonKeyword colon_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Seq2 {
+    CommercialAtKeyword commercial_at_keyword = 1;
+
+    Name name = 2;
+  }
+
+  message Seq3 {
+    DollarSignKeyword dollar_sign_keyword = 1;
+
+    Name name = 2;
+  }
+

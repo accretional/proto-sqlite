@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package sqlite;
+
+message BeginStmt {
+  BeginKeyword begin_keyword = 1;
+
+  Alt1 alt1 = 2;
+
+  TransactionKeyword transaction_keyword = 3;
+
+  message Alt1 {
+    oneof value {
+      DeferredKeyword deferred_keyword = 1;
+
+      ImmediateKeyword immediate_keyword = 2;
+
+      ExclusiveKeyword exclusive_keyword = 3;
+    }
+  }
+

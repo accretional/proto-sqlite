@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package sqlite;
+
+message JoinConstraint {
+  oneof value {
+    Seq1 seq1 = 1;
+
+    Seq2 seq2 = 2;
+  }
+
+  message Seq1 {
+    OnKeyword on_keyword = 1;
+
+    Expr expr = 2;
+  }
+
+  message Seq2 {
+    UsingKeyword using_keyword = 1;
+
+    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+    ColumnName column_name = 3;
+
+    repeated Seq1 seq1 = 4;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 5;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      ColumnName column_name = 2;
+    }
+  }
+

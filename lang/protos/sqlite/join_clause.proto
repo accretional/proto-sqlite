@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package sqlite;
+
+message JoinClause {
+  TableOrSubquery table_or_subquery = 1;
+
+  repeated Seq1 seq1 = 2;
+
+  message Seq1 {
+    JoinOperator join_operator = 1;
+
+    TableOrSubquery table_or_subquery = 2;
+
+    JoinConstraint join_constraint = 3;
+  }
+

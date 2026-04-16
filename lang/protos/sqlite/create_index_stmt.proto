@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package sqlite;
+
+message CreateIndexStmt {
+  CreateKeyword create_keyword = 1;
+
+  UniqueKeyword unique_keyword = 2;
+
+  IndexKeyword index_keyword = 3;
+
+  Seq1 seq1 = 4;
+
+  Seq2 seq2 = 5;
+
+  IndexName index_name = 6;
+
+  OnKeyword on_keyword = 7;
+
+  TableName table_name = 8;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 9;
+
+  IndexedColumn indexed_column = 10;
+
+  repeated Seq3 seq3 = 11;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 12;
+
+  Seq4 seq4 = 13;
+
+  message Seq1 {
+    IfKeyword if_keyword = 1;
+
+    NotKeyword not_keyword = 2;
+
+    ExistsKeyword exists_keyword = 3;
+  }
+
+  message Seq2 {
+    SchemaName schema_name = 1;
+
+    FullStopKeyword full_stop_keyword = 2;
+  }
+
+  message Seq3 {
+    CommaKeyword comma_keyword = 1;
+
+    IndexedColumn indexed_column = 2;
+  }
+
+  message Seq4 {
+    WhereKeyword where_keyword = 1;
+
+    Expr expr = 2;
+  }
+

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package sqlite;
+
+message OrderingTerm {
+  Expr expr = 1;
+
+  Seq1 seq1 = 2;
+
+  Alt1 alt1 = 3;
+
+  Alt2 alt2 = 4;
+
+  message Seq1 {
+    CollateKeyword collate_keyword = 1;
+
+    CollationName collation_name = 2;
+  }
+
+  message Alt1 {
+    oneof value {
+      AscKeyword asc_keyword = 1;
+
+      DescKeyword desc_keyword = 2;
+    }
+  }
+
+  message Alt2 {
+    oneof value {
+      Seq1 seq1 = 1;
+
+      Seq2 seq2 = 2;
+    }
+
+    message Seq1 {
+      NullsKeyword nulls_keyword = 1;
+
+      FirstKeyword first_keyword = 2;
+    }
+
+    message Seq2 {
+      NullsKeyword nulls_keyword = 1;
+
+      LastKeyword last_keyword = 2;
+    }
+  }
+

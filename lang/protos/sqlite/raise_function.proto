@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package sqlite;
+
+message RaiseFunction {
+  RaiseKeyword raise_keyword = 1;
+
+  LeftParenthesisKeyword left_parenthesis_keyword = 2;
+
+  Alt1 alt1 = 3;
+
+  RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+  message Alt1 {
+    oneof value {
+      IgnoreKeyword ignore_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      Alt1 alt1 = 1;
+
+      CommaKeyword comma_keyword = 2;
+
+      ErrorMessage error_message = 3;
+
+      message Alt1 {
+        oneof value {
+          RollbackKeyword rollback_keyword = 1;
+
+          AbortKeyword abort_keyword = 2;
+
+          FailKeyword fail_keyword = 3;
+        }
+      }
+    }
+  }
+

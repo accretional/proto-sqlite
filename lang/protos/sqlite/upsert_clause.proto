@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package sqlite;
+
+message UpsertClause {
+  OnKeyword on_keyword = 1;
+
+  ConflictKeyword conflict_keyword = 2;
+
+  Seq1 seq1 = 3;
+
+  DoKeyword do_keyword = 4;
+
+  Alt1 alt1 = 5;
+
+  message Seq1 {
+    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+
+    IndexedColumn indexed_column = 2;
+
+    repeated Seq1 seq1 = 3;
+
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
+
+    Seq2 seq2 = 5;
+
+    message Seq1 {
+      CommaKeyword comma_keyword = 1;
+
+      IndexedColumn indexed_column = 2;
+    }
+
+    message Seq2 {
+      WhereKeyword where_keyword = 1;
+
+      Expr expr = 2;
+    }
+  }
+
+  message Alt1 {
+    oneof value {
+      NothingKeyword nothing_keyword = 1;
+
+      Seq1 seq1 = 2;
+    }
+
+    message Seq1 {
+      UpdateKeyword update_keyword = 1;
+
+      SetKeyword set_keyword = 2;
+
+      Alt1 alt1 = 3;
+
+      EqualsSignKeyword equals_sign_keyword = 4;
+
+      Expr expr = 5;
+
+      repeated Seq1 seq1 = 6;
+
+      Seq2 seq2 = 7;
+
+      message Alt1 {
+        oneof value {
+          ColumnName column_name = 1;
+
+          ColumnNameList column_name_list = 2;
+        }
+      }
+
+      message Seq1 {
+        CommaKeyword comma_keyword = 1;
+
+        Alt1 alt1 = 2;
+
+        EqualsSignKeyword equals_sign_keyword = 3;
+
+        Expr expr = 4;
+
+        message Alt1 {
+          oneof value {
+            ColumnName column_name = 1;
+
+            ColumnNameList column_name_list = 2;
+          }
+        }
+      }
+
+      message Seq2 {
+        WhereKeyword where_keyword = 1;
+
+        Expr expr = 2;
+      }
+    }
+  }
+
