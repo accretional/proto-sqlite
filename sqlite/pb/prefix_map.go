@@ -389,5 +389,4 @@ var MessagePrefix = map[string][]string{
 	".sqlite.WithClause.Comma.Alt1.NotMaterialized": {"NOT", "MATERIALIZED"},
 	".sqlite.WithKeyword": {"WITH"},
 	".sqlite.WithoutKeyword": {"WITHOUT"},
-	".sqlite.XKeyword": {"x"},
 }

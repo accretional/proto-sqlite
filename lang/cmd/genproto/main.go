@@ -56,6 +56,7 @@ func main() {
 
 	ast.Root = compiler.CollapseCommaList(ast.Root)
 	ast.Root = compiler.NameSequence(ast.Root)
+	ast.Root = scalarizeX(ast.Root)
 
 	// Collect leading-terminal prefixes and keyword-message literals
 	// before StripKeywords discards them. The compiler's OnMessage hook

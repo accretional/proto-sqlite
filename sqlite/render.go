@@ -61,6 +61,9 @@ func renderValue(fd protoreflect.FieldDescriptor, val protoreflect.Value, toks *
 	switch fd.Kind() {
 	case protoreflect.MessageKind, protoreflect.GroupKind:
 		return renderMessage(val.Message(), toks)
+	case protoreflect.StringKind:
+		*toks = append(*toks, val.String())
+		return nil
 	default:
 		return fmt.Errorf("unsupported field kind %v at %s", fd.Kind(), fd.FullName())
 	}

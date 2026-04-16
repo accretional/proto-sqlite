@@ -2980,15 +2980,15 @@ message BinaryOperator {
 }
 
 message Name {
-  XKeyword x_keyword = 1;
+  string value = 1;
 }
 
 message StringLiteral {
-  XKeyword x_keyword = 1;
+  string value = 1;
 }
 
 message BlobLiteral {
-  XKeyword x_keyword = 1;
+  string value = 1;
 }
 
 message AbortKeyword {
@@ -3361,7 +3361,4 @@ message VirtualKeyword {
 }
 
 message WhenKeyword {
-}
-
-message XKeyword {
 }

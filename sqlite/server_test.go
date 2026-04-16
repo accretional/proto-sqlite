@@ -92,6 +92,40 @@ func TestServerQuery_TypedBegin(t *testing.T) {
 	}
 }
 
+func TestServerQuery_TypedDropTableIfExists(t *testing.T) {
+	// Typed SqlStmtList carrying a real user-supplied table name
+	// (scalarized from the grammar's `name = "x"` placeholder) →
+	// rendered to "DROP TABLE IF EXISTS ephemeral" → executed against
+	// the example db as a no-op.
+	client := startInProc(t)
+
+	resp, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Stmts{
+			Stmts: &sqlitepb.SqlStmtList{
+				SqlStmt: []*sqlitepb.SqlStmt{{
+					Alt1: &sqlitepb.SqlStmt_Alt1{
+						Value: &sqlitepb.SqlStmt_Alt1_DropTableStmt{
+							DropTableStmt: &sqlitepb.DropTableStmt{
+								IfExists: &sqlitepb.DropTableStmt_IfExists{},
+								TableName: &sqlitepb.TableName{
+									Name: &sqlitepb.Name{Value: "ephemeral"},
+								},
+							},
+						},
+					},
+				}},
+			},
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query: %v", err)
+	}
+	if len(resp.GetColumn()) != 0 || len(resp.GetRow()) != 0 {
+		t.Errorf("DROP TABLE IF EXISTS should be empty, got cols=%v rows=%d",
+			resp.GetColumn(), len(resp.GetRow()))
+	}
+}
+
 func TestServerQuery_EmptyBody(t *testing.T) {
 	client := startInProc(t)
 

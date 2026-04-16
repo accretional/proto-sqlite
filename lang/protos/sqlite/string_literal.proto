@@ -3,5 +3,5 @@ syntax = "proto3";
 package sqlite;
 
 message StringLiteral {
-  XKeyword x_keyword = 1;
+  string value = 1;
 }

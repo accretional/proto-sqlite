@@ -7193,7 +7193,7 @@ func (*BinaryOperator_OrKeyword) isBinaryOperator_Value() {}
 
 type Name struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	XKeyword      *XKeyword              `protobuf:"bytes,1,opt,name=x_keyword,json=xKeyword,proto3" json:"x_keyword,omitempty"`
+	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7228,16 +7228,16 @@ func (*Name) Descriptor() ([]byte, []int) {
 	return file_sqlite_proto_rawDescGZIP(), []int{94}
 }
 
-func (x *Name) GetXKeyword() *XKeyword {
+func (x *Name) GetValue() string {
 	if x != nil {
-		return x.XKeyword
+		return x.Value
 	}
-	return nil
+	return ""
 }
 
 type StringLiteral struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	XKeyword      *XKeyword              `protobuf:"bytes,1,opt,name=x_keyword,json=xKeyword,proto3" json:"x_keyword,omitempty"`
+	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7272,16 +7272,16 @@ func (*StringLiteral) Descriptor() ([]byte, []int) {
 	return file_sqlite_proto_rawDescGZIP(), []int{95}
 }
 
-func (x *StringLiteral) GetXKeyword() *XKeyword {
+func (x *StringLiteral) GetValue() string {
 	if x != nil {
-		return x.XKeyword
+		return x.Value
 	}
-	return nil
+	return ""
 }
 
 type BlobLiteral struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	XKeyword      *XKeyword              `protobuf:"bytes,1,opt,name=x_keyword,json=xKeyword,proto3" json:"x_keyword,omitempty"`
+	Value         string                 `protobuf:"bytes,1,opt,name=value,proto3" json:"value,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -7316,11 +7316,11 @@ func (*BlobLiteral) Descriptor() ([]byte, []int) {
 	return file_sqlite_proto_rawDescGZIP(), []int{96}
 }
 
-func (x *BlobLiteral) GetXKeyword() *XKeyword {
+func (x *BlobLiteral) GetValue() string {
 	if x != nil {
-		return x.XKeyword
+		return x.Value
 	}
-	return nil
+	return ""
 }
 
 type AbortKeyword struct {
@@ -11787,42 +11787,6 @@ func (*WhenKeyword) Descriptor() ([]byte, []int) {
 	return file_sqlite_proto_rawDescGZIP(), []int{220}
 }
 
-type XKeyword struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *XKeyword) Reset() {
-	*x = XKeyword{}
-	mi := &file_sqlite_proto_msgTypes[221]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *XKeyword) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*XKeyword) ProtoMessage() {}
-
-func (x *XKeyword) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[221]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use XKeyword.ProtoReflect.Descriptor instead.
-func (*XKeyword) Descriptor() ([]byte, []int) {
-	return file_sqlite_proto_rawDescGZIP(), []int{221}
-}
-
 type SqlStmt_Explain struct {
 	state         protoimpl.MessageState     `protogen:"open.v1"`
 	QueryPlan     *SqlStmt_Explain_QueryPlan `protobuf:"bytes,1,opt,name=query_plan,json=queryPlan,proto3" json:"query_plan,omitempty"`
@@ -11832,7 +11796,7 @@ type SqlStmt_Explain struct {
 
 func (x *SqlStmt_Explain) Reset() {
 	*x = SqlStmt_Explain{}
-	mi := &file_sqlite_proto_msgTypes[222]
+	mi := &file_sqlite_proto_msgTypes[221]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11844,7 +11808,7 @@ func (x *SqlStmt_Explain) String() string {
 func (*SqlStmt_Explain) ProtoMessage() {}
 
 func (x *SqlStmt_Explain) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[222]
+	mi := &file_sqlite_proto_msgTypes[221]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11905,7 +11869,7 @@ type SqlStmt_Alt1 struct {
 
 func (x *SqlStmt_Alt1) Reset() {
 	*x = SqlStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[223]
+	mi := &file_sqlite_proto_msgTypes[222]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11917,7 +11881,7 @@ func (x *SqlStmt_Alt1) String() string {
 func (*SqlStmt_Alt1) ProtoMessage() {}
 
 func (x *SqlStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[223]
+	mi := &file_sqlite_proto_msgTypes[222]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12357,7 +12321,7 @@ type SqlStmt_Explain_QueryPlan struct {
 
 func (x *SqlStmt_Explain_QueryPlan) Reset() {
 	*x = SqlStmt_Explain_QueryPlan{}
-	mi := &file_sqlite_proto_msgTypes[224]
+	mi := &file_sqlite_proto_msgTypes[223]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12369,7 +12333,7 @@ func (x *SqlStmt_Explain_QueryPlan) String() string {
 func (*SqlStmt_Explain_QueryPlan) ProtoMessage() {}
 
 func (x *SqlStmt_Explain_QueryPlan) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[224]
+	mi := &file_sqlite_proto_msgTypes[223]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12399,7 +12363,7 @@ type BeginStmt_Alt1 struct {
 
 func (x *BeginStmt_Alt1) Reset() {
 	*x = BeginStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[225]
+	mi := &file_sqlite_proto_msgTypes[224]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12411,7 +12375,7 @@ func (x *BeginStmt_Alt1) String() string {
 func (*BeginStmt_Alt1) ProtoMessage() {}
 
 func (x *BeginStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[225]
+	mi := &file_sqlite_proto_msgTypes[224]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12496,7 +12460,7 @@ type CommitStmt_Alt1 struct {
 
 func (x *CommitStmt_Alt1) Reset() {
 	*x = CommitStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[226]
+	mi := &file_sqlite_proto_msgTypes[225]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12508,7 +12472,7 @@ func (x *CommitStmt_Alt1) String() string {
 func (*CommitStmt_Alt1) ProtoMessage() {}
 
 func (x *CommitStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[226]
+	mi := &file_sqlite_proto_msgTypes[225]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12575,7 +12539,7 @@ type RollbackStmt_To struct {
 
 func (x *RollbackStmt_To) Reset() {
 	*x = RollbackStmt_To{}
-	mi := &file_sqlite_proto_msgTypes[227]
+	mi := &file_sqlite_proto_msgTypes[226]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12587,7 +12551,7 @@ func (x *RollbackStmt_To) String() string {
 func (*RollbackStmt_To) ProtoMessage() {}
 
 func (x *RollbackStmt_To) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[227]
+	mi := &file_sqlite_proto_msgTypes[226]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12626,7 +12590,7 @@ type VacuumStmt_Into struct {
 
 func (x *VacuumStmt_Into) Reset() {
 	*x = VacuumStmt_Into{}
-	mi := &file_sqlite_proto_msgTypes[228]
+	mi := &file_sqlite_proto_msgTypes[227]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12638,7 +12602,7 @@ func (x *VacuumStmt_Into) String() string {
 func (*VacuumStmt_Into) ProtoMessage() {}
 
 func (x *VacuumStmt_Into) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[228]
+	mi := &file_sqlite_proto_msgTypes[227]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12675,7 +12639,7 @@ type AnalyzeStmt_Alt1 struct {
 
 func (x *AnalyzeStmt_Alt1) Reset() {
 	*x = AnalyzeStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[229]
+	mi := &file_sqlite_proto_msgTypes[228]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12687,7 +12651,7 @@ func (x *AnalyzeStmt_Alt1) String() string {
 func (*AnalyzeStmt_Alt1) ProtoMessage() {}
 
 func (x *AnalyzeStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[229]
+	mi := &file_sqlite_proto_msgTypes[228]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12770,7 +12734,7 @@ type AnalyzeStmt_Alt1_Seq1 struct {
 
 func (x *AnalyzeStmt_Alt1_Seq1) Reset() {
 	*x = AnalyzeStmt_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[230]
+	mi := &file_sqlite_proto_msgTypes[229]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12782,7 +12746,7 @@ func (x *AnalyzeStmt_Alt1_Seq1) String() string {
 func (*AnalyzeStmt_Alt1_Seq1) ProtoMessage() {}
 
 func (x *AnalyzeStmt_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[230]
+	mi := &file_sqlite_proto_msgTypes[229]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12832,7 +12796,7 @@ type ReindexStmt_Alt1 struct {
 
 func (x *ReindexStmt_Alt1) Reset() {
 	*x = ReindexStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[231]
+	mi := &file_sqlite_proto_msgTypes[230]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12844,7 +12808,7 @@ func (x *ReindexStmt_Alt1) String() string {
 func (*ReindexStmt_Alt1) ProtoMessage() {}
 
 func (x *ReindexStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[231]
+	mi := &file_sqlite_proto_msgTypes[230]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12911,7 +12875,7 @@ type ReindexStmt_Alt1_Seq1 struct {
 
 func (x *ReindexStmt_Alt1_Seq1) Reset() {
 	*x = ReindexStmt_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[232]
+	mi := &file_sqlite_proto_msgTypes[231]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12923,7 +12887,7 @@ func (x *ReindexStmt_Alt1_Seq1) String() string {
 func (*ReindexStmt_Alt1_Seq1) ProtoMessage() {}
 
 func (x *ReindexStmt_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[232]
+	mi := &file_sqlite_proto_msgTypes[231]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12963,7 +12927,7 @@ type ReindexStmt_Alt1_Seq1_Seq1 struct {
 
 func (x *ReindexStmt_Alt1_Seq1_Seq1) Reset() {
 	*x = ReindexStmt_Alt1_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[233]
+	mi := &file_sqlite_proto_msgTypes[232]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12975,7 +12939,7 @@ func (x *ReindexStmt_Alt1_Seq1_Seq1) String() string {
 func (*ReindexStmt_Alt1_Seq1_Seq1) ProtoMessage() {}
 
 func (x *ReindexStmt_Alt1_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[233]
+	mi := &file_sqlite_proto_msgTypes[232]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13018,7 +12982,7 @@ type ReindexStmt_Alt1_Seq1_Alt1 struct {
 
 func (x *ReindexStmt_Alt1_Seq1_Alt1) Reset() {
 	*x = ReindexStmt_Alt1_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[234]
+	mi := &file_sqlite_proto_msgTypes[233]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13030,7 +12994,7 @@ func (x *ReindexStmt_Alt1_Seq1_Alt1) String() string {
 func (*ReindexStmt_Alt1_Seq1_Alt1) ProtoMessage() {}
 
 func (x *ReindexStmt_Alt1_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[234]
+	mi := &file_sqlite_proto_msgTypes[233]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13097,7 +13061,7 @@ type PragmaStmt_Seq1 struct {
 
 func (x *PragmaStmt_Seq1) Reset() {
 	*x = PragmaStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[235]
+	mi := &file_sqlite_proto_msgTypes[234]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13109,7 +13073,7 @@ func (x *PragmaStmt_Seq1) String() string {
 func (*PragmaStmt_Seq1) ProtoMessage() {}
 
 func (x *PragmaStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[235]
+	mi := &file_sqlite_proto_msgTypes[234]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13152,7 +13116,7 @@ type PragmaStmt_Alt1 struct {
 
 func (x *PragmaStmt_Alt1) Reset() {
 	*x = PragmaStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[236]
+	mi := &file_sqlite_proto_msgTypes[235]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13164,7 +13128,7 @@ func (x *PragmaStmt_Alt1) String() string {
 func (*PragmaStmt_Alt1) ProtoMessage() {}
 
 func (x *PragmaStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[236]
+	mi := &file_sqlite_proto_msgTypes[235]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13230,7 +13194,7 @@ type PragmaStmt_Alt1_EqualsSign struct {
 
 func (x *PragmaStmt_Alt1_EqualsSign) Reset() {
 	*x = PragmaStmt_Alt1_EqualsSign{}
-	mi := &file_sqlite_proto_msgTypes[237]
+	mi := &file_sqlite_proto_msgTypes[236]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13242,7 +13206,7 @@ func (x *PragmaStmt_Alt1_EqualsSign) String() string {
 func (*PragmaStmt_Alt1_EqualsSign) ProtoMessage() {}
 
 func (x *PragmaStmt_Alt1_EqualsSign) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[237]
+	mi := &file_sqlite_proto_msgTypes[236]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13275,7 +13239,7 @@ type PragmaStmt_Alt1_LeftParenthesis struct {
 
 func (x *PragmaStmt_Alt1_LeftParenthesis) Reset() {
 	*x = PragmaStmt_Alt1_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[238]
+	mi := &file_sqlite_proto_msgTypes[237]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13287,7 +13251,7 @@ func (x *PragmaStmt_Alt1_LeftParenthesis) String() string {
 func (*PragmaStmt_Alt1_LeftParenthesis) ProtoMessage() {}
 
 func (x *PragmaStmt_Alt1_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[238]
+	mi := &file_sqlite_proto_msgTypes[237]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13325,7 +13289,7 @@ type DropTableStmt_IfExists struct {
 
 func (x *DropTableStmt_IfExists) Reset() {
 	*x = DropTableStmt_IfExists{}
-	mi := &file_sqlite_proto_msgTypes[239]
+	mi := &file_sqlite_proto_msgTypes[238]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13337,7 +13301,7 @@ func (x *DropTableStmt_IfExists) String() string {
 func (*DropTableStmt_IfExists) ProtoMessage() {}
 
 func (x *DropTableStmt_IfExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[239]
+	mi := &file_sqlite_proto_msgTypes[238]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13363,7 +13327,7 @@ type DropTableStmt_Seq1 struct {
 
 func (x *DropTableStmt_Seq1) Reset() {
 	*x = DropTableStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[240]
+	mi := &file_sqlite_proto_msgTypes[239]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13375,7 +13339,7 @@ func (x *DropTableStmt_Seq1) String() string {
 func (*DropTableStmt_Seq1) ProtoMessage() {}
 
 func (x *DropTableStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[240]
+	mi := &file_sqlite_proto_msgTypes[239]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13413,7 +13377,7 @@ type DropIndexStmt_IfExists struct {
 
 func (x *DropIndexStmt_IfExists) Reset() {
 	*x = DropIndexStmt_IfExists{}
-	mi := &file_sqlite_proto_msgTypes[241]
+	mi := &file_sqlite_proto_msgTypes[240]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13425,7 +13389,7 @@ func (x *DropIndexStmt_IfExists) String() string {
 func (*DropIndexStmt_IfExists) ProtoMessage() {}
 
 func (x *DropIndexStmt_IfExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[241]
+	mi := &file_sqlite_proto_msgTypes[240]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13451,7 +13415,7 @@ type DropIndexStmt_Seq1 struct {
 
 func (x *DropIndexStmt_Seq1) Reset() {
 	*x = DropIndexStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[242]
+	mi := &file_sqlite_proto_msgTypes[241]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13463,7 +13427,7 @@ func (x *DropIndexStmt_Seq1) String() string {
 func (*DropIndexStmt_Seq1) ProtoMessage() {}
 
 func (x *DropIndexStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[242]
+	mi := &file_sqlite_proto_msgTypes[241]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13501,7 +13465,7 @@ type DropViewStmt_IfExists struct {
 
 func (x *DropViewStmt_IfExists) Reset() {
 	*x = DropViewStmt_IfExists{}
-	mi := &file_sqlite_proto_msgTypes[243]
+	mi := &file_sqlite_proto_msgTypes[242]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13513,7 +13477,7 @@ func (x *DropViewStmt_IfExists) String() string {
 func (*DropViewStmt_IfExists) ProtoMessage() {}
 
 func (x *DropViewStmt_IfExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[243]
+	mi := &file_sqlite_proto_msgTypes[242]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13539,7 +13503,7 @@ type DropViewStmt_Seq1 struct {
 
 func (x *DropViewStmt_Seq1) Reset() {
 	*x = DropViewStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[244]
+	mi := &file_sqlite_proto_msgTypes[243]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13551,7 +13515,7 @@ func (x *DropViewStmt_Seq1) String() string {
 func (*DropViewStmt_Seq1) ProtoMessage() {}
 
 func (x *DropViewStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[244]
+	mi := &file_sqlite_proto_msgTypes[243]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13589,7 +13553,7 @@ type DropTriggerStmt_IfExists struct {
 
 func (x *DropTriggerStmt_IfExists) Reset() {
 	*x = DropTriggerStmt_IfExists{}
-	mi := &file_sqlite_proto_msgTypes[245]
+	mi := &file_sqlite_proto_msgTypes[244]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13601,7 +13565,7 @@ func (x *DropTriggerStmt_IfExists) String() string {
 func (*DropTriggerStmt_IfExists) ProtoMessage() {}
 
 func (x *DropTriggerStmt_IfExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[245]
+	mi := &file_sqlite_proto_msgTypes[244]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13627,7 +13591,7 @@ type DropTriggerStmt_Seq1 struct {
 
 func (x *DropTriggerStmt_Seq1) Reset() {
 	*x = DropTriggerStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[246]
+	mi := &file_sqlite_proto_msgTypes[245]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13639,7 +13603,7 @@ func (x *DropTriggerStmt_Seq1) String() string {
 func (*DropTriggerStmt_Seq1) ProtoMessage() {}
 
 func (x *DropTriggerStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[246]
+	mi := &file_sqlite_proto_msgTypes[245]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13679,7 +13643,7 @@ type AlterTableStmt_Seq1 struct {
 
 func (x *AlterTableStmt_Seq1) Reset() {
 	*x = AlterTableStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[247]
+	mi := &file_sqlite_proto_msgTypes[246]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13691,7 +13655,7 @@ func (x *AlterTableStmt_Seq1) String() string {
 func (*AlterTableStmt_Seq1) ProtoMessage() {}
 
 func (x *AlterTableStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[247]
+	mi := &file_sqlite_proto_msgTypes[246]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13739,7 +13703,7 @@ type AlterTableStmt_Alt1 struct {
 
 func (x *AlterTableStmt_Alt1) Reset() {
 	*x = AlterTableStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[248]
+	mi := &file_sqlite_proto_msgTypes[247]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13751,7 +13715,7 @@ func (x *AlterTableStmt_Alt1) String() string {
 func (*AlterTableStmt_Alt1) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[248]
+	mi := &file_sqlite_proto_msgTypes[247]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13892,7 +13856,7 @@ type AlterTableStmt_Alt1_RenameTo struct {
 
 func (x *AlterTableStmt_Alt1_RenameTo) Reset() {
 	*x = AlterTableStmt_Alt1_RenameTo{}
-	mi := &file_sqlite_proto_msgTypes[249]
+	mi := &file_sqlite_proto_msgTypes[248]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13904,7 +13868,7 @@ func (x *AlterTableStmt_Alt1_RenameTo) String() string {
 func (*AlterTableStmt_Alt1_RenameTo) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_RenameTo) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[249]
+	mi := &file_sqlite_proto_msgTypes[248]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -13939,7 +13903,7 @@ type AlterTableStmt_Alt1_Rename struct {
 
 func (x *AlterTableStmt_Alt1_Rename) Reset() {
 	*x = AlterTableStmt_Alt1_Rename{}
-	mi := &file_sqlite_proto_msgTypes[250]
+	mi := &file_sqlite_proto_msgTypes[249]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -13951,7 +13915,7 @@ func (x *AlterTableStmt_Alt1_Rename) String() string {
 func (*AlterTableStmt_Alt1_Rename) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_Rename) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[250]
+	mi := &file_sqlite_proto_msgTypes[249]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14005,7 +13969,7 @@ type AlterTableStmt_Alt1_Add struct {
 
 func (x *AlterTableStmt_Alt1_Add) Reset() {
 	*x = AlterTableStmt_Alt1_Add{}
-	mi := &file_sqlite_proto_msgTypes[251]
+	mi := &file_sqlite_proto_msgTypes[250]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14017,7 +13981,7 @@ func (x *AlterTableStmt_Alt1_Add) String() string {
 func (*AlterTableStmt_Alt1_Add) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_Add) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[251]
+	mi := &file_sqlite_proto_msgTypes[250]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14061,7 +14025,7 @@ type AlterTableStmt_Alt1_AddConstraint struct {
 
 func (x *AlterTableStmt_Alt1_AddConstraint) Reset() {
 	*x = AlterTableStmt_Alt1_AddConstraint{}
-	mi := &file_sqlite_proto_msgTypes[252]
+	mi := &file_sqlite_proto_msgTypes[251]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14073,7 +14037,7 @@ func (x *AlterTableStmt_Alt1_AddConstraint) String() string {
 func (*AlterTableStmt_Alt1_AddConstraint) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_AddConstraint) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[252]
+	mi := &file_sqlite_proto_msgTypes[251]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14141,7 +14105,7 @@ type AlterTableStmt_Alt1_Drop struct {
 
 func (x *AlterTableStmt_Alt1_Drop) Reset() {
 	*x = AlterTableStmt_Alt1_Drop{}
-	mi := &file_sqlite_proto_msgTypes[253]
+	mi := &file_sqlite_proto_msgTypes[252]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14153,7 +14117,7 @@ func (x *AlterTableStmt_Alt1_Drop) String() string {
 func (*AlterTableStmt_Alt1_Drop) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_Drop) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[253]
+	mi := &file_sqlite_proto_msgTypes[252]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14192,7 +14156,7 @@ type AlterTableStmt_Alt1_DropConstraint struct {
 
 func (x *AlterTableStmt_Alt1_DropConstraint) Reset() {
 	*x = AlterTableStmt_Alt1_DropConstraint{}
-	mi := &file_sqlite_proto_msgTypes[254]
+	mi := &file_sqlite_proto_msgTypes[253]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14204,7 +14168,7 @@ func (x *AlterTableStmt_Alt1_DropConstraint) String() string {
 func (*AlterTableStmt_Alt1_DropConstraint) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_DropConstraint) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[254]
+	mi := &file_sqlite_proto_msgTypes[253]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14237,7 +14201,7 @@ type AlterTableStmt_Alt1_AlterColumn struct {
 
 func (x *AlterTableStmt_Alt1_AlterColumn) Reset() {
 	*x = AlterTableStmt_Alt1_AlterColumn{}
-	mi := &file_sqlite_proto_msgTypes[255]
+	mi := &file_sqlite_proto_msgTypes[254]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14249,7 +14213,7 @@ func (x *AlterTableStmt_Alt1_AlterColumn) String() string {
 func (*AlterTableStmt_Alt1_AlterColumn) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_AlterColumn) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[255]
+	mi := &file_sqlite_proto_msgTypes[254]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14292,7 +14256,7 @@ type AlterTableStmt_Alt1_AlterColumn_Alt1 struct {
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1) Reset() {
 	*x = AlterTableStmt_Alt1_AlterColumn_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[256]
+	mi := &file_sqlite_proto_msgTypes[255]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14304,7 +14268,7 @@ func (x *AlterTableStmt_Alt1_AlterColumn_Alt1) String() string {
 func (*AlterTableStmt_Alt1_AlterColumn_Alt1) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[256]
+	mi := &file_sqlite_proto_msgTypes[255]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14372,7 +14336,7 @@ type AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull struct {
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull) Reset() {
 	*x = AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull{}
-	mi := &file_sqlite_proto_msgTypes[257]
+	mi := &file_sqlite_proto_msgTypes[256]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14384,7 +14348,7 @@ func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull) String() string {
 func (*AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[257]
+	mi := &file_sqlite_proto_msgTypes[256]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14415,7 +14379,7 @@ type AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull struct {
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull) Reset() {
 	*x = AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull{}
-	mi := &file_sqlite_proto_msgTypes[258]
+	mi := &file_sqlite_proto_msgTypes[257]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14427,7 +14391,7 @@ func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull) String() string {
 func (*AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull) ProtoMessage() {}
 
 func (x *AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[258]
+	mi := &file_sqlite_proto_msgTypes[257]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14456,7 +14420,7 @@ type CreateTableStmt_Alt1 struct {
 
 func (x *CreateTableStmt_Alt1) Reset() {
 	*x = CreateTableStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[259]
+	mi := &file_sqlite_proto_msgTypes[258]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14468,7 +14432,7 @@ func (x *CreateTableStmt_Alt1) String() string {
 func (*CreateTableStmt_Alt1) ProtoMessage() {}
 
 func (x *CreateTableStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[259]
+	mi := &file_sqlite_proto_msgTypes[258]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14533,7 +14497,7 @@ type CreateTableStmt_IfNotExists struct {
 
 func (x *CreateTableStmt_IfNotExists) Reset() {
 	*x = CreateTableStmt_IfNotExists{}
-	mi := &file_sqlite_proto_msgTypes[260]
+	mi := &file_sqlite_proto_msgTypes[259]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14545,7 +14509,7 @@ func (x *CreateTableStmt_IfNotExists) String() string {
 func (*CreateTableStmt_IfNotExists) ProtoMessage() {}
 
 func (x *CreateTableStmt_IfNotExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[260]
+	mi := &file_sqlite_proto_msgTypes[259]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14571,7 +14535,7 @@ type CreateTableStmt_Seq1 struct {
 
 func (x *CreateTableStmt_Seq1) Reset() {
 	*x = CreateTableStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[261]
+	mi := &file_sqlite_proto_msgTypes[260]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14583,7 +14547,7 @@ func (x *CreateTableStmt_Seq1) String() string {
 func (*CreateTableStmt_Seq1) ProtoMessage() {}
 
 func (x *CreateTableStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[261]
+	mi := &file_sqlite_proto_msgTypes[260]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14626,7 +14590,7 @@ type CreateTableStmt_Alt2 struct {
 
 func (x *CreateTableStmt_Alt2) Reset() {
 	*x = CreateTableStmt_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[262]
+	mi := &file_sqlite_proto_msgTypes[261]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14638,7 +14602,7 @@ func (x *CreateTableStmt_Alt2) String() string {
 func (*CreateTableStmt_Alt2) ProtoMessage() {}
 
 func (x *CreateTableStmt_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[262]
+	mi := &file_sqlite_proto_msgTypes[261]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14704,7 +14668,7 @@ type CreateTableStmt_Alt2_As struct {
 
 func (x *CreateTableStmt_Alt2_As) Reset() {
 	*x = CreateTableStmt_Alt2_As{}
-	mi := &file_sqlite_proto_msgTypes[263]
+	mi := &file_sqlite_proto_msgTypes[262]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14716,7 +14680,7 @@ func (x *CreateTableStmt_Alt2_As) String() string {
 func (*CreateTableStmt_Alt2_As) ProtoMessage() {}
 
 func (x *CreateTableStmt_Alt2_As) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[263]
+	mi := &file_sqlite_proto_msgTypes[262]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14751,7 +14715,7 @@ type CreateTableStmt_Alt2_LeftParenthesis struct {
 
 func (x *CreateTableStmt_Alt2_LeftParenthesis) Reset() {
 	*x = CreateTableStmt_Alt2_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[264]
+	mi := &file_sqlite_proto_msgTypes[263]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14763,7 +14727,7 @@ func (x *CreateTableStmt_Alt2_LeftParenthesis) String() string {
 func (*CreateTableStmt_Alt2_LeftParenthesis) ProtoMessage() {}
 
 func (x *CreateTableStmt_Alt2_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[264]
+	mi := &file_sqlite_proto_msgTypes[263]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14816,7 +14780,7 @@ type CreateTableStmt_Alt2_LeftParenthesis_Comma struct {
 
 func (x *CreateTableStmt_Alt2_LeftParenthesis_Comma) Reset() {
 	*x = CreateTableStmt_Alt2_LeftParenthesis_Comma{}
-	mi := &file_sqlite_proto_msgTypes[265]
+	mi := &file_sqlite_proto_msgTypes[264]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14828,7 +14792,7 @@ func (x *CreateTableStmt_Alt2_LeftParenthesis_Comma) String() string {
 func (*CreateTableStmt_Alt2_LeftParenthesis_Comma) ProtoMessage() {}
 
 func (x *CreateTableStmt_Alt2_LeftParenthesis_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[265]
+	mi := &file_sqlite_proto_msgTypes[264]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14859,7 +14823,7 @@ type CreateIndexStmt_IfNotExists struct {
 
 func (x *CreateIndexStmt_IfNotExists) Reset() {
 	*x = CreateIndexStmt_IfNotExists{}
-	mi := &file_sqlite_proto_msgTypes[266]
+	mi := &file_sqlite_proto_msgTypes[265]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14871,7 +14835,7 @@ func (x *CreateIndexStmt_IfNotExists) String() string {
 func (*CreateIndexStmt_IfNotExists) ProtoMessage() {}
 
 func (x *CreateIndexStmt_IfNotExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[266]
+	mi := &file_sqlite_proto_msgTypes[265]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14897,7 +14861,7 @@ type CreateIndexStmt_Seq1 struct {
 
 func (x *CreateIndexStmt_Seq1) Reset() {
 	*x = CreateIndexStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[267]
+	mi := &file_sqlite_proto_msgTypes[266]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14909,7 +14873,7 @@ func (x *CreateIndexStmt_Seq1) String() string {
 func (*CreateIndexStmt_Seq1) ProtoMessage() {}
 
 func (x *CreateIndexStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[267]
+	mi := &file_sqlite_proto_msgTypes[266]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14948,7 +14912,7 @@ type CreateIndexStmt_Where struct {
 
 func (x *CreateIndexStmt_Where) Reset() {
 	*x = CreateIndexStmt_Where{}
-	mi := &file_sqlite_proto_msgTypes[268]
+	mi := &file_sqlite_proto_msgTypes[267]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -14960,7 +14924,7 @@ func (x *CreateIndexStmt_Where) String() string {
 func (*CreateIndexStmt_Where) ProtoMessage() {}
 
 func (x *CreateIndexStmt_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[268]
+	mi := &file_sqlite_proto_msgTypes[267]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -14996,7 +14960,7 @@ type CreateTriggerStmt_Alt1 struct {
 
 func (x *CreateTriggerStmt_Alt1) Reset() {
 	*x = CreateTriggerStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[269]
+	mi := &file_sqlite_proto_msgTypes[268]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15008,7 +14972,7 @@ func (x *CreateTriggerStmt_Alt1) String() string {
 func (*CreateTriggerStmt_Alt1) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[269]
+	mi := &file_sqlite_proto_msgTypes[268]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15073,7 +15037,7 @@ type CreateTriggerStmt_IfNotExists struct {
 
 func (x *CreateTriggerStmt_IfNotExists) Reset() {
 	*x = CreateTriggerStmt_IfNotExists{}
-	mi := &file_sqlite_proto_msgTypes[270]
+	mi := &file_sqlite_proto_msgTypes[269]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15085,7 +15049,7 @@ func (x *CreateTriggerStmt_IfNotExists) String() string {
 func (*CreateTriggerStmt_IfNotExists) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_IfNotExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[270]
+	mi := &file_sqlite_proto_msgTypes[269]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15111,7 +15075,7 @@ type CreateTriggerStmt_Seq1 struct {
 
 func (x *CreateTriggerStmt_Seq1) Reset() {
 	*x = CreateTriggerStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[271]
+	mi := &file_sqlite_proto_msgTypes[270]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15123,7 +15087,7 @@ func (x *CreateTriggerStmt_Seq1) String() string {
 func (*CreateTriggerStmt_Seq1) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[271]
+	mi := &file_sqlite_proto_msgTypes[270]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15167,7 +15131,7 @@ type CreateTriggerStmt_Alt2 struct {
 
 func (x *CreateTriggerStmt_Alt2) Reset() {
 	*x = CreateTriggerStmt_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[272]
+	mi := &file_sqlite_proto_msgTypes[271]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15179,7 +15143,7 @@ func (x *CreateTriggerStmt_Alt2) String() string {
 func (*CreateTriggerStmt_Alt2) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[272]
+	mi := &file_sqlite_proto_msgTypes[271]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15265,7 +15229,7 @@ type CreateTriggerStmt_Alt3 struct {
 
 func (x *CreateTriggerStmt_Alt3) Reset() {
 	*x = CreateTriggerStmt_Alt3{}
-	mi := &file_sqlite_proto_msgTypes[273]
+	mi := &file_sqlite_proto_msgTypes[272]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15277,7 +15241,7 @@ func (x *CreateTriggerStmt_Alt3) String() string {
 func (*CreateTriggerStmt_Alt3) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[273]
+	mi := &file_sqlite_proto_msgTypes[272]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15357,7 +15321,7 @@ type CreateTriggerStmt_ForEachRow struct {
 
 func (x *CreateTriggerStmt_ForEachRow) Reset() {
 	*x = CreateTriggerStmt_ForEachRow{}
-	mi := &file_sqlite_proto_msgTypes[274]
+	mi := &file_sqlite_proto_msgTypes[273]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15369,7 +15333,7 @@ func (x *CreateTriggerStmt_ForEachRow) String() string {
 func (*CreateTriggerStmt_ForEachRow) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_ForEachRow) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[274]
+	mi := &file_sqlite_proto_msgTypes[273]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15394,7 +15358,7 @@ type CreateTriggerStmt_When struct {
 
 func (x *CreateTriggerStmt_When) Reset() {
 	*x = CreateTriggerStmt_When{}
-	mi := &file_sqlite_proto_msgTypes[275]
+	mi := &file_sqlite_proto_msgTypes[274]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15406,7 +15370,7 @@ func (x *CreateTriggerStmt_When) String() string {
 func (*CreateTriggerStmt_When) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_When) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[275]
+	mi := &file_sqlite_proto_msgTypes[274]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15444,7 +15408,7 @@ type CreateTriggerStmt_Alt4 struct {
 
 func (x *CreateTriggerStmt_Alt4) Reset() {
 	*x = CreateTriggerStmt_Alt4{}
-	mi := &file_sqlite_proto_msgTypes[276]
+	mi := &file_sqlite_proto_msgTypes[275]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15456,7 +15420,7 @@ func (x *CreateTriggerStmt_Alt4) String() string {
 func (*CreateTriggerStmt_Alt4) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt4) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[276]
+	mi := &file_sqlite_proto_msgTypes[275]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15553,7 +15517,7 @@ type CreateTriggerStmt_Seq2 struct {
 
 func (x *CreateTriggerStmt_Seq2) Reset() {
 	*x = CreateTriggerStmt_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[277]
+	mi := &file_sqlite_proto_msgTypes[276]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15565,7 +15529,7 @@ func (x *CreateTriggerStmt_Seq2) String() string {
 func (*CreateTriggerStmt_Seq2) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[277]
+	mi := &file_sqlite_proto_msgTypes[276]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15603,7 +15567,7 @@ type CreateTriggerStmt_Alt2_InsteadOf struct {
 
 func (x *CreateTriggerStmt_Alt2_InsteadOf) Reset() {
 	*x = CreateTriggerStmt_Alt2_InsteadOf{}
-	mi := &file_sqlite_proto_msgTypes[278]
+	mi := &file_sqlite_proto_msgTypes[277]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15615,7 +15579,7 @@ func (x *CreateTriggerStmt_Alt2_InsteadOf) String() string {
 func (*CreateTriggerStmt_Alt2_InsteadOf) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt2_InsteadOf) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[278]
+	mi := &file_sqlite_proto_msgTypes[277]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15640,7 +15604,7 @@ type CreateTriggerStmt_Alt3_Update struct {
 
 func (x *CreateTriggerStmt_Alt3_Update) Reset() {
 	*x = CreateTriggerStmt_Alt3_Update{}
-	mi := &file_sqlite_proto_msgTypes[279]
+	mi := &file_sqlite_proto_msgTypes[278]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15652,7 +15616,7 @@ func (x *CreateTriggerStmt_Alt3_Update) String() string {
 func (*CreateTriggerStmt_Alt3_Update) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt3_Update) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[279]
+	mi := &file_sqlite_proto_msgTypes[278]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15684,7 +15648,7 @@ type CreateTriggerStmt_Alt3_Update_Of struct {
 
 func (x *CreateTriggerStmt_Alt3_Update_Of) Reset() {
 	*x = CreateTriggerStmt_Alt3_Update_Of{}
-	mi := &file_sqlite_proto_msgTypes[280]
+	mi := &file_sqlite_proto_msgTypes[279]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15696,7 +15660,7 @@ func (x *CreateTriggerStmt_Alt3_Update_Of) String() string {
 func (*CreateTriggerStmt_Alt3_Update_Of) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Alt3_Update_Of) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[280]
+	mi := &file_sqlite_proto_msgTypes[279]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15734,7 +15698,7 @@ type CreateTriggerStmt_Seq2_Alt1 struct {
 
 func (x *CreateTriggerStmt_Seq2_Alt1) Reset() {
 	*x = CreateTriggerStmt_Seq2_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[281]
+	mi := &file_sqlite_proto_msgTypes[280]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15746,7 +15710,7 @@ func (x *CreateTriggerStmt_Seq2_Alt1) String() string {
 func (*CreateTriggerStmt_Seq2_Alt1) ProtoMessage() {}
 
 func (x *CreateTriggerStmt_Seq2_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[281]
+	mi := &file_sqlite_proto_msgTypes[280]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15846,7 +15810,7 @@ type CreateViewStmt_Alt1 struct {
 
 func (x *CreateViewStmt_Alt1) Reset() {
 	*x = CreateViewStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[282]
+	mi := &file_sqlite_proto_msgTypes[281]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15858,7 +15822,7 @@ func (x *CreateViewStmt_Alt1) String() string {
 func (*CreateViewStmt_Alt1) ProtoMessage() {}
 
 func (x *CreateViewStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[282]
+	mi := &file_sqlite_proto_msgTypes[281]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15923,7 +15887,7 @@ type CreateViewStmt_IfNotExists struct {
 
 func (x *CreateViewStmt_IfNotExists) Reset() {
 	*x = CreateViewStmt_IfNotExists{}
-	mi := &file_sqlite_proto_msgTypes[283]
+	mi := &file_sqlite_proto_msgTypes[282]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15935,7 +15899,7 @@ func (x *CreateViewStmt_IfNotExists) String() string {
 func (*CreateViewStmt_IfNotExists) ProtoMessage() {}
 
 func (x *CreateViewStmt_IfNotExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[283]
+	mi := &file_sqlite_proto_msgTypes[282]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -15961,7 +15925,7 @@ type CreateViewStmt_Seq1 struct {
 
 func (x *CreateViewStmt_Seq1) Reset() {
 	*x = CreateViewStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[284]
+	mi := &file_sqlite_proto_msgTypes[283]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -15973,7 +15937,7 @@ func (x *CreateViewStmt_Seq1) String() string {
 func (*CreateViewStmt_Seq1) ProtoMessage() {}
 
 func (x *CreateViewStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[284]
+	mi := &file_sqlite_proto_msgTypes[283]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16013,7 +15977,7 @@ type CreateViewStmt_LeftParenthesis struct {
 
 func (x *CreateViewStmt_LeftParenthesis) Reset() {
 	*x = CreateViewStmt_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[285]
+	mi := &file_sqlite_proto_msgTypes[284]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16025,7 +15989,7 @@ func (x *CreateViewStmt_LeftParenthesis) String() string {
 func (*CreateViewStmt_LeftParenthesis) ProtoMessage() {}
 
 func (x *CreateViewStmt_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[285]
+	mi := &file_sqlite_proto_msgTypes[284]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16063,7 +16027,7 @@ type CreateVirtualTableStmt_IfNotExists struct {
 
 func (x *CreateVirtualTableStmt_IfNotExists) Reset() {
 	*x = CreateVirtualTableStmt_IfNotExists{}
-	mi := &file_sqlite_proto_msgTypes[286]
+	mi := &file_sqlite_proto_msgTypes[285]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16075,7 +16039,7 @@ func (x *CreateVirtualTableStmt_IfNotExists) String() string {
 func (*CreateVirtualTableStmt_IfNotExists) ProtoMessage() {}
 
 func (x *CreateVirtualTableStmt_IfNotExists) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[286]
+	mi := &file_sqlite_proto_msgTypes[285]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16101,7 +16065,7 @@ type CreateVirtualTableStmt_Seq1 struct {
 
 func (x *CreateVirtualTableStmt_Seq1) Reset() {
 	*x = CreateVirtualTableStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[287]
+	mi := &file_sqlite_proto_msgTypes[286]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16113,7 +16077,7 @@ func (x *CreateVirtualTableStmt_Seq1) String() string {
 func (*CreateVirtualTableStmt_Seq1) ProtoMessage() {}
 
 func (x *CreateVirtualTableStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[287]
+	mi := &file_sqlite_proto_msgTypes[286]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16153,7 +16117,7 @@ type CreateVirtualTableStmt_LeftParenthesis struct {
 
 func (x *CreateVirtualTableStmt_LeftParenthesis) Reset() {
 	*x = CreateVirtualTableStmt_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[288]
+	mi := &file_sqlite_proto_msgTypes[287]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16165,7 +16129,7 @@ func (x *CreateVirtualTableStmt_LeftParenthesis) String() string {
 func (*CreateVirtualTableStmt_LeftParenthesis) ProtoMessage() {}
 
 func (x *CreateVirtualTableStmt_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[288]
+	mi := &file_sqlite_proto_msgTypes[287]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16204,7 +16168,7 @@ type CreateVirtualTableStmt_LeftParenthesis_Seq1 struct {
 
 func (x *CreateVirtualTableStmt_LeftParenthesis_Seq1) Reset() {
 	*x = CreateVirtualTableStmt_LeftParenthesis_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[289]
+	mi := &file_sqlite_proto_msgTypes[288]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16216,7 +16180,7 @@ func (x *CreateVirtualTableStmt_LeftParenthesis_Seq1) String() string {
 func (*CreateVirtualTableStmt_LeftParenthesis_Seq1) ProtoMessage() {}
 
 func (x *CreateVirtualTableStmt_LeftParenthesis_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[289]
+	mi := &file_sqlite_proto_msgTypes[288]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16249,7 +16213,7 @@ type SelectStmt_With struct {
 
 func (x *SelectStmt_With) Reset() {
 	*x = SelectStmt_With{}
-	mi := &file_sqlite_proto_msgTypes[290]
+	mi := &file_sqlite_proto_msgTypes[289]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16261,7 +16225,7 @@ func (x *SelectStmt_With) String() string {
 func (*SelectStmt_With) ProtoMessage() {}
 
 func (x *SelectStmt_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[290]
+	mi := &file_sqlite_proto_msgTypes[289]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16301,7 +16265,7 @@ type SelectStmt_Seq1 struct {
 
 func (x *SelectStmt_Seq1) Reset() {
 	*x = SelectStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[291]
+	mi := &file_sqlite_proto_msgTypes[290]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16313,7 +16277,7 @@ func (x *SelectStmt_Seq1) String() string {
 func (*SelectStmt_Seq1) ProtoMessage() {}
 
 func (x *SelectStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[291]
+	mi := &file_sqlite_proto_msgTypes[290]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16352,7 +16316,7 @@ type SelectStmt_OrderBy struct {
 
 func (x *SelectStmt_OrderBy) Reset() {
 	*x = SelectStmt_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[292]
+	mi := &file_sqlite_proto_msgTypes[291]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16364,7 +16328,7 @@ func (x *SelectStmt_OrderBy) String() string {
 func (*SelectStmt_OrderBy) ProtoMessage() {}
 
 func (x *SelectStmt_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[292]
+	mi := &file_sqlite_proto_msgTypes[291]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16397,7 +16361,7 @@ type SelectStmt_Limit struct {
 
 func (x *SelectStmt_Limit) Reset() {
 	*x = SelectStmt_Limit{}
-	mi := &file_sqlite_proto_msgTypes[293]
+	mi := &file_sqlite_proto_msgTypes[292]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16409,7 +16373,7 @@ func (x *SelectStmt_Limit) String() string {
 func (*SelectStmt_Limit) ProtoMessage() {}
 
 func (x *SelectStmt_Limit) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[293]
+	mi := &file_sqlite_proto_msgTypes[292]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16452,7 +16416,7 @@ type SelectStmt_Limit_Alt1 struct {
 
 func (x *SelectStmt_Limit_Alt1) Reset() {
 	*x = SelectStmt_Limit_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[294]
+	mi := &file_sqlite_proto_msgTypes[293]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16464,7 +16428,7 @@ func (x *SelectStmt_Limit_Alt1) String() string {
 func (*SelectStmt_Limit_Alt1) ProtoMessage() {}
 
 func (x *SelectStmt_Limit_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[294]
+	mi := &file_sqlite_proto_msgTypes[293]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16530,7 +16494,7 @@ type SelectStmt_Limit_Alt1_Offset struct {
 
 func (x *SelectStmt_Limit_Alt1_Offset) Reset() {
 	*x = SelectStmt_Limit_Alt1_Offset{}
-	mi := &file_sqlite_proto_msgTypes[295]
+	mi := &file_sqlite_proto_msgTypes[294]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16542,7 +16506,7 @@ func (x *SelectStmt_Limit_Alt1_Offset) String() string {
 func (*SelectStmt_Limit_Alt1_Offset) ProtoMessage() {}
 
 func (x *SelectStmt_Limit_Alt1_Offset) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[295]
+	mi := &file_sqlite_proto_msgTypes[294]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16574,7 +16538,7 @@ type SelectStmt_Limit_Alt1_Comma struct {
 
 func (x *SelectStmt_Limit_Alt1_Comma) Reset() {
 	*x = SelectStmt_Limit_Alt1_Comma{}
-	mi := &file_sqlite_proto_msgTypes[296]
+	mi := &file_sqlite_proto_msgTypes[295]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16586,7 +16550,7 @@ func (x *SelectStmt_Limit_Alt1_Comma) String() string {
 func (*SelectStmt_Limit_Alt1_Comma) ProtoMessage() {}
 
 func (x *SelectStmt_Limit_Alt1_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[296]
+	mi := &file_sqlite_proto_msgTypes[295]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16623,7 +16587,7 @@ type SelectCore_Select struct {
 
 func (x *SelectCore_Select) Reset() {
 	*x = SelectCore_Select{}
-	mi := &file_sqlite_proto_msgTypes[297]
+	mi := &file_sqlite_proto_msgTypes[296]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16635,7 +16599,7 @@ func (x *SelectCore_Select) String() string {
 func (*SelectCore_Select) ProtoMessage() {}
 
 func (x *SelectCore_Select) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[297]
+	mi := &file_sqlite_proto_msgTypes[296]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16704,7 +16668,7 @@ type SelectCore_ValuesLeftParenthesis struct {
 
 func (x *SelectCore_ValuesLeftParenthesis) Reset() {
 	*x = SelectCore_ValuesLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[298]
+	mi := &file_sqlite_proto_msgTypes[297]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16716,7 +16680,7 @@ func (x *SelectCore_ValuesLeftParenthesis) String() string {
 func (*SelectCore_ValuesLeftParenthesis) ProtoMessage() {}
 
 func (x *SelectCore_ValuesLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[298]
+	mi := &file_sqlite_proto_msgTypes[297]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16766,7 +16730,7 @@ type SelectCore_Select_Alt1 struct {
 
 func (x *SelectCore_Select_Alt1) Reset() {
 	*x = SelectCore_Select_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[299]
+	mi := &file_sqlite_proto_msgTypes[298]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16778,7 +16742,7 @@ func (x *SelectCore_Select_Alt1) String() string {
 func (*SelectCore_Select_Alt1) ProtoMessage() {}
 
 func (x *SelectCore_Select_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[299]
+	mi := &file_sqlite_proto_msgTypes[298]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16844,7 +16808,7 @@ type SelectCore_Select_From struct {
 
 func (x *SelectCore_Select_From) Reset() {
 	*x = SelectCore_Select_From{}
-	mi := &file_sqlite_proto_msgTypes[300]
+	mi := &file_sqlite_proto_msgTypes[299]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16856,7 +16820,7 @@ func (x *SelectCore_Select_From) String() string {
 func (*SelectCore_Select_From) ProtoMessage() {}
 
 func (x *SelectCore_Select_From) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[300]
+	mi := &file_sqlite_proto_msgTypes[299]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16888,7 +16852,7 @@ type SelectCore_Select_Where struct {
 
 func (x *SelectCore_Select_Where) Reset() {
 	*x = SelectCore_Select_Where{}
-	mi := &file_sqlite_proto_msgTypes[301]
+	mi := &file_sqlite_proto_msgTypes[300]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16900,7 +16864,7 @@ func (x *SelectCore_Select_Where) String() string {
 func (*SelectCore_Select_Where) ProtoMessage() {}
 
 func (x *SelectCore_Select_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[301]
+	mi := &file_sqlite_proto_msgTypes[300]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16933,7 +16897,7 @@ type SelectCore_Select_GroupBy struct {
 
 func (x *SelectCore_Select_GroupBy) Reset() {
 	*x = SelectCore_Select_GroupBy{}
-	mi := &file_sqlite_proto_msgTypes[302]
+	mi := &file_sqlite_proto_msgTypes[301]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16945,7 +16909,7 @@ func (x *SelectCore_Select_GroupBy) String() string {
 func (*SelectCore_Select_GroupBy) ProtoMessage() {}
 
 func (x *SelectCore_Select_GroupBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[302]
+	mi := &file_sqlite_proto_msgTypes[301]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -16987,7 +16951,7 @@ type SelectCore_Select_Window struct {
 
 func (x *SelectCore_Select_Window) Reset() {
 	*x = SelectCore_Select_Window{}
-	mi := &file_sqlite_proto_msgTypes[303]
+	mi := &file_sqlite_proto_msgTypes[302]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -16999,7 +16963,7 @@ func (x *SelectCore_Select_Window) String() string {
 func (*SelectCore_Select_Window) ProtoMessage() {}
 
 func (x *SelectCore_Select_Window) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[303]
+	mi := &file_sqlite_proto_msgTypes[302]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17056,7 +17020,7 @@ type SelectCore_Select_From_Alt1 struct {
 
 func (x *SelectCore_Select_From_Alt1) Reset() {
 	*x = SelectCore_Select_From_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[304]
+	mi := &file_sqlite_proto_msgTypes[303]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17068,7 +17032,7 @@ func (x *SelectCore_Select_From_Alt1) String() string {
 func (*SelectCore_Select_From_Alt1) ProtoMessage() {}
 
 func (x *SelectCore_Select_From_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[304]
+	mi := &file_sqlite_proto_msgTypes[303]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17134,7 +17098,7 @@ type SelectCore_Select_From_Alt1_Seq1 struct {
 
 func (x *SelectCore_Select_From_Alt1_Seq1) Reset() {
 	*x = SelectCore_Select_From_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[305]
+	mi := &file_sqlite_proto_msgTypes[304]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17146,7 +17110,7 @@ func (x *SelectCore_Select_From_Alt1_Seq1) String() string {
 func (*SelectCore_Select_From_Alt1_Seq1) ProtoMessage() {}
 
 func (x *SelectCore_Select_From_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[305]
+	mi := &file_sqlite_proto_msgTypes[304]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17178,7 +17142,7 @@ type SelectCore_Select_GroupBy_Having struct {
 
 func (x *SelectCore_Select_GroupBy_Having) Reset() {
 	*x = SelectCore_Select_GroupBy_Having{}
-	mi := &file_sqlite_proto_msgTypes[306]
+	mi := &file_sqlite_proto_msgTypes[305]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17190,7 +17154,7 @@ func (x *SelectCore_Select_GroupBy_Having) String() string {
 func (*SelectCore_Select_GroupBy_Having) ProtoMessage() {}
 
 func (x *SelectCore_Select_GroupBy_Having) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[306]
+	mi := &file_sqlite_proto_msgTypes[305]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17224,7 +17188,7 @@ type SelectCore_Select_Window_Comma struct {
 
 func (x *SelectCore_Select_Window_Comma) Reset() {
 	*x = SelectCore_Select_Window_Comma{}
-	mi := &file_sqlite_proto_msgTypes[307]
+	mi := &file_sqlite_proto_msgTypes[306]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17236,7 +17200,7 @@ func (x *SelectCore_Select_Window_Comma) String() string {
 func (*SelectCore_Select_Window_Comma) ProtoMessage() {}
 
 func (x *SelectCore_Select_Window_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[307]
+	mi := &file_sqlite_proto_msgTypes[306]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17283,7 +17247,7 @@ type SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis struct {
 
 func (x *SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis) Reset() {
 	*x = SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[308]
+	mi := &file_sqlite_proto_msgTypes[307]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17295,7 +17259,7 @@ func (x *SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis) String() string 
 func (*SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis) ProtoMessage() {}
 
 func (x *SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[308]
+	mi := &file_sqlite_proto_msgTypes[307]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17335,7 +17299,7 @@ type FactoredSelectStmt_With struct {
 
 func (x *FactoredSelectStmt_With) Reset() {
 	*x = FactoredSelectStmt_With{}
-	mi := &file_sqlite_proto_msgTypes[309]
+	mi := &file_sqlite_proto_msgTypes[308]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17347,7 +17311,7 @@ func (x *FactoredSelectStmt_With) String() string {
 func (*FactoredSelectStmt_With) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[309]
+	mi := &file_sqlite_proto_msgTypes[308]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17387,7 +17351,7 @@ type FactoredSelectStmt_Seq1 struct {
 
 func (x *FactoredSelectStmt_Seq1) Reset() {
 	*x = FactoredSelectStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[310]
+	mi := &file_sqlite_proto_msgTypes[309]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17399,7 +17363,7 @@ func (x *FactoredSelectStmt_Seq1) String() string {
 func (*FactoredSelectStmt_Seq1) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[310]
+	mi := &file_sqlite_proto_msgTypes[309]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17438,7 +17402,7 @@ type FactoredSelectStmt_OrderBy struct {
 
 func (x *FactoredSelectStmt_OrderBy) Reset() {
 	*x = FactoredSelectStmt_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[311]
+	mi := &file_sqlite_proto_msgTypes[310]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17450,7 +17414,7 @@ func (x *FactoredSelectStmt_OrderBy) String() string {
 func (*FactoredSelectStmt_OrderBy) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[311]
+	mi := &file_sqlite_proto_msgTypes[310]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17483,7 +17447,7 @@ type FactoredSelectStmt_Limit struct {
 
 func (x *FactoredSelectStmt_Limit) Reset() {
 	*x = FactoredSelectStmt_Limit{}
-	mi := &file_sqlite_proto_msgTypes[312]
+	mi := &file_sqlite_proto_msgTypes[311]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17495,7 +17459,7 @@ func (x *FactoredSelectStmt_Limit) String() string {
 func (*FactoredSelectStmt_Limit) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_Limit) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[312]
+	mi := &file_sqlite_proto_msgTypes[311]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17538,7 +17502,7 @@ type FactoredSelectStmt_Limit_Alt1 struct {
 
 func (x *FactoredSelectStmt_Limit_Alt1) Reset() {
 	*x = FactoredSelectStmt_Limit_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[313]
+	mi := &file_sqlite_proto_msgTypes[312]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17550,7 +17514,7 @@ func (x *FactoredSelectStmt_Limit_Alt1) String() string {
 func (*FactoredSelectStmt_Limit_Alt1) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_Limit_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[313]
+	mi := &file_sqlite_proto_msgTypes[312]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17616,7 +17580,7 @@ type FactoredSelectStmt_Limit_Alt1_Offset struct {
 
 func (x *FactoredSelectStmt_Limit_Alt1_Offset) Reset() {
 	*x = FactoredSelectStmt_Limit_Alt1_Offset{}
-	mi := &file_sqlite_proto_msgTypes[314]
+	mi := &file_sqlite_proto_msgTypes[313]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17628,7 +17592,7 @@ func (x *FactoredSelectStmt_Limit_Alt1_Offset) String() string {
 func (*FactoredSelectStmt_Limit_Alt1_Offset) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_Limit_Alt1_Offset) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[314]
+	mi := &file_sqlite_proto_msgTypes[313]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17660,7 +17624,7 @@ type FactoredSelectStmt_Limit_Alt1_Comma struct {
 
 func (x *FactoredSelectStmt_Limit_Alt1_Comma) Reset() {
 	*x = FactoredSelectStmt_Limit_Alt1_Comma{}
-	mi := &file_sqlite_proto_msgTypes[315]
+	mi := &file_sqlite_proto_msgTypes[314]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17672,7 +17636,7 @@ func (x *FactoredSelectStmt_Limit_Alt1_Comma) String() string {
 func (*FactoredSelectStmt_Limit_Alt1_Comma) ProtoMessage() {}
 
 func (x *FactoredSelectStmt_Limit_Alt1_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[315]
+	mi := &file_sqlite_proto_msgTypes[314]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17705,7 +17669,7 @@ type ResultColumn_Seq1 struct {
 
 func (x *ResultColumn_Seq1) Reset() {
 	*x = ResultColumn_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[316]
+	mi := &file_sqlite_proto_msgTypes[315]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17717,7 +17681,7 @@ func (x *ResultColumn_Seq1) String() string {
 func (*ResultColumn_Seq1) ProtoMessage() {}
 
 func (x *ResultColumn_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[316]
+	mi := &file_sqlite_proto_msgTypes[315]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17758,7 +17722,7 @@ type ResultColumn_Seq2 struct {
 
 func (x *ResultColumn_Seq2) Reset() {
 	*x = ResultColumn_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[317]
+	mi := &file_sqlite_proto_msgTypes[316]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17770,7 +17734,7 @@ func (x *ResultColumn_Seq2) String() string {
 func (*ResultColumn_Seq2) ProtoMessage() {}
 
 func (x *ResultColumn_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[317]
+	mi := &file_sqlite_proto_msgTypes[316]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17817,7 +17781,7 @@ type ResultColumn_Seq1_Seq1 struct {
 
 func (x *ResultColumn_Seq1_Seq1) Reset() {
 	*x = ResultColumn_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[318]
+	mi := &file_sqlite_proto_msgTypes[317]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17829,7 +17793,7 @@ func (x *ResultColumn_Seq1_Seq1) String() string {
 func (*ResultColumn_Seq1_Seq1) ProtoMessage() {}
 
 func (x *ResultColumn_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[318]
+	mi := &file_sqlite_proto_msgTypes[317]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17867,7 +17831,7 @@ type CompoundOperator_UnionAll struct {
 
 func (x *CompoundOperator_UnionAll) Reset() {
 	*x = CompoundOperator_UnionAll{}
-	mi := &file_sqlite_proto_msgTypes[319]
+	mi := &file_sqlite_proto_msgTypes[318]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17879,7 +17843,7 @@ func (x *CompoundOperator_UnionAll) String() string {
 func (*CompoundOperator_UnionAll) ProtoMessage() {}
 
 func (x *CompoundOperator_UnionAll) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[319]
+	mi := &file_sqlite_proto_msgTypes[318]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17905,7 +17869,7 @@ type CommonTableExpression_LeftParenthesis struct {
 
 func (x *CommonTableExpression_LeftParenthesis) Reset() {
 	*x = CommonTableExpression_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[320]
+	mi := &file_sqlite_proto_msgTypes[319]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17917,7 +17881,7 @@ func (x *CommonTableExpression_LeftParenthesis) String() string {
 func (*CommonTableExpression_LeftParenthesis) ProtoMessage() {}
 
 func (x *CommonTableExpression_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[320]
+	mi := &file_sqlite_proto_msgTypes[319]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -17960,7 +17924,7 @@ type CommonTableExpression_Alt1 struct {
 
 func (x *CommonTableExpression_Alt1) Reset() {
 	*x = CommonTableExpression_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[321]
+	mi := &file_sqlite_proto_msgTypes[320]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -17972,7 +17936,7 @@ func (x *CommonTableExpression_Alt1) String() string {
 func (*CommonTableExpression_Alt1) ProtoMessage() {}
 
 func (x *CommonTableExpression_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[321]
+	mi := &file_sqlite_proto_msgTypes[320]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18037,7 +18001,7 @@ type CommonTableExpression_Alt1_NotMaterialized struct {
 
 func (x *CommonTableExpression_Alt1_NotMaterialized) Reset() {
 	*x = CommonTableExpression_Alt1_NotMaterialized{}
-	mi := &file_sqlite_proto_msgTypes[322]
+	mi := &file_sqlite_proto_msgTypes[321]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18049,7 +18013,7 @@ func (x *CommonTableExpression_Alt1_NotMaterialized) String() string {
 func (*CommonTableExpression_Alt1_NotMaterialized) ProtoMessage() {}
 
 func (x *CommonTableExpression_Alt1_NotMaterialized) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[322]
+	mi := &file_sqlite_proto_msgTypes[321]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18078,7 +18042,7 @@ type WithClause_Alt1 struct {
 
 func (x *WithClause_Alt1) Reset() {
 	*x = WithClause_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[323]
+	mi := &file_sqlite_proto_msgTypes[322]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18090,7 +18054,7 @@ func (x *WithClause_Alt1) String() string {
 func (*WithClause_Alt1) ProtoMessage() {}
 
 func (x *WithClause_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[323]
+	mi := &file_sqlite_proto_msgTypes[322]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18161,7 +18125,7 @@ type WithClause_Comma struct {
 
 func (x *WithClause_Comma) Reset() {
 	*x = WithClause_Comma{}
-	mi := &file_sqlite_proto_msgTypes[324]
+	mi := &file_sqlite_proto_msgTypes[323]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18173,7 +18137,7 @@ func (x *WithClause_Comma) String() string {
 func (*WithClause_Comma) ProtoMessage() {}
 
 func (x *WithClause_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[324]
+	mi := &file_sqlite_proto_msgTypes[323]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18239,7 +18203,7 @@ type WithClause_Alt1_NotMaterialized struct {
 
 func (x *WithClause_Alt1_NotMaterialized) Reset() {
 	*x = WithClause_Alt1_NotMaterialized{}
-	mi := &file_sqlite_proto_msgTypes[325]
+	mi := &file_sqlite_proto_msgTypes[324]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18251,7 +18215,7 @@ func (x *WithClause_Alt1_NotMaterialized) String() string {
 func (*WithClause_Alt1_NotMaterialized) ProtoMessage() {}
 
 func (x *WithClause_Alt1_NotMaterialized) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[325]
+	mi := &file_sqlite_proto_msgTypes[324]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18280,7 +18244,7 @@ type WithClause_Comma_Alt1 struct {
 
 func (x *WithClause_Comma_Alt1) Reset() {
 	*x = WithClause_Comma_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[326]
+	mi := &file_sqlite_proto_msgTypes[325]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18292,7 +18256,7 @@ func (x *WithClause_Comma_Alt1) String() string {
 func (*WithClause_Comma_Alt1) ProtoMessage() {}
 
 func (x *WithClause_Comma_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[326]
+	mi := &file_sqlite_proto_msgTypes[325]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18357,7 +18321,7 @@ type WithClause_Comma_Alt1_NotMaterialized struct {
 
 func (x *WithClause_Comma_Alt1_NotMaterialized) Reset() {
 	*x = WithClause_Comma_Alt1_NotMaterialized{}
-	mi := &file_sqlite_proto_msgTypes[327]
+	mi := &file_sqlite_proto_msgTypes[326]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18369,7 +18333,7 @@ func (x *WithClause_Comma_Alt1_NotMaterialized) String() string {
 func (*WithClause_Comma_Alt1_NotMaterialized) ProtoMessage() {}
 
 func (x *WithClause_Comma_Alt1_NotMaterialized) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[327]
+	mi := &file_sqlite_proto_msgTypes[326]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18395,7 +18359,7 @@ type DeleteStmt_With struct {
 
 func (x *DeleteStmt_With) Reset() {
 	*x = DeleteStmt_With{}
-	mi := &file_sqlite_proto_msgTypes[328]
+	mi := &file_sqlite_proto_msgTypes[327]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18407,7 +18371,7 @@ func (x *DeleteStmt_With) String() string {
 func (*DeleteStmt_With) ProtoMessage() {}
 
 func (x *DeleteStmt_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[328]
+	mi := &file_sqlite_proto_msgTypes[327]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18446,7 +18410,7 @@ type DeleteStmt_Where struct {
 
 func (x *DeleteStmt_Where) Reset() {
 	*x = DeleteStmt_Where{}
-	mi := &file_sqlite_proto_msgTypes[329]
+	mi := &file_sqlite_proto_msgTypes[328]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18458,7 +18422,7 @@ func (x *DeleteStmt_Where) String() string {
 func (*DeleteStmt_Where) ProtoMessage() {}
 
 func (x *DeleteStmt_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[329]
+	mi := &file_sqlite_proto_msgTypes[328]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18491,7 +18455,7 @@ type DeleteStmtLimited_With struct {
 
 func (x *DeleteStmtLimited_With) Reset() {
 	*x = DeleteStmtLimited_With{}
-	mi := &file_sqlite_proto_msgTypes[330]
+	mi := &file_sqlite_proto_msgTypes[329]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18503,7 +18467,7 @@ func (x *DeleteStmtLimited_With) String() string {
 func (*DeleteStmtLimited_With) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[330]
+	mi := &file_sqlite_proto_msgTypes[329]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18542,7 +18506,7 @@ type DeleteStmtLimited_Where struct {
 
 func (x *DeleteStmtLimited_Where) Reset() {
 	*x = DeleteStmtLimited_Where{}
-	mi := &file_sqlite_proto_msgTypes[331]
+	mi := &file_sqlite_proto_msgTypes[330]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18554,7 +18518,7 @@ func (x *DeleteStmtLimited_Where) String() string {
 func (*DeleteStmtLimited_Where) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[331]
+	mi := &file_sqlite_proto_msgTypes[330]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18586,7 +18550,7 @@ type DeleteStmtLimited_OrderBy struct {
 
 func (x *DeleteStmtLimited_OrderBy) Reset() {
 	*x = DeleteStmtLimited_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[332]
+	mi := &file_sqlite_proto_msgTypes[331]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18598,7 +18562,7 @@ func (x *DeleteStmtLimited_OrderBy) String() string {
 func (*DeleteStmtLimited_OrderBy) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[332]
+	mi := &file_sqlite_proto_msgTypes[331]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18634,7 +18598,7 @@ type DeleteStmtLimited_Alt1 struct {
 
 func (x *DeleteStmtLimited_Alt1) Reset() {
 	*x = DeleteStmtLimited_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[333]
+	mi := &file_sqlite_proto_msgTypes[332]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18646,7 +18610,7 @@ func (x *DeleteStmtLimited_Alt1) String() string {
 func (*DeleteStmtLimited_Alt1) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[333]
+	mi := &file_sqlite_proto_msgTypes[332]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18712,7 +18676,7 @@ type DeleteStmtLimited_Alt1_Offset struct {
 
 func (x *DeleteStmtLimited_Alt1_Offset) Reset() {
 	*x = DeleteStmtLimited_Alt1_Offset{}
-	mi := &file_sqlite_proto_msgTypes[334]
+	mi := &file_sqlite_proto_msgTypes[333]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18724,7 +18688,7 @@ func (x *DeleteStmtLimited_Alt1_Offset) String() string {
 func (*DeleteStmtLimited_Alt1_Offset) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_Alt1_Offset) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[334]
+	mi := &file_sqlite_proto_msgTypes[333]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18756,7 +18720,7 @@ type DeleteStmtLimited_Alt1_Comma struct {
 
 func (x *DeleteStmtLimited_Alt1_Comma) Reset() {
 	*x = DeleteStmtLimited_Alt1_Comma{}
-	mi := &file_sqlite_proto_msgTypes[335]
+	mi := &file_sqlite_proto_msgTypes[334]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18768,7 +18732,7 @@ func (x *DeleteStmtLimited_Alt1_Comma) String() string {
 func (*DeleteStmtLimited_Alt1_Comma) ProtoMessage() {}
 
 func (x *DeleteStmtLimited_Alt1_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[335]
+	mi := &file_sqlite_proto_msgTypes[334]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18801,7 +18765,7 @@ type InsertStmt_With struct {
 
 func (x *InsertStmt_With) Reset() {
 	*x = InsertStmt_With{}
-	mi := &file_sqlite_proto_msgTypes[336]
+	mi := &file_sqlite_proto_msgTypes[335]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18813,7 +18777,7 @@ func (x *InsertStmt_With) String() string {
 func (*InsertStmt_With) ProtoMessage() {}
 
 func (x *InsertStmt_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[336]
+	mi := &file_sqlite_proto_msgTypes[335]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18857,7 +18821,7 @@ type InsertStmt_Alt1 struct {
 
 func (x *InsertStmt_Alt1) Reset() {
 	*x = InsertStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[337]
+	mi := &file_sqlite_proto_msgTypes[336]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18869,7 +18833,7 @@ func (x *InsertStmt_Alt1) String() string {
 func (*InsertStmt_Alt1) ProtoMessage() {}
 
 func (x *InsertStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[337]
+	mi := &file_sqlite_proto_msgTypes[336]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -18951,7 +18915,7 @@ type InsertStmt_Seq1 struct {
 
 func (x *InsertStmt_Seq1) Reset() {
 	*x = InsertStmt_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[338]
+	mi := &file_sqlite_proto_msgTypes[337]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -18963,7 +18927,7 @@ func (x *InsertStmt_Seq1) String() string {
 func (*InsertStmt_Seq1) ProtoMessage() {}
 
 func (x *InsertStmt_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[338]
+	mi := &file_sqlite_proto_msgTypes[337]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19002,7 +18966,7 @@ type InsertStmt_As struct {
 
 func (x *InsertStmt_As) Reset() {
 	*x = InsertStmt_As{}
-	mi := &file_sqlite_proto_msgTypes[339]
+	mi := &file_sqlite_proto_msgTypes[338]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19014,7 +18978,7 @@ func (x *InsertStmt_As) String() string {
 func (*InsertStmt_As) ProtoMessage() {}
 
 func (x *InsertStmt_As) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[339]
+	mi := &file_sqlite_proto_msgTypes[338]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19047,7 +19011,7 @@ type InsertStmt_LeftParenthesis struct {
 
 func (x *InsertStmt_LeftParenthesis) Reset() {
 	*x = InsertStmt_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[340]
+	mi := &file_sqlite_proto_msgTypes[339]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19059,7 +19023,7 @@ func (x *InsertStmt_LeftParenthesis) String() string {
 func (*InsertStmt_LeftParenthesis) ProtoMessage() {}
 
 func (x *InsertStmt_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[340]
+	mi := &file_sqlite_proto_msgTypes[339]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19103,7 +19067,7 @@ type InsertStmt_Alt2 struct {
 
 func (x *InsertStmt_Alt2) Reset() {
 	*x = InsertStmt_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[341]
+	mi := &file_sqlite_proto_msgTypes[340]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19115,7 +19079,7 @@ func (x *InsertStmt_Alt2) String() string {
 func (*InsertStmt_Alt2) ProtoMessage() {}
 
 func (x *InsertStmt_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[341]
+	mi := &file_sqlite_proto_msgTypes[340]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19196,7 +19160,7 @@ type InsertStmt_Alt1_InsertOr struct {
 
 func (x *InsertStmt_Alt1_InsertOr) Reset() {
 	*x = InsertStmt_Alt1_InsertOr{}
-	mi := &file_sqlite_proto_msgTypes[342]
+	mi := &file_sqlite_proto_msgTypes[341]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19208,7 +19172,7 @@ func (x *InsertStmt_Alt1_InsertOr) String() string {
 func (*InsertStmt_Alt1_InsertOr) ProtoMessage() {}
 
 func (x *InsertStmt_Alt1_InsertOr) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[342]
+	mi := &file_sqlite_proto_msgTypes[341]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19247,7 +19211,7 @@ type InsertStmt_Alt1_InsertOr_Alt1 struct {
 
 func (x *InsertStmt_Alt1_InsertOr_Alt1) Reset() {
 	*x = InsertStmt_Alt1_InsertOr_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[343]
+	mi := &file_sqlite_proto_msgTypes[342]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19259,7 +19223,7 @@ func (x *InsertStmt_Alt1_InsertOr_Alt1) String() string {
 func (*InsertStmt_Alt1_InsertOr_Alt1) ProtoMessage() {}
 
 func (x *InsertStmt_Alt1_InsertOr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[343]
+	mi := &file_sqlite_proto_msgTypes[342]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19373,7 +19337,7 @@ type InsertStmt_Alt2_ValuesLeftParenthesis struct {
 
 func (x *InsertStmt_Alt2_ValuesLeftParenthesis) Reset() {
 	*x = InsertStmt_Alt2_ValuesLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[344]
+	mi := &file_sqlite_proto_msgTypes[343]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19385,7 +19349,7 @@ func (x *InsertStmt_Alt2_ValuesLeftParenthesis) String() string {
 func (*InsertStmt_Alt2_ValuesLeftParenthesis) ProtoMessage() {}
 
 func (x *InsertStmt_Alt2_ValuesLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[344]
+	mi := &file_sqlite_proto_msgTypes[343]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19439,7 +19403,7 @@ type InsertStmt_Alt2_Seq1 struct {
 
 func (x *InsertStmt_Alt2_Seq1) Reset() {
 	*x = InsertStmt_Alt2_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[345]
+	mi := &file_sqlite_proto_msgTypes[344]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19451,7 +19415,7 @@ func (x *InsertStmt_Alt2_Seq1) String() string {
 func (*InsertStmt_Alt2_Seq1) ProtoMessage() {}
 
 func (x *InsertStmt_Alt2_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[345]
+	mi := &file_sqlite_proto_msgTypes[344]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19489,7 +19453,7 @@ type InsertStmt_Alt2_DefaultValues struct {
 
 func (x *InsertStmt_Alt2_DefaultValues) Reset() {
 	*x = InsertStmt_Alt2_DefaultValues{}
-	mi := &file_sqlite_proto_msgTypes[346]
+	mi := &file_sqlite_proto_msgTypes[345]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19501,7 +19465,7 @@ func (x *InsertStmt_Alt2_DefaultValues) String() string {
 func (*InsertStmt_Alt2_DefaultValues) ProtoMessage() {}
 
 func (x *InsertStmt_Alt2_DefaultValues) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[346]
+	mi := &file_sqlite_proto_msgTypes[345]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19527,7 +19491,7 @@ type InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis struct {
 
 func (x *InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis) Reset() {
 	*x = InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[347]
+	mi := &file_sqlite_proto_msgTypes[346]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19539,7 +19503,7 @@ func (x *InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis) String() st
 func (*InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis) ProtoMessage() {}
 
 func (x *InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[347]
+	mi := &file_sqlite_proto_msgTypes[346]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19579,7 +19543,7 @@ type UpdateStmt_With struct {
 
 func (x *UpdateStmt_With) Reset() {
 	*x = UpdateStmt_With{}
-	mi := &file_sqlite_proto_msgTypes[348]
+	mi := &file_sqlite_proto_msgTypes[347]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19591,7 +19555,7 @@ func (x *UpdateStmt_With) String() string {
 func (*UpdateStmt_With) ProtoMessage() {}
 
 func (x *UpdateStmt_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[348]
+	mi := &file_sqlite_proto_msgTypes[347]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19634,7 +19598,7 @@ type UpdateStmt_Alt1 struct {
 
 func (x *UpdateStmt_Alt1) Reset() {
 	*x = UpdateStmt_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[349]
+	mi := &file_sqlite_proto_msgTypes[348]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19646,7 +19610,7 @@ func (x *UpdateStmt_Alt1) String() string {
 func (*UpdateStmt_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmt_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[349]
+	mi := &file_sqlite_proto_msgTypes[348]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19716,7 +19680,7 @@ type UpdateStmt_Alt2 struct {
 
 func (x *UpdateStmt_Alt2) Reset() {
 	*x = UpdateStmt_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[350]
+	mi := &file_sqlite_proto_msgTypes[349]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19728,7 +19692,7 @@ func (x *UpdateStmt_Alt2) String() string {
 func (*UpdateStmt_Alt2) ProtoMessage() {}
 
 func (x *UpdateStmt_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[350]
+	mi := &file_sqlite_proto_msgTypes[349]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19796,7 +19760,7 @@ type UpdateStmt_Comma struct {
 
 func (x *UpdateStmt_Comma) Reset() {
 	*x = UpdateStmt_Comma{}
-	mi := &file_sqlite_proto_msgTypes[351]
+	mi := &file_sqlite_proto_msgTypes[350]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19808,7 +19772,7 @@ func (x *UpdateStmt_Comma) String() string {
 func (*UpdateStmt_Comma) ProtoMessage() {}
 
 func (x *UpdateStmt_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[351]
+	mi := &file_sqlite_proto_msgTypes[350]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19854,7 +19818,7 @@ type UpdateStmt_From struct {
 
 func (x *UpdateStmt_From) Reset() {
 	*x = UpdateStmt_From{}
-	mi := &file_sqlite_proto_msgTypes[352]
+	mi := &file_sqlite_proto_msgTypes[351]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19866,7 +19830,7 @@ func (x *UpdateStmt_From) String() string {
 func (*UpdateStmt_From) ProtoMessage() {}
 
 func (x *UpdateStmt_From) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[352]
+	mi := &file_sqlite_proto_msgTypes[351]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19898,7 +19862,7 @@ type UpdateStmt_Where struct {
 
 func (x *UpdateStmt_Where) Reset() {
 	*x = UpdateStmt_Where{}
-	mi := &file_sqlite_proto_msgTypes[353]
+	mi := &file_sqlite_proto_msgTypes[352]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19910,7 +19874,7 @@ func (x *UpdateStmt_Where) String() string {
 func (*UpdateStmt_Where) ProtoMessage() {}
 
 func (x *UpdateStmt_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[353]
+	mi := &file_sqlite_proto_msgTypes[352]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19942,7 +19906,7 @@ type UpdateStmt_Alt1_UpdateOr struct {
 
 func (x *UpdateStmt_Alt1_UpdateOr) Reset() {
 	*x = UpdateStmt_Alt1_UpdateOr{}
-	mi := &file_sqlite_proto_msgTypes[354]
+	mi := &file_sqlite_proto_msgTypes[353]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -19954,7 +19918,7 @@ func (x *UpdateStmt_Alt1_UpdateOr) String() string {
 func (*UpdateStmt_Alt1_UpdateOr) ProtoMessage() {}
 
 func (x *UpdateStmt_Alt1_UpdateOr) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[354]
+	mi := &file_sqlite_proto_msgTypes[353]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -19993,7 +19957,7 @@ type UpdateStmt_Alt1_UpdateOr_Alt1 struct {
 
 func (x *UpdateStmt_Alt1_UpdateOr_Alt1) Reset() {
 	*x = UpdateStmt_Alt1_UpdateOr_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[355]
+	mi := &file_sqlite_proto_msgTypes[354]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20005,7 +19969,7 @@ func (x *UpdateStmt_Alt1_UpdateOr_Alt1) String() string {
 func (*UpdateStmt_Alt1_UpdateOr_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmt_Alt1_UpdateOr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[355]
+	mi := &file_sqlite_proto_msgTypes[354]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20120,7 +20084,7 @@ type UpdateStmt_Comma_Alt1 struct {
 
 func (x *UpdateStmt_Comma_Alt1) Reset() {
 	*x = UpdateStmt_Comma_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[356]
+	mi := &file_sqlite_proto_msgTypes[355]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20132,7 +20096,7 @@ func (x *UpdateStmt_Comma_Alt1) String() string {
 func (*UpdateStmt_Comma_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmt_Comma_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[356]
+	mi := &file_sqlite_proto_msgTypes[355]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20202,7 +20166,7 @@ type UpdateStmt_From_Alt1 struct {
 
 func (x *UpdateStmt_From_Alt1) Reset() {
 	*x = UpdateStmt_From_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[357]
+	mi := &file_sqlite_proto_msgTypes[356]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20214,7 +20178,7 @@ func (x *UpdateStmt_From_Alt1) String() string {
 func (*UpdateStmt_From_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmt_From_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[357]
+	mi := &file_sqlite_proto_msgTypes[356]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20280,7 +20244,7 @@ type UpdateStmt_From_Alt1_Seq1 struct {
 
 func (x *UpdateStmt_From_Alt1_Seq1) Reset() {
 	*x = UpdateStmt_From_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[358]
+	mi := &file_sqlite_proto_msgTypes[357]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20292,7 +20256,7 @@ func (x *UpdateStmt_From_Alt1_Seq1) String() string {
 func (*UpdateStmt_From_Alt1_Seq1) ProtoMessage() {}
 
 func (x *UpdateStmt_From_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[358]
+	mi := &file_sqlite_proto_msgTypes[357]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20325,7 +20289,7 @@ type UpdateStmtLimited_With struct {
 
 func (x *UpdateStmtLimited_With) Reset() {
 	*x = UpdateStmtLimited_With{}
-	mi := &file_sqlite_proto_msgTypes[359]
+	mi := &file_sqlite_proto_msgTypes[358]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20337,7 +20301,7 @@ func (x *UpdateStmtLimited_With) String() string {
 func (*UpdateStmtLimited_With) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_With) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[359]
+	mi := &file_sqlite_proto_msgTypes[358]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20380,7 +20344,7 @@ type UpdateStmtLimited_Alt1 struct {
 
 func (x *UpdateStmtLimited_Alt1) Reset() {
 	*x = UpdateStmtLimited_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[360]
+	mi := &file_sqlite_proto_msgTypes[359]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20392,7 +20356,7 @@ func (x *UpdateStmtLimited_Alt1) String() string {
 func (*UpdateStmtLimited_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[360]
+	mi := &file_sqlite_proto_msgTypes[359]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20462,7 +20426,7 @@ type UpdateStmtLimited_Alt2 struct {
 
 func (x *UpdateStmtLimited_Alt2) Reset() {
 	*x = UpdateStmtLimited_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[361]
+	mi := &file_sqlite_proto_msgTypes[360]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20474,7 +20438,7 @@ func (x *UpdateStmtLimited_Alt2) String() string {
 func (*UpdateStmtLimited_Alt2) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[361]
+	mi := &file_sqlite_proto_msgTypes[360]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20542,7 +20506,7 @@ type UpdateStmtLimited_Comma struct {
 
 func (x *UpdateStmtLimited_Comma) Reset() {
 	*x = UpdateStmtLimited_Comma{}
-	mi := &file_sqlite_proto_msgTypes[362]
+	mi := &file_sqlite_proto_msgTypes[361]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20554,7 +20518,7 @@ func (x *UpdateStmtLimited_Comma) String() string {
 func (*UpdateStmtLimited_Comma) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[362]
+	mi := &file_sqlite_proto_msgTypes[361]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20600,7 +20564,7 @@ type UpdateStmtLimited_From struct {
 
 func (x *UpdateStmtLimited_From) Reset() {
 	*x = UpdateStmtLimited_From{}
-	mi := &file_sqlite_proto_msgTypes[363]
+	mi := &file_sqlite_proto_msgTypes[362]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20612,7 +20576,7 @@ func (x *UpdateStmtLimited_From) String() string {
 func (*UpdateStmtLimited_From) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_From) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[363]
+	mi := &file_sqlite_proto_msgTypes[362]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20644,7 +20608,7 @@ type UpdateStmtLimited_Where struct {
 
 func (x *UpdateStmtLimited_Where) Reset() {
 	*x = UpdateStmtLimited_Where{}
-	mi := &file_sqlite_proto_msgTypes[364]
+	mi := &file_sqlite_proto_msgTypes[363]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20656,7 +20620,7 @@ func (x *UpdateStmtLimited_Where) String() string {
 func (*UpdateStmtLimited_Where) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[364]
+	mi := &file_sqlite_proto_msgTypes[363]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20688,7 +20652,7 @@ type UpdateStmtLimited_OrderBy struct {
 
 func (x *UpdateStmtLimited_OrderBy) Reset() {
 	*x = UpdateStmtLimited_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[365]
+	mi := &file_sqlite_proto_msgTypes[364]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20700,7 +20664,7 @@ func (x *UpdateStmtLimited_OrderBy) String() string {
 func (*UpdateStmtLimited_OrderBy) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[365]
+	mi := &file_sqlite_proto_msgTypes[364]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20736,7 +20700,7 @@ type UpdateStmtLimited_Alt3 struct {
 
 func (x *UpdateStmtLimited_Alt3) Reset() {
 	*x = UpdateStmtLimited_Alt3{}
-	mi := &file_sqlite_proto_msgTypes[366]
+	mi := &file_sqlite_proto_msgTypes[365]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20748,7 +20712,7 @@ func (x *UpdateStmtLimited_Alt3) String() string {
 func (*UpdateStmtLimited_Alt3) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[366]
+	mi := &file_sqlite_proto_msgTypes[365]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20814,7 +20778,7 @@ type UpdateStmtLimited_Alt1_UpdateOr struct {
 
 func (x *UpdateStmtLimited_Alt1_UpdateOr) Reset() {
 	*x = UpdateStmtLimited_Alt1_UpdateOr{}
-	mi := &file_sqlite_proto_msgTypes[367]
+	mi := &file_sqlite_proto_msgTypes[366]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20826,7 +20790,7 @@ func (x *UpdateStmtLimited_Alt1_UpdateOr) String() string {
 func (*UpdateStmtLimited_Alt1_UpdateOr) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt1_UpdateOr) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[367]
+	mi := &file_sqlite_proto_msgTypes[366]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20865,7 +20829,7 @@ type UpdateStmtLimited_Alt1_UpdateOr_Alt1 struct {
 
 func (x *UpdateStmtLimited_Alt1_UpdateOr_Alt1) Reset() {
 	*x = UpdateStmtLimited_Alt1_UpdateOr_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[368]
+	mi := &file_sqlite_proto_msgTypes[367]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -20877,7 +20841,7 @@ func (x *UpdateStmtLimited_Alt1_UpdateOr_Alt1) String() string {
 func (*UpdateStmtLimited_Alt1_UpdateOr_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt1_UpdateOr_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[368]
+	mi := &file_sqlite_proto_msgTypes[367]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -20997,7 +20961,7 @@ type UpdateStmtLimited_Comma_Alt1 struct {
 
 func (x *UpdateStmtLimited_Comma_Alt1) Reset() {
 	*x = UpdateStmtLimited_Comma_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[369]
+	mi := &file_sqlite_proto_msgTypes[368]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21009,7 +20973,7 @@ func (x *UpdateStmtLimited_Comma_Alt1) String() string {
 func (*UpdateStmtLimited_Comma_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Comma_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[369]
+	mi := &file_sqlite_proto_msgTypes[368]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21079,7 +21043,7 @@ type UpdateStmtLimited_From_Alt1 struct {
 
 func (x *UpdateStmtLimited_From_Alt1) Reset() {
 	*x = UpdateStmtLimited_From_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[370]
+	mi := &file_sqlite_proto_msgTypes[369]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21091,7 +21055,7 @@ func (x *UpdateStmtLimited_From_Alt1) String() string {
 func (*UpdateStmtLimited_From_Alt1) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_From_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[370]
+	mi := &file_sqlite_proto_msgTypes[369]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21157,7 +21121,7 @@ type UpdateStmtLimited_From_Alt1_Seq1 struct {
 
 func (x *UpdateStmtLimited_From_Alt1_Seq1) Reset() {
 	*x = UpdateStmtLimited_From_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[371]
+	mi := &file_sqlite_proto_msgTypes[370]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21169,7 +21133,7 @@ func (x *UpdateStmtLimited_From_Alt1_Seq1) String() string {
 func (*UpdateStmtLimited_From_Alt1_Seq1) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_From_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[371]
+	mi := &file_sqlite_proto_msgTypes[370]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21201,7 +21165,7 @@ type UpdateStmtLimited_Alt3_Offset struct {
 
 func (x *UpdateStmtLimited_Alt3_Offset) Reset() {
 	*x = UpdateStmtLimited_Alt3_Offset{}
-	mi := &file_sqlite_proto_msgTypes[372]
+	mi := &file_sqlite_proto_msgTypes[371]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21213,7 +21177,7 @@ func (x *UpdateStmtLimited_Alt3_Offset) String() string {
 func (*UpdateStmtLimited_Alt3_Offset) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt3_Offset) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[372]
+	mi := &file_sqlite_proto_msgTypes[371]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21245,7 +21209,7 @@ type UpdateStmtLimited_Alt3_Comma struct {
 
 func (x *UpdateStmtLimited_Alt3_Comma) Reset() {
 	*x = UpdateStmtLimited_Alt3_Comma{}
-	mi := &file_sqlite_proto_msgTypes[373]
+	mi := &file_sqlite_proto_msgTypes[372]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21257,7 +21221,7 @@ func (x *UpdateStmtLimited_Alt3_Comma) String() string {
 func (*UpdateStmtLimited_Alt3_Comma) ProtoMessage() {}
 
 func (x *UpdateStmtLimited_Alt3_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[373]
+	mi := &file_sqlite_proto_msgTypes[372]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21292,7 +21256,7 @@ type TableOrSubquery_Seq1 struct {
 
 func (x *TableOrSubquery_Seq1) Reset() {
 	*x = TableOrSubquery_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[374]
+	mi := &file_sqlite_proto_msgTypes[373]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21304,7 +21268,7 @@ func (x *TableOrSubquery_Seq1) String() string {
 func (*TableOrSubquery_Seq1) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[374]
+	mi := &file_sqlite_proto_msgTypes[373]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21362,7 +21326,7 @@ type TableOrSubquery_Seq2 struct {
 
 func (x *TableOrSubquery_Seq2) Reset() {
 	*x = TableOrSubquery_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[375]
+	mi := &file_sqlite_proto_msgTypes[374]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21374,7 +21338,7 @@ func (x *TableOrSubquery_Seq2) String() string {
 func (*TableOrSubquery_Seq2) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[375]
+	mi := &file_sqlite_proto_msgTypes[374]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21442,7 +21406,7 @@ type TableOrSubquery_LeftParenthesis struct {
 
 func (x *TableOrSubquery_LeftParenthesis) Reset() {
 	*x = TableOrSubquery_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[376]
+	mi := &file_sqlite_proto_msgTypes[375]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21454,7 +21418,7 @@ func (x *TableOrSubquery_LeftParenthesis) String() string {
 func (*TableOrSubquery_LeftParenthesis) ProtoMessage() {}
 
 func (x *TableOrSubquery_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[376]
+	mi := &file_sqlite_proto_msgTypes[375]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21494,7 +21458,7 @@ type TableOrSubquery_LeftParenthesis2 struct {
 
 func (x *TableOrSubquery_LeftParenthesis2) Reset() {
 	*x = TableOrSubquery_LeftParenthesis2{}
-	mi := &file_sqlite_proto_msgTypes[377]
+	mi := &file_sqlite_proto_msgTypes[376]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21506,7 +21470,7 @@ func (x *TableOrSubquery_LeftParenthesis2) String() string {
 func (*TableOrSubquery_LeftParenthesis2) ProtoMessage() {}
 
 func (x *TableOrSubquery_LeftParenthesis2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[377]
+	mi := &file_sqlite_proto_msgTypes[376]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21546,7 +21510,7 @@ type TableOrSubquery_LeftParenthesis3 struct {
 
 func (x *TableOrSubquery_LeftParenthesis3) Reset() {
 	*x = TableOrSubquery_LeftParenthesis3{}
-	mi := &file_sqlite_proto_msgTypes[378]
+	mi := &file_sqlite_proto_msgTypes[377]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21558,7 +21522,7 @@ func (x *TableOrSubquery_LeftParenthesis3) String() string {
 func (*TableOrSubquery_LeftParenthesis3) ProtoMessage() {}
 
 func (x *TableOrSubquery_LeftParenthesis3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[378]
+	mi := &file_sqlite_proto_msgTypes[377]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21598,7 +21562,7 @@ type TableOrSubquery_Seq1_Seq1 struct {
 
 func (x *TableOrSubquery_Seq1_Seq1) Reset() {
 	*x = TableOrSubquery_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[379]
+	mi := &file_sqlite_proto_msgTypes[378]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21610,7 +21574,7 @@ func (x *TableOrSubquery_Seq1_Seq1) String() string {
 func (*TableOrSubquery_Seq1_Seq1) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[379]
+	mi := &file_sqlite_proto_msgTypes[378]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21650,7 +21614,7 @@ type TableOrSubquery_Seq1_Seq2 struct {
 
 func (x *TableOrSubquery_Seq1_Seq2) Reset() {
 	*x = TableOrSubquery_Seq1_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[380]
+	mi := &file_sqlite_proto_msgTypes[379]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21662,7 +21626,7 @@ func (x *TableOrSubquery_Seq1_Seq2) String() string {
 func (*TableOrSubquery_Seq1_Seq2) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[380]
+	mi := &file_sqlite_proto_msgTypes[379]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21705,7 +21669,7 @@ type TableOrSubquery_Seq1_Alt1 struct {
 
 func (x *TableOrSubquery_Seq1_Alt1) Reset() {
 	*x = TableOrSubquery_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[381]
+	mi := &file_sqlite_proto_msgTypes[380]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21717,7 +21681,7 @@ func (x *TableOrSubquery_Seq1_Alt1) String() string {
 func (*TableOrSubquery_Seq1_Alt1) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[381]
+	mi := &file_sqlite_proto_msgTypes[380]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21783,7 +21747,7 @@ type TableOrSubquery_Seq1_Alt1_IndexedBy struct {
 
 func (x *TableOrSubquery_Seq1_Alt1_IndexedBy) Reset() {
 	*x = TableOrSubquery_Seq1_Alt1_IndexedBy{}
-	mi := &file_sqlite_proto_msgTypes[382]
+	mi := &file_sqlite_proto_msgTypes[381]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21795,7 +21759,7 @@ func (x *TableOrSubquery_Seq1_Alt1_IndexedBy) String() string {
 func (*TableOrSubquery_Seq1_Alt1_IndexedBy) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1_Alt1_IndexedBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[382]
+	mi := &file_sqlite_proto_msgTypes[381]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21826,7 +21790,7 @@ type TableOrSubquery_Seq1_Alt1_NotIndexed struct {
 
 func (x *TableOrSubquery_Seq1_Alt1_NotIndexed) Reset() {
 	*x = TableOrSubquery_Seq1_Alt1_NotIndexed{}
-	mi := &file_sqlite_proto_msgTypes[383]
+	mi := &file_sqlite_proto_msgTypes[382]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21838,7 +21802,7 @@ func (x *TableOrSubquery_Seq1_Alt1_NotIndexed) String() string {
 func (*TableOrSubquery_Seq1_Alt1_NotIndexed) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq1_Alt1_NotIndexed) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[383]
+	mi := &file_sqlite_proto_msgTypes[382]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21864,7 +21828,7 @@ type TableOrSubquery_Seq2_Seq1 struct {
 
 func (x *TableOrSubquery_Seq2_Seq1) Reset() {
 	*x = TableOrSubquery_Seq2_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[384]
+	mi := &file_sqlite_proto_msgTypes[383]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21876,7 +21840,7 @@ func (x *TableOrSubquery_Seq2_Seq1) String() string {
 func (*TableOrSubquery_Seq2_Seq1) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq2_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[384]
+	mi := &file_sqlite_proto_msgTypes[383]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21915,7 +21879,7 @@ type TableOrSubquery_Seq2_Seq2 struct {
 
 func (x *TableOrSubquery_Seq2_Seq2) Reset() {
 	*x = TableOrSubquery_Seq2_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[385]
+	mi := &file_sqlite_proto_msgTypes[384]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21927,7 +21891,7 @@ func (x *TableOrSubquery_Seq2_Seq2) String() string {
 func (*TableOrSubquery_Seq2_Seq2) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq2_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[385]
+	mi := &file_sqlite_proto_msgTypes[384]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -21960,7 +21924,7 @@ type TableOrSubquery_Seq2_Seq3 struct {
 
 func (x *TableOrSubquery_Seq2_Seq3) Reset() {
 	*x = TableOrSubquery_Seq2_Seq3{}
-	mi := &file_sqlite_proto_msgTypes[386]
+	mi := &file_sqlite_proto_msgTypes[385]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -21972,7 +21936,7 @@ func (x *TableOrSubquery_Seq2_Seq3) String() string {
 func (*TableOrSubquery_Seq2_Seq3) ProtoMessage() {}
 
 func (x *TableOrSubquery_Seq2_Seq3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[386]
+	mi := &file_sqlite_proto_msgTypes[385]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22013,7 +21977,7 @@ type JoinClause_Seq1 struct {
 
 func (x *JoinClause_Seq1) Reset() {
 	*x = JoinClause_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[387]
+	mi := &file_sqlite_proto_msgTypes[386]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22025,7 +21989,7 @@ func (x *JoinClause_Seq1) String() string {
 func (*JoinClause_Seq1) ProtoMessage() {}
 
 func (x *JoinClause_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[387]
+	mi := &file_sqlite_proto_msgTypes[386]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22073,7 +22037,7 @@ type JoinOperator_Seq1 struct {
 
 func (x *JoinOperator_Seq1) Reset() {
 	*x = JoinOperator_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[388]
+	mi := &file_sqlite_proto_msgTypes[387]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22085,7 +22049,7 @@ func (x *JoinOperator_Seq1) String() string {
 func (*JoinOperator_Seq1) ProtoMessage() {}
 
 func (x *JoinOperator_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[388]
+	mi := &file_sqlite_proto_msgTypes[387]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22136,7 +22100,7 @@ type JoinOperator_Seq1_Alt1 struct {
 
 func (x *JoinOperator_Seq1_Alt1) Reset() {
 	*x = JoinOperator_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[389]
+	mi := &file_sqlite_proto_msgTypes[388]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22148,7 +22112,7 @@ func (x *JoinOperator_Seq1_Alt1) String() string {
 func (*JoinOperator_Seq1_Alt1) ProtoMessage() {}
 
 func (x *JoinOperator_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[389]
+	mi := &file_sqlite_proto_msgTypes[388]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22230,7 +22194,7 @@ type JoinOperator_Seq1_Alt1_Seq1 struct {
 
 func (x *JoinOperator_Seq1_Alt1_Seq1) Reset() {
 	*x = JoinOperator_Seq1_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[390]
+	mi := &file_sqlite_proto_msgTypes[389]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22242,7 +22206,7 @@ func (x *JoinOperator_Seq1_Alt1_Seq1) String() string {
 func (*JoinOperator_Seq1_Alt1_Seq1) ProtoMessage() {}
 
 func (x *JoinOperator_Seq1_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[390]
+	mi := &file_sqlite_proto_msgTypes[389]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22286,7 +22250,7 @@ type JoinOperator_Seq1_Alt1_Seq1_Alt1 struct {
 
 func (x *JoinOperator_Seq1_Alt1_Seq1_Alt1) Reset() {
 	*x = JoinOperator_Seq1_Alt1_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[391]
+	mi := &file_sqlite_proto_msgTypes[390]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22298,7 +22262,7 @@ func (x *JoinOperator_Seq1_Alt1_Seq1_Alt1) String() string {
 func (*JoinOperator_Seq1_Alt1_Seq1_Alt1) ProtoMessage() {}
 
 func (x *JoinOperator_Seq1_Alt1_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[391]
+	mi := &file_sqlite_proto_msgTypes[390]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22379,7 +22343,7 @@ type JoinConstraint_On struct {
 
 func (x *JoinConstraint_On) Reset() {
 	*x = JoinConstraint_On{}
-	mi := &file_sqlite_proto_msgTypes[392]
+	mi := &file_sqlite_proto_msgTypes[391]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22391,7 +22355,7 @@ func (x *JoinConstraint_On) String() string {
 func (*JoinConstraint_On) ProtoMessage() {}
 
 func (x *JoinConstraint_On) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[392]
+	mi := &file_sqlite_proto_msgTypes[391]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22424,7 +22388,7 @@ type JoinConstraint_UsingLeftParenthesis struct {
 
 func (x *JoinConstraint_UsingLeftParenthesis) Reset() {
 	*x = JoinConstraint_UsingLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[393]
+	mi := &file_sqlite_proto_msgTypes[392]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22436,7 +22400,7 @@ func (x *JoinConstraint_UsingLeftParenthesis) String() string {
 func (*JoinConstraint_UsingLeftParenthesis) ProtoMessage() {}
 
 func (x *JoinConstraint_UsingLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[393]
+	mi := &file_sqlite_proto_msgTypes[392]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22475,7 +22439,7 @@ type OrderingTerm_Collate struct {
 
 func (x *OrderingTerm_Collate) Reset() {
 	*x = OrderingTerm_Collate{}
-	mi := &file_sqlite_proto_msgTypes[394]
+	mi := &file_sqlite_proto_msgTypes[393]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22487,7 +22451,7 @@ func (x *OrderingTerm_Collate) String() string {
 func (*OrderingTerm_Collate) ProtoMessage() {}
 
 func (x *OrderingTerm_Collate) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[394]
+	mi := &file_sqlite_proto_msgTypes[393]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22523,7 +22487,7 @@ type OrderingTerm_Alt1 struct {
 
 func (x *OrderingTerm_Alt1) Reset() {
 	*x = OrderingTerm_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[395]
+	mi := &file_sqlite_proto_msgTypes[394]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22535,7 +22499,7 @@ func (x *OrderingTerm_Alt1) String() string {
 func (*OrderingTerm_Alt1) ProtoMessage() {}
 
 func (x *OrderingTerm_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[395]
+	mi := &file_sqlite_proto_msgTypes[394]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22605,7 +22569,7 @@ type OrderingTerm_Alt2 struct {
 
 func (x *OrderingTerm_Alt2) Reset() {
 	*x = OrderingTerm_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[396]
+	mi := &file_sqlite_proto_msgTypes[395]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22617,7 +22581,7 @@ func (x *OrderingTerm_Alt2) String() string {
 func (*OrderingTerm_Alt2) ProtoMessage() {}
 
 func (x *OrderingTerm_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[396]
+	mi := &file_sqlite_proto_msgTypes[395]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22682,7 +22646,7 @@ type OrderingTerm_Alt2_NullsFirst struct {
 
 func (x *OrderingTerm_Alt2_NullsFirst) Reset() {
 	*x = OrderingTerm_Alt2_NullsFirst{}
-	mi := &file_sqlite_proto_msgTypes[397]
+	mi := &file_sqlite_proto_msgTypes[396]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22694,7 +22658,7 @@ func (x *OrderingTerm_Alt2_NullsFirst) String() string {
 func (*OrderingTerm_Alt2_NullsFirst) ProtoMessage() {}
 
 func (x *OrderingTerm_Alt2_NullsFirst) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[397]
+	mi := &file_sqlite_proto_msgTypes[396]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22718,7 +22682,7 @@ type OrderingTerm_Alt2_NullsLast struct {
 
 func (x *OrderingTerm_Alt2_NullsLast) Reset() {
 	*x = OrderingTerm_Alt2_NullsLast{}
-	mi := &file_sqlite_proto_msgTypes[398]
+	mi := &file_sqlite_proto_msgTypes[397]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22730,7 +22694,7 @@ func (x *OrderingTerm_Alt2_NullsLast) String() string {
 func (*OrderingTerm_Alt2_NullsLast) ProtoMessage() {}
 
 func (x *OrderingTerm_Alt2_NullsLast) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[398]
+	mi := &file_sqlite_proto_msgTypes[397]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22755,7 +22719,7 @@ type ColumnConstraint_Constraint struct {
 
 func (x *ColumnConstraint_Constraint) Reset() {
 	*x = ColumnConstraint_Constraint{}
-	mi := &file_sqlite_proto_msgTypes[399]
+	mi := &file_sqlite_proto_msgTypes[398]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22767,7 +22731,7 @@ func (x *ColumnConstraint_Constraint) String() string {
 func (*ColumnConstraint_Constraint) ProtoMessage() {}
 
 func (x *ColumnConstraint_Constraint) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[399]
+	mi := &file_sqlite_proto_msgTypes[398]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22809,7 +22773,7 @@ type ColumnConstraint_Alt1 struct {
 
 func (x *ColumnConstraint_Alt1) Reset() {
 	*x = ColumnConstraint_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[400]
+	mi := &file_sqlite_proto_msgTypes[399]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22821,7 +22785,7 @@ func (x *ColumnConstraint_Alt1) String() string {
 func (*ColumnConstraint_Alt1) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[400]
+	mi := &file_sqlite_proto_msgTypes[399]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -22979,7 +22943,7 @@ type ColumnConstraint_Alt1_PrimaryKey struct {
 
 func (x *ColumnConstraint_Alt1_PrimaryKey) Reset() {
 	*x = ColumnConstraint_Alt1_PrimaryKey{}
-	mi := &file_sqlite_proto_msgTypes[401]
+	mi := &file_sqlite_proto_msgTypes[400]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -22991,7 +22955,7 @@ func (x *ColumnConstraint_Alt1_PrimaryKey) String() string {
 func (*ColumnConstraint_Alt1_PrimaryKey) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_PrimaryKey) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[401]
+	mi := &file_sqlite_proto_msgTypes[400]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23037,7 +23001,7 @@ type ColumnConstraint_Alt1_NotNull struct {
 
 func (x *ColumnConstraint_Alt1_NotNull) Reset() {
 	*x = ColumnConstraint_Alt1_NotNull{}
-	mi := &file_sqlite_proto_msgTypes[402]
+	mi := &file_sqlite_proto_msgTypes[401]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23049,7 +23013,7 @@ func (x *ColumnConstraint_Alt1_NotNull) String() string {
 func (*ColumnConstraint_Alt1_NotNull) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_NotNull) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[402]
+	mi := &file_sqlite_proto_msgTypes[401]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23081,7 +23045,7 @@ type ColumnConstraint_Alt1_Unique struct {
 
 func (x *ColumnConstraint_Alt1_Unique) Reset() {
 	*x = ColumnConstraint_Alt1_Unique{}
-	mi := &file_sqlite_proto_msgTypes[403]
+	mi := &file_sqlite_proto_msgTypes[402]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23093,7 +23057,7 @@ func (x *ColumnConstraint_Alt1_Unique) String() string {
 func (*ColumnConstraint_Alt1_Unique) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Unique) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[403]
+	mi := &file_sqlite_proto_msgTypes[402]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23126,7 +23090,7 @@ type ColumnConstraint_Alt1_CheckLeftParenthesis struct {
 
 func (x *ColumnConstraint_Alt1_CheckLeftParenthesis) Reset() {
 	*x = ColumnConstraint_Alt1_CheckLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[404]
+	mi := &file_sqlite_proto_msgTypes[403]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23138,7 +23102,7 @@ func (x *ColumnConstraint_Alt1_CheckLeftParenthesis) String() string {
 func (*ColumnConstraint_Alt1_CheckLeftParenthesis) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_CheckLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[404]
+	mi := &file_sqlite_proto_msgTypes[403]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23177,7 +23141,7 @@ type ColumnConstraint_Alt1_Default struct {
 
 func (x *ColumnConstraint_Alt1_Default) Reset() {
 	*x = ColumnConstraint_Alt1_Default{}
-	mi := &file_sqlite_proto_msgTypes[405]
+	mi := &file_sqlite_proto_msgTypes[404]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23189,7 +23153,7 @@ func (x *ColumnConstraint_Alt1_Default) String() string {
 func (*ColumnConstraint_Alt1_Default) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Default) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[405]
+	mi := &file_sqlite_proto_msgTypes[404]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23221,7 +23185,7 @@ type ColumnConstraint_Alt1_Collate struct {
 
 func (x *ColumnConstraint_Alt1_Collate) Reset() {
 	*x = ColumnConstraint_Alt1_Collate{}
-	mi := &file_sqlite_proto_msgTypes[406]
+	mi := &file_sqlite_proto_msgTypes[405]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23233,7 +23197,7 @@ func (x *ColumnConstraint_Alt1_Collate) String() string {
 func (*ColumnConstraint_Alt1_Collate) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Collate) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[406]
+	mi := &file_sqlite_proto_msgTypes[405]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23270,7 +23234,7 @@ type ColumnConstraint_Alt1_Seq1 struct {
 
 func (x *ColumnConstraint_Alt1_Seq1) Reset() {
 	*x = ColumnConstraint_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[407]
+	mi := &file_sqlite_proto_msgTypes[406]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23282,7 +23246,7 @@ func (x *ColumnConstraint_Alt1_Seq1) String() string {
 func (*ColumnConstraint_Alt1_Seq1) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[407]
+	mi := &file_sqlite_proto_msgTypes[406]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23353,7 +23317,7 @@ type ColumnConstraint_Alt1_PrimaryKey_Alt1 struct {
 
 func (x *ColumnConstraint_Alt1_PrimaryKey_Alt1) Reset() {
 	*x = ColumnConstraint_Alt1_PrimaryKey_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[408]
+	mi := &file_sqlite_proto_msgTypes[407]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23365,7 +23329,7 @@ func (x *ColumnConstraint_Alt1_PrimaryKey_Alt1) String() string {
 func (*ColumnConstraint_Alt1_PrimaryKey_Alt1) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_PrimaryKey_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[408]
+	mi := &file_sqlite_proto_msgTypes[407]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23438,7 +23402,7 @@ type ColumnConstraint_Alt1_Default_Alt1 struct {
 
 func (x *ColumnConstraint_Alt1_Default_Alt1) Reset() {
 	*x = ColumnConstraint_Alt1_Default_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[409]
+	mi := &file_sqlite_proto_msgTypes[408]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23450,7 +23414,7 @@ func (x *ColumnConstraint_Alt1_Default_Alt1) String() string {
 func (*ColumnConstraint_Alt1_Default_Alt1) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Default_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[409]
+	mi := &file_sqlite_proto_msgTypes[408]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23535,7 +23499,7 @@ type ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis struct {
 
 func (x *ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis) Reset() {
 	*x = ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[410]
+	mi := &file_sqlite_proto_msgTypes[409]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23547,7 +23511,7 @@ func (x *ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis) String() string {
 func (*ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[410]
+	mi := &file_sqlite_proto_msgTypes[409]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23585,7 +23549,7 @@ type ColumnConstraint_Alt1_Seq1_GeneratedAlways struct {
 
 func (x *ColumnConstraint_Alt1_Seq1_GeneratedAlways) Reset() {
 	*x = ColumnConstraint_Alt1_Seq1_GeneratedAlways{}
-	mi := &file_sqlite_proto_msgTypes[411]
+	mi := &file_sqlite_proto_msgTypes[410]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23597,7 +23561,7 @@ func (x *ColumnConstraint_Alt1_Seq1_GeneratedAlways) String() string {
 func (*ColumnConstraint_Alt1_Seq1_GeneratedAlways) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Seq1_GeneratedAlways) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[411]
+	mi := &file_sqlite_proto_msgTypes[410]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23626,7 +23590,7 @@ type ColumnConstraint_Alt1_Seq1_Alt1 struct {
 
 func (x *ColumnConstraint_Alt1_Seq1_Alt1) Reset() {
 	*x = ColumnConstraint_Alt1_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[412]
+	mi := &file_sqlite_proto_msgTypes[411]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23638,7 +23602,7 @@ func (x *ColumnConstraint_Alt1_Seq1_Alt1) String() string {
 func (*ColumnConstraint_Alt1_Seq1_Alt1) ProtoMessage() {}
 
 func (x *ColumnConstraint_Alt1_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[412]
+	mi := &file_sqlite_proto_msgTypes[411]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23704,7 +23668,7 @@ type TableConstraint_Constraint struct {
 
 func (x *TableConstraint_Constraint) Reset() {
 	*x = TableConstraint_Constraint{}
-	mi := &file_sqlite_proto_msgTypes[413]
+	mi := &file_sqlite_proto_msgTypes[412]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23716,7 +23680,7 @@ func (x *TableConstraint_Constraint) String() string {
 func (*TableConstraint_Constraint) ProtoMessage() {}
 
 func (x *TableConstraint_Constraint) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[413]
+	mi := &file_sqlite_proto_msgTypes[412]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23754,7 +23718,7 @@ type TableConstraint_Alt1 struct {
 
 func (x *TableConstraint_Alt1) Reset() {
 	*x = TableConstraint_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[414]
+	mi := &file_sqlite_proto_msgTypes[413]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23766,7 +23730,7 @@ func (x *TableConstraint_Alt1) String() string {
 func (*TableConstraint_Alt1) ProtoMessage() {}
 
 func (x *TableConstraint_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[414]
+	mi := &file_sqlite_proto_msgTypes[413]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23864,7 +23828,7 @@ type TableConstraint_Alt1_PrimaryKeyLeftParenthesis struct {
 
 func (x *TableConstraint_Alt1_PrimaryKeyLeftParenthesis) Reset() {
 	*x = TableConstraint_Alt1_PrimaryKeyLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[415]
+	mi := &file_sqlite_proto_msgTypes[414]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23876,7 +23840,7 @@ func (x *TableConstraint_Alt1_PrimaryKeyLeftParenthesis) String() string {
 func (*TableConstraint_Alt1_PrimaryKeyLeftParenthesis) ProtoMessage() {}
 
 func (x *TableConstraint_Alt1_PrimaryKeyLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[415]
+	mi := &file_sqlite_proto_msgTypes[414]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23924,7 +23888,7 @@ type TableConstraint_Alt1_UniqueLeftParenthesis struct {
 
 func (x *TableConstraint_Alt1_UniqueLeftParenthesis) Reset() {
 	*x = TableConstraint_Alt1_UniqueLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[416]
+	mi := &file_sqlite_proto_msgTypes[415]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23936,7 +23900,7 @@ func (x *TableConstraint_Alt1_UniqueLeftParenthesis) String() string {
 func (*TableConstraint_Alt1_UniqueLeftParenthesis) ProtoMessage() {}
 
 func (x *TableConstraint_Alt1_UniqueLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[416]
+	mi := &file_sqlite_proto_msgTypes[415]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -23983,7 +23947,7 @@ type TableConstraint_Alt1_CheckLeftParenthesis struct {
 
 func (x *TableConstraint_Alt1_CheckLeftParenthesis) Reset() {
 	*x = TableConstraint_Alt1_CheckLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[417]
+	mi := &file_sqlite_proto_msgTypes[416]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -23995,7 +23959,7 @@ func (x *TableConstraint_Alt1_CheckLeftParenthesis) String() string {
 func (*TableConstraint_Alt1_CheckLeftParenthesis) ProtoMessage() {}
 
 func (x *TableConstraint_Alt1_CheckLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[417]
+	mi := &file_sqlite_proto_msgTypes[416]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24036,7 +24000,7 @@ type TableConstraint_Alt1_ForeignKeyLeftParenthesis struct {
 
 func (x *TableConstraint_Alt1_ForeignKeyLeftParenthesis) Reset() {
 	*x = TableConstraint_Alt1_ForeignKeyLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[418]
+	mi := &file_sqlite_proto_msgTypes[417]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24048,7 +24012,7 @@ func (x *TableConstraint_Alt1_ForeignKeyLeftParenthesis) String() string {
 func (*TableConstraint_Alt1_ForeignKeyLeftParenthesis) ProtoMessage() {}
 
 func (x *TableConstraint_Alt1_ForeignKeyLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[418]
+	mi := &file_sqlite_proto_msgTypes[417]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24094,7 +24058,7 @@ type ConflictClause_OnConflict struct {
 
 func (x *ConflictClause_OnConflict) Reset() {
 	*x = ConflictClause_OnConflict{}
-	mi := &file_sqlite_proto_msgTypes[419]
+	mi := &file_sqlite_proto_msgTypes[418]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24106,7 +24070,7 @@ func (x *ConflictClause_OnConflict) String() string {
 func (*ConflictClause_OnConflict) ProtoMessage() {}
 
 func (x *ConflictClause_OnConflict) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[419]
+	mi := &file_sqlite_proto_msgTypes[418]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24145,7 +24109,7 @@ type ConflictClause_OnConflict_Alt1 struct {
 
 func (x *ConflictClause_OnConflict_Alt1) Reset() {
 	*x = ConflictClause_OnConflict_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[420]
+	mi := &file_sqlite_proto_msgTypes[419]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24157,7 +24121,7 @@ func (x *ConflictClause_OnConflict_Alt1) String() string {
 func (*ConflictClause_OnConflict_Alt1) ProtoMessage() {}
 
 func (x *ConflictClause_OnConflict_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[420]
+	mi := &file_sqlite_proto_msgTypes[419]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24269,7 +24233,7 @@ type ForeignKeyClause_LeftParenthesis struct {
 
 func (x *ForeignKeyClause_LeftParenthesis) Reset() {
 	*x = ForeignKeyClause_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[421]
+	mi := &file_sqlite_proto_msgTypes[420]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24281,7 +24245,7 @@ func (x *ForeignKeyClause_LeftParenthesis) String() string {
 func (*ForeignKeyClause_LeftParenthesis) ProtoMessage() {}
 
 func (x *ForeignKeyClause_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[421]
+	mi := &file_sqlite_proto_msgTypes[420]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24324,7 +24288,7 @@ type ForeignKeyClause_Alt1 struct {
 
 func (x *ForeignKeyClause_Alt1) Reset() {
 	*x = ForeignKeyClause_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[422]
+	mi := &file_sqlite_proto_msgTypes[421]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24336,7 +24300,7 @@ func (x *ForeignKeyClause_Alt1) String() string {
 func (*ForeignKeyClause_Alt1) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[422]
+	mi := &file_sqlite_proto_msgTypes[421]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24404,7 +24368,7 @@ type ForeignKeyClause_Seq1 struct {
 
 func (x *ForeignKeyClause_Seq1) Reset() {
 	*x = ForeignKeyClause_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[423]
+	mi := &file_sqlite_proto_msgTypes[422]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24416,7 +24380,7 @@ func (x *ForeignKeyClause_Seq1) String() string {
 func (*ForeignKeyClause_Seq1) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[423]
+	mi := &file_sqlite_proto_msgTypes[422]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24463,7 +24427,7 @@ type ForeignKeyClause_Alt1_On struct {
 
 func (x *ForeignKeyClause_Alt1_On) Reset() {
 	*x = ForeignKeyClause_Alt1_On{}
-	mi := &file_sqlite_proto_msgTypes[424]
+	mi := &file_sqlite_proto_msgTypes[423]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24475,7 +24439,7 @@ func (x *ForeignKeyClause_Alt1_On) String() string {
 func (*ForeignKeyClause_Alt1_On) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[424]
+	mi := &file_sqlite_proto_msgTypes[423]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24514,7 +24478,7 @@ type ForeignKeyClause_Alt1_Match struct {
 
 func (x *ForeignKeyClause_Alt1_Match) Reset() {
 	*x = ForeignKeyClause_Alt1_Match{}
-	mi := &file_sqlite_proto_msgTypes[425]
+	mi := &file_sqlite_proto_msgTypes[424]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24526,7 +24490,7 @@ func (x *ForeignKeyClause_Alt1_Match) String() string {
 func (*ForeignKeyClause_Alt1_Match) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_Match) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[425]
+	mi := &file_sqlite_proto_msgTypes[424]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24562,7 +24526,7 @@ type ForeignKeyClause_Alt1_On_Alt1 struct {
 
 func (x *ForeignKeyClause_Alt1_On_Alt1) Reset() {
 	*x = ForeignKeyClause_Alt1_On_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[426]
+	mi := &file_sqlite_proto_msgTypes[425]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24574,7 +24538,7 @@ func (x *ForeignKeyClause_Alt1_On_Alt1) String() string {
 func (*ForeignKeyClause_Alt1_On_Alt1) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[426]
+	mi := &file_sqlite_proto_msgTypes[425]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24647,7 +24611,7 @@ type ForeignKeyClause_Alt1_On_Alt2 struct {
 
 func (x *ForeignKeyClause_Alt1_On_Alt2) Reset() {
 	*x = ForeignKeyClause_Alt1_On_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[427]
+	mi := &file_sqlite_proto_msgTypes[426]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24659,7 +24623,7 @@ func (x *ForeignKeyClause_Alt1_On_Alt2) String() string {
 func (*ForeignKeyClause_Alt1_On_Alt2) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[427]
+	mi := &file_sqlite_proto_msgTypes[426]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24769,7 +24733,7 @@ type ForeignKeyClause_Alt1_On_Alt2_SetNull struct {
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_SetNull) Reset() {
 	*x = ForeignKeyClause_Alt1_On_Alt2_SetNull{}
-	mi := &file_sqlite_proto_msgTypes[428]
+	mi := &file_sqlite_proto_msgTypes[427]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24781,7 +24745,7 @@ func (x *ForeignKeyClause_Alt1_On_Alt2_SetNull) String() string {
 func (*ForeignKeyClause_Alt1_On_Alt2_SetNull) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_SetNull) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[428]
+	mi := &file_sqlite_proto_msgTypes[427]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24805,7 +24769,7 @@ type ForeignKeyClause_Alt1_On_Alt2_SetDefault struct {
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_SetDefault) Reset() {
 	*x = ForeignKeyClause_Alt1_On_Alt2_SetDefault{}
-	mi := &file_sqlite_proto_msgTypes[429]
+	mi := &file_sqlite_proto_msgTypes[428]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24817,7 +24781,7 @@ func (x *ForeignKeyClause_Alt1_On_Alt2_SetDefault) String() string {
 func (*ForeignKeyClause_Alt1_On_Alt2_SetDefault) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_SetDefault) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[429]
+	mi := &file_sqlite_proto_msgTypes[428]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24841,7 +24805,7 @@ type ForeignKeyClause_Alt1_On_Alt2_NoAction struct {
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_NoAction) Reset() {
 	*x = ForeignKeyClause_Alt1_On_Alt2_NoAction{}
-	mi := &file_sqlite_proto_msgTypes[430]
+	mi := &file_sqlite_proto_msgTypes[429]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24853,7 +24817,7 @@ func (x *ForeignKeyClause_Alt1_On_Alt2_NoAction) String() string {
 func (*ForeignKeyClause_Alt1_On_Alt2_NoAction) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Alt1_On_Alt2_NoAction) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[430]
+	mi := &file_sqlite_proto_msgTypes[429]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24878,7 +24842,7 @@ type ForeignKeyClause_Seq1_Initially struct {
 
 func (x *ForeignKeyClause_Seq1_Initially) Reset() {
 	*x = ForeignKeyClause_Seq1_Initially{}
-	mi := &file_sqlite_proto_msgTypes[431]
+	mi := &file_sqlite_proto_msgTypes[430]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24890,7 +24854,7 @@ func (x *ForeignKeyClause_Seq1_Initially) String() string {
 func (*ForeignKeyClause_Seq1_Initially) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Seq1_Initially) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[431]
+	mi := &file_sqlite_proto_msgTypes[430]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -24926,7 +24890,7 @@ type ForeignKeyClause_Seq1_Initially_Alt1 struct {
 
 func (x *ForeignKeyClause_Seq1_Initially_Alt1) Reset() {
 	*x = ForeignKeyClause_Seq1_Initially_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[432]
+	mi := &file_sqlite_proto_msgTypes[431]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -24938,7 +24902,7 @@ func (x *ForeignKeyClause_Seq1_Initially_Alt1) String() string {
 func (*ForeignKeyClause_Seq1_Initially_Alt1) ProtoMessage() {}
 
 func (x *ForeignKeyClause_Seq1_Initially_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[432]
+	mi := &file_sqlite_proto_msgTypes[431]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25005,7 +24969,7 @@ type TableOptions_WithoutRowid struct {
 
 func (x *TableOptions_WithoutRowid) Reset() {
 	*x = TableOptions_WithoutRowid{}
-	mi := &file_sqlite_proto_msgTypes[433]
+	mi := &file_sqlite_proto_msgTypes[432]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25017,7 +24981,7 @@ func (x *TableOptions_WithoutRowid) String() string {
 func (*TableOptions_WithoutRowid) ProtoMessage() {}
 
 func (x *TableOptions_WithoutRowid) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[433]
+	mi := &file_sqlite_proto_msgTypes[432]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25041,7 +25005,7 @@ type TableOptions_WithoutRowidCommaStrict struct {
 
 func (x *TableOptions_WithoutRowidCommaStrict) Reset() {
 	*x = TableOptions_WithoutRowidCommaStrict{}
-	mi := &file_sqlite_proto_msgTypes[434]
+	mi := &file_sqlite_proto_msgTypes[433]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25053,7 +25017,7 @@ func (x *TableOptions_WithoutRowidCommaStrict) String() string {
 func (*TableOptions_WithoutRowidCommaStrict) ProtoMessage() {}
 
 func (x *TableOptions_WithoutRowidCommaStrict) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[434]
+	mi := &file_sqlite_proto_msgTypes[433]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25077,7 +25041,7 @@ type TableOptions_StrictCommaWithoutRowid struct {
 
 func (x *TableOptions_StrictCommaWithoutRowid) Reset() {
 	*x = TableOptions_StrictCommaWithoutRowid{}
-	mi := &file_sqlite_proto_msgTypes[435]
+	mi := &file_sqlite_proto_msgTypes[434]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25089,7 +25053,7 @@ func (x *TableOptions_StrictCommaWithoutRowid) String() string {
 func (*TableOptions_StrictCommaWithoutRowid) ProtoMessage() {}
 
 func (x *TableOptions_StrictCommaWithoutRowid) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[435]
+	mi := &file_sqlite_proto_msgTypes[434]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25118,7 +25082,7 @@ type TypeName_Alt1 struct {
 
 func (x *TypeName_Alt1) Reset() {
 	*x = TypeName_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[436]
+	mi := &file_sqlite_proto_msgTypes[435]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25130,7 +25094,7 @@ func (x *TypeName_Alt1) String() string {
 func (*TypeName_Alt1) ProtoMessage() {}
 
 func (x *TypeName_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[436]
+	mi := &file_sqlite_proto_msgTypes[435]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25197,7 +25161,7 @@ type TypeName_Alt1_LeftParenthesis struct {
 
 func (x *TypeName_Alt1_LeftParenthesis) Reset() {
 	*x = TypeName_Alt1_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[437]
+	mi := &file_sqlite_proto_msgTypes[436]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25209,7 +25173,7 @@ func (x *TypeName_Alt1_LeftParenthesis) String() string {
 func (*TypeName_Alt1_LeftParenthesis) ProtoMessage() {}
 
 func (x *TypeName_Alt1_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[437]
+	mi := &file_sqlite_proto_msgTypes[436]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25251,7 +25215,7 @@ type TypeName_Alt1_LeftParenthesis2 struct {
 
 func (x *TypeName_Alt1_LeftParenthesis2) Reset() {
 	*x = TypeName_Alt1_LeftParenthesis2{}
-	mi := &file_sqlite_proto_msgTypes[438]
+	mi := &file_sqlite_proto_msgTypes[437]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25263,7 +25227,7 @@ func (x *TypeName_Alt1_LeftParenthesis2) String() string {
 func (*TypeName_Alt1_LeftParenthesis2) ProtoMessage() {}
 
 func (x *TypeName_Alt1_LeftParenthesis2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[438]
+	mi := &file_sqlite_proto_msgTypes[437]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25320,7 +25284,7 @@ type IndexedColumn_Alt1 struct {
 
 func (x *IndexedColumn_Alt1) Reset() {
 	*x = IndexedColumn_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[439]
+	mi := &file_sqlite_proto_msgTypes[438]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25332,7 +25296,7 @@ func (x *IndexedColumn_Alt1) String() string {
 func (*IndexedColumn_Alt1) ProtoMessage() {}
 
 func (x *IndexedColumn_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[439]
+	mi := &file_sqlite_proto_msgTypes[438]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25398,7 +25362,7 @@ type IndexedColumn_Collate struct {
 
 func (x *IndexedColumn_Collate) Reset() {
 	*x = IndexedColumn_Collate{}
-	mi := &file_sqlite_proto_msgTypes[440]
+	mi := &file_sqlite_proto_msgTypes[439]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25410,7 +25374,7 @@ func (x *IndexedColumn_Collate) String() string {
 func (*IndexedColumn_Collate) ProtoMessage() {}
 
 func (x *IndexedColumn_Collate) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[440]
+	mi := &file_sqlite_proto_msgTypes[439]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25446,7 +25410,7 @@ type IndexedColumn_Alt2 struct {
 
 func (x *IndexedColumn_Alt2) Reset() {
 	*x = IndexedColumn_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[441]
+	mi := &file_sqlite_proto_msgTypes[440]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25458,7 +25422,7 @@ func (x *IndexedColumn_Alt2) String() string {
 func (*IndexedColumn_Alt2) ProtoMessage() {}
 
 func (x *IndexedColumn_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[441]
+	mi := &file_sqlite_proto_msgTypes[440]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25525,7 +25489,7 @@ type QualifiedTableName_Seq1 struct {
 
 func (x *QualifiedTableName_Seq1) Reset() {
 	*x = QualifiedTableName_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[442]
+	mi := &file_sqlite_proto_msgTypes[441]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25537,7 +25501,7 @@ func (x *QualifiedTableName_Seq1) String() string {
 func (*QualifiedTableName_Seq1) ProtoMessage() {}
 
 func (x *QualifiedTableName_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[442]
+	mi := &file_sqlite_proto_msgTypes[441]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25576,7 +25540,7 @@ type QualifiedTableName_As struct {
 
 func (x *QualifiedTableName_As) Reset() {
 	*x = QualifiedTableName_As{}
-	mi := &file_sqlite_proto_msgTypes[443]
+	mi := &file_sqlite_proto_msgTypes[442]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25588,7 +25552,7 @@ func (x *QualifiedTableName_As) String() string {
 func (*QualifiedTableName_As) ProtoMessage() {}
 
 func (x *QualifiedTableName_As) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[443]
+	mi := &file_sqlite_proto_msgTypes[442]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25624,7 +25588,7 @@ type QualifiedTableName_Alt1 struct {
 
 func (x *QualifiedTableName_Alt1) Reset() {
 	*x = QualifiedTableName_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[444]
+	mi := &file_sqlite_proto_msgTypes[443]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25636,7 +25600,7 @@ func (x *QualifiedTableName_Alt1) String() string {
 func (*QualifiedTableName_Alt1) ProtoMessage() {}
 
 func (x *QualifiedTableName_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[444]
+	mi := &file_sqlite_proto_msgTypes[443]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25702,7 +25666,7 @@ type QualifiedTableName_Alt1_IndexedBy struct {
 
 func (x *QualifiedTableName_Alt1_IndexedBy) Reset() {
 	*x = QualifiedTableName_Alt1_IndexedBy{}
-	mi := &file_sqlite_proto_msgTypes[445]
+	mi := &file_sqlite_proto_msgTypes[444]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25714,7 +25678,7 @@ func (x *QualifiedTableName_Alt1_IndexedBy) String() string {
 func (*QualifiedTableName_Alt1_IndexedBy) ProtoMessage() {}
 
 func (x *QualifiedTableName_Alt1_IndexedBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[445]
+	mi := &file_sqlite_proto_msgTypes[444]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25745,7 +25709,7 @@ type QualifiedTableName_Alt1_NotIndexed struct {
 
 func (x *QualifiedTableName_Alt1_NotIndexed) Reset() {
 	*x = QualifiedTableName_Alt1_NotIndexed{}
-	mi := &file_sqlite_proto_msgTypes[446]
+	mi := &file_sqlite_proto_msgTypes[445]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25757,7 +25721,7 @@ func (x *QualifiedTableName_Alt1_NotIndexed) String() string {
 func (*QualifiedTableName_Alt1_NotIndexed) ProtoMessage() {}
 
 func (x *QualifiedTableName_Alt1_NotIndexed) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[446]
+	mi := &file_sqlite_proto_msgTypes[445]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25786,7 +25750,7 @@ type ReturningClause_Alt1 struct {
 
 func (x *ReturningClause_Alt1) Reset() {
 	*x = ReturningClause_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[447]
+	mi := &file_sqlite_proto_msgTypes[446]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25798,7 +25762,7 @@ func (x *ReturningClause_Alt1) String() string {
 func (*ReturningClause_Alt1) ProtoMessage() {}
 
 func (x *ReturningClause_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[447]
+	mi := &file_sqlite_proto_msgTypes[446]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25865,7 +25829,7 @@ type ReturningClause_Alt1_Seq1 struct {
 
 func (x *ReturningClause_Alt1_Seq1) Reset() {
 	*x = ReturningClause_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[448]
+	mi := &file_sqlite_proto_msgTypes[447]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25877,7 +25841,7 @@ func (x *ReturningClause_Alt1_Seq1) String() string {
 func (*ReturningClause_Alt1_Seq1) ProtoMessage() {}
 
 func (x *ReturningClause_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[448]
+	mi := &file_sqlite_proto_msgTypes[447]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25917,7 +25881,7 @@ type ReturningClause_Alt1_Seq1_Seq1 struct {
 
 func (x *ReturningClause_Alt1_Seq1_Seq1) Reset() {
 	*x = ReturningClause_Alt1_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[449]
+	mi := &file_sqlite_proto_msgTypes[448]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25929,7 +25893,7 @@ func (x *ReturningClause_Alt1_Seq1_Seq1) String() string {
 func (*ReturningClause_Alt1_Seq1_Seq1) ProtoMessage() {}
 
 func (x *ReturningClause_Alt1_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[449]
+	mi := &file_sqlite_proto_msgTypes[448]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -25970,7 +25934,7 @@ type UpsertClause_LeftParenthesis struct {
 
 func (x *UpsertClause_LeftParenthesis) Reset() {
 	*x = UpsertClause_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[450]
+	mi := &file_sqlite_proto_msgTypes[449]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -25982,7 +25946,7 @@ func (x *UpsertClause_LeftParenthesis) String() string {
 func (*UpsertClause_LeftParenthesis) ProtoMessage() {}
 
 func (x *UpsertClause_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[450]
+	mi := &file_sqlite_proto_msgTypes[449]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26032,7 +25996,7 @@ type UpsertClause_Alt1 struct {
 
 func (x *UpsertClause_Alt1) Reset() {
 	*x = UpsertClause_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[451]
+	mi := &file_sqlite_proto_msgTypes[450]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26044,7 +26008,7 @@ func (x *UpsertClause_Alt1) String() string {
 func (*UpsertClause_Alt1) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[451]
+	mi := &file_sqlite_proto_msgTypes[450]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26110,7 +26074,7 @@ type UpsertClause_LeftParenthesis_Where struct {
 
 func (x *UpsertClause_LeftParenthesis_Where) Reset() {
 	*x = UpsertClause_LeftParenthesis_Where{}
-	mi := &file_sqlite_proto_msgTypes[452]
+	mi := &file_sqlite_proto_msgTypes[451]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26122,7 +26086,7 @@ func (x *UpsertClause_LeftParenthesis_Where) String() string {
 func (*UpsertClause_LeftParenthesis_Where) ProtoMessage() {}
 
 func (x *UpsertClause_LeftParenthesis_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[452]
+	mi := &file_sqlite_proto_msgTypes[451]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26158,7 +26122,7 @@ type UpsertClause_Alt1_UpdateSet struct {
 
 func (x *UpsertClause_Alt1_UpdateSet) Reset() {
 	*x = UpsertClause_Alt1_UpdateSet{}
-	mi := &file_sqlite_proto_msgTypes[453]
+	mi := &file_sqlite_proto_msgTypes[452]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26170,7 +26134,7 @@ func (x *UpsertClause_Alt1_UpdateSet) String() string {
 func (*UpsertClause_Alt1_UpdateSet) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1_UpdateSet) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[453]
+	mi := &file_sqlite_proto_msgTypes[452]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26234,7 +26198,7 @@ type UpsertClause_Alt1_UpdateSet_Alt1 struct {
 
 func (x *UpsertClause_Alt1_UpdateSet_Alt1) Reset() {
 	*x = UpsertClause_Alt1_UpdateSet_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[454]
+	mi := &file_sqlite_proto_msgTypes[453]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26246,7 +26210,7 @@ func (x *UpsertClause_Alt1_UpdateSet_Alt1) String() string {
 func (*UpsertClause_Alt1_UpdateSet_Alt1) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1_UpdateSet_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[454]
+	mi := &file_sqlite_proto_msgTypes[453]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26314,7 +26278,7 @@ type UpsertClause_Alt1_UpdateSet_Comma struct {
 
 func (x *UpsertClause_Alt1_UpdateSet_Comma) Reset() {
 	*x = UpsertClause_Alt1_UpdateSet_Comma{}
-	mi := &file_sqlite_proto_msgTypes[455]
+	mi := &file_sqlite_proto_msgTypes[454]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26326,7 +26290,7 @@ func (x *UpsertClause_Alt1_UpdateSet_Comma) String() string {
 func (*UpsertClause_Alt1_UpdateSet_Comma) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1_UpdateSet_Comma) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[455]
+	mi := &file_sqlite_proto_msgTypes[454]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26372,7 +26336,7 @@ type UpsertClause_Alt1_UpdateSet_Where struct {
 
 func (x *UpsertClause_Alt1_UpdateSet_Where) Reset() {
 	*x = UpsertClause_Alt1_UpdateSet_Where{}
-	mi := &file_sqlite_proto_msgTypes[456]
+	mi := &file_sqlite_proto_msgTypes[455]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26384,7 +26348,7 @@ func (x *UpsertClause_Alt1_UpdateSet_Where) String() string {
 func (*UpsertClause_Alt1_UpdateSet_Where) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1_UpdateSet_Where) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[456]
+	mi := &file_sqlite_proto_msgTypes[455]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26420,7 +26384,7 @@ type UpsertClause_Alt1_UpdateSet_Comma_Alt1 struct {
 
 func (x *UpsertClause_Alt1_UpdateSet_Comma_Alt1) Reset() {
 	*x = UpsertClause_Alt1_UpdateSet_Comma_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[457]
+	mi := &file_sqlite_proto_msgTypes[456]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26432,7 +26396,7 @@ func (x *UpsertClause_Alt1_UpdateSet_Comma_Alt1) String() string {
 func (*UpsertClause_Alt1_UpdateSet_Comma_Alt1) ProtoMessage() {}
 
 func (x *UpsertClause_Alt1_UpdateSet_Comma_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[457]
+	mi := &file_sqlite_proto_msgTypes[456]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26500,7 +26464,7 @@ type WindowDefn_PartitionBy struct {
 
 func (x *WindowDefn_PartitionBy) Reset() {
 	*x = WindowDefn_PartitionBy{}
-	mi := &file_sqlite_proto_msgTypes[458]
+	mi := &file_sqlite_proto_msgTypes[457]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26512,7 +26476,7 @@ func (x *WindowDefn_PartitionBy) String() string {
 func (*WindowDefn_PartitionBy) ProtoMessage() {}
 
 func (x *WindowDefn_PartitionBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[458]
+	mi := &file_sqlite_proto_msgTypes[457]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26544,7 +26508,7 @@ type WindowDefn_OrderBy struct {
 
 func (x *WindowDefn_OrderBy) Reset() {
 	*x = WindowDefn_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[459]
+	mi := &file_sqlite_proto_msgTypes[458]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26556,7 +26520,7 @@ func (x *WindowDefn_OrderBy) String() string {
 func (*WindowDefn_OrderBy) ProtoMessage() {}
 
 func (x *WindowDefn_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[459]
+	mi := &file_sqlite_proto_msgTypes[458]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26592,7 +26556,7 @@ type OverClause_Alt1 struct {
 
 func (x *OverClause_Alt1) Reset() {
 	*x = OverClause_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[460]
+	mi := &file_sqlite_proto_msgTypes[459]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26604,7 +26568,7 @@ func (x *OverClause_Alt1) String() string {
 func (*OverClause_Alt1) ProtoMessage() {}
 
 func (x *OverClause_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[460]
+	mi := &file_sqlite_proto_msgTypes[459]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26674,7 +26638,7 @@ type OverClause_Alt1_LeftParenthesis struct {
 
 func (x *OverClause_Alt1_LeftParenthesis) Reset() {
 	*x = OverClause_Alt1_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[461]
+	mi := &file_sqlite_proto_msgTypes[460]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26686,7 +26650,7 @@ func (x *OverClause_Alt1_LeftParenthesis) String() string {
 func (*OverClause_Alt1_LeftParenthesis) ProtoMessage() {}
 
 func (x *OverClause_Alt1_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[461]
+	mi := &file_sqlite_proto_msgTypes[460]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26746,7 +26710,7 @@ type OverClause_Alt1_LeftParenthesis_PartitionBy struct {
 
 func (x *OverClause_Alt1_LeftParenthesis_PartitionBy) Reset() {
 	*x = OverClause_Alt1_LeftParenthesis_PartitionBy{}
-	mi := &file_sqlite_proto_msgTypes[462]
+	mi := &file_sqlite_proto_msgTypes[461]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26758,7 +26722,7 @@ func (x *OverClause_Alt1_LeftParenthesis_PartitionBy) String() string {
 func (*OverClause_Alt1_LeftParenthesis_PartitionBy) ProtoMessage() {}
 
 func (x *OverClause_Alt1_LeftParenthesis_PartitionBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[462]
+	mi := &file_sqlite_proto_msgTypes[461]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26790,7 +26754,7 @@ type OverClause_Alt1_LeftParenthesis_OrderBy struct {
 
 func (x *OverClause_Alt1_LeftParenthesis_OrderBy) Reset() {
 	*x = OverClause_Alt1_LeftParenthesis_OrderBy{}
-	mi := &file_sqlite_proto_msgTypes[463]
+	mi := &file_sqlite_proto_msgTypes[462]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26802,7 +26766,7 @@ func (x *OverClause_Alt1_LeftParenthesis_OrderBy) String() string {
 func (*OverClause_Alt1_LeftParenthesis_OrderBy) ProtoMessage() {}
 
 func (x *OverClause_Alt1_LeftParenthesis_OrderBy) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[463]
+	mi := &file_sqlite_proto_msgTypes[462]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26839,7 +26803,7 @@ type FrameSpec_Alt1 struct {
 
 func (x *FrameSpec_Alt1) Reset() {
 	*x = FrameSpec_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[464]
+	mi := &file_sqlite_proto_msgTypes[463]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26851,7 +26815,7 @@ func (x *FrameSpec_Alt1) String() string {
 func (*FrameSpec_Alt1) ProtoMessage() {}
 
 func (x *FrameSpec_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[464]
+	mi := &file_sqlite_proto_msgTypes[463]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -26938,7 +26902,7 @@ type FrameSpec_Alt2 struct {
 
 func (x *FrameSpec_Alt2) Reset() {
 	*x = FrameSpec_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[465]
+	mi := &file_sqlite_proto_msgTypes[464]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -26950,7 +26914,7 @@ func (x *FrameSpec_Alt2) String() string {
 func (*FrameSpec_Alt2) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[465]
+	mi := &file_sqlite_proto_msgTypes[464]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27052,7 +27016,7 @@ type FrameSpec_Alt3 struct {
 
 func (x *FrameSpec_Alt3) Reset() {
 	*x = FrameSpec_Alt3{}
-	mi := &file_sqlite_proto_msgTypes[466]
+	mi := &file_sqlite_proto_msgTypes[465]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27064,7 +27028,7 @@ func (x *FrameSpec_Alt3) String() string {
 func (*FrameSpec_Alt3) ProtoMessage() {}
 
 func (x *FrameSpec_Alt3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[466]
+	mi := &file_sqlite_proto_msgTypes[465]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27162,7 +27126,7 @@ type FrameSpec_Alt2_Between struct {
 
 func (x *FrameSpec_Alt2_Between) Reset() {
 	*x = FrameSpec_Alt2_Between{}
-	mi := &file_sqlite_proto_msgTypes[467]
+	mi := &file_sqlite_proto_msgTypes[466]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27174,7 +27138,7 @@ func (x *FrameSpec_Alt2_Between) String() string {
 func (*FrameSpec_Alt2_Between) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[467]
+	mi := &file_sqlite_proto_msgTypes[466]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27219,7 +27183,7 @@ type FrameSpec_Alt2_UnboundedPreceding struct {
 
 func (x *FrameSpec_Alt2_UnboundedPreceding) Reset() {
 	*x = FrameSpec_Alt2_UnboundedPreceding{}
-	mi := &file_sqlite_proto_msgTypes[468]
+	mi := &file_sqlite_proto_msgTypes[467]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27231,7 +27195,7 @@ func (x *FrameSpec_Alt2_UnboundedPreceding) String() string {
 func (*FrameSpec_Alt2_UnboundedPreceding) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_UnboundedPreceding) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[468]
+	mi := &file_sqlite_proto_msgTypes[467]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27257,7 +27221,7 @@ type FrameSpec_Alt2_Seq1 struct {
 
 func (x *FrameSpec_Alt2_Seq1) Reset() {
 	*x = FrameSpec_Alt2_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[469]
+	mi := &file_sqlite_proto_msgTypes[468]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27269,7 +27233,7 @@ func (x *FrameSpec_Alt2_Seq1) String() string {
 func (*FrameSpec_Alt2_Seq1) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[469]
+	mi := &file_sqlite_proto_msgTypes[468]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27307,7 +27271,7 @@ type FrameSpec_Alt2_CurrentRow struct {
 
 func (x *FrameSpec_Alt2_CurrentRow) Reset() {
 	*x = FrameSpec_Alt2_CurrentRow{}
-	mi := &file_sqlite_proto_msgTypes[470]
+	mi := &file_sqlite_proto_msgTypes[469]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27319,7 +27283,7 @@ func (x *FrameSpec_Alt2_CurrentRow) String() string {
 func (*FrameSpec_Alt2_CurrentRow) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_CurrentRow) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[470]
+	mi := &file_sqlite_proto_msgTypes[469]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27350,7 +27314,7 @@ type FrameSpec_Alt2_Between_Alt1 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt1) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[471]
+	mi := &file_sqlite_proto_msgTypes[470]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27362,7 +27326,7 @@ func (x *FrameSpec_Alt2_Between_Alt1) String() string {
 func (*FrameSpec_Alt2_Between_Alt1) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[471]
+	mi := &file_sqlite_proto_msgTypes[470]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27464,7 +27428,7 @@ type FrameSpec_Alt2_Between_Alt2 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt2) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt2{}
-	mi := &file_sqlite_proto_msgTypes[472]
+	mi := &file_sqlite_proto_msgTypes[471]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27476,7 +27440,7 @@ func (x *FrameSpec_Alt2_Between_Alt2) String() string {
 func (*FrameSpec_Alt2_Between_Alt2) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[472]
+	mi := &file_sqlite_proto_msgTypes[471]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27571,7 +27535,7 @@ type FrameSpec_Alt2_Between_Alt1_UnboundedPreceding struct {
 
 func (x *FrameSpec_Alt2_Between_Alt1_UnboundedPreceding) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt1_UnboundedPreceding{}
-	mi := &file_sqlite_proto_msgTypes[473]
+	mi := &file_sqlite_proto_msgTypes[472]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27583,7 +27547,7 @@ func (x *FrameSpec_Alt2_Between_Alt1_UnboundedPreceding) String() string {
 func (*FrameSpec_Alt2_Between_Alt1_UnboundedPreceding) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt1_UnboundedPreceding) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[473]
+	mi := &file_sqlite_proto_msgTypes[472]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27609,7 +27573,7 @@ type FrameSpec_Alt2_Between_Alt1_Seq1 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt1_Seq1) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[474]
+	mi := &file_sqlite_proto_msgTypes[473]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27621,7 +27585,7 @@ func (x *FrameSpec_Alt2_Between_Alt1_Seq1) String() string {
 func (*FrameSpec_Alt2_Between_Alt1_Seq1) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[474]
+	mi := &file_sqlite_proto_msgTypes[473]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27659,7 +27623,7 @@ type FrameSpec_Alt2_Between_Alt1_CurrentRow struct {
 
 func (x *FrameSpec_Alt2_Between_Alt1_CurrentRow) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt1_CurrentRow{}
-	mi := &file_sqlite_proto_msgTypes[475]
+	mi := &file_sqlite_proto_msgTypes[474]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27671,7 +27635,7 @@ func (x *FrameSpec_Alt2_Between_Alt1_CurrentRow) String() string {
 func (*FrameSpec_Alt2_Between_Alt1_CurrentRow) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt1_CurrentRow) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[475]
+	mi := &file_sqlite_proto_msgTypes[474]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27697,7 +27661,7 @@ type FrameSpec_Alt2_Between_Alt1_Seq2 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt1_Seq2) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt1_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[476]
+	mi := &file_sqlite_proto_msgTypes[475]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27709,7 +27673,7 @@ func (x *FrameSpec_Alt2_Between_Alt1_Seq2) String() string {
 func (*FrameSpec_Alt2_Between_Alt1_Seq2) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt1_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[476]
+	mi := &file_sqlite_proto_msgTypes[475]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27749,7 +27713,7 @@ type FrameSpec_Alt2_Between_Alt2_Seq1 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt2_Seq1) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt2_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[477]
+	mi := &file_sqlite_proto_msgTypes[476]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27761,7 +27725,7 @@ func (x *FrameSpec_Alt2_Between_Alt2_Seq1) String() string {
 func (*FrameSpec_Alt2_Between_Alt2_Seq1) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt2_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[477]
+	mi := &file_sqlite_proto_msgTypes[476]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27799,7 +27763,7 @@ type FrameSpec_Alt2_Between_Alt2_CurrentRow struct {
 
 func (x *FrameSpec_Alt2_Between_Alt2_CurrentRow) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt2_CurrentRow{}
-	mi := &file_sqlite_proto_msgTypes[478]
+	mi := &file_sqlite_proto_msgTypes[477]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27811,7 +27775,7 @@ func (x *FrameSpec_Alt2_Between_Alt2_CurrentRow) String() string {
 func (*FrameSpec_Alt2_Between_Alt2_CurrentRow) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt2_CurrentRow) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[478]
+	mi := &file_sqlite_proto_msgTypes[477]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27837,7 +27801,7 @@ type FrameSpec_Alt2_Between_Alt2_Seq2 struct {
 
 func (x *FrameSpec_Alt2_Between_Alt2_Seq2) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt2_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[479]
+	mi := &file_sqlite_proto_msgTypes[478]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27849,7 +27813,7 @@ func (x *FrameSpec_Alt2_Between_Alt2_Seq2) String() string {
 func (*FrameSpec_Alt2_Between_Alt2_Seq2) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt2_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[479]
+	mi := &file_sqlite_proto_msgTypes[478]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27887,7 +27851,7 @@ type FrameSpec_Alt2_Between_Alt2_UnboundedFollowing struct {
 
 func (x *FrameSpec_Alt2_Between_Alt2_UnboundedFollowing) Reset() {
 	*x = FrameSpec_Alt2_Between_Alt2_UnboundedFollowing{}
-	mi := &file_sqlite_proto_msgTypes[480]
+	mi := &file_sqlite_proto_msgTypes[479]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27899,7 +27863,7 @@ func (x *FrameSpec_Alt2_Between_Alt2_UnboundedFollowing) String() string {
 func (*FrameSpec_Alt2_Between_Alt2_UnboundedFollowing) ProtoMessage() {}
 
 func (x *FrameSpec_Alt2_Between_Alt2_UnboundedFollowing) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[480]
+	mi := &file_sqlite_proto_msgTypes[479]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27923,7 +27887,7 @@ type FrameSpec_Alt3_ExcludeNoOthers struct {
 
 func (x *FrameSpec_Alt3_ExcludeNoOthers) Reset() {
 	*x = FrameSpec_Alt3_ExcludeNoOthers{}
-	mi := &file_sqlite_proto_msgTypes[481]
+	mi := &file_sqlite_proto_msgTypes[480]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27935,7 +27899,7 @@ func (x *FrameSpec_Alt3_ExcludeNoOthers) String() string {
 func (*FrameSpec_Alt3_ExcludeNoOthers) ProtoMessage() {}
 
 func (x *FrameSpec_Alt3_ExcludeNoOthers) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[481]
+	mi := &file_sqlite_proto_msgTypes[480]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27959,7 +27923,7 @@ type FrameSpec_Alt3_ExcludeCurrentRow struct {
 
 func (x *FrameSpec_Alt3_ExcludeCurrentRow) Reset() {
 	*x = FrameSpec_Alt3_ExcludeCurrentRow{}
-	mi := &file_sqlite_proto_msgTypes[482]
+	mi := &file_sqlite_proto_msgTypes[481]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -27971,7 +27935,7 @@ func (x *FrameSpec_Alt3_ExcludeCurrentRow) String() string {
 func (*FrameSpec_Alt3_ExcludeCurrentRow) ProtoMessage() {}
 
 func (x *FrameSpec_Alt3_ExcludeCurrentRow) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[482]
+	mi := &file_sqlite_proto_msgTypes[481]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -27995,7 +27959,7 @@ type FrameSpec_Alt3_ExcludeGroup struct {
 
 func (x *FrameSpec_Alt3_ExcludeGroup) Reset() {
 	*x = FrameSpec_Alt3_ExcludeGroup{}
-	mi := &file_sqlite_proto_msgTypes[483]
+	mi := &file_sqlite_proto_msgTypes[482]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28007,7 +27971,7 @@ func (x *FrameSpec_Alt3_ExcludeGroup) String() string {
 func (*FrameSpec_Alt3_ExcludeGroup) ProtoMessage() {}
 
 func (x *FrameSpec_Alt3_ExcludeGroup) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[483]
+	mi := &file_sqlite_proto_msgTypes[482]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28031,7 +27995,7 @@ type FrameSpec_Alt3_ExcludeTies struct {
 
 func (x *FrameSpec_Alt3_ExcludeTies) Reset() {
 	*x = FrameSpec_Alt3_ExcludeTies{}
-	mi := &file_sqlite_proto_msgTypes[484]
+	mi := &file_sqlite_proto_msgTypes[483]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28043,7 +28007,7 @@ func (x *FrameSpec_Alt3_ExcludeTies) String() string {
 func (*FrameSpec_Alt3_ExcludeTies) ProtoMessage() {}
 
 func (x *FrameSpec_Alt3_ExcludeTies) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[484]
+	mi := &file_sqlite_proto_msgTypes[483]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28069,7 +28033,7 @@ type Expr_Seq1 struct {
 
 func (x *Expr_Seq1) Reset() {
 	*x = Expr_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[485]
+	mi := &file_sqlite_proto_msgTypes[484]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28081,7 +28045,7 @@ func (x *Expr_Seq1) String() string {
 func (*Expr_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[485]
+	mi := &file_sqlite_proto_msgTypes[484]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28121,7 +28085,7 @@ type Expr_Seq2 struct {
 
 func (x *Expr_Seq2) Reset() {
 	*x = Expr_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[486]
+	mi := &file_sqlite_proto_msgTypes[485]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28133,7 +28097,7 @@ func (x *Expr_Seq2) String() string {
 func (*Expr_Seq2) ProtoMessage() {}
 
 func (x *Expr_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[486]
+	mi := &file_sqlite_proto_msgTypes[485]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28174,7 +28138,7 @@ type Expr_Seq3 struct {
 
 func (x *Expr_Seq3) Reset() {
 	*x = Expr_Seq3{}
-	mi := &file_sqlite_proto_msgTypes[487]
+	mi := &file_sqlite_proto_msgTypes[486]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28186,7 +28150,7 @@ func (x *Expr_Seq3) String() string {
 func (*Expr_Seq3) ProtoMessage() {}
 
 func (x *Expr_Seq3) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[487]
+	mi := &file_sqlite_proto_msgTypes[486]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28237,7 +28201,7 @@ type Expr_Seq4 struct {
 
 func (x *Expr_Seq4) Reset() {
 	*x = Expr_Seq4{}
-	mi := &file_sqlite_proto_msgTypes[488]
+	mi := &file_sqlite_proto_msgTypes[487]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28249,7 +28213,7 @@ func (x *Expr_Seq4) String() string {
 func (*Expr_Seq4) ProtoMessage() {}
 
 func (x *Expr_Seq4) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[488]
+	mi := &file_sqlite_proto_msgTypes[487]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28317,7 +28281,7 @@ type Expr_LeftParenthesis struct {
 
 func (x *Expr_LeftParenthesis) Reset() {
 	*x = Expr_LeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[489]
+	mi := &file_sqlite_proto_msgTypes[488]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28329,7 +28293,7 @@ func (x *Expr_LeftParenthesis) String() string {
 func (*Expr_LeftParenthesis) ProtoMessage() {}
 
 func (x *Expr_LeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[489]
+	mi := &file_sqlite_proto_msgTypes[488]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28371,7 +28335,7 @@ type Expr_CastLeftParenthesis struct {
 
 func (x *Expr_CastLeftParenthesis) Reset() {
 	*x = Expr_CastLeftParenthesis{}
-	mi := &file_sqlite_proto_msgTypes[490]
+	mi := &file_sqlite_proto_msgTypes[489]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28383,7 +28347,7 @@ func (x *Expr_CastLeftParenthesis) String() string {
 func (*Expr_CastLeftParenthesis) ProtoMessage() {}
 
 func (x *Expr_CastLeftParenthesis) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[490]
+	mi := &file_sqlite_proto_msgTypes[489]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28438,7 +28402,7 @@ type Expr_Seq5 struct {
 
 func (x *Expr_Seq5) Reset() {
 	*x = Expr_Seq5{}
-	mi := &file_sqlite_proto_msgTypes[491]
+	mi := &file_sqlite_proto_msgTypes[490]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28450,7 +28414,7 @@ func (x *Expr_Seq5) String() string {
 func (*Expr_Seq5) ProtoMessage() {}
 
 func (x *Expr_Seq5) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[491]
+	mi := &file_sqlite_proto_msgTypes[490]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28500,7 +28464,7 @@ type Expr_Seq6 struct {
 
 func (x *Expr_Seq6) Reset() {
 	*x = Expr_Seq6{}
-	mi := &file_sqlite_proto_msgTypes[492]
+	mi := &file_sqlite_proto_msgTypes[491]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28512,7 +28476,7 @@ func (x *Expr_Seq6) String() string {
 func (*Expr_Seq6) ProtoMessage() {}
 
 func (x *Expr_Seq6) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[492]
+	mi := &file_sqlite_proto_msgTypes[491]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28573,7 +28537,7 @@ type Expr_Seq7 struct {
 
 func (x *Expr_Seq7) Reset() {
 	*x = Expr_Seq7{}
-	mi := &file_sqlite_proto_msgTypes[493]
+	mi := &file_sqlite_proto_msgTypes[492]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28585,7 +28549,7 @@ func (x *Expr_Seq7) String() string {
 func (*Expr_Seq7) ProtoMessage() {}
 
 func (x *Expr_Seq7) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[493]
+	mi := &file_sqlite_proto_msgTypes[492]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28625,7 +28589,7 @@ type Expr_Seq8 struct {
 
 func (x *Expr_Seq8) Reset() {
 	*x = Expr_Seq8{}
-	mi := &file_sqlite_proto_msgTypes[494]
+	mi := &file_sqlite_proto_msgTypes[493]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28637,7 +28601,7 @@ func (x *Expr_Seq8) String() string {
 func (*Expr_Seq8) ProtoMessage() {}
 
 func (x *Expr_Seq8) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[494]
+	mi := &file_sqlite_proto_msgTypes[493]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28678,7 +28642,7 @@ type Expr_Seq9 struct {
 
 func (x *Expr_Seq9) Reset() {
 	*x = Expr_Seq9{}
-	mi := &file_sqlite_proto_msgTypes[495]
+	mi := &file_sqlite_proto_msgTypes[494]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28690,7 +28654,7 @@ func (x *Expr_Seq9) String() string {
 func (*Expr_Seq9) ProtoMessage() {}
 
 func (x *Expr_Seq9) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[495]
+	mi := &file_sqlite_proto_msgTypes[494]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28740,7 +28704,7 @@ type Expr_Seq10 struct {
 
 func (x *Expr_Seq10) Reset() {
 	*x = Expr_Seq10{}
-	mi := &file_sqlite_proto_msgTypes[496]
+	mi := &file_sqlite_proto_msgTypes[495]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28752,7 +28716,7 @@ func (x *Expr_Seq10) String() string {
 func (*Expr_Seq10) ProtoMessage() {}
 
 func (x *Expr_Seq10) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[496]
+	mi := &file_sqlite_proto_msgTypes[495]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28817,7 +28781,7 @@ type Expr_Seq11 struct {
 
 func (x *Expr_Seq11) Reset() {
 	*x = Expr_Seq11{}
-	mi := &file_sqlite_proto_msgTypes[497]
+	mi := &file_sqlite_proto_msgTypes[496]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28829,7 +28793,7 @@ func (x *Expr_Seq11) String() string {
 func (*Expr_Seq11) ProtoMessage() {}
 
 func (x *Expr_Seq11) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[497]
+	mi := &file_sqlite_proto_msgTypes[496]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28901,7 +28865,7 @@ type Expr_Seq12 struct {
 
 func (x *Expr_Seq12) Reset() {
 	*x = Expr_Seq12{}
-	mi := &file_sqlite_proto_msgTypes[498]
+	mi := &file_sqlite_proto_msgTypes[497]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28913,7 +28877,7 @@ func (x *Expr_Seq12) String() string {
 func (*Expr_Seq12) ProtoMessage() {}
 
 func (x *Expr_Seq12) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[498]
+	mi := &file_sqlite_proto_msgTypes[497]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -28984,7 +28948,7 @@ type Expr_Seq13 struct {
 
 func (x *Expr_Seq13) Reset() {
 	*x = Expr_Seq13{}
-	mi := &file_sqlite_proto_msgTypes[499]
+	mi := &file_sqlite_proto_msgTypes[498]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -28996,7 +28960,7 @@ func (x *Expr_Seq13) String() string {
 func (*Expr_Seq13) ProtoMessage() {}
 
 func (x *Expr_Seq13) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[499]
+	mi := &file_sqlite_proto_msgTypes[498]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29063,7 +29027,7 @@ type Expr_Seq14 struct {
 
 func (x *Expr_Seq14) Reset() {
 	*x = Expr_Seq14{}
-	mi := &file_sqlite_proto_msgTypes[500]
+	mi := &file_sqlite_proto_msgTypes[499]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29075,7 +29039,7 @@ func (x *Expr_Seq14) String() string {
 func (*Expr_Seq14) ProtoMessage() {}
 
 func (x *Expr_Seq14) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[500]
+	mi := &file_sqlite_proto_msgTypes[499]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29160,7 +29124,7 @@ type Expr_Seq15 struct {
 
 func (x *Expr_Seq15) Reset() {
 	*x = Expr_Seq15{}
-	mi := &file_sqlite_proto_msgTypes[501]
+	mi := &file_sqlite_proto_msgTypes[500]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29172,7 +29136,7 @@ func (x *Expr_Seq15) String() string {
 func (*Expr_Seq15) ProtoMessage() {}
 
 func (x *Expr_Seq15) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[501]
+	mi := &file_sqlite_proto_msgTypes[500]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29239,7 +29203,7 @@ type Expr_Case struct {
 
 func (x *Expr_Case) Reset() {
 	*x = Expr_Case{}
-	mi := &file_sqlite_proto_msgTypes[502]
+	mi := &file_sqlite_proto_msgTypes[501]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29251,7 +29215,7 @@ func (x *Expr_Case) String() string {
 func (*Expr_Case) ProtoMessage() {}
 
 func (x *Expr_Case) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[502]
+	mi := &file_sqlite_proto_msgTypes[501]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29334,7 +29298,7 @@ type Expr_Seq1_Seq1 struct {
 
 func (x *Expr_Seq1_Seq1) Reset() {
 	*x = Expr_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[503]
+	mi := &file_sqlite_proto_msgTypes[502]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29346,7 +29310,7 @@ func (x *Expr_Seq1_Seq1) String() string {
 func (*Expr_Seq1_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[503]
+	mi := &file_sqlite_proto_msgTypes[502]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29393,7 +29357,7 @@ type Expr_Seq1_Seq1_Seq1 struct {
 
 func (x *Expr_Seq1_Seq1_Seq1) Reset() {
 	*x = Expr_Seq1_Seq1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[504]
+	mi := &file_sqlite_proto_msgTypes[503]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29405,7 +29369,7 @@ func (x *Expr_Seq1_Seq1_Seq1) String() string {
 func (*Expr_Seq1_Seq1_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq1_Seq1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[504]
+	mi := &file_sqlite_proto_msgTypes[503]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29450,7 +29414,7 @@ type Expr_Seq6_Alt1 struct {
 
 func (x *Expr_Seq6_Alt1) Reset() {
 	*x = Expr_Seq6_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[505]
+	mi := &file_sqlite_proto_msgTypes[504]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29462,7 +29426,7 @@ func (x *Expr_Seq6_Alt1) String() string {
 func (*Expr_Seq6_Alt1) ProtoMessage() {}
 
 func (x *Expr_Seq6_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[505]
+	mi := &file_sqlite_proto_msgTypes[504]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29558,7 +29522,7 @@ type Expr_Seq6_Escape struct {
 
 func (x *Expr_Seq6_Escape) Reset() {
 	*x = Expr_Seq6_Escape{}
-	mi := &file_sqlite_proto_msgTypes[506]
+	mi := &file_sqlite_proto_msgTypes[505]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29570,7 +29534,7 @@ func (x *Expr_Seq6_Escape) String() string {
 func (*Expr_Seq6_Escape) ProtoMessage() {}
 
 func (x *Expr_Seq6_Escape) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[506]
+	mi := &file_sqlite_proto_msgTypes[505]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29601,7 +29565,7 @@ type Expr_Seq10_DistinctFrom struct {
 
 func (x *Expr_Seq10_DistinctFrom) Reset() {
 	*x = Expr_Seq10_DistinctFrom{}
-	mi := &file_sqlite_proto_msgTypes[507]
+	mi := &file_sqlite_proto_msgTypes[506]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29613,7 +29577,7 @@ func (x *Expr_Seq10_DistinctFrom) String() string {
 func (*Expr_Seq10_DistinctFrom) ProtoMessage() {}
 
 func (x *Expr_Seq10_DistinctFrom) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[507]
+	mi := &file_sqlite_proto_msgTypes[506]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29642,7 +29606,7 @@ type Expr_Seq12_Alt1 struct {
 
 func (x *Expr_Seq12_Alt1) Reset() {
 	*x = Expr_Seq12_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[508]
+	mi := &file_sqlite_proto_msgTypes[507]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29654,7 +29618,7 @@ func (x *Expr_Seq12_Alt1) String() string {
 func (*Expr_Seq12_Alt1) ProtoMessage() {}
 
 func (x *Expr_Seq12_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[508]
+	mi := &file_sqlite_proto_msgTypes[507]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29720,7 +29684,7 @@ type Expr_Seq12_Alt1_Seq1 struct {
 
 func (x *Expr_Seq12_Alt1_Seq1) Reset() {
 	*x = Expr_Seq12_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[509]
+	mi := &file_sqlite_proto_msgTypes[508]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29732,7 +29696,7 @@ func (x *Expr_Seq12_Alt1_Seq1) String() string {
 func (*Expr_Seq12_Alt1_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq12_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[509]
+	mi := &file_sqlite_proto_msgTypes[508]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29765,7 +29729,7 @@ type Expr_Seq13_Seq1 struct {
 
 func (x *Expr_Seq13_Seq1) Reset() {
 	*x = Expr_Seq13_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[510]
+	mi := &file_sqlite_proto_msgTypes[509]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29777,7 +29741,7 @@ func (x *Expr_Seq13_Seq1) String() string {
 func (*Expr_Seq13_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq13_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[510]
+	mi := &file_sqlite_proto_msgTypes[509]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29817,7 +29781,7 @@ type Expr_Seq14_Seq1 struct {
 
 func (x *Expr_Seq14_Seq1) Reset() {
 	*x = Expr_Seq14_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[511]
+	mi := &file_sqlite_proto_msgTypes[510]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29829,7 +29793,7 @@ func (x *Expr_Seq14_Seq1) String() string {
 func (*Expr_Seq14_Seq1) ProtoMessage() {}
 
 func (x *Expr_Seq14_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[511]
+	mi := &file_sqlite_proto_msgTypes[510]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29868,7 +29832,7 @@ type Expr_Seq14_Seq2 struct {
 
 func (x *Expr_Seq14_Seq2) Reset() {
 	*x = Expr_Seq14_Seq2{}
-	mi := &file_sqlite_proto_msgTypes[512]
+	mi := &file_sqlite_proto_msgTypes[511]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29880,7 +29844,7 @@ func (x *Expr_Seq14_Seq2) String() string {
 func (*Expr_Seq14_Seq2) ProtoMessage() {}
 
 func (x *Expr_Seq14_Seq2) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[512]
+	mi := &file_sqlite_proto_msgTypes[511]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29914,7 +29878,7 @@ type Expr_Case_When struct {
 
 func (x *Expr_Case_When) Reset() {
 	*x = Expr_Case_When{}
-	mi := &file_sqlite_proto_msgTypes[513]
+	mi := &file_sqlite_proto_msgTypes[512]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29926,7 +29890,7 @@ func (x *Expr_Case_When) String() string {
 func (*Expr_Case_When) ProtoMessage() {}
 
 func (x *Expr_Case_When) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[513]
+	mi := &file_sqlite_proto_msgTypes[512]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -29972,7 +29936,7 @@ type Expr_Case_Else struct {
 
 func (x *Expr_Case_Else) Reset() {
 	*x = Expr_Case_Else{}
-	mi := &file_sqlite_proto_msgTypes[514]
+	mi := &file_sqlite_proto_msgTypes[513]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -29984,7 +29948,7 @@ func (x *Expr_Case_Else) String() string {
 func (*Expr_Case_Else) ProtoMessage() {}
 
 func (x *Expr_Case_Else) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[514]
+	mi := &file_sqlite_proto_msgTypes[513]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30017,7 +29981,7 @@ type FunctionArguments_Seq1 struct {
 
 func (x *FunctionArguments_Seq1) Reset() {
 	*x = FunctionArguments_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[515]
+	mi := &file_sqlite_proto_msgTypes[514]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30029,7 +29993,7 @@ func (x *FunctionArguments_Seq1) String() string {
 func (*FunctionArguments_Seq1) ProtoMessage() {}
 
 func (x *FunctionArguments_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[515]
+	mi := &file_sqlite_proto_msgTypes[514]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30072,7 +30036,7 @@ type SignedNumber_Alt1 struct {
 
 func (x *SignedNumber_Alt1) Reset() {
 	*x = SignedNumber_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[516]
+	mi := &file_sqlite_proto_msgTypes[515]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30084,7 +30048,7 @@ func (x *SignedNumber_Alt1) String() string {
 func (*SignedNumber_Alt1) ProtoMessage() {}
 
 func (x *SignedNumber_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[516]
+	mi := &file_sqlite_proto_msgTypes[515]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30154,7 +30118,7 @@ type RaiseFunction_Alt1 struct {
 
 func (x *RaiseFunction_Alt1) Reset() {
 	*x = RaiseFunction_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[517]
+	mi := &file_sqlite_proto_msgTypes[516]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30166,7 +30130,7 @@ func (x *RaiseFunction_Alt1) String() string {
 func (*RaiseFunction_Alt1) ProtoMessage() {}
 
 func (x *RaiseFunction_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[517]
+	mi := &file_sqlite_proto_msgTypes[516]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30234,7 +30198,7 @@ type RaiseFunction_Alt1_Seq1 struct {
 
 func (x *RaiseFunction_Alt1_Seq1) Reset() {
 	*x = RaiseFunction_Alt1_Seq1{}
-	mi := &file_sqlite_proto_msgTypes[518]
+	mi := &file_sqlite_proto_msgTypes[517]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30246,7 +30210,7 @@ func (x *RaiseFunction_Alt1_Seq1) String() string {
 func (*RaiseFunction_Alt1_Seq1) ProtoMessage() {}
 
 func (x *RaiseFunction_Alt1_Seq1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[518]
+	mi := &file_sqlite_proto_msgTypes[517]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30297,7 +30261,7 @@ type RaiseFunction_Alt1_Seq1_Alt1 struct {
 
 func (x *RaiseFunction_Alt1_Seq1_Alt1) Reset() {
 	*x = RaiseFunction_Alt1_Seq1_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[519]
+	mi := &file_sqlite_proto_msgTypes[518]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30309,7 +30273,7 @@ func (x *RaiseFunction_Alt1_Seq1_Alt1) String() string {
 func (*RaiseFunction_Alt1_Seq1_Alt1) ProtoMessage() {}
 
 func (x *RaiseFunction_Alt1_Seq1_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[519]
+	mi := &file_sqlite_proto_msgTypes[518]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30390,7 +30354,7 @@ type NumericLiteral_FullStop struct {
 
 func (x *NumericLiteral_FullStop) Reset() {
 	*x = NumericLiteral_FullStop{}
-	mi := &file_sqlite_proto_msgTypes[520]
+	mi := &file_sqlite_proto_msgTypes[519]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30402,7 +30366,7 @@ func (x *NumericLiteral_FullStop) String() string {
 func (*NumericLiteral_FullStop) ProtoMessage() {}
 
 func (x *NumericLiteral_FullStop) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[520]
+	mi := &file_sqlite_proto_msgTypes[519]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30436,7 +30400,7 @@ type NumericLiteral_E struct {
 
 func (x *NumericLiteral_E) Reset() {
 	*x = NumericLiteral_E{}
-	mi := &file_sqlite_proto_msgTypes[521]
+	mi := &file_sqlite_proto_msgTypes[520]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30448,7 +30412,7 @@ func (x *NumericLiteral_E) String() string {
 func (*NumericLiteral_E) ProtoMessage() {}
 
 func (x *NumericLiteral_E) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[521]
+	mi := &file_sqlite_proto_msgTypes[520]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30498,7 +30462,7 @@ type NumericLiteral_E_Alt1 struct {
 
 func (x *NumericLiteral_E_Alt1) Reset() {
 	*x = NumericLiteral_E_Alt1{}
-	mi := &file_sqlite_proto_msgTypes[522]
+	mi := &file_sqlite_proto_msgTypes[521]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30510,7 +30474,7 @@ func (x *NumericLiteral_E_Alt1) String() string {
 func (*NumericLiteral_E_Alt1) ProtoMessage() {}
 
 func (x *NumericLiteral_E_Alt1) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[522]
+	mi := &file_sqlite_proto_msgTypes[521]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30576,7 +30540,7 @@ type BindParameter_Colon struct {
 
 func (x *BindParameter_Colon) Reset() {
 	*x = BindParameter_Colon{}
-	mi := &file_sqlite_proto_msgTypes[523]
+	mi := &file_sqlite_proto_msgTypes[522]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30588,7 +30552,7 @@ func (x *BindParameter_Colon) String() string {
 func (*BindParameter_Colon) ProtoMessage() {}
 
 func (x *BindParameter_Colon) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[523]
+	mi := &file_sqlite_proto_msgTypes[522]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30620,7 +30584,7 @@ type BindParameter_CommercialAt struct {
 
 func (x *BindParameter_CommercialAt) Reset() {
 	*x = BindParameter_CommercialAt{}
-	mi := &file_sqlite_proto_msgTypes[524]
+	mi := &file_sqlite_proto_msgTypes[523]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30632,7 +30596,7 @@ func (x *BindParameter_CommercialAt) String() string {
 func (*BindParameter_CommercialAt) ProtoMessage() {}
 
 func (x *BindParameter_CommercialAt) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[524]
+	mi := &file_sqlite_proto_msgTypes[523]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30664,7 +30628,7 @@ type BindParameter_DollarSign struct {
 
 func (x *BindParameter_DollarSign) Reset() {
 	*x = BindParameter_DollarSign{}
-	mi := &file_sqlite_proto_msgTypes[525]
+	mi := &file_sqlite_proto_msgTypes[524]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30676,7 +30640,7 @@ func (x *BindParameter_DollarSign) String() string {
 func (*BindParameter_DollarSign) ProtoMessage() {}
 
 func (x *BindParameter_DollarSign) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[525]
+	mi := &file_sqlite_proto_msgTypes[524]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -30707,7 +30671,7 @@ type BinaryOperator_IsNot struct {
 
 func (x *BinaryOperator_IsNot) Reset() {
 	*x = BinaryOperator_IsNot{}
-	mi := &file_sqlite_proto_msgTypes[526]
+	mi := &file_sqlite_proto_msgTypes[525]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -30719,7 +30683,7 @@ func (x *BinaryOperator_IsNot) String() string {
 func (*BinaryOperator_IsNot) ProtoMessage() {}
 
 func (x *BinaryOperator_IsNot) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_proto_msgTypes[526]
+	mi := &file_sqlite_proto_msgTypes[525]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -32441,13 +32405,13 @@ const file_sqlite_proto_rawDesc = "" +
 	"\n" +
 	"or_keyword\x18\x1b \x01(\v2\x11.sqlite.OrKeywordH\x00R\torKeyword\x1a\a\n" +
 	"\x05IsNotB\a\n" +
-	"\x05value\"5\n" +
-	"\x04Name\x12-\n" +
-	"\tx_keyword\x18\x01 \x01(\v2\x10.sqlite.XKeywordR\bxKeyword\">\n" +
-	"\rStringLiteral\x12-\n" +
-	"\tx_keyword\x18\x01 \x01(\v2\x10.sqlite.XKeywordR\bxKeyword\"<\n" +
-	"\vBlobLiteral\x12-\n" +
-	"\tx_keyword\x18\x01 \x01(\v2\x10.sqlite.XKeywordR\bxKeyword\"\x0e\n" +
+	"\x05value\"\x1c\n" +
+	"\x04Name\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\tR\x05value\"%\n" +
+	"\rStringLiteral\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\tR\x05value\"#\n" +
+	"\vBlobLiteral\x12\x14\n" +
+	"\x05value\x18\x01 \x01(\tR\x05value\"\x0e\n" +
 	"\fAbortKeyword\"\x0e\n" +
 	"\fAfterKeyword\"\f\n" +
 	"\n" +
@@ -32577,9 +32541,7 @@ const file_sqlite_proto_rawDesc = "" +
 	"\x1fVerticalLineVerticalLineKeyword\"\r\n" +
 	"\vViewKeyword\"\x10\n" +
 	"\x0eVirtualKeyword\"\r\n" +
-	"\vWhenKeyword\"\n" +
-	"\n" +
-	"\bXKeywordB8Z6github.com/accretional/proto-sqlite/sqlite/pb;sqlitepbb\x06proto3"
+	"\vWhenKeywordB8Z6github.com/accretional/proto-sqlite/sqlite/pb;sqlitepbb\x06proto3"
 
 var (
 	file_sqlite_proto_rawDescOnce sync.Once
@@ -32593,7 +32555,7 @@ func file_sqlite_proto_rawDescGZIP() []byte {
 	return file_sqlite_proto_rawDescData
 }
 
-var file_sqlite_proto_msgTypes = make([]protoimpl.MessageInfo, 527)
+var file_sqlite_proto_msgTypes = make([]protoimpl.MessageInfo, 526)
 var file_sqlite_proto_goTypes = []any{
 	(*SqlStmtList)(nil),                                     // 0: sqlite.SqlStmtList
 	(*SqlStmt)(nil),                                         // 1: sqlite.SqlStmt
@@ -32816,323 +32778,322 @@ var file_sqlite_proto_goTypes = []any{
 	(*ViewKeyword)(nil),                                     // 218: sqlite.ViewKeyword
 	(*VirtualKeyword)(nil),                                  // 219: sqlite.VirtualKeyword
 	(*WhenKeyword)(nil),                                     // 220: sqlite.WhenKeyword
-	(*XKeyword)(nil),                                        // 221: sqlite.XKeyword
-	(*SqlStmt_Explain)(nil),                                 // 222: sqlite.SqlStmt.Explain
-	(*SqlStmt_Alt1)(nil),                                    // 223: sqlite.SqlStmt.Alt1
-	(*SqlStmt_Explain_QueryPlan)(nil),                       // 224: sqlite.SqlStmt.Explain.QueryPlan
-	(*BeginStmt_Alt1)(nil),                                  // 225: sqlite.BeginStmt.Alt1
-	(*CommitStmt_Alt1)(nil),                                 // 226: sqlite.CommitStmt.Alt1
-	(*RollbackStmt_To)(nil),                                 // 227: sqlite.RollbackStmt.To
-	(*VacuumStmt_Into)(nil),                                 // 228: sqlite.VacuumStmt.Into
-	(*AnalyzeStmt_Alt1)(nil),                                // 229: sqlite.AnalyzeStmt.Alt1
-	(*AnalyzeStmt_Alt1_Seq1)(nil),                           // 230: sqlite.AnalyzeStmt.Alt1.Seq1
-	(*ReindexStmt_Alt1)(nil),                                // 231: sqlite.ReindexStmt.Alt1
-	(*ReindexStmt_Alt1_Seq1)(nil),                           // 232: sqlite.ReindexStmt.Alt1.Seq1
-	(*ReindexStmt_Alt1_Seq1_Seq1)(nil),                      // 233: sqlite.ReindexStmt.Alt1.Seq1.Seq1
-	(*ReindexStmt_Alt1_Seq1_Alt1)(nil),                      // 234: sqlite.ReindexStmt.Alt1.Seq1.Alt1
-	(*PragmaStmt_Seq1)(nil),                                 // 235: sqlite.PragmaStmt.Seq1
-	(*PragmaStmt_Alt1)(nil),                                 // 236: sqlite.PragmaStmt.Alt1
-	(*PragmaStmt_Alt1_EqualsSign)(nil),                      // 237: sqlite.PragmaStmt.Alt1.EqualsSign
-	(*PragmaStmt_Alt1_LeftParenthesis)(nil),                 // 238: sqlite.PragmaStmt.Alt1.LeftParenthesis
-	(*DropTableStmt_IfExists)(nil),                          // 239: sqlite.DropTableStmt.IfExists
-	(*DropTableStmt_Seq1)(nil),                              // 240: sqlite.DropTableStmt.Seq1
-	(*DropIndexStmt_IfExists)(nil),                          // 241: sqlite.DropIndexStmt.IfExists
-	(*DropIndexStmt_Seq1)(nil),                              // 242: sqlite.DropIndexStmt.Seq1
-	(*DropViewStmt_IfExists)(nil),                           // 243: sqlite.DropViewStmt.IfExists
-	(*DropViewStmt_Seq1)(nil),                               // 244: sqlite.DropViewStmt.Seq1
-	(*DropTriggerStmt_IfExists)(nil),                        // 245: sqlite.DropTriggerStmt.IfExists
-	(*DropTriggerStmt_Seq1)(nil),                            // 246: sqlite.DropTriggerStmt.Seq1
-	(*AlterTableStmt_Seq1)(nil),                             // 247: sqlite.AlterTableStmt.Seq1
-	(*AlterTableStmt_Alt1)(nil),                             // 248: sqlite.AlterTableStmt.Alt1
-	(*AlterTableStmt_Alt1_RenameTo)(nil),                    // 249: sqlite.AlterTableStmt.Alt1.RenameTo
-	(*AlterTableStmt_Alt1_Rename)(nil),                      // 250: sqlite.AlterTableStmt.Alt1.Rename
-	(*AlterTableStmt_Alt1_Add)(nil),                         // 251: sqlite.AlterTableStmt.Alt1.Add
-	(*AlterTableStmt_Alt1_AddConstraint)(nil),               // 252: sqlite.AlterTableStmt.Alt1.AddConstraint
-	(*AlterTableStmt_Alt1_Drop)(nil),                        // 253: sqlite.AlterTableStmt.Alt1.Drop
-	(*AlterTableStmt_Alt1_DropConstraint)(nil),              // 254: sqlite.AlterTableStmt.Alt1.DropConstraint
-	(*AlterTableStmt_Alt1_AlterColumn)(nil),                 // 255: sqlite.AlterTableStmt.Alt1.AlterColumn
-	(*AlterTableStmt_Alt1_AlterColumn_Alt1)(nil),            // 256: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1
-	(*AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull)(nil), // 257: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull
-	(*AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull)(nil),           // 258: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.DropNotNull
-	(*CreateTableStmt_Alt1)(nil),                                       // 259: sqlite.CreateTableStmt.Alt1
-	(*CreateTableStmt_IfNotExists)(nil),                                // 260: sqlite.CreateTableStmt.IfNotExists
-	(*CreateTableStmt_Seq1)(nil),                                       // 261: sqlite.CreateTableStmt.Seq1
-	(*CreateTableStmt_Alt2)(nil),                                       // 262: sqlite.CreateTableStmt.Alt2
-	(*CreateTableStmt_Alt2_As)(nil),                                    // 263: sqlite.CreateTableStmt.Alt2.As
-	(*CreateTableStmt_Alt2_LeftParenthesis)(nil),                       // 264: sqlite.CreateTableStmt.Alt2.LeftParenthesis
-	(*CreateTableStmt_Alt2_LeftParenthesis_Comma)(nil),                 // 265: sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma
-	(*CreateIndexStmt_IfNotExists)(nil),                                // 266: sqlite.CreateIndexStmt.IfNotExists
-	(*CreateIndexStmt_Seq1)(nil),                                       // 267: sqlite.CreateIndexStmt.Seq1
-	(*CreateIndexStmt_Where)(nil),                                      // 268: sqlite.CreateIndexStmt.Where
-	(*CreateTriggerStmt_Alt1)(nil),                                     // 269: sqlite.CreateTriggerStmt.Alt1
-	(*CreateTriggerStmt_IfNotExists)(nil),                              // 270: sqlite.CreateTriggerStmt.IfNotExists
-	(*CreateTriggerStmt_Seq1)(nil),                                     // 271: sqlite.CreateTriggerStmt.Seq1
-	(*CreateTriggerStmt_Alt2)(nil),                                     // 272: sqlite.CreateTriggerStmt.Alt2
-	(*CreateTriggerStmt_Alt3)(nil),                                     // 273: sqlite.CreateTriggerStmt.Alt3
-	(*CreateTriggerStmt_ForEachRow)(nil),                               // 274: sqlite.CreateTriggerStmt.ForEachRow
-	(*CreateTriggerStmt_When)(nil),                                     // 275: sqlite.CreateTriggerStmt.When
-	(*CreateTriggerStmt_Alt4)(nil),                                     // 276: sqlite.CreateTriggerStmt.Alt4
-	(*CreateTriggerStmt_Seq2)(nil),                                     // 277: sqlite.CreateTriggerStmt.Seq2
-	(*CreateTriggerStmt_Alt2_InsteadOf)(nil),                           // 278: sqlite.CreateTriggerStmt.Alt2.InsteadOf
-	(*CreateTriggerStmt_Alt3_Update)(nil),                              // 279: sqlite.CreateTriggerStmt.Alt3.Update
-	(*CreateTriggerStmt_Alt3_Update_Of)(nil),                           // 280: sqlite.CreateTriggerStmt.Alt3.Update.Of
-	(*CreateTriggerStmt_Seq2_Alt1)(nil),                                // 281: sqlite.CreateTriggerStmt.Seq2.Alt1
-	(*CreateViewStmt_Alt1)(nil),                                        // 282: sqlite.CreateViewStmt.Alt1
-	(*CreateViewStmt_IfNotExists)(nil),                                 // 283: sqlite.CreateViewStmt.IfNotExists
-	(*CreateViewStmt_Seq1)(nil),                                        // 284: sqlite.CreateViewStmt.Seq1
-	(*CreateViewStmt_LeftParenthesis)(nil),                             // 285: sqlite.CreateViewStmt.LeftParenthesis
-	(*CreateVirtualTableStmt_IfNotExists)(nil),                         // 286: sqlite.CreateVirtualTableStmt.IfNotExists
-	(*CreateVirtualTableStmt_Seq1)(nil),                                // 287: sqlite.CreateVirtualTableStmt.Seq1
-	(*CreateVirtualTableStmt_LeftParenthesis)(nil),                     // 288: sqlite.CreateVirtualTableStmt.LeftParenthesis
-	(*CreateVirtualTableStmt_LeftParenthesis_Seq1)(nil),                // 289: sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1
-	(*SelectStmt_With)(nil),                                            // 290: sqlite.SelectStmt.With
-	(*SelectStmt_Seq1)(nil),                                            // 291: sqlite.SelectStmt.Seq1
-	(*SelectStmt_OrderBy)(nil),                                         // 292: sqlite.SelectStmt.OrderBy
-	(*SelectStmt_Limit)(nil),                                           // 293: sqlite.SelectStmt.Limit
-	(*SelectStmt_Limit_Alt1)(nil),                                      // 294: sqlite.SelectStmt.Limit.Alt1
-	(*SelectStmt_Limit_Alt1_Offset)(nil),                               // 295: sqlite.SelectStmt.Limit.Alt1.Offset
-	(*SelectStmt_Limit_Alt1_Comma)(nil),                                // 296: sqlite.SelectStmt.Limit.Alt1.Comma
-	(*SelectCore_Select)(nil),                                          // 297: sqlite.SelectCore.Select
-	(*SelectCore_ValuesLeftParenthesis)(nil),                           // 298: sqlite.SelectCore.ValuesLeftParenthesis
-	(*SelectCore_Select_Alt1)(nil),                                     // 299: sqlite.SelectCore.Select.Alt1
-	(*SelectCore_Select_From)(nil),                                     // 300: sqlite.SelectCore.Select.From
-	(*SelectCore_Select_Where)(nil),                                    // 301: sqlite.SelectCore.Select.Where
-	(*SelectCore_Select_GroupBy)(nil),                                  // 302: sqlite.SelectCore.Select.GroupBy
-	(*SelectCore_Select_Window)(nil),                                   // 303: sqlite.SelectCore.Select.Window
-	(*SelectCore_Select_From_Alt1)(nil),                                // 304: sqlite.SelectCore.Select.From.Alt1
-	(*SelectCore_Select_From_Alt1_Seq1)(nil),                           // 305: sqlite.SelectCore.Select.From.Alt1.Seq1
-	(*SelectCore_Select_GroupBy_Having)(nil),                           // 306: sqlite.SelectCore.Select.GroupBy.Having
-	(*SelectCore_Select_Window_Comma)(nil),                             // 307: sqlite.SelectCore.Select.Window.Comma
-	(*SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis)(nil),      // 308: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis
-	(*FactoredSelectStmt_With)(nil),                                    // 309: sqlite.FactoredSelectStmt.With
-	(*FactoredSelectStmt_Seq1)(nil),                                    // 310: sqlite.FactoredSelectStmt.Seq1
-	(*FactoredSelectStmt_OrderBy)(nil),                                 // 311: sqlite.FactoredSelectStmt.OrderBy
-	(*FactoredSelectStmt_Limit)(nil),                                   // 312: sqlite.FactoredSelectStmt.Limit
-	(*FactoredSelectStmt_Limit_Alt1)(nil),                              // 313: sqlite.FactoredSelectStmt.Limit.Alt1
-	(*FactoredSelectStmt_Limit_Alt1_Offset)(nil),                       // 314: sqlite.FactoredSelectStmt.Limit.Alt1.Offset
-	(*FactoredSelectStmt_Limit_Alt1_Comma)(nil),                        // 315: sqlite.FactoredSelectStmt.Limit.Alt1.Comma
-	(*ResultColumn_Seq1)(nil),                                          // 316: sqlite.ResultColumn.Seq1
-	(*ResultColumn_Seq2)(nil),                                          // 317: sqlite.ResultColumn.Seq2
-	(*ResultColumn_Seq1_Seq1)(nil),                                     // 318: sqlite.ResultColumn.Seq1.Seq1
-	(*CompoundOperator_UnionAll)(nil),                                  // 319: sqlite.CompoundOperator.UnionAll
-	(*CommonTableExpression_LeftParenthesis)(nil),                      // 320: sqlite.CommonTableExpression.LeftParenthesis
-	(*CommonTableExpression_Alt1)(nil),                                 // 321: sqlite.CommonTableExpression.Alt1
-	(*CommonTableExpression_Alt1_NotMaterialized)(nil),                 // 322: sqlite.CommonTableExpression.Alt1.NotMaterialized
-	(*WithClause_Alt1)(nil),                                            // 323: sqlite.WithClause.Alt1
-	(*WithClause_Comma)(nil),                                           // 324: sqlite.WithClause.Comma
-	(*WithClause_Alt1_NotMaterialized)(nil),                            // 325: sqlite.WithClause.Alt1.NotMaterialized
-	(*WithClause_Comma_Alt1)(nil),                                      // 326: sqlite.WithClause.Comma.Alt1
-	(*WithClause_Comma_Alt1_NotMaterialized)(nil),                      // 327: sqlite.WithClause.Comma.Alt1.NotMaterialized
-	(*DeleteStmt_With)(nil),                                            // 328: sqlite.DeleteStmt.With
-	(*DeleteStmt_Where)(nil),                                           // 329: sqlite.DeleteStmt.Where
-	(*DeleteStmtLimited_With)(nil),                                     // 330: sqlite.DeleteStmtLimited.With
-	(*DeleteStmtLimited_Where)(nil),                                    // 331: sqlite.DeleteStmtLimited.Where
-	(*DeleteStmtLimited_OrderBy)(nil),                                  // 332: sqlite.DeleteStmtLimited.OrderBy
-	(*DeleteStmtLimited_Alt1)(nil),                                     // 333: sqlite.DeleteStmtLimited.Alt1
-	(*DeleteStmtLimited_Alt1_Offset)(nil),                              // 334: sqlite.DeleteStmtLimited.Alt1.Offset
-	(*DeleteStmtLimited_Alt1_Comma)(nil),                               // 335: sqlite.DeleteStmtLimited.Alt1.Comma
-	(*InsertStmt_With)(nil),                                            // 336: sqlite.InsertStmt.With
-	(*InsertStmt_Alt1)(nil),                                            // 337: sqlite.InsertStmt.Alt1
-	(*InsertStmt_Seq1)(nil),                                            // 338: sqlite.InsertStmt.Seq1
-	(*InsertStmt_As)(nil),                                              // 339: sqlite.InsertStmt.As
-	(*InsertStmt_LeftParenthesis)(nil),                                 // 340: sqlite.InsertStmt.LeftParenthesis
-	(*InsertStmt_Alt2)(nil),                                            // 341: sqlite.InsertStmt.Alt2
-	(*InsertStmt_Alt1_InsertOr)(nil),                                   // 342: sqlite.InsertStmt.Alt1.InsertOr
-	(*InsertStmt_Alt1_InsertOr_Alt1)(nil),                              // 343: sqlite.InsertStmt.Alt1.InsertOr.Alt1
-	(*InsertStmt_Alt2_ValuesLeftParenthesis)(nil),                      // 344: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis
-	(*InsertStmt_Alt2_Seq1)(nil),                                       // 345: sqlite.InsertStmt.Alt2.Seq1
-	(*InsertStmt_Alt2_DefaultValues)(nil),                              // 346: sqlite.InsertStmt.Alt2.DefaultValues
-	(*InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis)(nil), // 347: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis
-	(*UpdateStmt_With)(nil),                                            // 348: sqlite.UpdateStmt.With
-	(*UpdateStmt_Alt1)(nil),                                            // 349: sqlite.UpdateStmt.Alt1
-	(*UpdateStmt_Alt2)(nil),                                            // 350: sqlite.UpdateStmt.Alt2
-	(*UpdateStmt_Comma)(nil),                                           // 351: sqlite.UpdateStmt.Comma
-	(*UpdateStmt_From)(nil),                                            // 352: sqlite.UpdateStmt.From
-	(*UpdateStmt_Where)(nil),                                           // 353: sqlite.UpdateStmt.Where
-	(*UpdateStmt_Alt1_UpdateOr)(nil),                                   // 354: sqlite.UpdateStmt.Alt1.UpdateOr
-	(*UpdateStmt_Alt1_UpdateOr_Alt1)(nil),                              // 355: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1
-	(*UpdateStmt_Comma_Alt1)(nil),                                      // 356: sqlite.UpdateStmt.Comma.Alt1
-	(*UpdateStmt_From_Alt1)(nil),                                       // 357: sqlite.UpdateStmt.From.Alt1
-	(*UpdateStmt_From_Alt1_Seq1)(nil),                                  // 358: sqlite.UpdateStmt.From.Alt1.Seq1
-	(*UpdateStmtLimited_With)(nil),                                     // 359: sqlite.UpdateStmtLimited.With
-	(*UpdateStmtLimited_Alt1)(nil),                                     // 360: sqlite.UpdateStmtLimited.Alt1
-	(*UpdateStmtLimited_Alt2)(nil),                                     // 361: sqlite.UpdateStmtLimited.Alt2
-	(*UpdateStmtLimited_Comma)(nil),                                    // 362: sqlite.UpdateStmtLimited.Comma
-	(*UpdateStmtLimited_From)(nil),                                     // 363: sqlite.UpdateStmtLimited.From
-	(*UpdateStmtLimited_Where)(nil),                                    // 364: sqlite.UpdateStmtLimited.Where
-	(*UpdateStmtLimited_OrderBy)(nil),                                  // 365: sqlite.UpdateStmtLimited.OrderBy
-	(*UpdateStmtLimited_Alt3)(nil),                                     // 366: sqlite.UpdateStmtLimited.Alt3
-	(*UpdateStmtLimited_Alt1_UpdateOr)(nil),                            // 367: sqlite.UpdateStmtLimited.Alt1.UpdateOr
-	(*UpdateStmtLimited_Alt1_UpdateOr_Alt1)(nil),                       // 368: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1
-	(*UpdateStmtLimited_Comma_Alt1)(nil),                               // 369: sqlite.UpdateStmtLimited.Comma.Alt1
-	(*UpdateStmtLimited_From_Alt1)(nil),                                // 370: sqlite.UpdateStmtLimited.From.Alt1
-	(*UpdateStmtLimited_From_Alt1_Seq1)(nil),                           // 371: sqlite.UpdateStmtLimited.From.Alt1.Seq1
-	(*UpdateStmtLimited_Alt3_Offset)(nil),                              // 372: sqlite.UpdateStmtLimited.Alt3.Offset
-	(*UpdateStmtLimited_Alt3_Comma)(nil),                               // 373: sqlite.UpdateStmtLimited.Alt3.Comma
-	(*TableOrSubquery_Seq1)(nil),                                       // 374: sqlite.TableOrSubquery.Seq1
-	(*TableOrSubquery_Seq2)(nil),                                       // 375: sqlite.TableOrSubquery.Seq2
-	(*TableOrSubquery_LeftParenthesis)(nil),                            // 376: sqlite.TableOrSubquery.LeftParenthesis
-	(*TableOrSubquery_LeftParenthesis2)(nil),                           // 377: sqlite.TableOrSubquery.LeftParenthesis2
-	(*TableOrSubquery_LeftParenthesis3)(nil),                           // 378: sqlite.TableOrSubquery.LeftParenthesis3
-	(*TableOrSubquery_Seq1_Seq1)(nil),                                  // 379: sqlite.TableOrSubquery.Seq1.Seq1
-	(*TableOrSubquery_Seq1_Seq2)(nil),                                  // 380: sqlite.TableOrSubquery.Seq1.Seq2
-	(*TableOrSubquery_Seq1_Alt1)(nil),                                  // 381: sqlite.TableOrSubquery.Seq1.Alt1
-	(*TableOrSubquery_Seq1_Alt1_IndexedBy)(nil),                        // 382: sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy
-	(*TableOrSubquery_Seq1_Alt1_NotIndexed)(nil),                       // 383: sqlite.TableOrSubquery.Seq1.Alt1.NotIndexed
-	(*TableOrSubquery_Seq2_Seq1)(nil),                                  // 384: sqlite.TableOrSubquery.Seq2.Seq1
-	(*TableOrSubquery_Seq2_Seq2)(nil),                                  // 385: sqlite.TableOrSubquery.Seq2.Seq2
-	(*TableOrSubquery_Seq2_Seq3)(nil),                                  // 386: sqlite.TableOrSubquery.Seq2.Seq3
-	(*JoinClause_Seq1)(nil),                                            // 387: sqlite.JoinClause.Seq1
-	(*JoinOperator_Seq1)(nil),                                          // 388: sqlite.JoinOperator.Seq1
-	(*JoinOperator_Seq1_Alt1)(nil),                                     // 389: sqlite.JoinOperator.Seq1.Alt1
-	(*JoinOperator_Seq1_Alt1_Seq1)(nil),                                // 390: sqlite.JoinOperator.Seq1.Alt1.Seq1
-	(*JoinOperator_Seq1_Alt1_Seq1_Alt1)(nil),                           // 391: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1
-	(*JoinConstraint_On)(nil),                                          // 392: sqlite.JoinConstraint.On
-	(*JoinConstraint_UsingLeftParenthesis)(nil),                        // 393: sqlite.JoinConstraint.UsingLeftParenthesis
-	(*OrderingTerm_Collate)(nil),                                       // 394: sqlite.OrderingTerm.Collate
-	(*OrderingTerm_Alt1)(nil),                                          // 395: sqlite.OrderingTerm.Alt1
-	(*OrderingTerm_Alt2)(nil),                                          // 396: sqlite.OrderingTerm.Alt2
-	(*OrderingTerm_Alt2_NullsFirst)(nil),                               // 397: sqlite.OrderingTerm.Alt2.NullsFirst
-	(*OrderingTerm_Alt2_NullsLast)(nil),                                // 398: sqlite.OrderingTerm.Alt2.NullsLast
-	(*ColumnConstraint_Constraint)(nil),                                // 399: sqlite.ColumnConstraint.Constraint
-	(*ColumnConstraint_Alt1)(nil),                                      // 400: sqlite.ColumnConstraint.Alt1
-	(*ColumnConstraint_Alt1_PrimaryKey)(nil),                           // 401: sqlite.ColumnConstraint.Alt1.PrimaryKey
-	(*ColumnConstraint_Alt1_NotNull)(nil),                              // 402: sqlite.ColumnConstraint.Alt1.NotNull
-	(*ColumnConstraint_Alt1_Unique)(nil),                               // 403: sqlite.ColumnConstraint.Alt1.Unique
-	(*ColumnConstraint_Alt1_CheckLeftParenthesis)(nil),                 // 404: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis
-	(*ColumnConstraint_Alt1_Default)(nil),                              // 405: sqlite.ColumnConstraint.Alt1.Default
-	(*ColumnConstraint_Alt1_Collate)(nil),                              // 406: sqlite.ColumnConstraint.Alt1.Collate
-	(*ColumnConstraint_Alt1_Seq1)(nil),                                 // 407: sqlite.ColumnConstraint.Alt1.Seq1
-	(*ColumnConstraint_Alt1_PrimaryKey_Alt1)(nil),                      // 408: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1
-	(*ColumnConstraint_Alt1_Default_Alt1)(nil),                         // 409: sqlite.ColumnConstraint.Alt1.Default.Alt1
-	(*ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis)(nil),         // 410: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis
-	(*ColumnConstraint_Alt1_Seq1_GeneratedAlways)(nil),                 // 411: sqlite.ColumnConstraint.Alt1.Seq1.GeneratedAlways
-	(*ColumnConstraint_Alt1_Seq1_Alt1)(nil),                            // 412: sqlite.ColumnConstraint.Alt1.Seq1.Alt1
-	(*TableConstraint_Constraint)(nil),                                 // 413: sqlite.TableConstraint.Constraint
-	(*TableConstraint_Alt1)(nil),                                       // 414: sqlite.TableConstraint.Alt1
-	(*TableConstraint_Alt1_PrimaryKeyLeftParenthesis)(nil),             // 415: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis
-	(*TableConstraint_Alt1_UniqueLeftParenthesis)(nil),                 // 416: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis
-	(*TableConstraint_Alt1_CheckLeftParenthesis)(nil),                  // 417: sqlite.TableConstraint.Alt1.CheckLeftParenthesis
-	(*TableConstraint_Alt1_ForeignKeyLeftParenthesis)(nil),             // 418: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis
-	(*ConflictClause_OnConflict)(nil),                                  // 419: sqlite.ConflictClause.OnConflict
-	(*ConflictClause_OnConflict_Alt1)(nil),                             // 420: sqlite.ConflictClause.OnConflict.Alt1
-	(*ForeignKeyClause_LeftParenthesis)(nil),                           // 421: sqlite.ForeignKeyClause.LeftParenthesis
-	(*ForeignKeyClause_Alt1)(nil),                                      // 422: sqlite.ForeignKeyClause.Alt1
-	(*ForeignKeyClause_Seq1)(nil),                                      // 423: sqlite.ForeignKeyClause.Seq1
-	(*ForeignKeyClause_Alt1_On)(nil),                                   // 424: sqlite.ForeignKeyClause.Alt1.On
-	(*ForeignKeyClause_Alt1_Match)(nil),                                // 425: sqlite.ForeignKeyClause.Alt1.Match
-	(*ForeignKeyClause_Alt1_On_Alt1)(nil),                              // 426: sqlite.ForeignKeyClause.Alt1.On.Alt1
-	(*ForeignKeyClause_Alt1_On_Alt2)(nil),                              // 427: sqlite.ForeignKeyClause.Alt1.On.Alt2
-	(*ForeignKeyClause_Alt1_On_Alt2_SetNull)(nil),                      // 428: sqlite.ForeignKeyClause.Alt1.On.Alt2.SetNull
-	(*ForeignKeyClause_Alt1_On_Alt2_SetDefault)(nil),                   // 429: sqlite.ForeignKeyClause.Alt1.On.Alt2.SetDefault
-	(*ForeignKeyClause_Alt1_On_Alt2_NoAction)(nil),                     // 430: sqlite.ForeignKeyClause.Alt1.On.Alt2.NoAction
-	(*ForeignKeyClause_Seq1_Initially)(nil),                            // 431: sqlite.ForeignKeyClause.Seq1.Initially
-	(*ForeignKeyClause_Seq1_Initially_Alt1)(nil),                       // 432: sqlite.ForeignKeyClause.Seq1.Initially.Alt1
-	(*TableOptions_WithoutRowid)(nil),                                  // 433: sqlite.TableOptions.WithoutRowid
-	(*TableOptions_WithoutRowidCommaStrict)(nil),                       // 434: sqlite.TableOptions.WithoutRowidCommaStrict
-	(*TableOptions_StrictCommaWithoutRowid)(nil),                       // 435: sqlite.TableOptions.StrictCommaWithoutRowid
-	(*TypeName_Alt1)(nil),                                              // 436: sqlite.TypeName.Alt1
-	(*TypeName_Alt1_LeftParenthesis)(nil),                              // 437: sqlite.TypeName.Alt1.LeftParenthesis
-	(*TypeName_Alt1_LeftParenthesis2)(nil),                             // 438: sqlite.TypeName.Alt1.LeftParenthesis2
-	(*IndexedColumn_Alt1)(nil),                                         // 439: sqlite.IndexedColumn.Alt1
-	(*IndexedColumn_Collate)(nil),                                      // 440: sqlite.IndexedColumn.Collate
-	(*IndexedColumn_Alt2)(nil),                                         // 441: sqlite.IndexedColumn.Alt2
-	(*QualifiedTableName_Seq1)(nil),                                    // 442: sqlite.QualifiedTableName.Seq1
-	(*QualifiedTableName_As)(nil),                                      // 443: sqlite.QualifiedTableName.As
-	(*QualifiedTableName_Alt1)(nil),                                    // 444: sqlite.QualifiedTableName.Alt1
-	(*QualifiedTableName_Alt1_IndexedBy)(nil),                          // 445: sqlite.QualifiedTableName.Alt1.IndexedBy
-	(*QualifiedTableName_Alt1_NotIndexed)(nil),                         // 446: sqlite.QualifiedTableName.Alt1.NotIndexed
-	(*ReturningClause_Alt1)(nil),                                       // 447: sqlite.ReturningClause.Alt1
-	(*ReturningClause_Alt1_Seq1)(nil),                                  // 448: sqlite.ReturningClause.Alt1.Seq1
-	(*ReturningClause_Alt1_Seq1_Seq1)(nil),                             // 449: sqlite.ReturningClause.Alt1.Seq1.Seq1
-	(*UpsertClause_LeftParenthesis)(nil),                               // 450: sqlite.UpsertClause.LeftParenthesis
-	(*UpsertClause_Alt1)(nil),                                          // 451: sqlite.UpsertClause.Alt1
-	(*UpsertClause_LeftParenthesis_Where)(nil),                         // 452: sqlite.UpsertClause.LeftParenthesis.Where
-	(*UpsertClause_Alt1_UpdateSet)(nil),                                // 453: sqlite.UpsertClause.Alt1.UpdateSet
-	(*UpsertClause_Alt1_UpdateSet_Alt1)(nil),                           // 454: sqlite.UpsertClause.Alt1.UpdateSet.Alt1
-	(*UpsertClause_Alt1_UpdateSet_Comma)(nil),                          // 455: sqlite.UpsertClause.Alt1.UpdateSet.Comma
-	(*UpsertClause_Alt1_UpdateSet_Where)(nil),                          // 456: sqlite.UpsertClause.Alt1.UpdateSet.Where
-	(*UpsertClause_Alt1_UpdateSet_Comma_Alt1)(nil),                     // 457: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1
-	(*WindowDefn_PartitionBy)(nil),                                     // 458: sqlite.WindowDefn.PartitionBy
-	(*WindowDefn_OrderBy)(nil),                                         // 459: sqlite.WindowDefn.OrderBy
-	(*OverClause_Alt1)(nil),                                            // 460: sqlite.OverClause.Alt1
-	(*OverClause_Alt1_LeftParenthesis)(nil),                            // 461: sqlite.OverClause.Alt1.LeftParenthesis
-	(*OverClause_Alt1_LeftParenthesis_PartitionBy)(nil),                // 462: sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy
-	(*OverClause_Alt1_LeftParenthesis_OrderBy)(nil),                    // 463: sqlite.OverClause.Alt1.LeftParenthesis.OrderBy
-	(*FrameSpec_Alt1)(nil),                                             // 464: sqlite.FrameSpec.Alt1
-	(*FrameSpec_Alt2)(nil),                                             // 465: sqlite.FrameSpec.Alt2
-	(*FrameSpec_Alt3)(nil),                                             // 466: sqlite.FrameSpec.Alt3
-	(*FrameSpec_Alt2_Between)(nil),                                     // 467: sqlite.FrameSpec.Alt2.Between
-	(*FrameSpec_Alt2_UnboundedPreceding)(nil),                          // 468: sqlite.FrameSpec.Alt2.UnboundedPreceding
-	(*FrameSpec_Alt2_Seq1)(nil),                                        // 469: sqlite.FrameSpec.Alt2.Seq1
-	(*FrameSpec_Alt2_CurrentRow)(nil),                                  // 470: sqlite.FrameSpec.Alt2.CurrentRow
-	(*FrameSpec_Alt2_Between_Alt1)(nil),                                // 471: sqlite.FrameSpec.Alt2.Between.Alt1
-	(*FrameSpec_Alt2_Between_Alt2)(nil),                                // 472: sqlite.FrameSpec.Alt2.Between.Alt2
-	(*FrameSpec_Alt2_Between_Alt1_UnboundedPreceding)(nil),             // 473: sqlite.FrameSpec.Alt2.Between.Alt1.UnboundedPreceding
-	(*FrameSpec_Alt2_Between_Alt1_Seq1)(nil),                           // 474: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1
-	(*FrameSpec_Alt2_Between_Alt1_CurrentRow)(nil),                     // 475: sqlite.FrameSpec.Alt2.Between.Alt1.CurrentRow
-	(*FrameSpec_Alt2_Between_Alt1_Seq2)(nil),                           // 476: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2
-	(*FrameSpec_Alt2_Between_Alt2_Seq1)(nil),                           // 477: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1
-	(*FrameSpec_Alt2_Between_Alt2_CurrentRow)(nil),                     // 478: sqlite.FrameSpec.Alt2.Between.Alt2.CurrentRow
-	(*FrameSpec_Alt2_Between_Alt2_Seq2)(nil),                           // 479: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2
-	(*FrameSpec_Alt2_Between_Alt2_UnboundedFollowing)(nil),             // 480: sqlite.FrameSpec.Alt2.Between.Alt2.UnboundedFollowing
-	(*FrameSpec_Alt3_ExcludeNoOthers)(nil),                             // 481: sqlite.FrameSpec.Alt3.ExcludeNoOthers
-	(*FrameSpec_Alt3_ExcludeCurrentRow)(nil),                           // 482: sqlite.FrameSpec.Alt3.ExcludeCurrentRow
-	(*FrameSpec_Alt3_ExcludeGroup)(nil),                                // 483: sqlite.FrameSpec.Alt3.ExcludeGroup
-	(*FrameSpec_Alt3_ExcludeTies)(nil),                                 // 484: sqlite.FrameSpec.Alt3.ExcludeTies
-	(*Expr_Seq1)(nil),                                                  // 485: sqlite.Expr.Seq1
-	(*Expr_Seq2)(nil),                                                  // 486: sqlite.Expr.Seq2
-	(*Expr_Seq3)(nil),                                                  // 487: sqlite.Expr.Seq3
-	(*Expr_Seq4)(nil),                                                  // 488: sqlite.Expr.Seq4
-	(*Expr_LeftParenthesis)(nil),                                       // 489: sqlite.Expr.LeftParenthesis
-	(*Expr_CastLeftParenthesis)(nil),                                   // 490: sqlite.Expr.CastLeftParenthesis
-	(*Expr_Seq5)(nil),                                                  // 491: sqlite.Expr.Seq5
-	(*Expr_Seq6)(nil),                                                  // 492: sqlite.Expr.Seq6
-	(*Expr_Seq7)(nil),                                                  // 493: sqlite.Expr.Seq7
-	(*Expr_Seq8)(nil),                                                  // 494: sqlite.Expr.Seq8
-	(*Expr_Seq9)(nil),                                                  // 495: sqlite.Expr.Seq9
-	(*Expr_Seq10)(nil),                                                 // 496: sqlite.Expr.Seq10
-	(*Expr_Seq11)(nil),                                                 // 497: sqlite.Expr.Seq11
-	(*Expr_Seq12)(nil),                                                 // 498: sqlite.Expr.Seq12
-	(*Expr_Seq13)(nil),                                                 // 499: sqlite.Expr.Seq13
-	(*Expr_Seq14)(nil),                                                 // 500: sqlite.Expr.Seq14
-	(*Expr_Seq15)(nil),                                                 // 501: sqlite.Expr.Seq15
-	(*Expr_Case)(nil),                                                  // 502: sqlite.Expr.Case
-	(*Expr_Seq1_Seq1)(nil),                                             // 503: sqlite.Expr.Seq1.Seq1
-	(*Expr_Seq1_Seq1_Seq1)(nil),                                        // 504: sqlite.Expr.Seq1.Seq1.Seq1
-	(*Expr_Seq6_Alt1)(nil),                                             // 505: sqlite.Expr.Seq6.Alt1
-	(*Expr_Seq6_Escape)(nil),                                           // 506: sqlite.Expr.Seq6.Escape
-	(*Expr_Seq10_DistinctFrom)(nil),                                    // 507: sqlite.Expr.Seq10.DistinctFrom
-	(*Expr_Seq12_Alt1)(nil),                                            // 508: sqlite.Expr.Seq12.Alt1
-	(*Expr_Seq12_Alt1_Seq1)(nil),                                       // 509: sqlite.Expr.Seq12.Alt1.Seq1
-	(*Expr_Seq13_Seq1)(nil),                                            // 510: sqlite.Expr.Seq13.Seq1
-	(*Expr_Seq14_Seq1)(nil),                                            // 511: sqlite.Expr.Seq14.Seq1
-	(*Expr_Seq14_Seq2)(nil),                                            // 512: sqlite.Expr.Seq14.Seq2
-	(*Expr_Case_When)(nil),                                             // 513: sqlite.Expr.Case.When
-	(*Expr_Case_Else)(nil),                                             // 514: sqlite.Expr.Case.Else
-	(*FunctionArguments_Seq1)(nil),                                     // 515: sqlite.FunctionArguments.Seq1
-	(*SignedNumber_Alt1)(nil),                                          // 516: sqlite.SignedNumber.Alt1
-	(*RaiseFunction_Alt1)(nil),                                         // 517: sqlite.RaiseFunction.Alt1
-	(*RaiseFunction_Alt1_Seq1)(nil),                                    // 518: sqlite.RaiseFunction.Alt1.Seq1
-	(*RaiseFunction_Alt1_Seq1_Alt1)(nil),                               // 519: sqlite.RaiseFunction.Alt1.Seq1.Alt1
-	(*NumericLiteral_FullStop)(nil),                                    // 520: sqlite.NumericLiteral.FullStop
-	(*NumericLiteral_E)(nil),                                           // 521: sqlite.NumericLiteral.E
-	(*NumericLiteral_E_Alt1)(nil),                                      // 522: sqlite.NumericLiteral.E.Alt1
-	(*BindParameter_Colon)(nil),                                        // 523: sqlite.BindParameter.Colon
-	(*BindParameter_CommercialAt)(nil),                                 // 524: sqlite.BindParameter.CommercialAt
-	(*BindParameter_DollarSign)(nil),                                   // 525: sqlite.BindParameter.DollarSign
-	(*BinaryOperator_IsNot)(nil),                                       // 526: sqlite.BinaryOperator.IsNot
+	(*SqlStmt_Explain)(nil),                                 // 221: sqlite.SqlStmt.Explain
+	(*SqlStmt_Alt1)(nil),                                    // 222: sqlite.SqlStmt.Alt1
+	(*SqlStmt_Explain_QueryPlan)(nil),                       // 223: sqlite.SqlStmt.Explain.QueryPlan
+	(*BeginStmt_Alt1)(nil),                                  // 224: sqlite.BeginStmt.Alt1
+	(*CommitStmt_Alt1)(nil),                                 // 225: sqlite.CommitStmt.Alt1
+	(*RollbackStmt_To)(nil),                                 // 226: sqlite.RollbackStmt.To
+	(*VacuumStmt_Into)(nil),                                 // 227: sqlite.VacuumStmt.Into
+	(*AnalyzeStmt_Alt1)(nil),                                // 228: sqlite.AnalyzeStmt.Alt1
+	(*AnalyzeStmt_Alt1_Seq1)(nil),                           // 229: sqlite.AnalyzeStmt.Alt1.Seq1
+	(*ReindexStmt_Alt1)(nil),                                // 230: sqlite.ReindexStmt.Alt1
+	(*ReindexStmt_Alt1_Seq1)(nil),                           // 231: sqlite.ReindexStmt.Alt1.Seq1
+	(*ReindexStmt_Alt1_Seq1_Seq1)(nil),                      // 232: sqlite.ReindexStmt.Alt1.Seq1.Seq1
+	(*ReindexStmt_Alt1_Seq1_Alt1)(nil),                      // 233: sqlite.ReindexStmt.Alt1.Seq1.Alt1
+	(*PragmaStmt_Seq1)(nil),                                 // 234: sqlite.PragmaStmt.Seq1
+	(*PragmaStmt_Alt1)(nil),                                 // 235: sqlite.PragmaStmt.Alt1
+	(*PragmaStmt_Alt1_EqualsSign)(nil),                      // 236: sqlite.PragmaStmt.Alt1.EqualsSign
+	(*PragmaStmt_Alt1_LeftParenthesis)(nil),                 // 237: sqlite.PragmaStmt.Alt1.LeftParenthesis
+	(*DropTableStmt_IfExists)(nil),                          // 238: sqlite.DropTableStmt.IfExists
+	(*DropTableStmt_Seq1)(nil),                              // 239: sqlite.DropTableStmt.Seq1
+	(*DropIndexStmt_IfExists)(nil),                          // 240: sqlite.DropIndexStmt.IfExists
+	(*DropIndexStmt_Seq1)(nil),                              // 241: sqlite.DropIndexStmt.Seq1
+	(*DropViewStmt_IfExists)(nil),                           // 242: sqlite.DropViewStmt.IfExists
+	(*DropViewStmt_Seq1)(nil),                               // 243: sqlite.DropViewStmt.Seq1
+	(*DropTriggerStmt_IfExists)(nil),                        // 244: sqlite.DropTriggerStmt.IfExists
+	(*DropTriggerStmt_Seq1)(nil),                            // 245: sqlite.DropTriggerStmt.Seq1
+	(*AlterTableStmt_Seq1)(nil),                             // 246: sqlite.AlterTableStmt.Seq1
+	(*AlterTableStmt_Alt1)(nil),                             // 247: sqlite.AlterTableStmt.Alt1
+	(*AlterTableStmt_Alt1_RenameTo)(nil),                    // 248: sqlite.AlterTableStmt.Alt1.RenameTo
+	(*AlterTableStmt_Alt1_Rename)(nil),                      // 249: sqlite.AlterTableStmt.Alt1.Rename
+	(*AlterTableStmt_Alt1_Add)(nil),                         // 250: sqlite.AlterTableStmt.Alt1.Add
+	(*AlterTableStmt_Alt1_AddConstraint)(nil),               // 251: sqlite.AlterTableStmt.Alt1.AddConstraint
+	(*AlterTableStmt_Alt1_Drop)(nil),                        // 252: sqlite.AlterTableStmt.Alt1.Drop
+	(*AlterTableStmt_Alt1_DropConstraint)(nil),              // 253: sqlite.AlterTableStmt.Alt1.DropConstraint
+	(*AlterTableStmt_Alt1_AlterColumn)(nil),                 // 254: sqlite.AlterTableStmt.Alt1.AlterColumn
+	(*AlterTableStmt_Alt1_AlterColumn_Alt1)(nil),            // 255: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1
+	(*AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull)(nil), // 256: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull
+	(*AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull)(nil),           // 257: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.DropNotNull
+	(*CreateTableStmt_Alt1)(nil),                                       // 258: sqlite.CreateTableStmt.Alt1
+	(*CreateTableStmt_IfNotExists)(nil),                                // 259: sqlite.CreateTableStmt.IfNotExists
+	(*CreateTableStmt_Seq1)(nil),                                       // 260: sqlite.CreateTableStmt.Seq1
+	(*CreateTableStmt_Alt2)(nil),                                       // 261: sqlite.CreateTableStmt.Alt2
+	(*CreateTableStmt_Alt2_As)(nil),                                    // 262: sqlite.CreateTableStmt.Alt2.As
+	(*CreateTableStmt_Alt2_LeftParenthesis)(nil),                       // 263: sqlite.CreateTableStmt.Alt2.LeftParenthesis
+	(*CreateTableStmt_Alt2_LeftParenthesis_Comma)(nil),                 // 264: sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma
+	(*CreateIndexStmt_IfNotExists)(nil),                                // 265: sqlite.CreateIndexStmt.IfNotExists
+	(*CreateIndexStmt_Seq1)(nil),                                       // 266: sqlite.CreateIndexStmt.Seq1
+	(*CreateIndexStmt_Where)(nil),                                      // 267: sqlite.CreateIndexStmt.Where
+	(*CreateTriggerStmt_Alt1)(nil),                                     // 268: sqlite.CreateTriggerStmt.Alt1
+	(*CreateTriggerStmt_IfNotExists)(nil),                              // 269: sqlite.CreateTriggerStmt.IfNotExists
+	(*CreateTriggerStmt_Seq1)(nil),                                     // 270: sqlite.CreateTriggerStmt.Seq1
+	(*CreateTriggerStmt_Alt2)(nil),                                     // 271: sqlite.CreateTriggerStmt.Alt2
+	(*CreateTriggerStmt_Alt3)(nil),                                     // 272: sqlite.CreateTriggerStmt.Alt3
+	(*CreateTriggerStmt_ForEachRow)(nil),                               // 273: sqlite.CreateTriggerStmt.ForEachRow
+	(*CreateTriggerStmt_When)(nil),                                     // 274: sqlite.CreateTriggerStmt.When
+	(*CreateTriggerStmt_Alt4)(nil),                                     // 275: sqlite.CreateTriggerStmt.Alt4
+	(*CreateTriggerStmt_Seq2)(nil),                                     // 276: sqlite.CreateTriggerStmt.Seq2
+	(*CreateTriggerStmt_Alt2_InsteadOf)(nil),                           // 277: sqlite.CreateTriggerStmt.Alt2.InsteadOf
+	(*CreateTriggerStmt_Alt3_Update)(nil),                              // 278: sqlite.CreateTriggerStmt.Alt3.Update
+	(*CreateTriggerStmt_Alt3_Update_Of)(nil),                           // 279: sqlite.CreateTriggerStmt.Alt3.Update.Of
+	(*CreateTriggerStmt_Seq2_Alt1)(nil),                                // 280: sqlite.CreateTriggerStmt.Seq2.Alt1
+	(*CreateViewStmt_Alt1)(nil),                                        // 281: sqlite.CreateViewStmt.Alt1
+	(*CreateViewStmt_IfNotExists)(nil),                                 // 282: sqlite.CreateViewStmt.IfNotExists
+	(*CreateViewStmt_Seq1)(nil),                                        // 283: sqlite.CreateViewStmt.Seq1
+	(*CreateViewStmt_LeftParenthesis)(nil),                             // 284: sqlite.CreateViewStmt.LeftParenthesis
+	(*CreateVirtualTableStmt_IfNotExists)(nil),                         // 285: sqlite.CreateVirtualTableStmt.IfNotExists
+	(*CreateVirtualTableStmt_Seq1)(nil),                                // 286: sqlite.CreateVirtualTableStmt.Seq1
+	(*CreateVirtualTableStmt_LeftParenthesis)(nil),                     // 287: sqlite.CreateVirtualTableStmt.LeftParenthesis
+	(*CreateVirtualTableStmt_LeftParenthesis_Seq1)(nil),                // 288: sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1
+	(*SelectStmt_With)(nil),                                            // 289: sqlite.SelectStmt.With
+	(*SelectStmt_Seq1)(nil),                                            // 290: sqlite.SelectStmt.Seq1
+	(*SelectStmt_OrderBy)(nil),                                         // 291: sqlite.SelectStmt.OrderBy
+	(*SelectStmt_Limit)(nil),                                           // 292: sqlite.SelectStmt.Limit
+	(*SelectStmt_Limit_Alt1)(nil),                                      // 293: sqlite.SelectStmt.Limit.Alt1
+	(*SelectStmt_Limit_Alt1_Offset)(nil),                               // 294: sqlite.SelectStmt.Limit.Alt1.Offset
+	(*SelectStmt_Limit_Alt1_Comma)(nil),                                // 295: sqlite.SelectStmt.Limit.Alt1.Comma
+	(*SelectCore_Select)(nil),                                          // 296: sqlite.SelectCore.Select
+	(*SelectCore_ValuesLeftParenthesis)(nil),                           // 297: sqlite.SelectCore.ValuesLeftParenthesis
+	(*SelectCore_Select_Alt1)(nil),                                     // 298: sqlite.SelectCore.Select.Alt1
+	(*SelectCore_Select_From)(nil),                                     // 299: sqlite.SelectCore.Select.From
+	(*SelectCore_Select_Where)(nil),                                    // 300: sqlite.SelectCore.Select.Where
+	(*SelectCore_Select_GroupBy)(nil),                                  // 301: sqlite.SelectCore.Select.GroupBy
+	(*SelectCore_Select_Window)(nil),                                   // 302: sqlite.SelectCore.Select.Window
+	(*SelectCore_Select_From_Alt1)(nil),                                // 303: sqlite.SelectCore.Select.From.Alt1
+	(*SelectCore_Select_From_Alt1_Seq1)(nil),                           // 304: sqlite.SelectCore.Select.From.Alt1.Seq1
+	(*SelectCore_Select_GroupBy_Having)(nil),                           // 305: sqlite.SelectCore.Select.GroupBy.Having
+	(*SelectCore_Select_Window_Comma)(nil),                             // 306: sqlite.SelectCore.Select.Window.Comma
+	(*SelectCore_ValuesLeftParenthesis_CommaLeftParenthesis)(nil),      // 307: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis
+	(*FactoredSelectStmt_With)(nil),                                    // 308: sqlite.FactoredSelectStmt.With
+	(*FactoredSelectStmt_Seq1)(nil),                                    // 309: sqlite.FactoredSelectStmt.Seq1
+	(*FactoredSelectStmt_OrderBy)(nil),                                 // 310: sqlite.FactoredSelectStmt.OrderBy
+	(*FactoredSelectStmt_Limit)(nil),                                   // 311: sqlite.FactoredSelectStmt.Limit
+	(*FactoredSelectStmt_Limit_Alt1)(nil),                              // 312: sqlite.FactoredSelectStmt.Limit.Alt1
+	(*FactoredSelectStmt_Limit_Alt1_Offset)(nil),                       // 313: sqlite.FactoredSelectStmt.Limit.Alt1.Offset
+	(*FactoredSelectStmt_Limit_Alt1_Comma)(nil),                        // 314: sqlite.FactoredSelectStmt.Limit.Alt1.Comma
+	(*ResultColumn_Seq1)(nil),                                          // 315: sqlite.ResultColumn.Seq1
+	(*ResultColumn_Seq2)(nil),                                          // 316: sqlite.ResultColumn.Seq2
+	(*ResultColumn_Seq1_Seq1)(nil),                                     // 317: sqlite.ResultColumn.Seq1.Seq1
+	(*CompoundOperator_UnionAll)(nil),                                  // 318: sqlite.CompoundOperator.UnionAll
+	(*CommonTableExpression_LeftParenthesis)(nil),                      // 319: sqlite.CommonTableExpression.LeftParenthesis
+	(*CommonTableExpression_Alt1)(nil),                                 // 320: sqlite.CommonTableExpression.Alt1
+	(*CommonTableExpression_Alt1_NotMaterialized)(nil),                 // 321: sqlite.CommonTableExpression.Alt1.NotMaterialized
+	(*WithClause_Alt1)(nil),                                            // 322: sqlite.WithClause.Alt1
+	(*WithClause_Comma)(nil),                                           // 323: sqlite.WithClause.Comma
+	(*WithClause_Alt1_NotMaterialized)(nil),                            // 324: sqlite.WithClause.Alt1.NotMaterialized
+	(*WithClause_Comma_Alt1)(nil),                                      // 325: sqlite.WithClause.Comma.Alt1
+	(*WithClause_Comma_Alt1_NotMaterialized)(nil),                      // 326: sqlite.WithClause.Comma.Alt1.NotMaterialized
+	(*DeleteStmt_With)(nil),                                            // 327: sqlite.DeleteStmt.With
+	(*DeleteStmt_Where)(nil),                                           // 328: sqlite.DeleteStmt.Where
+	(*DeleteStmtLimited_With)(nil),                                     // 329: sqlite.DeleteStmtLimited.With
+	(*DeleteStmtLimited_Where)(nil),                                    // 330: sqlite.DeleteStmtLimited.Where
+	(*DeleteStmtLimited_OrderBy)(nil),                                  // 331: sqlite.DeleteStmtLimited.OrderBy
+	(*DeleteStmtLimited_Alt1)(nil),                                     // 332: sqlite.DeleteStmtLimited.Alt1
+	(*DeleteStmtLimited_Alt1_Offset)(nil),                              // 333: sqlite.DeleteStmtLimited.Alt1.Offset
+	(*DeleteStmtLimited_Alt1_Comma)(nil),                               // 334: sqlite.DeleteStmtLimited.Alt1.Comma
+	(*InsertStmt_With)(nil),                                            // 335: sqlite.InsertStmt.With
+	(*InsertStmt_Alt1)(nil),                                            // 336: sqlite.InsertStmt.Alt1
+	(*InsertStmt_Seq1)(nil),                                            // 337: sqlite.InsertStmt.Seq1
+	(*InsertStmt_As)(nil),                                              // 338: sqlite.InsertStmt.As
+	(*InsertStmt_LeftParenthesis)(nil),                                 // 339: sqlite.InsertStmt.LeftParenthesis
+	(*InsertStmt_Alt2)(nil),                                            // 340: sqlite.InsertStmt.Alt2
+	(*InsertStmt_Alt1_InsertOr)(nil),                                   // 341: sqlite.InsertStmt.Alt1.InsertOr
+	(*InsertStmt_Alt1_InsertOr_Alt1)(nil),                              // 342: sqlite.InsertStmt.Alt1.InsertOr.Alt1
+	(*InsertStmt_Alt2_ValuesLeftParenthesis)(nil),                      // 343: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis
+	(*InsertStmt_Alt2_Seq1)(nil),                                       // 344: sqlite.InsertStmt.Alt2.Seq1
+	(*InsertStmt_Alt2_DefaultValues)(nil),                              // 345: sqlite.InsertStmt.Alt2.DefaultValues
+	(*InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis)(nil), // 346: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis
+	(*UpdateStmt_With)(nil),                                            // 347: sqlite.UpdateStmt.With
+	(*UpdateStmt_Alt1)(nil),                                            // 348: sqlite.UpdateStmt.Alt1
+	(*UpdateStmt_Alt2)(nil),                                            // 349: sqlite.UpdateStmt.Alt2
+	(*UpdateStmt_Comma)(nil),                                           // 350: sqlite.UpdateStmt.Comma
+	(*UpdateStmt_From)(nil),                                            // 351: sqlite.UpdateStmt.From
+	(*UpdateStmt_Where)(nil),                                           // 352: sqlite.UpdateStmt.Where
+	(*UpdateStmt_Alt1_UpdateOr)(nil),                                   // 353: sqlite.UpdateStmt.Alt1.UpdateOr
+	(*UpdateStmt_Alt1_UpdateOr_Alt1)(nil),                              // 354: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1
+	(*UpdateStmt_Comma_Alt1)(nil),                                      // 355: sqlite.UpdateStmt.Comma.Alt1
+	(*UpdateStmt_From_Alt1)(nil),                                       // 356: sqlite.UpdateStmt.From.Alt1
+	(*UpdateStmt_From_Alt1_Seq1)(nil),                                  // 357: sqlite.UpdateStmt.From.Alt1.Seq1
+	(*UpdateStmtLimited_With)(nil),                                     // 358: sqlite.UpdateStmtLimited.With
+	(*UpdateStmtLimited_Alt1)(nil),                                     // 359: sqlite.UpdateStmtLimited.Alt1
+	(*UpdateStmtLimited_Alt2)(nil),                                     // 360: sqlite.UpdateStmtLimited.Alt2
+	(*UpdateStmtLimited_Comma)(nil),                                    // 361: sqlite.UpdateStmtLimited.Comma
+	(*UpdateStmtLimited_From)(nil),                                     // 362: sqlite.UpdateStmtLimited.From
+	(*UpdateStmtLimited_Where)(nil),                                    // 363: sqlite.UpdateStmtLimited.Where
+	(*UpdateStmtLimited_OrderBy)(nil),                                  // 364: sqlite.UpdateStmtLimited.OrderBy
+	(*UpdateStmtLimited_Alt3)(nil),                                     // 365: sqlite.UpdateStmtLimited.Alt3
+	(*UpdateStmtLimited_Alt1_UpdateOr)(nil),                            // 366: sqlite.UpdateStmtLimited.Alt1.UpdateOr
+	(*UpdateStmtLimited_Alt1_UpdateOr_Alt1)(nil),                       // 367: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1
+	(*UpdateStmtLimited_Comma_Alt1)(nil),                               // 368: sqlite.UpdateStmtLimited.Comma.Alt1
+	(*UpdateStmtLimited_From_Alt1)(nil),                                // 369: sqlite.UpdateStmtLimited.From.Alt1
+	(*UpdateStmtLimited_From_Alt1_Seq1)(nil),                           // 370: sqlite.UpdateStmtLimited.From.Alt1.Seq1
+	(*UpdateStmtLimited_Alt3_Offset)(nil),                              // 371: sqlite.UpdateStmtLimited.Alt3.Offset
+	(*UpdateStmtLimited_Alt3_Comma)(nil),                               // 372: sqlite.UpdateStmtLimited.Alt3.Comma
+	(*TableOrSubquery_Seq1)(nil),                                       // 373: sqlite.TableOrSubquery.Seq1
+	(*TableOrSubquery_Seq2)(nil),                                       // 374: sqlite.TableOrSubquery.Seq2
+	(*TableOrSubquery_LeftParenthesis)(nil),                            // 375: sqlite.TableOrSubquery.LeftParenthesis
+	(*TableOrSubquery_LeftParenthesis2)(nil),                           // 376: sqlite.TableOrSubquery.LeftParenthesis2
+	(*TableOrSubquery_LeftParenthesis3)(nil),                           // 377: sqlite.TableOrSubquery.LeftParenthesis3
+	(*TableOrSubquery_Seq1_Seq1)(nil),                                  // 378: sqlite.TableOrSubquery.Seq1.Seq1
+	(*TableOrSubquery_Seq1_Seq2)(nil),                                  // 379: sqlite.TableOrSubquery.Seq1.Seq2
+	(*TableOrSubquery_Seq1_Alt1)(nil),                                  // 380: sqlite.TableOrSubquery.Seq1.Alt1
+	(*TableOrSubquery_Seq1_Alt1_IndexedBy)(nil),                        // 381: sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy
+	(*TableOrSubquery_Seq1_Alt1_NotIndexed)(nil),                       // 382: sqlite.TableOrSubquery.Seq1.Alt1.NotIndexed
+	(*TableOrSubquery_Seq2_Seq1)(nil),                                  // 383: sqlite.TableOrSubquery.Seq2.Seq1
+	(*TableOrSubquery_Seq2_Seq2)(nil),                                  // 384: sqlite.TableOrSubquery.Seq2.Seq2
+	(*TableOrSubquery_Seq2_Seq3)(nil),                                  // 385: sqlite.TableOrSubquery.Seq2.Seq3
+	(*JoinClause_Seq1)(nil),                                            // 386: sqlite.JoinClause.Seq1
+	(*JoinOperator_Seq1)(nil),                                          // 387: sqlite.JoinOperator.Seq1
+	(*JoinOperator_Seq1_Alt1)(nil),                                     // 388: sqlite.JoinOperator.Seq1.Alt1
+	(*JoinOperator_Seq1_Alt1_Seq1)(nil),                                // 389: sqlite.JoinOperator.Seq1.Alt1.Seq1
+	(*JoinOperator_Seq1_Alt1_Seq1_Alt1)(nil),                           // 390: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1
+	(*JoinConstraint_On)(nil),                                          // 391: sqlite.JoinConstraint.On
+	(*JoinConstraint_UsingLeftParenthesis)(nil),                        // 392: sqlite.JoinConstraint.UsingLeftParenthesis
+	(*OrderingTerm_Collate)(nil),                                       // 393: sqlite.OrderingTerm.Collate
+	(*OrderingTerm_Alt1)(nil),                                          // 394: sqlite.OrderingTerm.Alt1
+	(*OrderingTerm_Alt2)(nil),                                          // 395: sqlite.OrderingTerm.Alt2
+	(*OrderingTerm_Alt2_NullsFirst)(nil),                               // 396: sqlite.OrderingTerm.Alt2.NullsFirst
+	(*OrderingTerm_Alt2_NullsLast)(nil),                                // 397: sqlite.OrderingTerm.Alt2.NullsLast
+	(*ColumnConstraint_Constraint)(nil),                                // 398: sqlite.ColumnConstraint.Constraint
+	(*ColumnConstraint_Alt1)(nil),                                      // 399: sqlite.ColumnConstraint.Alt1
+	(*ColumnConstraint_Alt1_PrimaryKey)(nil),                           // 400: sqlite.ColumnConstraint.Alt1.PrimaryKey
+	(*ColumnConstraint_Alt1_NotNull)(nil),                              // 401: sqlite.ColumnConstraint.Alt1.NotNull
+	(*ColumnConstraint_Alt1_Unique)(nil),                               // 402: sqlite.ColumnConstraint.Alt1.Unique
+	(*ColumnConstraint_Alt1_CheckLeftParenthesis)(nil),                 // 403: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis
+	(*ColumnConstraint_Alt1_Default)(nil),                              // 404: sqlite.ColumnConstraint.Alt1.Default
+	(*ColumnConstraint_Alt1_Collate)(nil),                              // 405: sqlite.ColumnConstraint.Alt1.Collate
+	(*ColumnConstraint_Alt1_Seq1)(nil),                                 // 406: sqlite.ColumnConstraint.Alt1.Seq1
+	(*ColumnConstraint_Alt1_PrimaryKey_Alt1)(nil),                      // 407: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1
+	(*ColumnConstraint_Alt1_Default_Alt1)(nil),                         // 408: sqlite.ColumnConstraint.Alt1.Default.Alt1
+	(*ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis)(nil),         // 409: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis
+	(*ColumnConstraint_Alt1_Seq1_GeneratedAlways)(nil),                 // 410: sqlite.ColumnConstraint.Alt1.Seq1.GeneratedAlways
+	(*ColumnConstraint_Alt1_Seq1_Alt1)(nil),                            // 411: sqlite.ColumnConstraint.Alt1.Seq1.Alt1
+	(*TableConstraint_Constraint)(nil),                                 // 412: sqlite.TableConstraint.Constraint
+	(*TableConstraint_Alt1)(nil),                                       // 413: sqlite.TableConstraint.Alt1
+	(*TableConstraint_Alt1_PrimaryKeyLeftParenthesis)(nil),             // 414: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis
+	(*TableConstraint_Alt1_UniqueLeftParenthesis)(nil),                 // 415: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis
+	(*TableConstraint_Alt1_CheckLeftParenthesis)(nil),                  // 416: sqlite.TableConstraint.Alt1.CheckLeftParenthesis
+	(*TableConstraint_Alt1_ForeignKeyLeftParenthesis)(nil),             // 417: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis
+	(*ConflictClause_OnConflict)(nil),                                  // 418: sqlite.ConflictClause.OnConflict
+	(*ConflictClause_OnConflict_Alt1)(nil),                             // 419: sqlite.ConflictClause.OnConflict.Alt1
+	(*ForeignKeyClause_LeftParenthesis)(nil),                           // 420: sqlite.ForeignKeyClause.LeftParenthesis
+	(*ForeignKeyClause_Alt1)(nil),                                      // 421: sqlite.ForeignKeyClause.Alt1
+	(*ForeignKeyClause_Seq1)(nil),                                      // 422: sqlite.ForeignKeyClause.Seq1
+	(*ForeignKeyClause_Alt1_On)(nil),                                   // 423: sqlite.ForeignKeyClause.Alt1.On
+	(*ForeignKeyClause_Alt1_Match)(nil),                                // 424: sqlite.ForeignKeyClause.Alt1.Match
+	(*ForeignKeyClause_Alt1_On_Alt1)(nil),                              // 425: sqlite.ForeignKeyClause.Alt1.On.Alt1
+	(*ForeignKeyClause_Alt1_On_Alt2)(nil),                              // 426: sqlite.ForeignKeyClause.Alt1.On.Alt2
+	(*ForeignKeyClause_Alt1_On_Alt2_SetNull)(nil),                      // 427: sqlite.ForeignKeyClause.Alt1.On.Alt2.SetNull
+	(*ForeignKeyClause_Alt1_On_Alt2_SetDefault)(nil),                   // 428: sqlite.ForeignKeyClause.Alt1.On.Alt2.SetDefault
+	(*ForeignKeyClause_Alt1_On_Alt2_NoAction)(nil),                     // 429: sqlite.ForeignKeyClause.Alt1.On.Alt2.NoAction
+	(*ForeignKeyClause_Seq1_Initially)(nil),                            // 430: sqlite.ForeignKeyClause.Seq1.Initially
+	(*ForeignKeyClause_Seq1_Initially_Alt1)(nil),                       // 431: sqlite.ForeignKeyClause.Seq1.Initially.Alt1
+	(*TableOptions_WithoutRowid)(nil),                                  // 432: sqlite.TableOptions.WithoutRowid
+	(*TableOptions_WithoutRowidCommaStrict)(nil),                       // 433: sqlite.TableOptions.WithoutRowidCommaStrict
+	(*TableOptions_StrictCommaWithoutRowid)(nil),                       // 434: sqlite.TableOptions.StrictCommaWithoutRowid
+	(*TypeName_Alt1)(nil),                                              // 435: sqlite.TypeName.Alt1
+	(*TypeName_Alt1_LeftParenthesis)(nil),                              // 436: sqlite.TypeName.Alt1.LeftParenthesis
+	(*TypeName_Alt1_LeftParenthesis2)(nil),                             // 437: sqlite.TypeName.Alt1.LeftParenthesis2
+	(*IndexedColumn_Alt1)(nil),                                         // 438: sqlite.IndexedColumn.Alt1
+	(*IndexedColumn_Collate)(nil),                                      // 439: sqlite.IndexedColumn.Collate
+	(*IndexedColumn_Alt2)(nil),                                         // 440: sqlite.IndexedColumn.Alt2
+	(*QualifiedTableName_Seq1)(nil),                                    // 441: sqlite.QualifiedTableName.Seq1
+	(*QualifiedTableName_As)(nil),                                      // 442: sqlite.QualifiedTableName.As
+	(*QualifiedTableName_Alt1)(nil),                                    // 443: sqlite.QualifiedTableName.Alt1
+	(*QualifiedTableName_Alt1_IndexedBy)(nil),                          // 444: sqlite.QualifiedTableName.Alt1.IndexedBy
+	(*QualifiedTableName_Alt1_NotIndexed)(nil),                         // 445: sqlite.QualifiedTableName.Alt1.NotIndexed
+	(*ReturningClause_Alt1)(nil),                                       // 446: sqlite.ReturningClause.Alt1
+	(*ReturningClause_Alt1_Seq1)(nil),                                  // 447: sqlite.ReturningClause.Alt1.Seq1
+	(*ReturningClause_Alt1_Seq1_Seq1)(nil),                             // 448: sqlite.ReturningClause.Alt1.Seq1.Seq1
+	(*UpsertClause_LeftParenthesis)(nil),                               // 449: sqlite.UpsertClause.LeftParenthesis
+	(*UpsertClause_Alt1)(nil),                                          // 450: sqlite.UpsertClause.Alt1
+	(*UpsertClause_LeftParenthesis_Where)(nil),                         // 451: sqlite.UpsertClause.LeftParenthesis.Where
+	(*UpsertClause_Alt1_UpdateSet)(nil),                                // 452: sqlite.UpsertClause.Alt1.UpdateSet
+	(*UpsertClause_Alt1_UpdateSet_Alt1)(nil),                           // 453: sqlite.UpsertClause.Alt1.UpdateSet.Alt1
+	(*UpsertClause_Alt1_UpdateSet_Comma)(nil),                          // 454: sqlite.UpsertClause.Alt1.UpdateSet.Comma
+	(*UpsertClause_Alt1_UpdateSet_Where)(nil),                          // 455: sqlite.UpsertClause.Alt1.UpdateSet.Where
+	(*UpsertClause_Alt1_UpdateSet_Comma_Alt1)(nil),                     // 456: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1
+	(*WindowDefn_PartitionBy)(nil),                                     // 457: sqlite.WindowDefn.PartitionBy
+	(*WindowDefn_OrderBy)(nil),                                         // 458: sqlite.WindowDefn.OrderBy
+	(*OverClause_Alt1)(nil),                                            // 459: sqlite.OverClause.Alt1
+	(*OverClause_Alt1_LeftParenthesis)(nil),                            // 460: sqlite.OverClause.Alt1.LeftParenthesis
+	(*OverClause_Alt1_LeftParenthesis_PartitionBy)(nil),                // 461: sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy
+	(*OverClause_Alt1_LeftParenthesis_OrderBy)(nil),                    // 462: sqlite.OverClause.Alt1.LeftParenthesis.OrderBy
+	(*FrameSpec_Alt1)(nil),                                             // 463: sqlite.FrameSpec.Alt1
+	(*FrameSpec_Alt2)(nil),                                             // 464: sqlite.FrameSpec.Alt2
+	(*FrameSpec_Alt3)(nil),                                             // 465: sqlite.FrameSpec.Alt3
+	(*FrameSpec_Alt2_Between)(nil),                                     // 466: sqlite.FrameSpec.Alt2.Between
+	(*FrameSpec_Alt2_UnboundedPreceding)(nil),                          // 467: sqlite.FrameSpec.Alt2.UnboundedPreceding
+	(*FrameSpec_Alt2_Seq1)(nil),                                        // 468: sqlite.FrameSpec.Alt2.Seq1
+	(*FrameSpec_Alt2_CurrentRow)(nil),                                  // 469: sqlite.FrameSpec.Alt2.CurrentRow
+	(*FrameSpec_Alt2_Between_Alt1)(nil),                                // 470: sqlite.FrameSpec.Alt2.Between.Alt1
+	(*FrameSpec_Alt2_Between_Alt2)(nil),                                // 471: sqlite.FrameSpec.Alt2.Between.Alt2
+	(*FrameSpec_Alt2_Between_Alt1_UnboundedPreceding)(nil),             // 472: sqlite.FrameSpec.Alt2.Between.Alt1.UnboundedPreceding
+	(*FrameSpec_Alt2_Between_Alt1_Seq1)(nil),                           // 473: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1
+	(*FrameSpec_Alt2_Between_Alt1_CurrentRow)(nil),                     // 474: sqlite.FrameSpec.Alt2.Between.Alt1.CurrentRow
+	(*FrameSpec_Alt2_Between_Alt1_Seq2)(nil),                           // 475: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2
+	(*FrameSpec_Alt2_Between_Alt2_Seq1)(nil),                           // 476: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1
+	(*FrameSpec_Alt2_Between_Alt2_CurrentRow)(nil),                     // 477: sqlite.FrameSpec.Alt2.Between.Alt2.CurrentRow
+	(*FrameSpec_Alt2_Between_Alt2_Seq2)(nil),                           // 478: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2
+	(*FrameSpec_Alt2_Between_Alt2_UnboundedFollowing)(nil),             // 479: sqlite.FrameSpec.Alt2.Between.Alt2.UnboundedFollowing
+	(*FrameSpec_Alt3_ExcludeNoOthers)(nil),                             // 480: sqlite.FrameSpec.Alt3.ExcludeNoOthers
+	(*FrameSpec_Alt3_ExcludeCurrentRow)(nil),                           // 481: sqlite.FrameSpec.Alt3.ExcludeCurrentRow
+	(*FrameSpec_Alt3_ExcludeGroup)(nil),                                // 482: sqlite.FrameSpec.Alt3.ExcludeGroup
+	(*FrameSpec_Alt3_ExcludeTies)(nil),                                 // 483: sqlite.FrameSpec.Alt3.ExcludeTies
+	(*Expr_Seq1)(nil),                                                  // 484: sqlite.Expr.Seq1
+	(*Expr_Seq2)(nil),                                                  // 485: sqlite.Expr.Seq2
+	(*Expr_Seq3)(nil),                                                  // 486: sqlite.Expr.Seq3
+	(*Expr_Seq4)(nil),                                                  // 487: sqlite.Expr.Seq4
+	(*Expr_LeftParenthesis)(nil),                                       // 488: sqlite.Expr.LeftParenthesis
+	(*Expr_CastLeftParenthesis)(nil),                                   // 489: sqlite.Expr.CastLeftParenthesis
+	(*Expr_Seq5)(nil),                                                  // 490: sqlite.Expr.Seq5
+	(*Expr_Seq6)(nil),                                                  // 491: sqlite.Expr.Seq6
+	(*Expr_Seq7)(nil),                                                  // 492: sqlite.Expr.Seq7
+	(*Expr_Seq8)(nil),                                                  // 493: sqlite.Expr.Seq8
+	(*Expr_Seq9)(nil),                                                  // 494: sqlite.Expr.Seq9
+	(*Expr_Seq10)(nil),                                                 // 495: sqlite.Expr.Seq10
+	(*Expr_Seq11)(nil),                                                 // 496: sqlite.Expr.Seq11
+	(*Expr_Seq12)(nil),                                                 // 497: sqlite.Expr.Seq12
+	(*Expr_Seq13)(nil),                                                 // 498: sqlite.Expr.Seq13
+	(*Expr_Seq14)(nil),                                                 // 499: sqlite.Expr.Seq14
+	(*Expr_Seq15)(nil),                                                 // 500: sqlite.Expr.Seq15
+	(*Expr_Case)(nil),                                                  // 501: sqlite.Expr.Case
+	(*Expr_Seq1_Seq1)(nil),                                             // 502: sqlite.Expr.Seq1.Seq1
+	(*Expr_Seq1_Seq1_Seq1)(nil),                                        // 503: sqlite.Expr.Seq1.Seq1.Seq1
+	(*Expr_Seq6_Alt1)(nil),                                             // 504: sqlite.Expr.Seq6.Alt1
+	(*Expr_Seq6_Escape)(nil),                                           // 505: sqlite.Expr.Seq6.Escape
+	(*Expr_Seq10_DistinctFrom)(nil),                                    // 506: sqlite.Expr.Seq10.DistinctFrom
+	(*Expr_Seq12_Alt1)(nil),                                            // 507: sqlite.Expr.Seq12.Alt1
+	(*Expr_Seq12_Alt1_Seq1)(nil),                                       // 508: sqlite.Expr.Seq12.Alt1.Seq1
+	(*Expr_Seq13_Seq1)(nil),                                            // 509: sqlite.Expr.Seq13.Seq1
+	(*Expr_Seq14_Seq1)(nil),                                            // 510: sqlite.Expr.Seq14.Seq1
+	(*Expr_Seq14_Seq2)(nil),                                            // 511: sqlite.Expr.Seq14.Seq2
+	(*Expr_Case_When)(nil),                                             // 512: sqlite.Expr.Case.When
+	(*Expr_Case_Else)(nil),                                             // 513: sqlite.Expr.Case.Else
+	(*FunctionArguments_Seq1)(nil),                                     // 514: sqlite.FunctionArguments.Seq1
+	(*SignedNumber_Alt1)(nil),                                          // 515: sqlite.SignedNumber.Alt1
+	(*RaiseFunction_Alt1)(nil),                                         // 516: sqlite.RaiseFunction.Alt1
+	(*RaiseFunction_Alt1_Seq1)(nil),                                    // 517: sqlite.RaiseFunction.Alt1.Seq1
+	(*RaiseFunction_Alt1_Seq1_Alt1)(nil),                               // 518: sqlite.RaiseFunction.Alt1.Seq1.Alt1
+	(*NumericLiteral_FullStop)(nil),                                    // 519: sqlite.NumericLiteral.FullStop
+	(*NumericLiteral_E)(nil),                                           // 520: sqlite.NumericLiteral.E
+	(*NumericLiteral_E_Alt1)(nil),                                      // 521: sqlite.NumericLiteral.E.Alt1
+	(*BindParameter_Colon)(nil),                                        // 522: sqlite.BindParameter.Colon
+	(*BindParameter_CommercialAt)(nil),                                 // 523: sqlite.BindParameter.CommercialAt
+	(*BindParameter_DollarSign)(nil),                                   // 524: sqlite.BindParameter.DollarSign
+	(*BinaryOperator_IsNot)(nil),                                       // 525: sqlite.BinaryOperator.IsNot
 }
 var file_sqlite_proto_depIdxs = []int32{
 	1,   // 0: sqlite.SqlStmtList.sql_stmt:type_name -> sqlite.SqlStmt
-	222, // 1: sqlite.SqlStmt.explain:type_name -> sqlite.SqlStmt.Explain
-	223, // 2: sqlite.SqlStmt.alt1:type_name -> sqlite.SqlStmt.Alt1
-	225, // 3: sqlite.BeginStmt.alt1:type_name -> sqlite.BeginStmt.Alt1
+	221, // 1: sqlite.SqlStmt.explain:type_name -> sqlite.SqlStmt.Explain
+	222, // 2: sqlite.SqlStmt.alt1:type_name -> sqlite.SqlStmt.Alt1
+	224, // 3: sqlite.BeginStmt.alt1:type_name -> sqlite.BeginStmt.Alt1
 	209, // 4: sqlite.BeginStmt.transaction_keyword:type_name -> sqlite.TransactionKeyword
-	226, // 5: sqlite.CommitStmt.alt1:type_name -> sqlite.CommitStmt.Alt1
+	225, // 5: sqlite.CommitStmt.alt1:type_name -> sqlite.CommitStmt.Alt1
 	209, // 6: sqlite.CommitStmt.transaction_keyword:type_name -> sqlite.TransactionKeyword
 	209, // 7: sqlite.RollbackStmt.transaction_keyword:type_name -> sqlite.TransactionKeyword
-	227, // 8: sqlite.RollbackStmt.to:type_name -> sqlite.RollbackStmt.To
+	226, // 8: sqlite.RollbackStmt.to:type_name -> sqlite.RollbackStmt.To
 	62,  // 9: sqlite.SavepointStmt.savepoint_name:type_name -> sqlite.SavepointName
 	197, // 10: sqlite.ReleaseStmt.savepoint_keyword:type_name -> sqlite.SavepointKeyword
 	62,  // 11: sqlite.ReleaseStmt.savepoint_name:type_name -> sqlite.SavepointName
@@ -33143,239 +33104,239 @@ var file_sqlite_proto_depIdxs = []int32{
 	119, // 16: sqlite.DetachStmt.database_keyword:type_name -> sqlite.DatabaseKeyword
 	61,  // 17: sqlite.DetachStmt.schema_name:type_name -> sqlite.SchemaName
 	61,  // 18: sqlite.VacuumStmt.schema_name:type_name -> sqlite.SchemaName
-	228, // 19: sqlite.VacuumStmt.into:type_name -> sqlite.VacuumStmt.Into
-	229, // 20: sqlite.AnalyzeStmt.alt1:type_name -> sqlite.AnalyzeStmt.Alt1
-	231, // 21: sqlite.ReindexStmt.alt1:type_name -> sqlite.ReindexStmt.Alt1
-	235, // 22: sqlite.PragmaStmt.seq1:type_name -> sqlite.PragmaStmt.Seq1
+	227, // 19: sqlite.VacuumStmt.into:type_name -> sqlite.VacuumStmt.Into
+	228, // 20: sqlite.AnalyzeStmt.alt1:type_name -> sqlite.AnalyzeStmt.Alt1
+	230, // 21: sqlite.ReindexStmt.alt1:type_name -> sqlite.ReindexStmt.Alt1
+	234, // 22: sqlite.PragmaStmt.seq1:type_name -> sqlite.PragmaStmt.Seq1
 	71,  // 23: sqlite.PragmaStmt.pragma_name:type_name -> sqlite.PragmaName
-	236, // 24: sqlite.PragmaStmt.alt1:type_name -> sqlite.PragmaStmt.Alt1
-	239, // 25: sqlite.DropTableStmt.if_exists:type_name -> sqlite.DropTableStmt.IfExists
-	240, // 26: sqlite.DropTableStmt.seq1:type_name -> sqlite.DropTableStmt.Seq1
+	235, // 24: sqlite.PragmaStmt.alt1:type_name -> sqlite.PragmaStmt.Alt1
+	238, // 25: sqlite.DropTableStmt.if_exists:type_name -> sqlite.DropTableStmt.IfExists
+	239, // 26: sqlite.DropTableStmt.seq1:type_name -> sqlite.DropTableStmt.Seq1
 	67,  // 27: sqlite.DropTableStmt.table_name:type_name -> sqlite.TableName
-	241, // 28: sqlite.DropIndexStmt.if_exists:type_name -> sqlite.DropIndexStmt.IfExists
-	242, // 29: sqlite.DropIndexStmt.seq1:type_name -> sqlite.DropIndexStmt.Seq1
+	240, // 28: sqlite.DropIndexStmt.if_exists:type_name -> sqlite.DropIndexStmt.IfExists
+	241, // 29: sqlite.DropIndexStmt.seq1:type_name -> sqlite.DropIndexStmt.Seq1
 	68,  // 30: sqlite.DropIndexStmt.index_name:type_name -> sqlite.IndexName
-	243, // 31: sqlite.DropViewStmt.if_exists:type_name -> sqlite.DropViewStmt.IfExists
-	244, // 32: sqlite.DropViewStmt.seq1:type_name -> sqlite.DropViewStmt.Seq1
+	242, // 31: sqlite.DropViewStmt.if_exists:type_name -> sqlite.DropViewStmt.IfExists
+	243, // 32: sqlite.DropViewStmt.seq1:type_name -> sqlite.DropViewStmt.Seq1
 	69,  // 33: sqlite.DropViewStmt.view_name:type_name -> sqlite.ViewName
-	245, // 34: sqlite.DropTriggerStmt.if_exists:type_name -> sqlite.DropTriggerStmt.IfExists
-	246, // 35: sqlite.DropTriggerStmt.seq1:type_name -> sqlite.DropTriggerStmt.Seq1
+	244, // 34: sqlite.DropTriggerStmt.if_exists:type_name -> sqlite.DropTriggerStmt.IfExists
+	245, // 35: sqlite.DropTriggerStmt.seq1:type_name -> sqlite.DropTriggerStmt.Seq1
 	70,  // 36: sqlite.DropTriggerStmt.trigger_name:type_name -> sqlite.TriggerName
-	247, // 37: sqlite.AlterTableStmt.seq1:type_name -> sqlite.AlterTableStmt.Seq1
+	246, // 37: sqlite.AlterTableStmt.seq1:type_name -> sqlite.AlterTableStmt.Seq1
 	67,  // 38: sqlite.AlterTableStmt.table_name:type_name -> sqlite.TableName
-	248, // 39: sqlite.AlterTableStmt.alt1:type_name -> sqlite.AlterTableStmt.Alt1
-	259, // 40: sqlite.CreateTableStmt.alt1:type_name -> sqlite.CreateTableStmt.Alt1
+	247, // 39: sqlite.AlterTableStmt.alt1:type_name -> sqlite.AlterTableStmt.Alt1
+	258, // 40: sqlite.CreateTableStmt.alt1:type_name -> sqlite.CreateTableStmt.Alt1
 	203, // 41: sqlite.CreateTableStmt.table_keyword:type_name -> sqlite.TableKeyword
-	260, // 42: sqlite.CreateTableStmt.if_not_exists:type_name -> sqlite.CreateTableStmt.IfNotExists
-	261, // 43: sqlite.CreateTableStmt.seq1:type_name -> sqlite.CreateTableStmt.Seq1
+	259, // 42: sqlite.CreateTableStmt.if_not_exists:type_name -> sqlite.CreateTableStmt.IfNotExists
+	260, // 43: sqlite.CreateTableStmt.seq1:type_name -> sqlite.CreateTableStmt.Seq1
 	67,  // 44: sqlite.CreateTableStmt.table_name:type_name -> sqlite.TableName
-	262, // 45: sqlite.CreateTableStmt.alt2:type_name -> sqlite.CreateTableStmt.Alt2
+	261, // 45: sqlite.CreateTableStmt.alt2:type_name -> sqlite.CreateTableStmt.Alt2
 	213, // 46: sqlite.CreateIndexStmt.unique_keyword:type_name -> sqlite.UniqueKeyword
 	158, // 47: sqlite.CreateIndexStmt.index_keyword:type_name -> sqlite.IndexKeyword
-	266, // 48: sqlite.CreateIndexStmt.if_not_exists:type_name -> sqlite.CreateIndexStmt.IfNotExists
-	267, // 49: sqlite.CreateIndexStmt.seq1:type_name -> sqlite.CreateIndexStmt.Seq1
+	265, // 48: sqlite.CreateIndexStmt.if_not_exists:type_name -> sqlite.CreateIndexStmt.IfNotExists
+	266, // 49: sqlite.CreateIndexStmt.seq1:type_name -> sqlite.CreateIndexStmt.Seq1
 	68,  // 50: sqlite.CreateIndexStmt.index_name:type_name -> sqlite.IndexName
 	181, // 51: sqlite.CreateIndexStmt.on_keyword:type_name -> sqlite.OnKeyword
 	67,  // 52: sqlite.CreateIndexStmt.table_name:type_name -> sqlite.TableName
 	167, // 53: sqlite.CreateIndexStmt.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
 	47,  // 54: sqlite.CreateIndexStmt.indexed_column:type_name -> sqlite.IndexedColumn
 	194, // 55: sqlite.CreateIndexStmt.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	268, // 56: sqlite.CreateIndexStmt.where:type_name -> sqlite.CreateIndexStmt.Where
-	269, // 57: sqlite.CreateTriggerStmt.alt1:type_name -> sqlite.CreateTriggerStmt.Alt1
+	267, // 56: sqlite.CreateIndexStmt.where:type_name -> sqlite.CreateIndexStmt.Where
+	268, // 57: sqlite.CreateTriggerStmt.alt1:type_name -> sqlite.CreateTriggerStmt.Alt1
 	210, // 58: sqlite.CreateTriggerStmt.trigger_keyword:type_name -> sqlite.TriggerKeyword
-	270, // 59: sqlite.CreateTriggerStmt.if_not_exists:type_name -> sqlite.CreateTriggerStmt.IfNotExists
-	271, // 60: sqlite.CreateTriggerStmt.seq1:type_name -> sqlite.CreateTriggerStmt.Seq1
+	269, // 59: sqlite.CreateTriggerStmt.if_not_exists:type_name -> sqlite.CreateTriggerStmt.IfNotExists
+	270, // 60: sqlite.CreateTriggerStmt.seq1:type_name -> sqlite.CreateTriggerStmt.Seq1
 	70,  // 61: sqlite.CreateTriggerStmt.trigger_name:type_name -> sqlite.TriggerName
-	272, // 62: sqlite.CreateTriggerStmt.alt2:type_name -> sqlite.CreateTriggerStmt.Alt2
-	273, // 63: sqlite.CreateTriggerStmt.alt3:type_name -> sqlite.CreateTriggerStmt.Alt3
+	271, // 62: sqlite.CreateTriggerStmt.alt2:type_name -> sqlite.CreateTriggerStmt.Alt2
+	272, // 63: sqlite.CreateTriggerStmt.alt3:type_name -> sqlite.CreateTriggerStmt.Alt3
 	181, // 64: sqlite.CreateTriggerStmt.on_keyword:type_name -> sqlite.OnKeyword
 	67,  // 65: sqlite.CreateTriggerStmt.table_name:type_name -> sqlite.TableName
-	274, // 66: sqlite.CreateTriggerStmt.for_each_row:type_name -> sqlite.CreateTriggerStmt.ForEachRow
-	275, // 67: sqlite.CreateTriggerStmt.when:type_name -> sqlite.CreateTriggerStmt.When
+	273, // 66: sqlite.CreateTriggerStmt.for_each_row:type_name -> sqlite.CreateTriggerStmt.ForEachRow
+	274, // 67: sqlite.CreateTriggerStmt.when:type_name -> sqlite.CreateTriggerStmt.When
 	107, // 68: sqlite.CreateTriggerStmt.begin_keyword:type_name -> sqlite.BeginKeyword
-	276, // 69: sqlite.CreateTriggerStmt.alt4:type_name -> sqlite.CreateTriggerStmt.Alt4
+	275, // 69: sqlite.CreateTriggerStmt.alt4:type_name -> sqlite.CreateTriggerStmt.Alt4
 	198, // 70: sqlite.CreateTriggerStmt.semicolon_keyword:type_name -> sqlite.SemicolonKeyword
-	277, // 71: sqlite.CreateTriggerStmt.seq2:type_name -> sqlite.CreateTriggerStmt.Seq2
+	276, // 71: sqlite.CreateTriggerStmt.seq2:type_name -> sqlite.CreateTriggerStmt.Seq2
 	136, // 72: sqlite.CreateTriggerStmt.end_keyword:type_name -> sqlite.EndKeyword
-	282, // 73: sqlite.CreateViewStmt.alt1:type_name -> sqlite.CreateViewStmt.Alt1
+	281, // 73: sqlite.CreateViewStmt.alt1:type_name -> sqlite.CreateViewStmt.Alt1
 	218, // 74: sqlite.CreateViewStmt.view_keyword:type_name -> sqlite.ViewKeyword
-	283, // 75: sqlite.CreateViewStmt.if_not_exists:type_name -> sqlite.CreateViewStmt.IfNotExists
-	284, // 76: sqlite.CreateViewStmt.seq1:type_name -> sqlite.CreateViewStmt.Seq1
+	282, // 75: sqlite.CreateViewStmt.if_not_exists:type_name -> sqlite.CreateViewStmt.IfNotExists
+	283, // 76: sqlite.CreateViewStmt.seq1:type_name -> sqlite.CreateViewStmt.Seq1
 	69,  // 77: sqlite.CreateViewStmt.view_name:type_name -> sqlite.ViewName
-	285, // 78: sqlite.CreateViewStmt.left_parenthesis:type_name -> sqlite.CreateViewStmt.LeftParenthesis
+	284, // 78: sqlite.CreateViewStmt.left_parenthesis:type_name -> sqlite.CreateViewStmt.LeftParenthesis
 	102, // 79: sqlite.CreateViewStmt.as_keyword:type_name -> sqlite.AsKeyword
 	23,  // 80: sqlite.CreateViewStmt.select_stmt:type_name -> sqlite.SelectStmt
-	286, // 81: sqlite.CreateVirtualTableStmt.if_not_exists:type_name -> sqlite.CreateVirtualTableStmt.IfNotExists
-	287, // 82: sqlite.CreateVirtualTableStmt.seq1:type_name -> sqlite.CreateVirtualTableStmt.Seq1
+	285, // 81: sqlite.CreateVirtualTableStmt.if_not_exists:type_name -> sqlite.CreateVirtualTableStmt.IfNotExists
+	286, // 82: sqlite.CreateVirtualTableStmt.seq1:type_name -> sqlite.CreateVirtualTableStmt.Seq1
 	67,  // 83: sqlite.CreateVirtualTableStmt.table_name:type_name -> sqlite.TableName
 	215, // 84: sqlite.CreateVirtualTableStmt.using_keyword:type_name -> sqlite.UsingKeyword
 	83,  // 85: sqlite.CreateVirtualTableStmt.module_name:type_name -> sqlite.ModuleName
-	288, // 86: sqlite.CreateVirtualTableStmt.left_parenthesis:type_name -> sqlite.CreateVirtualTableStmt.LeftParenthesis
-	290, // 87: sqlite.SelectStmt.with:type_name -> sqlite.SelectStmt.With
+	287, // 86: sqlite.CreateVirtualTableStmt.left_parenthesis:type_name -> sqlite.CreateVirtualTableStmt.LeftParenthesis
+	289, // 87: sqlite.SelectStmt.with:type_name -> sqlite.SelectStmt.With
 	24,  // 88: sqlite.SelectStmt.select_core:type_name -> sqlite.SelectCore
-	291, // 89: sqlite.SelectStmt.seq1:type_name -> sqlite.SelectStmt.Seq1
-	292, // 90: sqlite.SelectStmt.order_by:type_name -> sqlite.SelectStmt.OrderBy
-	293, // 91: sqlite.SelectStmt.limit:type_name -> sqlite.SelectStmt.Limit
-	297, // 92: sqlite.SelectCore.select:type_name -> sqlite.SelectCore.Select
-	298, // 93: sqlite.SelectCore.values_left_parenthesis:type_name -> sqlite.SelectCore.ValuesLeftParenthesis
-	309, // 94: sqlite.FactoredSelectStmt.with:type_name -> sqlite.FactoredSelectStmt.With
+	290, // 89: sqlite.SelectStmt.seq1:type_name -> sqlite.SelectStmt.Seq1
+	291, // 90: sqlite.SelectStmt.order_by:type_name -> sqlite.SelectStmt.OrderBy
+	292, // 91: sqlite.SelectStmt.limit:type_name -> sqlite.SelectStmt.Limit
+	296, // 92: sqlite.SelectCore.select:type_name -> sqlite.SelectCore.Select
+	297, // 93: sqlite.SelectCore.values_left_parenthesis:type_name -> sqlite.SelectCore.ValuesLeftParenthesis
+	308, // 94: sqlite.FactoredSelectStmt.with:type_name -> sqlite.FactoredSelectStmt.With
 	24,  // 95: sqlite.FactoredSelectStmt.select_core:type_name -> sqlite.SelectCore
-	310, // 96: sqlite.FactoredSelectStmt.seq1:type_name -> sqlite.FactoredSelectStmt.Seq1
-	311, // 97: sqlite.FactoredSelectStmt.order_by:type_name -> sqlite.FactoredSelectStmt.OrderBy
-	312, // 98: sqlite.FactoredSelectStmt.limit:type_name -> sqlite.FactoredSelectStmt.Limit
-	316, // 99: sqlite.ResultColumn.seq1:type_name -> sqlite.ResultColumn.Seq1
+	309, // 96: sqlite.FactoredSelectStmt.seq1:type_name -> sqlite.FactoredSelectStmt.Seq1
+	310, // 97: sqlite.FactoredSelectStmt.order_by:type_name -> sqlite.FactoredSelectStmt.OrderBy
+	311, // 98: sqlite.FactoredSelectStmt.limit:type_name -> sqlite.FactoredSelectStmt.Limit
+	315, // 99: sqlite.ResultColumn.seq1:type_name -> sqlite.ResultColumn.Seq1
 	104, // 100: sqlite.ResultColumn.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
-	317, // 101: sqlite.ResultColumn.seq2:type_name -> sqlite.ResultColumn.Seq2
+	316, // 101: sqlite.ResultColumn.seq2:type_name -> sqlite.ResultColumn.Seq2
 	212, // 102: sqlite.CompoundOperator.union_keyword:type_name -> sqlite.UnionKeyword
-	319, // 103: sqlite.CompoundOperator.union_all:type_name -> sqlite.CompoundOperator.UnionAll
+	318, // 103: sqlite.CompoundOperator.union_all:type_name -> sqlite.CompoundOperator.UnionAll
 	161, // 104: sqlite.CompoundOperator.intersect_keyword:type_name -> sqlite.IntersectKeyword
 	139, // 105: sqlite.CompoundOperator.except_keyword:type_name -> sqlite.ExceptKeyword
 	67,  // 106: sqlite.CommonTableExpression.table_name:type_name -> sqlite.TableName
-	320, // 107: sqlite.CommonTableExpression.left_parenthesis:type_name -> sqlite.CommonTableExpression.LeftParenthesis
+	319, // 107: sqlite.CommonTableExpression.left_parenthesis:type_name -> sqlite.CommonTableExpression.LeftParenthesis
 	102, // 108: sqlite.CommonTableExpression.as_keyword:type_name -> sqlite.AsKeyword
-	321, // 109: sqlite.CommonTableExpression.alt1:type_name -> sqlite.CommonTableExpression.Alt1
+	320, // 109: sqlite.CommonTableExpression.alt1:type_name -> sqlite.CommonTableExpression.Alt1
 	167, // 110: sqlite.CommonTableExpression.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
 	23,  // 111: sqlite.CommonTableExpression.select_stmt:type_name -> sqlite.SelectStmt
 	194, // 112: sqlite.CommonTableExpression.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
 	189, // 113: sqlite.WithClause.recursive_keyword:type_name -> sqlite.RecursiveKeyword
 	79,  // 114: sqlite.WithClause.cte_table_name:type_name -> sqlite.CteTableName
 	102, // 115: sqlite.WithClause.as_keyword:type_name -> sqlite.AsKeyword
-	323, // 116: sqlite.WithClause.alt1:type_name -> sqlite.WithClause.Alt1
+	322, // 116: sqlite.WithClause.alt1:type_name -> sqlite.WithClause.Alt1
 	167, // 117: sqlite.WithClause.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
 	23,  // 118: sqlite.WithClause.select_stmt:type_name -> sqlite.SelectStmt
 	194, // 119: sqlite.WithClause.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	324, // 120: sqlite.WithClause.comma:type_name -> sqlite.WithClause.Comma
-	328, // 121: sqlite.DeleteStmt.with:type_name -> sqlite.DeleteStmt.With
+	323, // 120: sqlite.WithClause.comma:type_name -> sqlite.WithClause.Comma
+	327, // 121: sqlite.DeleteStmt.with:type_name -> sqlite.DeleteStmt.With
 	122, // 122: sqlite.DeleteStmt.delete_keyword:type_name -> sqlite.DeleteKeyword
 	146, // 123: sqlite.DeleteStmt.from_keyword:type_name -> sqlite.FromKeyword
 	48,  // 124: sqlite.DeleteStmt.qualified_table_name:type_name -> sqlite.QualifiedTableName
-	329, // 125: sqlite.DeleteStmt.where:type_name -> sqlite.DeleteStmt.Where
+	328, // 125: sqlite.DeleteStmt.where:type_name -> sqlite.DeleteStmt.Where
 	49,  // 126: sqlite.DeleteStmt.returning_clause:type_name -> sqlite.ReturningClause
-	330, // 127: sqlite.DeleteStmtLimited.with:type_name -> sqlite.DeleteStmtLimited.With
+	329, // 127: sqlite.DeleteStmtLimited.with:type_name -> sqlite.DeleteStmtLimited.With
 	122, // 128: sqlite.DeleteStmtLimited.delete_keyword:type_name -> sqlite.DeleteKeyword
 	146, // 129: sqlite.DeleteStmtLimited.from_keyword:type_name -> sqlite.FromKeyword
 	48,  // 130: sqlite.DeleteStmtLimited.qualified_table_name:type_name -> sqlite.QualifiedTableName
-	331, // 131: sqlite.DeleteStmtLimited.where:type_name -> sqlite.DeleteStmtLimited.Where
+	330, // 131: sqlite.DeleteStmtLimited.where:type_name -> sqlite.DeleteStmtLimited.Where
 	49,  // 132: sqlite.DeleteStmtLimited.returning_clause:type_name -> sqlite.ReturningClause
-	332, // 133: sqlite.DeleteStmtLimited.order_by:type_name -> sqlite.DeleteStmtLimited.OrderBy
+	331, // 133: sqlite.DeleteStmtLimited.order_by:type_name -> sqlite.DeleteStmtLimited.OrderBy
 	173, // 134: sqlite.DeleteStmtLimited.limit_keyword:type_name -> sqlite.LimitKeyword
 	56,  // 135: sqlite.DeleteStmtLimited.expr:type_name -> sqlite.Expr
-	333, // 136: sqlite.DeleteStmtLimited.alt1:type_name -> sqlite.DeleteStmtLimited.Alt1
-	336, // 137: sqlite.InsertStmt.with:type_name -> sqlite.InsertStmt.With
-	337, // 138: sqlite.InsertStmt.alt1:type_name -> sqlite.InsertStmt.Alt1
+	332, // 136: sqlite.DeleteStmtLimited.alt1:type_name -> sqlite.DeleteStmtLimited.Alt1
+	335, // 137: sqlite.InsertStmt.with:type_name -> sqlite.InsertStmt.With
+	336, // 138: sqlite.InsertStmt.alt1:type_name -> sqlite.InsertStmt.Alt1
 	162, // 139: sqlite.InsertStmt.into_keyword:type_name -> sqlite.IntoKeyword
-	338, // 140: sqlite.InsertStmt.seq1:type_name -> sqlite.InsertStmt.Seq1
+	337, // 140: sqlite.InsertStmt.seq1:type_name -> sqlite.InsertStmt.Seq1
 	67,  // 141: sqlite.InsertStmt.table_name:type_name -> sqlite.TableName
-	339, // 142: sqlite.InsertStmt.as:type_name -> sqlite.InsertStmt.As
-	340, // 143: sqlite.InsertStmt.left_parenthesis:type_name -> sqlite.InsertStmt.LeftParenthesis
-	341, // 144: sqlite.InsertStmt.alt2:type_name -> sqlite.InsertStmt.Alt2
+	338, // 142: sqlite.InsertStmt.as:type_name -> sqlite.InsertStmt.As
+	339, // 143: sqlite.InsertStmt.left_parenthesis:type_name -> sqlite.InsertStmt.LeftParenthesis
+	340, // 144: sqlite.InsertStmt.alt2:type_name -> sqlite.InsertStmt.Alt2
 	49,  // 145: sqlite.InsertStmt.returning_clause:type_name -> sqlite.ReturningClause
-	348, // 146: sqlite.UpdateStmt.with:type_name -> sqlite.UpdateStmt.With
-	349, // 147: sqlite.UpdateStmt.alt1:type_name -> sqlite.UpdateStmt.Alt1
+	347, // 146: sqlite.UpdateStmt.with:type_name -> sqlite.UpdateStmt.With
+	348, // 147: sqlite.UpdateStmt.alt1:type_name -> sqlite.UpdateStmt.Alt1
 	48,  // 148: sqlite.UpdateStmt.qualified_table_name:type_name -> sqlite.QualifiedTableName
 	199, // 149: sqlite.UpdateStmt.set_keyword:type_name -> sqlite.SetKeyword
-	350, // 150: sqlite.UpdateStmt.alt2:type_name -> sqlite.UpdateStmt.Alt2
+	349, // 150: sqlite.UpdateStmt.alt2:type_name -> sqlite.UpdateStmt.Alt2
 	138, // 151: sqlite.UpdateStmt.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
 	56,  // 152: sqlite.UpdateStmt.expr:type_name -> sqlite.Expr
-	351, // 153: sqlite.UpdateStmt.comma:type_name -> sqlite.UpdateStmt.Comma
-	352, // 154: sqlite.UpdateStmt.from:type_name -> sqlite.UpdateStmt.From
-	353, // 155: sqlite.UpdateStmt.where:type_name -> sqlite.UpdateStmt.Where
+	350, // 153: sqlite.UpdateStmt.comma:type_name -> sqlite.UpdateStmt.Comma
+	351, // 154: sqlite.UpdateStmt.from:type_name -> sqlite.UpdateStmt.From
+	352, // 155: sqlite.UpdateStmt.where:type_name -> sqlite.UpdateStmt.Where
 	49,  // 156: sqlite.UpdateStmt.returning_clause:type_name -> sqlite.ReturningClause
-	359, // 157: sqlite.UpdateStmtLimited.with:type_name -> sqlite.UpdateStmtLimited.With
-	360, // 158: sqlite.UpdateStmtLimited.alt1:type_name -> sqlite.UpdateStmtLimited.Alt1
+	358, // 157: sqlite.UpdateStmtLimited.with:type_name -> sqlite.UpdateStmtLimited.With
+	359, // 158: sqlite.UpdateStmtLimited.alt1:type_name -> sqlite.UpdateStmtLimited.Alt1
 	48,  // 159: sqlite.UpdateStmtLimited.qualified_table_name:type_name -> sqlite.QualifiedTableName
 	199, // 160: sqlite.UpdateStmtLimited.set_keyword:type_name -> sqlite.SetKeyword
-	361, // 161: sqlite.UpdateStmtLimited.alt2:type_name -> sqlite.UpdateStmtLimited.Alt2
+	360, // 161: sqlite.UpdateStmtLimited.alt2:type_name -> sqlite.UpdateStmtLimited.Alt2
 	138, // 162: sqlite.UpdateStmtLimited.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
 	56,  // 163: sqlite.UpdateStmtLimited.expr:type_name -> sqlite.Expr
-	362, // 164: sqlite.UpdateStmtLimited.comma:type_name -> sqlite.UpdateStmtLimited.Comma
-	363, // 165: sqlite.UpdateStmtLimited.from:type_name -> sqlite.UpdateStmtLimited.From
-	364, // 166: sqlite.UpdateStmtLimited.where:type_name -> sqlite.UpdateStmtLimited.Where
+	361, // 164: sqlite.UpdateStmtLimited.comma:type_name -> sqlite.UpdateStmtLimited.Comma
+	362, // 165: sqlite.UpdateStmtLimited.from:type_name -> sqlite.UpdateStmtLimited.From
+	363, // 166: sqlite.UpdateStmtLimited.where:type_name -> sqlite.UpdateStmtLimited.Where
 	49,  // 167: sqlite.UpdateStmtLimited.returning_clause:type_name -> sqlite.ReturningClause
-	365, // 168: sqlite.UpdateStmtLimited.order_by:type_name -> sqlite.UpdateStmtLimited.OrderBy
+	364, // 168: sqlite.UpdateStmtLimited.order_by:type_name -> sqlite.UpdateStmtLimited.OrderBy
 	173, // 169: sqlite.UpdateStmtLimited.limit_keyword:type_name -> sqlite.LimitKeyword
 	56,  // 170: sqlite.UpdateStmtLimited.expr_2:type_name -> sqlite.Expr
-	366, // 171: sqlite.UpdateStmtLimited.alt3:type_name -> sqlite.UpdateStmtLimited.Alt3
-	374, // 172: sqlite.TableOrSubquery.seq1:type_name -> sqlite.TableOrSubquery.Seq1
-	375, // 173: sqlite.TableOrSubquery.seq2:type_name -> sqlite.TableOrSubquery.Seq2
-	376, // 174: sqlite.TableOrSubquery.left_parenthesis:type_name -> sqlite.TableOrSubquery.LeftParenthesis
-	377, // 175: sqlite.TableOrSubquery.left_parenthesis2:type_name -> sqlite.TableOrSubquery.LeftParenthesis2
-	378, // 176: sqlite.TableOrSubquery.left_parenthesis3:type_name -> sqlite.TableOrSubquery.LeftParenthesis3
+	365, // 171: sqlite.UpdateStmtLimited.alt3:type_name -> sqlite.UpdateStmtLimited.Alt3
+	373, // 172: sqlite.TableOrSubquery.seq1:type_name -> sqlite.TableOrSubquery.Seq1
+	374, // 173: sqlite.TableOrSubquery.seq2:type_name -> sqlite.TableOrSubquery.Seq2
+	375, // 174: sqlite.TableOrSubquery.left_parenthesis:type_name -> sqlite.TableOrSubquery.LeftParenthesis
+	376, // 175: sqlite.TableOrSubquery.left_parenthesis2:type_name -> sqlite.TableOrSubquery.LeftParenthesis2
+	377, // 176: sqlite.TableOrSubquery.left_parenthesis3:type_name -> sqlite.TableOrSubquery.LeftParenthesis3
 	35,  // 177: sqlite.JoinClause.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	387, // 178: sqlite.JoinClause.seq1:type_name -> sqlite.JoinClause.Seq1
+	386, // 178: sqlite.JoinClause.seq1:type_name -> sqlite.JoinClause.Seq1
 	113, // 179: sqlite.JoinOperator.comma_keyword:type_name -> sqlite.CommaKeyword
-	388, // 180: sqlite.JoinOperator.seq1:type_name -> sqlite.JoinOperator.Seq1
-	392, // 181: sqlite.JoinConstraint.on:type_name -> sqlite.JoinConstraint.On
-	393, // 182: sqlite.JoinConstraint.using_left_parenthesis:type_name -> sqlite.JoinConstraint.UsingLeftParenthesis
+	387, // 180: sqlite.JoinOperator.seq1:type_name -> sqlite.JoinOperator.Seq1
+	391, // 181: sqlite.JoinConstraint.on:type_name -> sqlite.JoinConstraint.On
+	392, // 182: sqlite.JoinConstraint.using_left_parenthesis:type_name -> sqlite.JoinConstraint.UsingLeftParenthesis
 	56,  // 183: sqlite.OrderingTerm.expr:type_name -> sqlite.Expr
-	394, // 184: sqlite.OrderingTerm.collate:type_name -> sqlite.OrderingTerm.Collate
-	395, // 185: sqlite.OrderingTerm.alt1:type_name -> sqlite.OrderingTerm.Alt1
-	396, // 186: sqlite.OrderingTerm.alt2:type_name -> sqlite.OrderingTerm.Alt2
+	393, // 184: sqlite.OrderingTerm.collate:type_name -> sqlite.OrderingTerm.Collate
+	394, // 185: sqlite.OrderingTerm.alt1:type_name -> sqlite.OrderingTerm.Alt1
+	395, // 186: sqlite.OrderingTerm.alt2:type_name -> sqlite.OrderingTerm.Alt2
 	73,  // 187: sqlite.ColumnDef.column_name:type_name -> sqlite.ColumnName
 	46,  // 188: sqlite.ColumnDef.type_name:type_name -> sqlite.TypeName
 	41,  // 189: sqlite.ColumnDef.column_constraint:type_name -> sqlite.ColumnConstraint
-	399, // 190: sqlite.ColumnConstraint.constraint:type_name -> sqlite.ColumnConstraint.Constraint
-	400, // 191: sqlite.ColumnConstraint.alt1:type_name -> sqlite.ColumnConstraint.Alt1
-	413, // 192: sqlite.TableConstraint.constraint:type_name -> sqlite.TableConstraint.Constraint
-	414, // 193: sqlite.TableConstraint.alt1:type_name -> sqlite.TableConstraint.Alt1
-	419, // 194: sqlite.ConflictClause.on_conflict:type_name -> sqlite.ConflictClause.OnConflict
+	398, // 190: sqlite.ColumnConstraint.constraint:type_name -> sqlite.ColumnConstraint.Constraint
+	399, // 191: sqlite.ColumnConstraint.alt1:type_name -> sqlite.ColumnConstraint.Alt1
+	412, // 192: sqlite.TableConstraint.constraint:type_name -> sqlite.TableConstraint.Constraint
+	413, // 193: sqlite.TableConstraint.alt1:type_name -> sqlite.TableConstraint.Alt1
+	418, // 194: sqlite.ConflictClause.on_conflict:type_name -> sqlite.ConflictClause.OnConflict
 	85,  // 195: sqlite.ForeignKeyClause.foreign_table:type_name -> sqlite.ForeignTable
-	421, // 196: sqlite.ForeignKeyClause.left_parenthesis:type_name -> sqlite.ForeignKeyClause.LeftParenthesis
-	422, // 197: sqlite.ForeignKeyClause.alt1:type_name -> sqlite.ForeignKeyClause.Alt1
-	423, // 198: sqlite.ForeignKeyClause.seq1:type_name -> sqlite.ForeignKeyClause.Seq1
-	433, // 199: sqlite.TableOptions.without_rowid:type_name -> sqlite.TableOptions.WithoutRowid
+	420, // 196: sqlite.ForeignKeyClause.left_parenthesis:type_name -> sqlite.ForeignKeyClause.LeftParenthesis
+	421, // 197: sqlite.ForeignKeyClause.alt1:type_name -> sqlite.ForeignKeyClause.Alt1
+	422, // 198: sqlite.ForeignKeyClause.seq1:type_name -> sqlite.ForeignKeyClause.Seq1
+	432, // 199: sqlite.TableOptions.without_rowid:type_name -> sqlite.TableOptions.WithoutRowid
 	202, // 200: sqlite.TableOptions.strict_keyword:type_name -> sqlite.StrictKeyword
-	434, // 201: sqlite.TableOptions.without_rowid_comma_strict:type_name -> sqlite.TableOptions.WithoutRowidCommaStrict
-	435, // 202: sqlite.TableOptions.strict_comma_without_rowid:type_name -> sqlite.TableOptions.StrictCommaWithoutRowid
+	433, // 201: sqlite.TableOptions.without_rowid_comma_strict:type_name -> sqlite.TableOptions.WithoutRowidCommaStrict
+	434, // 202: sqlite.TableOptions.strict_comma_without_rowid:type_name -> sqlite.TableOptions.StrictCommaWithoutRowid
 	94,  // 203: sqlite.TypeName.name:type_name -> sqlite.Name
 	94,  // 204: sqlite.TypeName.name_2:type_name -> sqlite.Name
-	436, // 205: sqlite.TypeName.alt1:type_name -> sqlite.TypeName.Alt1
-	439, // 206: sqlite.IndexedColumn.alt1:type_name -> sqlite.IndexedColumn.Alt1
-	440, // 207: sqlite.IndexedColumn.collate:type_name -> sqlite.IndexedColumn.Collate
-	441, // 208: sqlite.IndexedColumn.alt2:type_name -> sqlite.IndexedColumn.Alt2
-	442, // 209: sqlite.QualifiedTableName.seq1:type_name -> sqlite.QualifiedTableName.Seq1
+	435, // 205: sqlite.TypeName.alt1:type_name -> sqlite.TypeName.Alt1
+	438, // 206: sqlite.IndexedColumn.alt1:type_name -> sqlite.IndexedColumn.Alt1
+	439, // 207: sqlite.IndexedColumn.collate:type_name -> sqlite.IndexedColumn.Collate
+	440, // 208: sqlite.IndexedColumn.alt2:type_name -> sqlite.IndexedColumn.Alt2
+	441, // 209: sqlite.QualifiedTableName.seq1:type_name -> sqlite.QualifiedTableName.Seq1
 	67,  // 210: sqlite.QualifiedTableName.table_name:type_name -> sqlite.TableName
-	443, // 211: sqlite.QualifiedTableName.as:type_name -> sqlite.QualifiedTableName.As
-	444, // 212: sqlite.QualifiedTableName.alt1:type_name -> sqlite.QualifiedTableName.Alt1
-	447, // 213: sqlite.ReturningClause.alt1:type_name -> sqlite.ReturningClause.Alt1
-	450, // 214: sqlite.UpsertClause.left_parenthesis:type_name -> sqlite.UpsertClause.LeftParenthesis
+	442, // 211: sqlite.QualifiedTableName.as:type_name -> sqlite.QualifiedTableName.As
+	443, // 212: sqlite.QualifiedTableName.alt1:type_name -> sqlite.QualifiedTableName.Alt1
+	446, // 213: sqlite.ReturningClause.alt1:type_name -> sqlite.ReturningClause.Alt1
+	449, // 214: sqlite.UpsertClause.left_parenthesis:type_name -> sqlite.UpsertClause.LeftParenthesis
 	135, // 215: sqlite.UpsertClause.do_keyword:type_name -> sqlite.DoKeyword
-	451, // 216: sqlite.UpsertClause.alt1:type_name -> sqlite.UpsertClause.Alt1
+	450, // 216: sqlite.UpsertClause.alt1:type_name -> sqlite.UpsertClause.Alt1
 	73,  // 217: sqlite.ColumnNameList.column_name:type_name -> sqlite.ColumnName
 	194, // 218: sqlite.ColumnNameList.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
 	78,  // 219: sqlite.WindowDefn.base_window_name:type_name -> sqlite.BaseWindowName
-	458, // 220: sqlite.WindowDefn.partition_by:type_name -> sqlite.WindowDefn.PartitionBy
-	459, // 221: sqlite.WindowDefn.order_by:type_name -> sqlite.WindowDefn.OrderBy
+	457, // 220: sqlite.WindowDefn.partition_by:type_name -> sqlite.WindowDefn.PartitionBy
+	458, // 221: sqlite.WindowDefn.order_by:type_name -> sqlite.WindowDefn.OrderBy
 	54,  // 222: sqlite.WindowDefn.frame_spec:type_name -> sqlite.FrameSpec
 	194, // 223: sqlite.WindowDefn.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	460, // 224: sqlite.OverClause.alt1:type_name -> sqlite.OverClause.Alt1
-	464, // 225: sqlite.FrameSpec.alt1:type_name -> sqlite.FrameSpec.Alt1
-	465, // 226: sqlite.FrameSpec.alt2:type_name -> sqlite.FrameSpec.Alt2
-	466, // 227: sqlite.FrameSpec.alt3:type_name -> sqlite.FrameSpec.Alt3
+	459, // 224: sqlite.OverClause.alt1:type_name -> sqlite.OverClause.Alt1
+	463, // 225: sqlite.FrameSpec.alt1:type_name -> sqlite.FrameSpec.Alt1
+	464, // 226: sqlite.FrameSpec.alt2:type_name -> sqlite.FrameSpec.Alt2
+	465, // 227: sqlite.FrameSpec.alt3:type_name -> sqlite.FrameSpec.Alt3
 	56,  // 228: sqlite.FilterClause.expr:type_name -> sqlite.Expr
 	194, // 229: sqlite.FilterClause.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
 	58,  // 230: sqlite.Expr.literal_value:type_name -> sqlite.LiteralValue
 	91,  // 231: sqlite.Expr.bind_parameter:type_name -> sqlite.BindParameter
-	485, // 232: sqlite.Expr.seq1:type_name -> sqlite.Expr.Seq1
-	486, // 233: sqlite.Expr.seq2:type_name -> sqlite.Expr.Seq2
-	487, // 234: sqlite.Expr.seq3:type_name -> sqlite.Expr.Seq3
-	488, // 235: sqlite.Expr.seq4:type_name -> sqlite.Expr.Seq4
-	489, // 236: sqlite.Expr.left_parenthesis:type_name -> sqlite.Expr.LeftParenthesis
-	490, // 237: sqlite.Expr.cast_left_parenthesis:type_name -> sqlite.Expr.CastLeftParenthesis
-	491, // 238: sqlite.Expr.seq5:type_name -> sqlite.Expr.Seq5
-	492, // 239: sqlite.Expr.seq6:type_name -> sqlite.Expr.Seq6
-	493, // 240: sqlite.Expr.seq7:type_name -> sqlite.Expr.Seq7
-	494, // 241: sqlite.Expr.seq8:type_name -> sqlite.Expr.Seq8
-	495, // 242: sqlite.Expr.seq9:type_name -> sqlite.Expr.Seq9
-	496, // 243: sqlite.Expr.seq10:type_name -> sqlite.Expr.Seq10
-	497, // 244: sqlite.Expr.seq11:type_name -> sqlite.Expr.Seq11
-	498, // 245: sqlite.Expr.seq12:type_name -> sqlite.Expr.Seq12
-	499, // 246: sqlite.Expr.seq13:type_name -> sqlite.Expr.Seq13
-	500, // 247: sqlite.Expr.seq14:type_name -> sqlite.Expr.Seq14
-	501, // 248: sqlite.Expr.seq15:type_name -> sqlite.Expr.Seq15
-	502, // 249: sqlite.Expr.case:type_name -> sqlite.Expr.Case
+	484, // 232: sqlite.Expr.seq1:type_name -> sqlite.Expr.Seq1
+	485, // 233: sqlite.Expr.seq2:type_name -> sqlite.Expr.Seq2
+	486, // 234: sqlite.Expr.seq3:type_name -> sqlite.Expr.Seq3
+	487, // 235: sqlite.Expr.seq4:type_name -> sqlite.Expr.Seq4
+	488, // 236: sqlite.Expr.left_parenthesis:type_name -> sqlite.Expr.LeftParenthesis
+	489, // 237: sqlite.Expr.cast_left_parenthesis:type_name -> sqlite.Expr.CastLeftParenthesis
+	490, // 238: sqlite.Expr.seq5:type_name -> sqlite.Expr.Seq5
+	491, // 239: sqlite.Expr.seq6:type_name -> sqlite.Expr.Seq6
+	492, // 240: sqlite.Expr.seq7:type_name -> sqlite.Expr.Seq7
+	493, // 241: sqlite.Expr.seq8:type_name -> sqlite.Expr.Seq8
+	494, // 242: sqlite.Expr.seq9:type_name -> sqlite.Expr.Seq9
+	495, // 243: sqlite.Expr.seq10:type_name -> sqlite.Expr.Seq10
+	496, // 244: sqlite.Expr.seq11:type_name -> sqlite.Expr.Seq11
+	497, // 245: sqlite.Expr.seq12:type_name -> sqlite.Expr.Seq12
+	498, // 246: sqlite.Expr.seq13:type_name -> sqlite.Expr.Seq13
+	499, // 247: sqlite.Expr.seq14:type_name -> sqlite.Expr.Seq14
+	500, // 248: sqlite.Expr.seq15:type_name -> sqlite.Expr.Seq15
+	501, // 249: sqlite.Expr.case:type_name -> sqlite.Expr.Case
 	60,  // 250: sqlite.Expr.raise_function:type_name -> sqlite.RaiseFunction
-	515, // 251: sqlite.FunctionArguments.seq1:type_name -> sqlite.FunctionArguments.Seq1
+	514, // 251: sqlite.FunctionArguments.seq1:type_name -> sqlite.FunctionArguments.Seq1
 	104, // 252: sqlite.FunctionArguments.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
 	89,  // 253: sqlite.LiteralValue.numeric_literal:type_name -> sqlite.NumericLiteral
 	95,  // 254: sqlite.LiteralValue.string_literal:type_name -> sqlite.StringLiteral
@@ -33386,9 +33347,9 @@ var file_sqlite_proto_depIdxs = []int32{
 	117, // 259: sqlite.LiteralValue.current_time_keyword:type_name -> sqlite.CurrentTimeKeyword
 	116, // 260: sqlite.LiteralValue.current_date_keyword:type_name -> sqlite.CurrentDateKeyword
 	118, // 261: sqlite.LiteralValue.current_timestamp_keyword:type_name -> sqlite.CurrentTimestampKeyword
-	516, // 262: sqlite.SignedNumber.alt1:type_name -> sqlite.SignedNumber.Alt1
+	515, // 262: sqlite.SignedNumber.alt1:type_name -> sqlite.SignedNumber.Alt1
 	89,  // 263: sqlite.SignedNumber.numeric_literal:type_name -> sqlite.NumericLiteral
-	517, // 264: sqlite.RaiseFunction.alt1:type_name -> sqlite.RaiseFunction.Alt1
+	516, // 264: sqlite.RaiseFunction.alt1:type_name -> sqlite.RaiseFunction.Alt1
 	194, // 265: sqlite.RaiseFunction.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
 	94,  // 266: sqlite.SchemaName.name:type_name -> sqlite.Name
 	94,  // 267: sqlite.SavepointName.name:type_name -> sqlite.Name
@@ -33422,8 +33383,8 @@ var file_sqlite_proto_depIdxs = []int32{
 	95,  // 295: sqlite.ErrorMessage.string_literal:type_name -> sqlite.StringLiteral
 	90,  // 296: sqlite.NumericLiteral.digit:type_name -> sqlite.Digit
 	90,  // 297: sqlite.NumericLiteral.digit_2:type_name -> sqlite.Digit
-	520, // 298: sqlite.NumericLiteral.full_stop:type_name -> sqlite.NumericLiteral.FullStop
-	521, // 299: sqlite.NumericLiteral.e:type_name -> sqlite.NumericLiteral.E
+	519, // 298: sqlite.NumericLiteral.full_stop:type_name -> sqlite.NumericLiteral.FullStop
+	520, // 299: sqlite.NumericLiteral.e:type_name -> sqlite.NumericLiteral.E
 	133, // 300: sqlite.Digit.digit_zero_keyword:type_name -> sqlite.DigitZeroKeyword
 	128, // 301: sqlite.Digit.digit_one_keyword:type_name -> sqlite.DigitOneKeyword
 	132, // 302: sqlite.Digit.digit_two_keyword:type_name -> sqlite.DigitTwoKeyword
@@ -33435,9 +33396,9 @@ var file_sqlite_proto_depIdxs = []int32{
 	124, // 308: sqlite.Digit.digit_eight_keyword:type_name -> sqlite.DigitEightKeyword
 	127, // 309: sqlite.Digit.digit_nine_keyword:type_name -> sqlite.DigitNineKeyword
 	187, // 310: sqlite.BindParameter.question_mark_keyword:type_name -> sqlite.QuestionMarkKeyword
-	523, // 311: sqlite.BindParameter.colon:type_name -> sqlite.BindParameter.Colon
-	524, // 312: sqlite.BindParameter.commercial_at:type_name -> sqlite.BindParameter.CommercialAt
-	525, // 313: sqlite.BindParameter.dollar_sign:type_name -> sqlite.BindParameter.DollarSign
+	522, // 311: sqlite.BindParameter.colon:type_name -> sqlite.BindParameter.Colon
+	523, // 312: sqlite.BindParameter.commercial_at:type_name -> sqlite.BindParameter.CommercialAt
+	524, // 313: sqlite.BindParameter.dollar_sign:type_name -> sqlite.BindParameter.DollarSign
 	154, // 314: sqlite.UnaryOperator.hyphen_minus_keyword:type_name -> sqlite.HyphenMinusKeyword
 	185, // 315: sqlite.UnaryOperator.plus_sign_keyword:type_name -> sqlite.PlusSignKeyword
 	207, // 316: sqlite.UnaryOperator.tilde_keyword:type_name -> sqlite.TildeKeyword
@@ -33461,7 +33422,7 @@ var file_sqlite_proto_depIdxs = []int32{
 	140, // 334: sqlite.BinaryOperator.exclamation_mark_equals_sign_keyword:type_name -> sqlite.ExclamationMarkEqualsSignKeyword
 	169, // 335: sqlite.BinaryOperator.less_than_sign_greater_than_sign_keyword:type_name -> sqlite.LessThanSignGreaterThanSignKeyword
 	163, // 336: sqlite.BinaryOperator.is_keyword:type_name -> sqlite.IsKeyword
-	526, // 337: sqlite.BinaryOperator.is_not:type_name -> sqlite.BinaryOperator.IsNot
+	525, // 337: sqlite.BinaryOperator.is_not:type_name -> sqlite.BinaryOperator.IsNot
 	157, // 338: sqlite.BinaryOperator.in_keyword:type_name -> sqlite.InKeyword
 	172, // 339: sqlite.BinaryOperator.like_keyword:type_name -> sqlite.LikeKeyword
 	149, // 340: sqlite.BinaryOperator.glob_keyword:type_name -> sqlite.GlobKeyword
@@ -33469,648 +33430,645 @@ var file_sqlite_proto_depIdxs = []int32{
 	190, // 342: sqlite.BinaryOperator.regexp_keyword:type_name -> sqlite.RegexpKeyword
 	101, // 343: sqlite.BinaryOperator.and_keyword:type_name -> sqlite.AndKeyword
 	182, // 344: sqlite.BinaryOperator.or_keyword:type_name -> sqlite.OrKeyword
-	221, // 345: sqlite.Name.x_keyword:type_name -> sqlite.XKeyword
-	221, // 346: sqlite.StringLiteral.x_keyword:type_name -> sqlite.XKeyword
-	221, // 347: sqlite.BlobLiteral.x_keyword:type_name -> sqlite.XKeyword
-	224, // 348: sqlite.SqlStmt.Explain.query_plan:type_name -> sqlite.SqlStmt.Explain.QueryPlan
-	17,  // 349: sqlite.SqlStmt.Alt1.alter_table_stmt:type_name -> sqlite.AlterTableStmt
-	10,  // 350: sqlite.SqlStmt.Alt1.analyze_stmt:type_name -> sqlite.AnalyzeStmt
-	7,   // 351: sqlite.SqlStmt.Alt1.attach_stmt:type_name -> sqlite.AttachStmt
-	2,   // 352: sqlite.SqlStmt.Alt1.begin_stmt:type_name -> sqlite.BeginStmt
-	3,   // 353: sqlite.SqlStmt.Alt1.commit_stmt:type_name -> sqlite.CommitStmt
-	19,  // 354: sqlite.SqlStmt.Alt1.create_index_stmt:type_name -> sqlite.CreateIndexStmt
-	18,  // 355: sqlite.SqlStmt.Alt1.create_table_stmt:type_name -> sqlite.CreateTableStmt
-	20,  // 356: sqlite.SqlStmt.Alt1.create_trigger_stmt:type_name -> sqlite.CreateTriggerStmt
-	21,  // 357: sqlite.SqlStmt.Alt1.create_view_stmt:type_name -> sqlite.CreateViewStmt
-	22,  // 358: sqlite.SqlStmt.Alt1.create_virtual_table_stmt:type_name -> sqlite.CreateVirtualTableStmt
-	30,  // 359: sqlite.SqlStmt.Alt1.delete_stmt:type_name -> sqlite.DeleteStmt
-	31,  // 360: sqlite.SqlStmt.Alt1.delete_stmt_limited:type_name -> sqlite.DeleteStmtLimited
-	8,   // 361: sqlite.SqlStmt.Alt1.detach_stmt:type_name -> sqlite.DetachStmt
-	14,  // 362: sqlite.SqlStmt.Alt1.drop_index_stmt:type_name -> sqlite.DropIndexStmt
-	13,  // 363: sqlite.SqlStmt.Alt1.drop_table_stmt:type_name -> sqlite.DropTableStmt
-	16,  // 364: sqlite.SqlStmt.Alt1.drop_trigger_stmt:type_name -> sqlite.DropTriggerStmt
-	15,  // 365: sqlite.SqlStmt.Alt1.drop_view_stmt:type_name -> sqlite.DropViewStmt
-	32,  // 366: sqlite.SqlStmt.Alt1.insert_stmt:type_name -> sqlite.InsertStmt
-	12,  // 367: sqlite.SqlStmt.Alt1.pragma_stmt:type_name -> sqlite.PragmaStmt
-	11,  // 368: sqlite.SqlStmt.Alt1.reindex_stmt:type_name -> sqlite.ReindexStmt
-	6,   // 369: sqlite.SqlStmt.Alt1.release_stmt:type_name -> sqlite.ReleaseStmt
-	4,   // 370: sqlite.SqlStmt.Alt1.rollback_stmt:type_name -> sqlite.RollbackStmt
-	5,   // 371: sqlite.SqlStmt.Alt1.savepoint_stmt:type_name -> sqlite.SavepointStmt
-	23,  // 372: sqlite.SqlStmt.Alt1.select_stmt:type_name -> sqlite.SelectStmt
-	33,  // 373: sqlite.SqlStmt.Alt1.update_stmt:type_name -> sqlite.UpdateStmt
-	34,  // 374: sqlite.SqlStmt.Alt1.update_stmt_limited:type_name -> sqlite.UpdateStmtLimited
-	9,   // 375: sqlite.SqlStmt.Alt1.vacuum_stmt:type_name -> sqlite.VacuumStmt
-	121, // 376: sqlite.BeginStmt.Alt1.deferred_keyword:type_name -> sqlite.DeferredKeyword
-	156, // 377: sqlite.BeginStmt.Alt1.immediate_keyword:type_name -> sqlite.ImmediateKeyword
-	141, // 378: sqlite.BeginStmt.Alt1.exclusive_keyword:type_name -> sqlite.ExclusiveKeyword
-	114, // 379: sqlite.CommitStmt.Alt1.commit_keyword:type_name -> sqlite.CommitKeyword
-	136, // 380: sqlite.CommitStmt.Alt1.end_keyword:type_name -> sqlite.EndKeyword
-	197, // 381: sqlite.RollbackStmt.To.savepoint_keyword:type_name -> sqlite.SavepointKeyword
-	62,  // 382: sqlite.RollbackStmt.To.savepoint_name:type_name -> sqlite.SavepointName
-	63,  // 383: sqlite.VacuumStmt.Into.filename:type_name -> sqlite.Filename
-	61,  // 384: sqlite.AnalyzeStmt.Alt1.schema_name:type_name -> sqlite.SchemaName
-	64,  // 385: sqlite.AnalyzeStmt.Alt1.index_or_table_name:type_name -> sqlite.IndexOrTableName
-	230, // 386: sqlite.AnalyzeStmt.Alt1.seq1:type_name -> sqlite.AnalyzeStmt.Alt1.Seq1
-	61,  // 387: sqlite.AnalyzeStmt.Alt1.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 388: sqlite.AnalyzeStmt.Alt1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	65,  // 389: sqlite.AnalyzeStmt.Alt1.Seq1.table_or_index_name:type_name -> sqlite.TableOrIndexName
-	66,  // 390: sqlite.ReindexStmt.Alt1.collation_name:type_name -> sqlite.CollationName
-	232, // 391: sqlite.ReindexStmt.Alt1.seq1:type_name -> sqlite.ReindexStmt.Alt1.Seq1
-	233, // 392: sqlite.ReindexStmt.Alt1.Seq1.seq1:type_name -> sqlite.ReindexStmt.Alt1.Seq1.Seq1
-	234, // 393: sqlite.ReindexStmt.Alt1.Seq1.alt1:type_name -> sqlite.ReindexStmt.Alt1.Seq1.Alt1
-	61,  // 394: sqlite.ReindexStmt.Alt1.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 395: sqlite.ReindexStmt.Alt1.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	67,  // 396: sqlite.ReindexStmt.Alt1.Seq1.Alt1.table_name:type_name -> sqlite.TableName
-	68,  // 397: sqlite.ReindexStmt.Alt1.Seq1.Alt1.index_name:type_name -> sqlite.IndexName
-	61,  // 398: sqlite.PragmaStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 399: sqlite.PragmaStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	237, // 400: sqlite.PragmaStmt.Alt1.equals_sign:type_name -> sqlite.PragmaStmt.Alt1.EqualsSign
-	238, // 401: sqlite.PragmaStmt.Alt1.left_parenthesis:type_name -> sqlite.PragmaStmt.Alt1.LeftParenthesis
-	72,  // 402: sqlite.PragmaStmt.Alt1.EqualsSign.pragma_value:type_name -> sqlite.PragmaValue
-	72,  // 403: sqlite.PragmaStmt.Alt1.LeftParenthesis.pragma_value:type_name -> sqlite.PragmaValue
-	194, // 404: sqlite.PragmaStmt.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	61,  // 405: sqlite.DropTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 406: sqlite.DropTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 407: sqlite.DropIndexStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 408: sqlite.DropIndexStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 409: sqlite.DropViewStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 410: sqlite.DropViewStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 411: sqlite.DropTriggerStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 412: sqlite.DropTriggerStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 413: sqlite.AlterTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 414: sqlite.AlterTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	249, // 415: sqlite.AlterTableStmt.Alt1.rename_to:type_name -> sqlite.AlterTableStmt.Alt1.RenameTo
-	250, // 416: sqlite.AlterTableStmt.Alt1.rename:type_name -> sqlite.AlterTableStmt.Alt1.Rename
-	251, // 417: sqlite.AlterTableStmt.Alt1.add:type_name -> sqlite.AlterTableStmt.Alt1.Add
-	252, // 418: sqlite.AlterTableStmt.Alt1.add_constraint:type_name -> sqlite.AlterTableStmt.Alt1.AddConstraint
-	253, // 419: sqlite.AlterTableStmt.Alt1.drop:type_name -> sqlite.AlterTableStmt.Alt1.Drop
-	254, // 420: sqlite.AlterTableStmt.Alt1.drop_constraint:type_name -> sqlite.AlterTableStmt.Alt1.DropConstraint
-	255, // 421: sqlite.AlterTableStmt.Alt1.alter_column:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn
-	80,  // 422: sqlite.AlterTableStmt.Alt1.RenameTo.new_table_name:type_name -> sqlite.NewTableName
-	112, // 423: sqlite.AlterTableStmt.Alt1.Rename.column_keyword:type_name -> sqlite.ColumnKeyword
-	73,  // 424: sqlite.AlterTableStmt.Alt1.Rename.column_name:type_name -> sqlite.ColumnName
-	208, // 425: sqlite.AlterTableStmt.Alt1.Rename.to_keyword:type_name -> sqlite.ToKeyword
-	81,  // 426: sqlite.AlterTableStmt.Alt1.Rename.new_column_name:type_name -> sqlite.NewColumnName
-	112, // 427: sqlite.AlterTableStmt.Alt1.Add.column_keyword:type_name -> sqlite.ColumnKeyword
-	40,  // 428: sqlite.AlterTableStmt.Alt1.Add.column_def:type_name -> sqlite.ColumnDef
-	82,  // 429: sqlite.AlterTableStmt.Alt1.AddConstraint.constraint_name:type_name -> sqlite.ConstraintName
-	110, // 430: sqlite.AlterTableStmt.Alt1.AddConstraint.check_keyword:type_name -> sqlite.CheckKeyword
-	167, // 431: sqlite.AlterTableStmt.Alt1.AddConstraint.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	56,  // 432: sqlite.AlterTableStmt.Alt1.AddConstraint.expr:type_name -> sqlite.Expr
-	194, // 433: sqlite.AlterTableStmt.Alt1.AddConstraint.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	43,  // 434: sqlite.AlterTableStmt.Alt1.AddConstraint.conflict_clause:type_name -> sqlite.ConflictClause
-	112, // 435: sqlite.AlterTableStmt.Alt1.Drop.column_keyword:type_name -> sqlite.ColumnKeyword
-	73,  // 436: sqlite.AlterTableStmt.Alt1.Drop.column_name:type_name -> sqlite.ColumnName
-	82,  // 437: sqlite.AlterTableStmt.Alt1.DropConstraint.constraint_name:type_name -> sqlite.ConstraintName
-	73,  // 438: sqlite.AlterTableStmt.Alt1.AlterColumn.column_name:type_name -> sqlite.ColumnName
-	256, // 439: sqlite.AlterTableStmt.Alt1.AlterColumn.alt1:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1
-	257, // 440: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.set_not_null:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull
-	258, // 441: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.drop_not_null:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.DropNotNull
-	43,  // 442: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull.conflict_clause:type_name -> sqlite.ConflictClause
-	204, // 443: sqlite.CreateTableStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
-	205, // 444: sqlite.CreateTableStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
-	61,  // 445: sqlite.CreateTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 446: sqlite.CreateTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	263, // 447: sqlite.CreateTableStmt.Alt2.as:type_name -> sqlite.CreateTableStmt.Alt2.As
-	264, // 448: sqlite.CreateTableStmt.Alt2.left_parenthesis:type_name -> sqlite.CreateTableStmt.Alt2.LeftParenthesis
-	23,  // 449: sqlite.CreateTableStmt.Alt2.As.select_stmt:type_name -> sqlite.SelectStmt
-	40,  // 450: sqlite.CreateTableStmt.Alt2.LeftParenthesis.column_def:type_name -> sqlite.ColumnDef
-	265, // 451: sqlite.CreateTableStmt.Alt2.LeftParenthesis.comma:type_name -> sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma
-	194, // 452: sqlite.CreateTableStmt.Alt2.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	45,  // 453: sqlite.CreateTableStmt.Alt2.LeftParenthesis.table_options:type_name -> sqlite.TableOptions
-	42,  // 454: sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma.table_constraint:type_name -> sqlite.TableConstraint
-	61,  // 455: sqlite.CreateIndexStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 456: sqlite.CreateIndexStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	56,  // 457: sqlite.CreateIndexStmt.Where.expr:type_name -> sqlite.Expr
-	204, // 458: sqlite.CreateTriggerStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
-	205, // 459: sqlite.CreateTriggerStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
-	61,  // 460: sqlite.CreateTriggerStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 461: sqlite.CreateTriggerStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	106, // 462: sqlite.CreateTriggerStmt.Alt2.before_keyword:type_name -> sqlite.BeforeKeyword
-	98,  // 463: sqlite.CreateTriggerStmt.Alt2.after_keyword:type_name -> sqlite.AfterKeyword
-	278, // 464: sqlite.CreateTriggerStmt.Alt2.instead_of:type_name -> sqlite.CreateTriggerStmt.Alt2.InsteadOf
-	122, // 465: sqlite.CreateTriggerStmt.Alt3.delete_keyword:type_name -> sqlite.DeleteKeyword
-	160, // 466: sqlite.CreateTriggerStmt.Alt3.insert_keyword:type_name -> sqlite.InsertKeyword
-	279, // 467: sqlite.CreateTriggerStmt.Alt3.update:type_name -> sqlite.CreateTriggerStmt.Alt3.Update
-	56,  // 468: sqlite.CreateTriggerStmt.When.expr:type_name -> sqlite.Expr
-	33,  // 469: sqlite.CreateTriggerStmt.Alt4.update_stmt:type_name -> sqlite.UpdateStmt
-	32,  // 470: sqlite.CreateTriggerStmt.Alt4.insert_stmt:type_name -> sqlite.InsertStmt
-	30,  // 471: sqlite.CreateTriggerStmt.Alt4.delete_stmt:type_name -> sqlite.DeleteStmt
-	23,  // 472: sqlite.CreateTriggerStmt.Alt4.select_stmt:type_name -> sqlite.SelectStmt
-	281, // 473: sqlite.CreateTriggerStmt.Seq2.alt1:type_name -> sqlite.CreateTriggerStmt.Seq2.Alt1
-	198, // 474: sqlite.CreateTriggerStmt.Seq2.semicolon_keyword:type_name -> sqlite.SemicolonKeyword
-	280, // 475: sqlite.CreateTriggerStmt.Alt3.Update.of:type_name -> sqlite.CreateTriggerStmt.Alt3.Update.Of
-	73,  // 476: sqlite.CreateTriggerStmt.Alt3.Update.Of.column_name:type_name -> sqlite.ColumnName
-	33,  // 477: sqlite.CreateTriggerStmt.Seq2.Alt1.update_stmt:type_name -> sqlite.UpdateStmt
-	32,  // 478: sqlite.CreateTriggerStmt.Seq2.Alt1.insert_stmt:type_name -> sqlite.InsertStmt
-	30,  // 479: sqlite.CreateTriggerStmt.Seq2.Alt1.delete_stmt:type_name -> sqlite.DeleteStmt
-	23,  // 480: sqlite.CreateTriggerStmt.Seq2.Alt1.select_stmt:type_name -> sqlite.SelectStmt
-	204, // 481: sqlite.CreateViewStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
-	205, // 482: sqlite.CreateViewStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
-	61,  // 483: sqlite.CreateViewStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 484: sqlite.CreateViewStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	73,  // 485: sqlite.CreateViewStmt.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 486: sqlite.CreateViewStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	61,  // 487: sqlite.CreateVirtualTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 488: sqlite.CreateVirtualTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	289, // 489: sqlite.CreateVirtualTableStmt.LeftParenthesis.seq1:type_name -> sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1
-	194, // 490: sqlite.CreateVirtualTableStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	84,  // 491: sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1.module_argument:type_name -> sqlite.ModuleArgument
-	189, // 492: sqlite.SelectStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 493: sqlite.SelectStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	27,  // 494: sqlite.SelectStmt.Seq1.compound_operator:type_name -> sqlite.CompoundOperator
-	24,  // 495: sqlite.SelectStmt.Seq1.select_core:type_name -> sqlite.SelectCore
-	39,  // 496: sqlite.SelectStmt.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	56,  // 497: sqlite.SelectStmt.Limit.expr:type_name -> sqlite.Expr
-	294, // 498: sqlite.SelectStmt.Limit.alt1:type_name -> sqlite.SelectStmt.Limit.Alt1
-	295, // 499: sqlite.SelectStmt.Limit.Alt1.offset:type_name -> sqlite.SelectStmt.Limit.Alt1.Offset
-	296, // 500: sqlite.SelectStmt.Limit.Alt1.comma:type_name -> sqlite.SelectStmt.Limit.Alt1.Comma
-	56,  // 501: sqlite.SelectStmt.Limit.Alt1.Offset.expr:type_name -> sqlite.Expr
-	56,  // 502: sqlite.SelectStmt.Limit.Alt1.Comma.expr:type_name -> sqlite.Expr
-	299, // 503: sqlite.SelectCore.Select.alt1:type_name -> sqlite.SelectCore.Select.Alt1
-	26,  // 504: sqlite.SelectCore.Select.result_column:type_name -> sqlite.ResultColumn
-	300, // 505: sqlite.SelectCore.Select.from:type_name -> sqlite.SelectCore.Select.From
-	301, // 506: sqlite.SelectCore.Select.where:type_name -> sqlite.SelectCore.Select.Where
-	302, // 507: sqlite.SelectCore.Select.group_by:type_name -> sqlite.SelectCore.Select.GroupBy
-	303, // 508: sqlite.SelectCore.Select.window:type_name -> sqlite.SelectCore.Select.Window
-	56,  // 509: sqlite.SelectCore.ValuesLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 510: sqlite.SelectCore.ValuesLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	308, // 511: sqlite.SelectCore.ValuesLeftParenthesis.comma_left_parenthesis:type_name -> sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis
-	134, // 512: sqlite.SelectCore.Select.Alt1.distinct_keyword:type_name -> sqlite.DistinctKeyword
-	99,  // 513: sqlite.SelectCore.Select.Alt1.all_keyword:type_name -> sqlite.AllKeyword
-	304, // 514: sqlite.SelectCore.Select.From.alt1:type_name -> sqlite.SelectCore.Select.From.Alt1
-	56,  // 515: sqlite.SelectCore.Select.Where.expr:type_name -> sqlite.Expr
-	56,  // 516: sqlite.SelectCore.Select.GroupBy.expr:type_name -> sqlite.Expr
-	306, // 517: sqlite.SelectCore.Select.GroupBy.having:type_name -> sqlite.SelectCore.Select.GroupBy.Having
-	77,  // 518: sqlite.SelectCore.Select.Window.window_name:type_name -> sqlite.WindowName
-	102, // 519: sqlite.SelectCore.Select.Window.as_keyword:type_name -> sqlite.AsKeyword
-	52,  // 520: sqlite.SelectCore.Select.Window.window_defn:type_name -> sqlite.WindowDefn
-	307, // 521: sqlite.SelectCore.Select.Window.comma:type_name -> sqlite.SelectCore.Select.Window.Comma
-	305, // 522: sqlite.SelectCore.Select.From.Alt1.seq1:type_name -> sqlite.SelectCore.Select.From.Alt1.Seq1
-	36,  // 523: sqlite.SelectCore.Select.From.Alt1.join_clause:type_name -> sqlite.JoinClause
-	35,  // 524: sqlite.SelectCore.Select.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	56,  // 525: sqlite.SelectCore.Select.GroupBy.Having.expr:type_name -> sqlite.Expr
-	77,  // 526: sqlite.SelectCore.Select.Window.Comma.window_name:type_name -> sqlite.WindowName
-	102, // 527: sqlite.SelectCore.Select.Window.Comma.as_keyword:type_name -> sqlite.AsKeyword
-	52,  // 528: sqlite.SelectCore.Select.Window.Comma.window_defn:type_name -> sqlite.WindowDefn
-	56,  // 529: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 530: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	189, // 531: sqlite.FactoredSelectStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 532: sqlite.FactoredSelectStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	27,  // 533: sqlite.FactoredSelectStmt.Seq1.compound_operator:type_name -> sqlite.CompoundOperator
-	24,  // 534: sqlite.FactoredSelectStmt.Seq1.select_core:type_name -> sqlite.SelectCore
-	39,  // 535: sqlite.FactoredSelectStmt.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	56,  // 536: sqlite.FactoredSelectStmt.Limit.expr:type_name -> sqlite.Expr
-	313, // 537: sqlite.FactoredSelectStmt.Limit.alt1:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1
-	314, // 538: sqlite.FactoredSelectStmt.Limit.Alt1.offset:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1.Offset
-	315, // 539: sqlite.FactoredSelectStmt.Limit.Alt1.comma:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1.Comma
-	56,  // 540: sqlite.FactoredSelectStmt.Limit.Alt1.Offset.expr:type_name -> sqlite.Expr
-	56,  // 541: sqlite.FactoredSelectStmt.Limit.Alt1.Comma.expr:type_name -> sqlite.Expr
-	56,  // 542: sqlite.ResultColumn.Seq1.expr:type_name -> sqlite.Expr
-	318, // 543: sqlite.ResultColumn.Seq1.seq1:type_name -> sqlite.ResultColumn.Seq1.Seq1
-	67,  // 544: sqlite.ResultColumn.Seq2.table_name:type_name -> sqlite.TableName
-	148, // 545: sqlite.ResultColumn.Seq2.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	104, // 546: sqlite.ResultColumn.Seq2.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
-	102, // 547: sqlite.ResultColumn.Seq1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
-	74,  // 548: sqlite.ResultColumn.Seq1.Seq1.column_alias:type_name -> sqlite.ColumnAlias
-	73,  // 549: sqlite.CommonTableExpression.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 550: sqlite.CommonTableExpression.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	322, // 551: sqlite.CommonTableExpression.Alt1.not_materialized:type_name -> sqlite.CommonTableExpression.Alt1.NotMaterialized
-	175, // 552: sqlite.CommonTableExpression.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
-	325, // 553: sqlite.WithClause.Alt1.not_materialized:type_name -> sqlite.WithClause.Alt1.NotMaterialized
-	175, // 554: sqlite.WithClause.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
-	79,  // 555: sqlite.WithClause.Comma.cte_table_name:type_name -> sqlite.CteTableName
-	102, // 556: sqlite.WithClause.Comma.as_keyword:type_name -> sqlite.AsKeyword
-	326, // 557: sqlite.WithClause.Comma.alt1:type_name -> sqlite.WithClause.Comma.Alt1
-	167, // 558: sqlite.WithClause.Comma.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	23,  // 559: sqlite.WithClause.Comma.select_stmt:type_name -> sqlite.SelectStmt
-	194, // 560: sqlite.WithClause.Comma.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	327, // 561: sqlite.WithClause.Comma.Alt1.not_materialized:type_name -> sqlite.WithClause.Comma.Alt1.NotMaterialized
-	175, // 562: sqlite.WithClause.Comma.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
-	189, // 563: sqlite.DeleteStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 564: sqlite.DeleteStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	56,  // 565: sqlite.DeleteStmt.Where.expr:type_name -> sqlite.Expr
-	189, // 566: sqlite.DeleteStmtLimited.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 567: sqlite.DeleteStmtLimited.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	56,  // 568: sqlite.DeleteStmtLimited.Where.expr:type_name -> sqlite.Expr
-	39,  // 569: sqlite.DeleteStmtLimited.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	334, // 570: sqlite.DeleteStmtLimited.Alt1.offset:type_name -> sqlite.DeleteStmtLimited.Alt1.Offset
-	335, // 571: sqlite.DeleteStmtLimited.Alt1.comma:type_name -> sqlite.DeleteStmtLimited.Alt1.Comma
-	56,  // 572: sqlite.DeleteStmtLimited.Alt1.Offset.expr:type_name -> sqlite.Expr
-	56,  // 573: sqlite.DeleteStmtLimited.Alt1.Comma.expr:type_name -> sqlite.Expr
-	189, // 574: sqlite.InsertStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 575: sqlite.InsertStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	191, // 576: sqlite.InsertStmt.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
-	160, // 577: sqlite.InsertStmt.Alt1.insert_keyword:type_name -> sqlite.InsertKeyword
-	342, // 578: sqlite.InsertStmt.Alt1.insert_or:type_name -> sqlite.InsertStmt.Alt1.InsertOr
-	61,  // 579: sqlite.InsertStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 580: sqlite.InsertStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	86,  // 581: sqlite.InsertStmt.As.alias:type_name -> sqlite.Alias
-	73,  // 582: sqlite.InsertStmt.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 583: sqlite.InsertStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	344, // 584: sqlite.InsertStmt.Alt2.values_left_parenthesis:type_name -> sqlite.InsertStmt.Alt2.ValuesLeftParenthesis
-	345, // 585: sqlite.InsertStmt.Alt2.seq1:type_name -> sqlite.InsertStmt.Alt2.Seq1
-	346, // 586: sqlite.InsertStmt.Alt2.default_values:type_name -> sqlite.InsertStmt.Alt2.DefaultValues
-	343, // 587: sqlite.InsertStmt.Alt1.InsertOr.alt1:type_name -> sqlite.InsertStmt.Alt1.InsertOr.Alt1
-	97,  // 588: sqlite.InsertStmt.Alt1.InsertOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
-	143, // 589: sqlite.InsertStmt.Alt1.InsertOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
-	155, // 590: sqlite.InsertStmt.Alt1.InsertOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
-	191, // 591: sqlite.InsertStmt.Alt1.InsertOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
-	195, // 592: sqlite.InsertStmt.Alt1.InsertOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
-	56,  // 593: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 594: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	347, // 595: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.comma_left_parenthesis:type_name -> sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis
-	50,  // 596: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.upsert_clause:type_name -> sqlite.UpsertClause
-	23,  // 597: sqlite.InsertStmt.Alt2.Seq1.select_stmt:type_name -> sqlite.SelectStmt
-	50,  // 598: sqlite.InsertStmt.Alt2.Seq1.upsert_clause:type_name -> sqlite.UpsertClause
-	56,  // 599: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 600: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	189, // 601: sqlite.UpdateStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 602: sqlite.UpdateStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	214, // 603: sqlite.UpdateStmt.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
-	354, // 604: sqlite.UpdateStmt.Alt1.update_or:type_name -> sqlite.UpdateStmt.Alt1.UpdateOr
-	73,  // 605: sqlite.UpdateStmt.Alt2.column_name:type_name -> sqlite.ColumnName
-	51,  // 606: sqlite.UpdateStmt.Alt2.column_name_list:type_name -> sqlite.ColumnNameList
-	356, // 607: sqlite.UpdateStmt.Comma.alt1:type_name -> sqlite.UpdateStmt.Comma.Alt1
-	138, // 608: sqlite.UpdateStmt.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
-	56,  // 609: sqlite.UpdateStmt.Comma.expr:type_name -> sqlite.Expr
-	357, // 610: sqlite.UpdateStmt.From.alt1:type_name -> sqlite.UpdateStmt.From.Alt1
-	56,  // 611: sqlite.UpdateStmt.Where.expr:type_name -> sqlite.Expr
-	355, // 612: sqlite.UpdateStmt.Alt1.UpdateOr.alt1:type_name -> sqlite.UpdateStmt.Alt1.UpdateOr.Alt1
-	97,  // 613: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
-	143, // 614: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
-	155, // 615: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
-	191, // 616: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
-	195, // 617: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
-	73,  // 618: sqlite.UpdateStmt.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
-	51,  // 619: sqlite.UpdateStmt.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
-	358, // 620: sqlite.UpdateStmt.From.Alt1.seq1:type_name -> sqlite.UpdateStmt.From.Alt1.Seq1
-	36,  // 621: sqlite.UpdateStmt.From.Alt1.join_clause:type_name -> sqlite.JoinClause
-	35,  // 622: sqlite.UpdateStmt.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	189, // 623: sqlite.UpdateStmtLimited.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
-	28,  // 624: sqlite.UpdateStmtLimited.With.common_table_expression:type_name -> sqlite.CommonTableExpression
-	214, // 625: sqlite.UpdateStmtLimited.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
-	367, // 626: sqlite.UpdateStmtLimited.Alt1.update_or:type_name -> sqlite.UpdateStmtLimited.Alt1.UpdateOr
-	73,  // 627: sqlite.UpdateStmtLimited.Alt2.column_name:type_name -> sqlite.ColumnName
-	51,  // 628: sqlite.UpdateStmtLimited.Alt2.column_name_list:type_name -> sqlite.ColumnNameList
-	369, // 629: sqlite.UpdateStmtLimited.Comma.alt1:type_name -> sqlite.UpdateStmtLimited.Comma.Alt1
-	138, // 630: sqlite.UpdateStmtLimited.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
-	56,  // 631: sqlite.UpdateStmtLimited.Comma.expr:type_name -> sqlite.Expr
-	370, // 632: sqlite.UpdateStmtLimited.From.alt1:type_name -> sqlite.UpdateStmtLimited.From.Alt1
-	56,  // 633: sqlite.UpdateStmtLimited.Where.expr:type_name -> sqlite.Expr
-	39,  // 634: sqlite.UpdateStmtLimited.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	372, // 635: sqlite.UpdateStmtLimited.Alt3.offset:type_name -> sqlite.UpdateStmtLimited.Alt3.Offset
-	373, // 636: sqlite.UpdateStmtLimited.Alt3.comma:type_name -> sqlite.UpdateStmtLimited.Alt3.Comma
-	368, // 637: sqlite.UpdateStmtLimited.Alt1.UpdateOr.alt1:type_name -> sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1
-	97,  // 638: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
-	143, // 639: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
-	155, // 640: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
-	191, // 641: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
-	195, // 642: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
-	73,  // 643: sqlite.UpdateStmtLimited.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
-	51,  // 644: sqlite.UpdateStmtLimited.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
-	371, // 645: sqlite.UpdateStmtLimited.From.Alt1.seq1:type_name -> sqlite.UpdateStmtLimited.From.Alt1.Seq1
-	36,  // 646: sqlite.UpdateStmtLimited.From.Alt1.join_clause:type_name -> sqlite.JoinClause
-	35,  // 647: sqlite.UpdateStmtLimited.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	56,  // 648: sqlite.UpdateStmtLimited.Alt3.Offset.expr:type_name -> sqlite.Expr
-	56,  // 649: sqlite.UpdateStmtLimited.Alt3.Comma.expr:type_name -> sqlite.Expr
-	379, // 650: sqlite.TableOrSubquery.Seq1.seq1:type_name -> sqlite.TableOrSubquery.Seq1.Seq1
-	67,  // 651: sqlite.TableOrSubquery.Seq1.table_name:type_name -> sqlite.TableName
-	380, // 652: sqlite.TableOrSubquery.Seq1.seq2:type_name -> sqlite.TableOrSubquery.Seq1.Seq2
-	381, // 653: sqlite.TableOrSubquery.Seq1.alt1:type_name -> sqlite.TableOrSubquery.Seq1.Alt1
-	384, // 654: sqlite.TableOrSubquery.Seq2.seq1:type_name -> sqlite.TableOrSubquery.Seq2.Seq1
-	76,  // 655: sqlite.TableOrSubquery.Seq2.table_function_name:type_name -> sqlite.TableFunctionName
-	167, // 656: sqlite.TableOrSubquery.Seq2.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	385, // 657: sqlite.TableOrSubquery.Seq2.seq2:type_name -> sqlite.TableOrSubquery.Seq2.Seq2
-	194, // 658: sqlite.TableOrSubquery.Seq2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	386, // 659: sqlite.TableOrSubquery.Seq2.seq3:type_name -> sqlite.TableOrSubquery.Seq2.Seq3
-	23,  // 660: sqlite.TableOrSubquery.LeftParenthesis.select_stmt:type_name -> sqlite.SelectStmt
-	194, // 661: sqlite.TableOrSubquery.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	35,  // 662: sqlite.TableOrSubquery.LeftParenthesis2.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	194, // 663: sqlite.TableOrSubquery.LeftParenthesis2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	36,  // 664: sqlite.TableOrSubquery.LeftParenthesis3.join_clause:type_name -> sqlite.JoinClause
-	194, // 665: sqlite.TableOrSubquery.LeftParenthesis3.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	61,  // 666: sqlite.TableOrSubquery.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 667: sqlite.TableOrSubquery.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	102, // 668: sqlite.TableOrSubquery.Seq1.Seq2.as_keyword:type_name -> sqlite.AsKeyword
-	75,  // 669: sqlite.TableOrSubquery.Seq1.Seq2.table_alias:type_name -> sqlite.TableAlias
-	382, // 670: sqlite.TableOrSubquery.Seq1.Alt1.indexed_by:type_name -> sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy
-	383, // 671: sqlite.TableOrSubquery.Seq1.Alt1.not_indexed:type_name -> sqlite.TableOrSubquery.Seq1.Alt1.NotIndexed
-	68,  // 672: sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy.index_name:type_name -> sqlite.IndexName
-	61,  // 673: sqlite.TableOrSubquery.Seq2.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 674: sqlite.TableOrSubquery.Seq2.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	56,  // 675: sqlite.TableOrSubquery.Seq2.Seq2.expr:type_name -> sqlite.Expr
-	102, // 676: sqlite.TableOrSubquery.Seq2.Seq3.as_keyword:type_name -> sqlite.AsKeyword
-	75,  // 677: sqlite.TableOrSubquery.Seq2.Seq3.table_alias:type_name -> sqlite.TableAlias
-	37,  // 678: sqlite.JoinClause.Seq1.join_operator:type_name -> sqlite.JoinOperator
-	35,  // 679: sqlite.JoinClause.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
-	38,  // 680: sqlite.JoinClause.Seq1.join_constraint:type_name -> sqlite.JoinConstraint
-	176, // 681: sqlite.JoinOperator.Seq1.natural_keyword:type_name -> sqlite.NaturalKeyword
-	389, // 682: sqlite.JoinOperator.Seq1.alt1:type_name -> sqlite.JoinOperator.Seq1.Alt1
-	165, // 683: sqlite.JoinOperator.Seq1.join_keyword:type_name -> sqlite.JoinKeyword
-	390, // 684: sqlite.JoinOperator.Seq1.Alt1.seq1:type_name -> sqlite.JoinOperator.Seq1.Alt1.Seq1
-	159, // 685: sqlite.JoinOperator.Seq1.Alt1.inner_keyword:type_name -> sqlite.InnerKeyword
-	115, // 686: sqlite.JoinOperator.Seq1.Alt1.cross_keyword:type_name -> sqlite.CrossKeyword
-	391, // 687: sqlite.JoinOperator.Seq1.Alt1.Seq1.alt1:type_name -> sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1
-	183, // 688: sqlite.JoinOperator.Seq1.Alt1.Seq1.outer_keyword:type_name -> sqlite.OuterKeyword
-	166, // 689: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.left_keyword:type_name -> sqlite.LeftKeyword
-	193, // 690: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.right_keyword:type_name -> sqlite.RightKeyword
-	147, // 691: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.full_keyword:type_name -> sqlite.FullKeyword
-	56,  // 692: sqlite.JoinConstraint.On.expr:type_name -> sqlite.Expr
-	73,  // 693: sqlite.JoinConstraint.UsingLeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 694: sqlite.JoinConstraint.UsingLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	66,  // 695: sqlite.OrderingTerm.Collate.collation_name:type_name -> sqlite.CollationName
-	103, // 696: sqlite.OrderingTerm.Alt1.asc_keyword:type_name -> sqlite.AscKeyword
-	123, // 697: sqlite.OrderingTerm.Alt1.desc_keyword:type_name -> sqlite.DescKeyword
-	397, // 698: sqlite.OrderingTerm.Alt2.nulls_first:type_name -> sqlite.OrderingTerm.Alt2.NullsFirst
-	398, // 699: sqlite.OrderingTerm.Alt2.nulls_last:type_name -> sqlite.OrderingTerm.Alt2.NullsLast
-	94,  // 700: sqlite.ColumnConstraint.Constraint.name:type_name -> sqlite.Name
-	401, // 701: sqlite.ColumnConstraint.Alt1.primary_key:type_name -> sqlite.ColumnConstraint.Alt1.PrimaryKey
-	402, // 702: sqlite.ColumnConstraint.Alt1.not_null:type_name -> sqlite.ColumnConstraint.Alt1.NotNull
-	403, // 703: sqlite.ColumnConstraint.Alt1.unique:type_name -> sqlite.ColumnConstraint.Alt1.Unique
-	404, // 704: sqlite.ColumnConstraint.Alt1.check_left_parenthesis:type_name -> sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis
-	405, // 705: sqlite.ColumnConstraint.Alt1.default:type_name -> sqlite.ColumnConstraint.Alt1.Default
-	406, // 706: sqlite.ColumnConstraint.Alt1.collate:type_name -> sqlite.ColumnConstraint.Alt1.Collate
-	44,  // 707: sqlite.ColumnConstraint.Alt1.foreign_key_clause:type_name -> sqlite.ForeignKeyClause
-	407, // 708: sqlite.ColumnConstraint.Alt1.seq1:type_name -> sqlite.ColumnConstraint.Alt1.Seq1
-	408, // 709: sqlite.ColumnConstraint.Alt1.PrimaryKey.alt1:type_name -> sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1
-	43,  // 710: sqlite.ColumnConstraint.Alt1.PrimaryKey.conflict_clause:type_name -> sqlite.ConflictClause
-	105, // 711: sqlite.ColumnConstraint.Alt1.PrimaryKey.autoincrement_keyword:type_name -> sqlite.AutoincrementKeyword
-	43,  // 712: sqlite.ColumnConstraint.Alt1.NotNull.conflict_clause:type_name -> sqlite.ConflictClause
-	43,  // 713: sqlite.ColumnConstraint.Alt1.Unique.conflict_clause:type_name -> sqlite.ConflictClause
-	56,  // 714: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 715: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	409, // 716: sqlite.ColumnConstraint.Alt1.Default.alt1:type_name -> sqlite.ColumnConstraint.Alt1.Default.Alt1
-	66,  // 717: sqlite.ColumnConstraint.Alt1.Collate.collation_name:type_name -> sqlite.CollationName
-	411, // 718: sqlite.ColumnConstraint.Alt1.Seq1.generated_always:type_name -> sqlite.ColumnConstraint.Alt1.Seq1.GeneratedAlways
-	102, // 719: sqlite.ColumnConstraint.Alt1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
-	167, // 720: sqlite.ColumnConstraint.Alt1.Seq1.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	56,  // 721: sqlite.ColumnConstraint.Alt1.Seq1.expr:type_name -> sqlite.Expr
-	194, // 722: sqlite.ColumnConstraint.Alt1.Seq1.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	412, // 723: sqlite.ColumnConstraint.Alt1.Seq1.alt1:type_name -> sqlite.ColumnConstraint.Alt1.Seq1.Alt1
-	103, // 724: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1.asc_keyword:type_name -> sqlite.AscKeyword
-	123, // 725: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1.desc_keyword:type_name -> sqlite.DescKeyword
-	410, // 726: sqlite.ColumnConstraint.Alt1.Default.Alt1.left_parenthesis:type_name -> sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis
-	58,  // 727: sqlite.ColumnConstraint.Alt1.Default.Alt1.literal_value:type_name -> sqlite.LiteralValue
-	59,  // 728: sqlite.ColumnConstraint.Alt1.Default.Alt1.signed_number:type_name -> sqlite.SignedNumber
-	56,  // 729: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 730: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	201, // 731: sqlite.ColumnConstraint.Alt1.Seq1.Alt1.stored_keyword:type_name -> sqlite.StoredKeyword
-	219, // 732: sqlite.ColumnConstraint.Alt1.Seq1.Alt1.virtual_keyword:type_name -> sqlite.VirtualKeyword
-	94,  // 733: sqlite.TableConstraint.Constraint.name:type_name -> sqlite.Name
-	415, // 734: sqlite.TableConstraint.Alt1.primary_key_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis
-	416, // 735: sqlite.TableConstraint.Alt1.unique_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.UniqueLeftParenthesis
-	417, // 736: sqlite.TableConstraint.Alt1.check_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.CheckLeftParenthesis
-	418, // 737: sqlite.TableConstraint.Alt1.foreign_key_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis
-	47,  // 738: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
-	194, // 739: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	43,  // 740: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.conflict_clause:type_name -> sqlite.ConflictClause
-	47,  // 741: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
-	194, // 742: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	43,  // 743: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.conflict_clause:type_name -> sqlite.ConflictClause
-	56,  // 744: sqlite.TableConstraint.Alt1.CheckLeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 745: sqlite.TableConstraint.Alt1.CheckLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	73,  // 746: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 747: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	44,  // 748: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.foreign_key_clause:type_name -> sqlite.ForeignKeyClause
-	420, // 749: sqlite.ConflictClause.OnConflict.alt1:type_name -> sqlite.ConflictClause.OnConflict.Alt1
-	195, // 750: sqlite.ConflictClause.OnConflict.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
-	97,  // 751: sqlite.ConflictClause.OnConflict.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
-	143, // 752: sqlite.ConflictClause.OnConflict.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
-	155, // 753: sqlite.ConflictClause.OnConflict.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
-	191, // 754: sqlite.ConflictClause.OnConflict.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
-	73,  // 755: sqlite.ForeignKeyClause.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
-	194, // 756: sqlite.ForeignKeyClause.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	424, // 757: sqlite.ForeignKeyClause.Alt1.on:type_name -> sqlite.ForeignKeyClause.Alt1.On
-	425, // 758: sqlite.ForeignKeyClause.Alt1.match:type_name -> sqlite.ForeignKeyClause.Alt1.Match
-	177, // 759: sqlite.ForeignKeyClause.Seq1.not_keyword:type_name -> sqlite.NotKeyword
-	120, // 760: sqlite.ForeignKeyClause.Seq1.deferrable_keyword:type_name -> sqlite.DeferrableKeyword
-	431, // 761: sqlite.ForeignKeyClause.Seq1.initially:type_name -> sqlite.ForeignKeyClause.Seq1.Initially
-	426, // 762: sqlite.ForeignKeyClause.Alt1.On.alt1:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt1
-	427, // 763: sqlite.ForeignKeyClause.Alt1.On.alt2:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2
-	94,  // 764: sqlite.ForeignKeyClause.Alt1.Match.name:type_name -> sqlite.Name
-	122, // 765: sqlite.ForeignKeyClause.Alt1.On.Alt1.delete_keyword:type_name -> sqlite.DeleteKeyword
-	214, // 766: sqlite.ForeignKeyClause.Alt1.On.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
-	428, // 767: sqlite.ForeignKeyClause.Alt1.On.Alt2.set_null:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.SetNull
-	429, // 768: sqlite.ForeignKeyClause.Alt1.On.Alt2.set_default:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.SetDefault
-	109, // 769: sqlite.ForeignKeyClause.Alt1.On.Alt2.cascade_keyword:type_name -> sqlite.CascadeKeyword
-	192, // 770: sqlite.ForeignKeyClause.Alt1.On.Alt2.restrict_keyword:type_name -> sqlite.RestrictKeyword
-	430, // 771: sqlite.ForeignKeyClause.Alt1.On.Alt2.no_action:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.NoAction
-	432, // 772: sqlite.ForeignKeyClause.Seq1.Initially.alt1:type_name -> sqlite.ForeignKeyClause.Seq1.Initially.Alt1
-	121, // 773: sqlite.ForeignKeyClause.Seq1.Initially.Alt1.deferred_keyword:type_name -> sqlite.DeferredKeyword
-	156, // 774: sqlite.ForeignKeyClause.Seq1.Initially.Alt1.immediate_keyword:type_name -> sqlite.ImmediateKeyword
-	437, // 775: sqlite.TypeName.Alt1.left_parenthesis:type_name -> sqlite.TypeName.Alt1.LeftParenthesis
-	438, // 776: sqlite.TypeName.Alt1.left_parenthesis2:type_name -> sqlite.TypeName.Alt1.LeftParenthesis2
-	59,  // 777: sqlite.TypeName.Alt1.LeftParenthesis.signed_number:type_name -> sqlite.SignedNumber
-	194, // 778: sqlite.TypeName.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	59,  // 779: sqlite.TypeName.Alt1.LeftParenthesis2.signed_number:type_name -> sqlite.SignedNumber
-	113, // 780: sqlite.TypeName.Alt1.LeftParenthesis2.comma_keyword:type_name -> sqlite.CommaKeyword
-	59,  // 781: sqlite.TypeName.Alt1.LeftParenthesis2.signed_number_2:type_name -> sqlite.SignedNumber
-	194, // 782: sqlite.TypeName.Alt1.LeftParenthesis2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	73,  // 783: sqlite.IndexedColumn.Alt1.column_name:type_name -> sqlite.ColumnName
-	56,  // 784: sqlite.IndexedColumn.Alt1.expr:type_name -> sqlite.Expr
-	66,  // 785: sqlite.IndexedColumn.Collate.collation_name:type_name -> sqlite.CollationName
-	103, // 786: sqlite.IndexedColumn.Alt2.asc_keyword:type_name -> sqlite.AscKeyword
-	123, // 787: sqlite.IndexedColumn.Alt2.desc_keyword:type_name -> sqlite.DescKeyword
-	61,  // 788: sqlite.QualifiedTableName.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 789: sqlite.QualifiedTableName.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	86,  // 790: sqlite.QualifiedTableName.As.alias:type_name -> sqlite.Alias
-	445, // 791: sqlite.QualifiedTableName.Alt1.indexed_by:type_name -> sqlite.QualifiedTableName.Alt1.IndexedBy
-	446, // 792: sqlite.QualifiedTableName.Alt1.not_indexed:type_name -> sqlite.QualifiedTableName.Alt1.NotIndexed
-	68,  // 793: sqlite.QualifiedTableName.Alt1.IndexedBy.index_name:type_name -> sqlite.IndexName
-	104, // 794: sqlite.ReturningClause.Alt1.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
-	448, // 795: sqlite.ReturningClause.Alt1.seq1:type_name -> sqlite.ReturningClause.Alt1.Seq1
-	56,  // 796: sqlite.ReturningClause.Alt1.Seq1.expr:type_name -> sqlite.Expr
-	449, // 797: sqlite.ReturningClause.Alt1.Seq1.seq1:type_name -> sqlite.ReturningClause.Alt1.Seq1.Seq1
-	102, // 798: sqlite.ReturningClause.Alt1.Seq1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
-	74,  // 799: sqlite.ReturningClause.Alt1.Seq1.Seq1.column_alias:type_name -> sqlite.ColumnAlias
-	47,  // 800: sqlite.UpsertClause.LeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
-	194, // 801: sqlite.UpsertClause.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	452, // 802: sqlite.UpsertClause.LeftParenthesis.where:type_name -> sqlite.UpsertClause.LeftParenthesis.Where
-	178, // 803: sqlite.UpsertClause.Alt1.nothing_keyword:type_name -> sqlite.NothingKeyword
-	453, // 804: sqlite.UpsertClause.Alt1.update_set:type_name -> sqlite.UpsertClause.Alt1.UpdateSet
-	56,  // 805: sqlite.UpsertClause.LeftParenthesis.Where.expr:type_name -> sqlite.Expr
-	454, // 806: sqlite.UpsertClause.Alt1.UpdateSet.alt1:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Alt1
-	138, // 807: sqlite.UpsertClause.Alt1.UpdateSet.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
-	56,  // 808: sqlite.UpsertClause.Alt1.UpdateSet.expr:type_name -> sqlite.Expr
-	455, // 809: sqlite.UpsertClause.Alt1.UpdateSet.comma:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Comma
-	456, // 810: sqlite.UpsertClause.Alt1.UpdateSet.where:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Where
-	73,  // 811: sqlite.UpsertClause.Alt1.UpdateSet.Alt1.column_name:type_name -> sqlite.ColumnName
-	51,  // 812: sqlite.UpsertClause.Alt1.UpdateSet.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
-	457, // 813: sqlite.UpsertClause.Alt1.UpdateSet.Comma.alt1:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1
-	138, // 814: sqlite.UpsertClause.Alt1.UpdateSet.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
-	56,  // 815: sqlite.UpsertClause.Alt1.UpdateSet.Comma.expr:type_name -> sqlite.Expr
-	56,  // 816: sqlite.UpsertClause.Alt1.UpdateSet.Where.expr:type_name -> sqlite.Expr
-	73,  // 817: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
-	51,  // 818: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
-	56,  // 819: sqlite.WindowDefn.PartitionBy.expr:type_name -> sqlite.Expr
-	39,  // 820: sqlite.WindowDefn.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	77,  // 821: sqlite.OverClause.Alt1.window_name:type_name -> sqlite.WindowName
-	461, // 822: sqlite.OverClause.Alt1.left_parenthesis:type_name -> sqlite.OverClause.Alt1.LeftParenthesis
-	78,  // 823: sqlite.OverClause.Alt1.LeftParenthesis.base_window_name:type_name -> sqlite.BaseWindowName
-	462, // 824: sqlite.OverClause.Alt1.LeftParenthesis.partition_by:type_name -> sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy
-	463, // 825: sqlite.OverClause.Alt1.LeftParenthesis.order_by:type_name -> sqlite.OverClause.Alt1.LeftParenthesis.OrderBy
-	54,  // 826: sqlite.OverClause.Alt1.LeftParenthesis.frame_spec:type_name -> sqlite.FrameSpec
-	194, // 827: sqlite.OverClause.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	56,  // 828: sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy.expr:type_name -> sqlite.Expr
-	39,  // 829: sqlite.OverClause.Alt1.LeftParenthesis.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
-	188, // 830: sqlite.FrameSpec.Alt1.range_keyword:type_name -> sqlite.RangeKeyword
-	196, // 831: sqlite.FrameSpec.Alt1.rows_keyword:type_name -> sqlite.RowsKeyword
-	153, // 832: sqlite.FrameSpec.Alt1.groups_keyword:type_name -> sqlite.GroupsKeyword
-	467, // 833: sqlite.FrameSpec.Alt2.between:type_name -> sqlite.FrameSpec.Alt2.Between
-	468, // 834: sqlite.FrameSpec.Alt2.unbounded_preceding:type_name -> sqlite.FrameSpec.Alt2.UnboundedPreceding
-	469, // 835: sqlite.FrameSpec.Alt2.seq1:type_name -> sqlite.FrameSpec.Alt2.Seq1
-	470, // 836: sqlite.FrameSpec.Alt2.current_row:type_name -> sqlite.FrameSpec.Alt2.CurrentRow
-	481, // 837: sqlite.FrameSpec.Alt3.exclude_no_others:type_name -> sqlite.FrameSpec.Alt3.ExcludeNoOthers
-	482, // 838: sqlite.FrameSpec.Alt3.exclude_current_row:type_name -> sqlite.FrameSpec.Alt3.ExcludeCurrentRow
-	483, // 839: sqlite.FrameSpec.Alt3.exclude_group:type_name -> sqlite.FrameSpec.Alt3.ExcludeGroup
-	484, // 840: sqlite.FrameSpec.Alt3.exclude_ties:type_name -> sqlite.FrameSpec.Alt3.ExcludeTies
-	471, // 841: sqlite.FrameSpec.Alt2.Between.alt1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1
-	101, // 842: sqlite.FrameSpec.Alt2.Between.and_keyword:type_name -> sqlite.AndKeyword
-	472, // 843: sqlite.FrameSpec.Alt2.Between.alt2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2
-	56,  // 844: sqlite.FrameSpec.Alt2.Seq1.expr:type_name -> sqlite.Expr
-	186, // 845: sqlite.FrameSpec.Alt2.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
-	473, // 846: sqlite.FrameSpec.Alt2.Between.Alt1.unbounded_preceding:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.UnboundedPreceding
-	474, // 847: sqlite.FrameSpec.Alt2.Between.Alt1.seq1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.Seq1
-	475, // 848: sqlite.FrameSpec.Alt2.Between.Alt1.current_row:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.CurrentRow
-	476, // 849: sqlite.FrameSpec.Alt2.Between.Alt1.seq2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.Seq2
-	477, // 850: sqlite.FrameSpec.Alt2.Between.Alt2.seq1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.Seq1
-	478, // 851: sqlite.FrameSpec.Alt2.Between.Alt2.current_row:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.CurrentRow
-	479, // 852: sqlite.FrameSpec.Alt2.Between.Alt2.seq2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.Seq2
-	480, // 853: sqlite.FrameSpec.Alt2.Between.Alt2.unbounded_following:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.UnboundedFollowing
-	56,  // 854: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1.expr:type_name -> sqlite.Expr
-	186, // 855: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
-	56,  // 856: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2.expr:type_name -> sqlite.Expr
-	145, // 857: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2.following_keyword:type_name -> sqlite.FollowingKeyword
-	56,  // 858: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1.expr:type_name -> sqlite.Expr
-	186, // 859: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
-	56,  // 860: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2.expr:type_name -> sqlite.Expr
-	145, // 861: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2.following_keyword:type_name -> sqlite.FollowingKeyword
-	503, // 862: sqlite.Expr.Seq1.seq1:type_name -> sqlite.Expr.Seq1.Seq1
-	73,  // 863: sqlite.Expr.Seq1.column_name:type_name -> sqlite.ColumnName
-	92,  // 864: sqlite.Expr.Seq2.unary_operator:type_name -> sqlite.UnaryOperator
-	56,  // 865: sqlite.Expr.Seq2.expr:type_name -> sqlite.Expr
-	56,  // 866: sqlite.Expr.Seq3.expr:type_name -> sqlite.Expr
-	93,  // 867: sqlite.Expr.Seq3.binary_operator:type_name -> sqlite.BinaryOperator
-	56,  // 868: sqlite.Expr.Seq3.expr_2:type_name -> sqlite.Expr
-	87,  // 869: sqlite.Expr.Seq4.function_name:type_name -> sqlite.FunctionName
-	167, // 870: sqlite.Expr.Seq4.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	57,  // 871: sqlite.Expr.Seq4.function_arguments:type_name -> sqlite.FunctionArguments
-	194, // 872: sqlite.Expr.Seq4.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	55,  // 873: sqlite.Expr.Seq4.filter_clause:type_name -> sqlite.FilterClause
-	53,  // 874: sqlite.Expr.Seq4.over_clause:type_name -> sqlite.OverClause
-	56,  // 875: sqlite.Expr.LeftParenthesis.expr:type_name -> sqlite.Expr
-	194, // 876: sqlite.Expr.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	56,  // 877: sqlite.Expr.CastLeftParenthesis.expr:type_name -> sqlite.Expr
-	102, // 878: sqlite.Expr.CastLeftParenthesis.as_keyword:type_name -> sqlite.AsKeyword
-	46,  // 879: sqlite.Expr.CastLeftParenthesis.type_name:type_name -> sqlite.TypeName
-	194, // 880: sqlite.Expr.CastLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	56,  // 881: sqlite.Expr.Seq5.expr:type_name -> sqlite.Expr
-	111, // 882: sqlite.Expr.Seq5.collate_keyword:type_name -> sqlite.CollateKeyword
-	66,  // 883: sqlite.Expr.Seq5.collation_name:type_name -> sqlite.CollationName
-	56,  // 884: sqlite.Expr.Seq6.expr:type_name -> sqlite.Expr
-	177, // 885: sqlite.Expr.Seq6.not_keyword:type_name -> sqlite.NotKeyword
-	505, // 886: sqlite.Expr.Seq6.alt1:type_name -> sqlite.Expr.Seq6.Alt1
-	56,  // 887: sqlite.Expr.Seq6.expr_2:type_name -> sqlite.Expr
-	506, // 888: sqlite.Expr.Seq6.escape:type_name -> sqlite.Expr.Seq6.Escape
-	56,  // 889: sqlite.Expr.Seq7.expr:type_name -> sqlite.Expr
-	164, // 890: sqlite.Expr.Seq7.isnull_keyword:type_name -> sqlite.IsnullKeyword
-	56,  // 891: sqlite.Expr.Seq8.expr:type_name -> sqlite.Expr
-	179, // 892: sqlite.Expr.Seq8.notnull_keyword:type_name -> sqlite.NotnullKeyword
-	56,  // 893: sqlite.Expr.Seq9.expr:type_name -> sqlite.Expr
-	177, // 894: sqlite.Expr.Seq9.not_keyword:type_name -> sqlite.NotKeyword
-	180, // 895: sqlite.Expr.Seq9.null_keyword:type_name -> sqlite.NullKeyword
-	56,  // 896: sqlite.Expr.Seq10.expr:type_name -> sqlite.Expr
-	163, // 897: sqlite.Expr.Seq10.is_keyword:type_name -> sqlite.IsKeyword
-	177, // 898: sqlite.Expr.Seq10.not_keyword:type_name -> sqlite.NotKeyword
-	507, // 899: sqlite.Expr.Seq10.distinct_from:type_name -> sqlite.Expr.Seq10.DistinctFrom
-	56,  // 900: sqlite.Expr.Seq10.expr_2:type_name -> sqlite.Expr
-	56,  // 901: sqlite.Expr.Seq11.expr:type_name -> sqlite.Expr
-	177, // 902: sqlite.Expr.Seq11.not_keyword:type_name -> sqlite.NotKeyword
-	108, // 903: sqlite.Expr.Seq11.between_keyword:type_name -> sqlite.BetweenKeyword
-	56,  // 904: sqlite.Expr.Seq11.expr_2:type_name -> sqlite.Expr
-	101, // 905: sqlite.Expr.Seq11.and_keyword:type_name -> sqlite.AndKeyword
-	56,  // 906: sqlite.Expr.Seq11.expr_3:type_name -> sqlite.Expr
-	56,  // 907: sqlite.Expr.Seq12.expr:type_name -> sqlite.Expr
-	177, // 908: sqlite.Expr.Seq12.not_keyword:type_name -> sqlite.NotKeyword
-	157, // 909: sqlite.Expr.Seq12.in_keyword:type_name -> sqlite.InKeyword
-	167, // 910: sqlite.Expr.Seq12.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	508, // 911: sqlite.Expr.Seq12.alt1:type_name -> sqlite.Expr.Seq12.Alt1
-	194, // 912: sqlite.Expr.Seq12.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	56,  // 913: sqlite.Expr.Seq13.expr:type_name -> sqlite.Expr
-	177, // 914: sqlite.Expr.Seq13.not_keyword:type_name -> sqlite.NotKeyword
-	157, // 915: sqlite.Expr.Seq13.in_keyword:type_name -> sqlite.InKeyword
-	510, // 916: sqlite.Expr.Seq13.seq1:type_name -> sqlite.Expr.Seq13.Seq1
-	67,  // 917: sqlite.Expr.Seq13.table_name:type_name -> sqlite.TableName
-	56,  // 918: sqlite.Expr.Seq14.expr:type_name -> sqlite.Expr
-	177, // 919: sqlite.Expr.Seq14.not_keyword:type_name -> sqlite.NotKeyword
-	157, // 920: sqlite.Expr.Seq14.in_keyword:type_name -> sqlite.InKeyword
-	511, // 921: sqlite.Expr.Seq14.seq1:type_name -> sqlite.Expr.Seq14.Seq1
-	76,  // 922: sqlite.Expr.Seq14.table_function_name:type_name -> sqlite.TableFunctionName
-	167, // 923: sqlite.Expr.Seq14.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	512, // 924: sqlite.Expr.Seq14.seq2:type_name -> sqlite.Expr.Seq14.Seq2
-	194, // 925: sqlite.Expr.Seq14.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	177, // 926: sqlite.Expr.Seq15.not_keyword:type_name -> sqlite.NotKeyword
-	142, // 927: sqlite.Expr.Seq15.exists_keyword:type_name -> sqlite.ExistsKeyword
-	167, // 928: sqlite.Expr.Seq15.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
-	23,  // 929: sqlite.Expr.Seq15.select_stmt:type_name -> sqlite.SelectStmt
-	194, // 930: sqlite.Expr.Seq15.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
-	56,  // 931: sqlite.Expr.Case.expr:type_name -> sqlite.Expr
-	220, // 932: sqlite.Expr.Case.when_keyword:type_name -> sqlite.WhenKeyword
-	56,  // 933: sqlite.Expr.Case.expr_2:type_name -> sqlite.Expr
-	206, // 934: sqlite.Expr.Case.then_keyword:type_name -> sqlite.ThenKeyword
-	56,  // 935: sqlite.Expr.Case.expr_3:type_name -> sqlite.Expr
-	513, // 936: sqlite.Expr.Case.when:type_name -> sqlite.Expr.Case.When
-	514, // 937: sqlite.Expr.Case.else:type_name -> sqlite.Expr.Case.Else
-	136, // 938: sqlite.Expr.Case.end_keyword:type_name -> sqlite.EndKeyword
-	504, // 939: sqlite.Expr.Seq1.Seq1.seq1:type_name -> sqlite.Expr.Seq1.Seq1.Seq1
-	67,  // 940: sqlite.Expr.Seq1.Seq1.table_name:type_name -> sqlite.TableName
-	148, // 941: sqlite.Expr.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 942: sqlite.Expr.Seq1.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 943: sqlite.Expr.Seq1.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	172, // 944: sqlite.Expr.Seq6.Alt1.like_keyword:type_name -> sqlite.LikeKeyword
-	149, // 945: sqlite.Expr.Seq6.Alt1.glob_keyword:type_name -> sqlite.GlobKeyword
-	190, // 946: sqlite.Expr.Seq6.Alt1.regexp_keyword:type_name -> sqlite.RegexpKeyword
-	174, // 947: sqlite.Expr.Seq6.Alt1.match_keyword:type_name -> sqlite.MatchKeyword
-	56,  // 948: sqlite.Expr.Seq6.Escape.expr:type_name -> sqlite.Expr
-	23,  // 949: sqlite.Expr.Seq12.Alt1.select_stmt:type_name -> sqlite.SelectStmt
-	509, // 950: sqlite.Expr.Seq12.Alt1.seq1:type_name -> sqlite.Expr.Seq12.Alt1.Seq1
-	56,  // 951: sqlite.Expr.Seq12.Alt1.Seq1.expr:type_name -> sqlite.Expr
-	61,  // 952: sqlite.Expr.Seq13.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 953: sqlite.Expr.Seq13.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	61,  // 954: sqlite.Expr.Seq14.Seq1.schema_name:type_name -> sqlite.SchemaName
-	148, // 955: sqlite.Expr.Seq14.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
-	56,  // 956: sqlite.Expr.Seq14.Seq2.expr:type_name -> sqlite.Expr
-	56,  // 957: sqlite.Expr.Case.When.expr:type_name -> sqlite.Expr
-	206, // 958: sqlite.Expr.Case.When.then_keyword:type_name -> sqlite.ThenKeyword
-	56,  // 959: sqlite.Expr.Case.When.expr_2:type_name -> sqlite.Expr
-	56,  // 960: sqlite.Expr.Case.Else.expr:type_name -> sqlite.Expr
-	134, // 961: sqlite.FunctionArguments.Seq1.distinct_keyword:type_name -> sqlite.DistinctKeyword
-	56,  // 962: sqlite.FunctionArguments.Seq1.expr:type_name -> sqlite.Expr
-	185, // 963: sqlite.SignedNumber.Alt1.plus_sign_keyword:type_name -> sqlite.PlusSignKeyword
-	154, // 964: sqlite.SignedNumber.Alt1.hyphen_minus_keyword:type_name -> sqlite.HyphenMinusKeyword
-	155, // 965: sqlite.RaiseFunction.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
-	518, // 966: sqlite.RaiseFunction.Alt1.seq1:type_name -> sqlite.RaiseFunction.Alt1.Seq1
-	519, // 967: sqlite.RaiseFunction.Alt1.Seq1.alt1:type_name -> sqlite.RaiseFunction.Alt1.Seq1.Alt1
-	113, // 968: sqlite.RaiseFunction.Alt1.Seq1.comma_keyword:type_name -> sqlite.CommaKeyword
-	88,  // 969: sqlite.RaiseFunction.Alt1.Seq1.error_message:type_name -> sqlite.ErrorMessage
-	195, // 970: sqlite.RaiseFunction.Alt1.Seq1.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
-	97,  // 971: sqlite.RaiseFunction.Alt1.Seq1.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
-	143, // 972: sqlite.RaiseFunction.Alt1.Seq1.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
-	90,  // 973: sqlite.NumericLiteral.FullStop.digit:type_name -> sqlite.Digit
-	522, // 974: sqlite.NumericLiteral.E.alt1:type_name -> sqlite.NumericLiteral.E.Alt1
-	90,  // 975: sqlite.NumericLiteral.E.digit:type_name -> sqlite.Digit
-	90,  // 976: sqlite.NumericLiteral.E.digit_2:type_name -> sqlite.Digit
-	185, // 977: sqlite.NumericLiteral.E.Alt1.plus_sign_keyword:type_name -> sqlite.PlusSignKeyword
-	154, // 978: sqlite.NumericLiteral.E.Alt1.hyphen_minus_keyword:type_name -> sqlite.HyphenMinusKeyword
-	94,  // 979: sqlite.BindParameter.Colon.name:type_name -> sqlite.Name
-	94,  // 980: sqlite.BindParameter.CommercialAt.name:type_name -> sqlite.Name
-	94,  // 981: sqlite.BindParameter.DollarSign.name:type_name -> sqlite.Name
-	982, // [982:982] is the sub-list for method output_type
-	982, // [982:982] is the sub-list for method input_type
-	982, // [982:982] is the sub-list for extension type_name
-	982, // [982:982] is the sub-list for extension extendee
-	0,   // [0:982] is the sub-list for field type_name
+	223, // 345: sqlite.SqlStmt.Explain.query_plan:type_name -> sqlite.SqlStmt.Explain.QueryPlan
+	17,  // 346: sqlite.SqlStmt.Alt1.alter_table_stmt:type_name -> sqlite.AlterTableStmt
+	10,  // 347: sqlite.SqlStmt.Alt1.analyze_stmt:type_name -> sqlite.AnalyzeStmt
+	7,   // 348: sqlite.SqlStmt.Alt1.attach_stmt:type_name -> sqlite.AttachStmt
+	2,   // 349: sqlite.SqlStmt.Alt1.begin_stmt:type_name -> sqlite.BeginStmt
+	3,   // 350: sqlite.SqlStmt.Alt1.commit_stmt:type_name -> sqlite.CommitStmt
+	19,  // 351: sqlite.SqlStmt.Alt1.create_index_stmt:type_name -> sqlite.CreateIndexStmt
+	18,  // 352: sqlite.SqlStmt.Alt1.create_table_stmt:type_name -> sqlite.CreateTableStmt
+	20,  // 353: sqlite.SqlStmt.Alt1.create_trigger_stmt:type_name -> sqlite.CreateTriggerStmt
+	21,  // 354: sqlite.SqlStmt.Alt1.create_view_stmt:type_name -> sqlite.CreateViewStmt
+	22,  // 355: sqlite.SqlStmt.Alt1.create_virtual_table_stmt:type_name -> sqlite.CreateVirtualTableStmt
+	30,  // 356: sqlite.SqlStmt.Alt1.delete_stmt:type_name -> sqlite.DeleteStmt
+	31,  // 357: sqlite.SqlStmt.Alt1.delete_stmt_limited:type_name -> sqlite.DeleteStmtLimited
+	8,   // 358: sqlite.SqlStmt.Alt1.detach_stmt:type_name -> sqlite.DetachStmt
+	14,  // 359: sqlite.SqlStmt.Alt1.drop_index_stmt:type_name -> sqlite.DropIndexStmt
+	13,  // 360: sqlite.SqlStmt.Alt1.drop_table_stmt:type_name -> sqlite.DropTableStmt
+	16,  // 361: sqlite.SqlStmt.Alt1.drop_trigger_stmt:type_name -> sqlite.DropTriggerStmt
+	15,  // 362: sqlite.SqlStmt.Alt1.drop_view_stmt:type_name -> sqlite.DropViewStmt
+	32,  // 363: sqlite.SqlStmt.Alt1.insert_stmt:type_name -> sqlite.InsertStmt
+	12,  // 364: sqlite.SqlStmt.Alt1.pragma_stmt:type_name -> sqlite.PragmaStmt
+	11,  // 365: sqlite.SqlStmt.Alt1.reindex_stmt:type_name -> sqlite.ReindexStmt
+	6,   // 366: sqlite.SqlStmt.Alt1.release_stmt:type_name -> sqlite.ReleaseStmt
+	4,   // 367: sqlite.SqlStmt.Alt1.rollback_stmt:type_name -> sqlite.RollbackStmt
+	5,   // 368: sqlite.SqlStmt.Alt1.savepoint_stmt:type_name -> sqlite.SavepointStmt
+	23,  // 369: sqlite.SqlStmt.Alt1.select_stmt:type_name -> sqlite.SelectStmt
+	33,  // 370: sqlite.SqlStmt.Alt1.update_stmt:type_name -> sqlite.UpdateStmt
+	34,  // 371: sqlite.SqlStmt.Alt1.update_stmt_limited:type_name -> sqlite.UpdateStmtLimited
+	9,   // 372: sqlite.SqlStmt.Alt1.vacuum_stmt:type_name -> sqlite.VacuumStmt
+	121, // 373: sqlite.BeginStmt.Alt1.deferred_keyword:type_name -> sqlite.DeferredKeyword
+	156, // 374: sqlite.BeginStmt.Alt1.immediate_keyword:type_name -> sqlite.ImmediateKeyword
+	141, // 375: sqlite.BeginStmt.Alt1.exclusive_keyword:type_name -> sqlite.ExclusiveKeyword
+	114, // 376: sqlite.CommitStmt.Alt1.commit_keyword:type_name -> sqlite.CommitKeyword
+	136, // 377: sqlite.CommitStmt.Alt1.end_keyword:type_name -> sqlite.EndKeyword
+	197, // 378: sqlite.RollbackStmt.To.savepoint_keyword:type_name -> sqlite.SavepointKeyword
+	62,  // 379: sqlite.RollbackStmt.To.savepoint_name:type_name -> sqlite.SavepointName
+	63,  // 380: sqlite.VacuumStmt.Into.filename:type_name -> sqlite.Filename
+	61,  // 381: sqlite.AnalyzeStmt.Alt1.schema_name:type_name -> sqlite.SchemaName
+	64,  // 382: sqlite.AnalyzeStmt.Alt1.index_or_table_name:type_name -> sqlite.IndexOrTableName
+	229, // 383: sqlite.AnalyzeStmt.Alt1.seq1:type_name -> sqlite.AnalyzeStmt.Alt1.Seq1
+	61,  // 384: sqlite.AnalyzeStmt.Alt1.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 385: sqlite.AnalyzeStmt.Alt1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	65,  // 386: sqlite.AnalyzeStmt.Alt1.Seq1.table_or_index_name:type_name -> sqlite.TableOrIndexName
+	66,  // 387: sqlite.ReindexStmt.Alt1.collation_name:type_name -> sqlite.CollationName
+	231, // 388: sqlite.ReindexStmt.Alt1.seq1:type_name -> sqlite.ReindexStmt.Alt1.Seq1
+	232, // 389: sqlite.ReindexStmt.Alt1.Seq1.seq1:type_name -> sqlite.ReindexStmt.Alt1.Seq1.Seq1
+	233, // 390: sqlite.ReindexStmt.Alt1.Seq1.alt1:type_name -> sqlite.ReindexStmt.Alt1.Seq1.Alt1
+	61,  // 391: sqlite.ReindexStmt.Alt1.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 392: sqlite.ReindexStmt.Alt1.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	67,  // 393: sqlite.ReindexStmt.Alt1.Seq1.Alt1.table_name:type_name -> sqlite.TableName
+	68,  // 394: sqlite.ReindexStmt.Alt1.Seq1.Alt1.index_name:type_name -> sqlite.IndexName
+	61,  // 395: sqlite.PragmaStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 396: sqlite.PragmaStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	236, // 397: sqlite.PragmaStmt.Alt1.equals_sign:type_name -> sqlite.PragmaStmt.Alt1.EqualsSign
+	237, // 398: sqlite.PragmaStmt.Alt1.left_parenthesis:type_name -> sqlite.PragmaStmt.Alt1.LeftParenthesis
+	72,  // 399: sqlite.PragmaStmt.Alt1.EqualsSign.pragma_value:type_name -> sqlite.PragmaValue
+	72,  // 400: sqlite.PragmaStmt.Alt1.LeftParenthesis.pragma_value:type_name -> sqlite.PragmaValue
+	194, // 401: sqlite.PragmaStmt.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	61,  // 402: sqlite.DropTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 403: sqlite.DropTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 404: sqlite.DropIndexStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 405: sqlite.DropIndexStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 406: sqlite.DropViewStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 407: sqlite.DropViewStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 408: sqlite.DropTriggerStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 409: sqlite.DropTriggerStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 410: sqlite.AlterTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 411: sqlite.AlterTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	248, // 412: sqlite.AlterTableStmt.Alt1.rename_to:type_name -> sqlite.AlterTableStmt.Alt1.RenameTo
+	249, // 413: sqlite.AlterTableStmt.Alt1.rename:type_name -> sqlite.AlterTableStmt.Alt1.Rename
+	250, // 414: sqlite.AlterTableStmt.Alt1.add:type_name -> sqlite.AlterTableStmt.Alt1.Add
+	251, // 415: sqlite.AlterTableStmt.Alt1.add_constraint:type_name -> sqlite.AlterTableStmt.Alt1.AddConstraint
+	252, // 416: sqlite.AlterTableStmt.Alt1.drop:type_name -> sqlite.AlterTableStmt.Alt1.Drop
+	253, // 417: sqlite.AlterTableStmt.Alt1.drop_constraint:type_name -> sqlite.AlterTableStmt.Alt1.DropConstraint
+	254, // 418: sqlite.AlterTableStmt.Alt1.alter_column:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn
+	80,  // 419: sqlite.AlterTableStmt.Alt1.RenameTo.new_table_name:type_name -> sqlite.NewTableName
+	112, // 420: sqlite.AlterTableStmt.Alt1.Rename.column_keyword:type_name -> sqlite.ColumnKeyword
+	73,  // 421: sqlite.AlterTableStmt.Alt1.Rename.column_name:type_name -> sqlite.ColumnName
+	208, // 422: sqlite.AlterTableStmt.Alt1.Rename.to_keyword:type_name -> sqlite.ToKeyword
+	81,  // 423: sqlite.AlterTableStmt.Alt1.Rename.new_column_name:type_name -> sqlite.NewColumnName
+	112, // 424: sqlite.AlterTableStmt.Alt1.Add.column_keyword:type_name -> sqlite.ColumnKeyword
+	40,  // 425: sqlite.AlterTableStmt.Alt1.Add.column_def:type_name -> sqlite.ColumnDef
+	82,  // 426: sqlite.AlterTableStmt.Alt1.AddConstraint.constraint_name:type_name -> sqlite.ConstraintName
+	110, // 427: sqlite.AlterTableStmt.Alt1.AddConstraint.check_keyword:type_name -> sqlite.CheckKeyword
+	167, // 428: sqlite.AlterTableStmt.Alt1.AddConstraint.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	56,  // 429: sqlite.AlterTableStmt.Alt1.AddConstraint.expr:type_name -> sqlite.Expr
+	194, // 430: sqlite.AlterTableStmt.Alt1.AddConstraint.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	43,  // 431: sqlite.AlterTableStmt.Alt1.AddConstraint.conflict_clause:type_name -> sqlite.ConflictClause
+	112, // 432: sqlite.AlterTableStmt.Alt1.Drop.column_keyword:type_name -> sqlite.ColumnKeyword
+	73,  // 433: sqlite.AlterTableStmt.Alt1.Drop.column_name:type_name -> sqlite.ColumnName
+	82,  // 434: sqlite.AlterTableStmt.Alt1.DropConstraint.constraint_name:type_name -> sqlite.ConstraintName
+	73,  // 435: sqlite.AlterTableStmt.Alt1.AlterColumn.column_name:type_name -> sqlite.ColumnName
+	255, // 436: sqlite.AlterTableStmt.Alt1.AlterColumn.alt1:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1
+	256, // 437: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.set_not_null:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull
+	257, // 438: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.drop_not_null:type_name -> sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.DropNotNull
+	43,  // 439: sqlite.AlterTableStmt.Alt1.AlterColumn.Alt1.SetNotNull.conflict_clause:type_name -> sqlite.ConflictClause
+	204, // 440: sqlite.CreateTableStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
+	205, // 441: sqlite.CreateTableStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
+	61,  // 442: sqlite.CreateTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 443: sqlite.CreateTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	262, // 444: sqlite.CreateTableStmt.Alt2.as:type_name -> sqlite.CreateTableStmt.Alt2.As
+	263, // 445: sqlite.CreateTableStmt.Alt2.left_parenthesis:type_name -> sqlite.CreateTableStmt.Alt2.LeftParenthesis
+	23,  // 446: sqlite.CreateTableStmt.Alt2.As.select_stmt:type_name -> sqlite.SelectStmt
+	40,  // 447: sqlite.CreateTableStmt.Alt2.LeftParenthesis.column_def:type_name -> sqlite.ColumnDef
+	264, // 448: sqlite.CreateTableStmt.Alt2.LeftParenthesis.comma:type_name -> sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma
+	194, // 449: sqlite.CreateTableStmt.Alt2.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	45,  // 450: sqlite.CreateTableStmt.Alt2.LeftParenthesis.table_options:type_name -> sqlite.TableOptions
+	42,  // 451: sqlite.CreateTableStmt.Alt2.LeftParenthesis.Comma.table_constraint:type_name -> sqlite.TableConstraint
+	61,  // 452: sqlite.CreateIndexStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 453: sqlite.CreateIndexStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	56,  // 454: sqlite.CreateIndexStmt.Where.expr:type_name -> sqlite.Expr
+	204, // 455: sqlite.CreateTriggerStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
+	205, // 456: sqlite.CreateTriggerStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
+	61,  // 457: sqlite.CreateTriggerStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 458: sqlite.CreateTriggerStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	106, // 459: sqlite.CreateTriggerStmt.Alt2.before_keyword:type_name -> sqlite.BeforeKeyword
+	98,  // 460: sqlite.CreateTriggerStmt.Alt2.after_keyword:type_name -> sqlite.AfterKeyword
+	277, // 461: sqlite.CreateTriggerStmt.Alt2.instead_of:type_name -> sqlite.CreateTriggerStmt.Alt2.InsteadOf
+	122, // 462: sqlite.CreateTriggerStmt.Alt3.delete_keyword:type_name -> sqlite.DeleteKeyword
+	160, // 463: sqlite.CreateTriggerStmt.Alt3.insert_keyword:type_name -> sqlite.InsertKeyword
+	278, // 464: sqlite.CreateTriggerStmt.Alt3.update:type_name -> sqlite.CreateTriggerStmt.Alt3.Update
+	56,  // 465: sqlite.CreateTriggerStmt.When.expr:type_name -> sqlite.Expr
+	33,  // 466: sqlite.CreateTriggerStmt.Alt4.update_stmt:type_name -> sqlite.UpdateStmt
+	32,  // 467: sqlite.CreateTriggerStmt.Alt4.insert_stmt:type_name -> sqlite.InsertStmt
+	30,  // 468: sqlite.CreateTriggerStmt.Alt4.delete_stmt:type_name -> sqlite.DeleteStmt
+	23,  // 469: sqlite.CreateTriggerStmt.Alt4.select_stmt:type_name -> sqlite.SelectStmt
+	280, // 470: sqlite.CreateTriggerStmt.Seq2.alt1:type_name -> sqlite.CreateTriggerStmt.Seq2.Alt1
+	198, // 471: sqlite.CreateTriggerStmt.Seq2.semicolon_keyword:type_name -> sqlite.SemicolonKeyword
+	279, // 472: sqlite.CreateTriggerStmt.Alt3.Update.of:type_name -> sqlite.CreateTriggerStmt.Alt3.Update.Of
+	73,  // 473: sqlite.CreateTriggerStmt.Alt3.Update.Of.column_name:type_name -> sqlite.ColumnName
+	33,  // 474: sqlite.CreateTriggerStmt.Seq2.Alt1.update_stmt:type_name -> sqlite.UpdateStmt
+	32,  // 475: sqlite.CreateTriggerStmt.Seq2.Alt1.insert_stmt:type_name -> sqlite.InsertStmt
+	30,  // 476: sqlite.CreateTriggerStmt.Seq2.Alt1.delete_stmt:type_name -> sqlite.DeleteStmt
+	23,  // 477: sqlite.CreateTriggerStmt.Seq2.Alt1.select_stmt:type_name -> sqlite.SelectStmt
+	204, // 478: sqlite.CreateViewStmt.Alt1.temp_keyword:type_name -> sqlite.TempKeyword
+	205, // 479: sqlite.CreateViewStmt.Alt1.temporary_keyword:type_name -> sqlite.TemporaryKeyword
+	61,  // 480: sqlite.CreateViewStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 481: sqlite.CreateViewStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	73,  // 482: sqlite.CreateViewStmt.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 483: sqlite.CreateViewStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	61,  // 484: sqlite.CreateVirtualTableStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 485: sqlite.CreateVirtualTableStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	288, // 486: sqlite.CreateVirtualTableStmt.LeftParenthesis.seq1:type_name -> sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1
+	194, // 487: sqlite.CreateVirtualTableStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	84,  // 488: sqlite.CreateVirtualTableStmt.LeftParenthesis.Seq1.module_argument:type_name -> sqlite.ModuleArgument
+	189, // 489: sqlite.SelectStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 490: sqlite.SelectStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	27,  // 491: sqlite.SelectStmt.Seq1.compound_operator:type_name -> sqlite.CompoundOperator
+	24,  // 492: sqlite.SelectStmt.Seq1.select_core:type_name -> sqlite.SelectCore
+	39,  // 493: sqlite.SelectStmt.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	56,  // 494: sqlite.SelectStmt.Limit.expr:type_name -> sqlite.Expr
+	293, // 495: sqlite.SelectStmt.Limit.alt1:type_name -> sqlite.SelectStmt.Limit.Alt1
+	294, // 496: sqlite.SelectStmt.Limit.Alt1.offset:type_name -> sqlite.SelectStmt.Limit.Alt1.Offset
+	295, // 497: sqlite.SelectStmt.Limit.Alt1.comma:type_name -> sqlite.SelectStmt.Limit.Alt1.Comma
+	56,  // 498: sqlite.SelectStmt.Limit.Alt1.Offset.expr:type_name -> sqlite.Expr
+	56,  // 499: sqlite.SelectStmt.Limit.Alt1.Comma.expr:type_name -> sqlite.Expr
+	298, // 500: sqlite.SelectCore.Select.alt1:type_name -> sqlite.SelectCore.Select.Alt1
+	26,  // 501: sqlite.SelectCore.Select.result_column:type_name -> sqlite.ResultColumn
+	299, // 502: sqlite.SelectCore.Select.from:type_name -> sqlite.SelectCore.Select.From
+	300, // 503: sqlite.SelectCore.Select.where:type_name -> sqlite.SelectCore.Select.Where
+	301, // 504: sqlite.SelectCore.Select.group_by:type_name -> sqlite.SelectCore.Select.GroupBy
+	302, // 505: sqlite.SelectCore.Select.window:type_name -> sqlite.SelectCore.Select.Window
+	56,  // 506: sqlite.SelectCore.ValuesLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 507: sqlite.SelectCore.ValuesLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	307, // 508: sqlite.SelectCore.ValuesLeftParenthesis.comma_left_parenthesis:type_name -> sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis
+	134, // 509: sqlite.SelectCore.Select.Alt1.distinct_keyword:type_name -> sqlite.DistinctKeyword
+	99,  // 510: sqlite.SelectCore.Select.Alt1.all_keyword:type_name -> sqlite.AllKeyword
+	303, // 511: sqlite.SelectCore.Select.From.alt1:type_name -> sqlite.SelectCore.Select.From.Alt1
+	56,  // 512: sqlite.SelectCore.Select.Where.expr:type_name -> sqlite.Expr
+	56,  // 513: sqlite.SelectCore.Select.GroupBy.expr:type_name -> sqlite.Expr
+	305, // 514: sqlite.SelectCore.Select.GroupBy.having:type_name -> sqlite.SelectCore.Select.GroupBy.Having
+	77,  // 515: sqlite.SelectCore.Select.Window.window_name:type_name -> sqlite.WindowName
+	102, // 516: sqlite.SelectCore.Select.Window.as_keyword:type_name -> sqlite.AsKeyword
+	52,  // 517: sqlite.SelectCore.Select.Window.window_defn:type_name -> sqlite.WindowDefn
+	306, // 518: sqlite.SelectCore.Select.Window.comma:type_name -> sqlite.SelectCore.Select.Window.Comma
+	304, // 519: sqlite.SelectCore.Select.From.Alt1.seq1:type_name -> sqlite.SelectCore.Select.From.Alt1.Seq1
+	36,  // 520: sqlite.SelectCore.Select.From.Alt1.join_clause:type_name -> sqlite.JoinClause
+	35,  // 521: sqlite.SelectCore.Select.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
+	56,  // 522: sqlite.SelectCore.Select.GroupBy.Having.expr:type_name -> sqlite.Expr
+	77,  // 523: sqlite.SelectCore.Select.Window.Comma.window_name:type_name -> sqlite.WindowName
+	102, // 524: sqlite.SelectCore.Select.Window.Comma.as_keyword:type_name -> sqlite.AsKeyword
+	52,  // 525: sqlite.SelectCore.Select.Window.Comma.window_defn:type_name -> sqlite.WindowDefn
+	56,  // 526: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 527: sqlite.SelectCore.ValuesLeftParenthesis.CommaLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	189, // 528: sqlite.FactoredSelectStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 529: sqlite.FactoredSelectStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	27,  // 530: sqlite.FactoredSelectStmt.Seq1.compound_operator:type_name -> sqlite.CompoundOperator
+	24,  // 531: sqlite.FactoredSelectStmt.Seq1.select_core:type_name -> sqlite.SelectCore
+	39,  // 532: sqlite.FactoredSelectStmt.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	56,  // 533: sqlite.FactoredSelectStmt.Limit.expr:type_name -> sqlite.Expr
+	312, // 534: sqlite.FactoredSelectStmt.Limit.alt1:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1
+	313, // 535: sqlite.FactoredSelectStmt.Limit.Alt1.offset:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1.Offset
+	314, // 536: sqlite.FactoredSelectStmt.Limit.Alt1.comma:type_name -> sqlite.FactoredSelectStmt.Limit.Alt1.Comma
+	56,  // 537: sqlite.FactoredSelectStmt.Limit.Alt1.Offset.expr:type_name -> sqlite.Expr
+	56,  // 538: sqlite.FactoredSelectStmt.Limit.Alt1.Comma.expr:type_name -> sqlite.Expr
+	56,  // 539: sqlite.ResultColumn.Seq1.expr:type_name -> sqlite.Expr
+	317, // 540: sqlite.ResultColumn.Seq1.seq1:type_name -> sqlite.ResultColumn.Seq1.Seq1
+	67,  // 541: sqlite.ResultColumn.Seq2.table_name:type_name -> sqlite.TableName
+	148, // 542: sqlite.ResultColumn.Seq2.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	104, // 543: sqlite.ResultColumn.Seq2.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
+	102, // 544: sqlite.ResultColumn.Seq1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
+	74,  // 545: sqlite.ResultColumn.Seq1.Seq1.column_alias:type_name -> sqlite.ColumnAlias
+	73,  // 546: sqlite.CommonTableExpression.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 547: sqlite.CommonTableExpression.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	321, // 548: sqlite.CommonTableExpression.Alt1.not_materialized:type_name -> sqlite.CommonTableExpression.Alt1.NotMaterialized
+	175, // 549: sqlite.CommonTableExpression.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
+	324, // 550: sqlite.WithClause.Alt1.not_materialized:type_name -> sqlite.WithClause.Alt1.NotMaterialized
+	175, // 551: sqlite.WithClause.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
+	79,  // 552: sqlite.WithClause.Comma.cte_table_name:type_name -> sqlite.CteTableName
+	102, // 553: sqlite.WithClause.Comma.as_keyword:type_name -> sqlite.AsKeyword
+	325, // 554: sqlite.WithClause.Comma.alt1:type_name -> sqlite.WithClause.Comma.Alt1
+	167, // 555: sqlite.WithClause.Comma.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	23,  // 556: sqlite.WithClause.Comma.select_stmt:type_name -> sqlite.SelectStmt
+	194, // 557: sqlite.WithClause.Comma.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	326, // 558: sqlite.WithClause.Comma.Alt1.not_materialized:type_name -> sqlite.WithClause.Comma.Alt1.NotMaterialized
+	175, // 559: sqlite.WithClause.Comma.Alt1.materialized_keyword:type_name -> sqlite.MaterializedKeyword
+	189, // 560: sqlite.DeleteStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 561: sqlite.DeleteStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	56,  // 562: sqlite.DeleteStmt.Where.expr:type_name -> sqlite.Expr
+	189, // 563: sqlite.DeleteStmtLimited.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 564: sqlite.DeleteStmtLimited.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	56,  // 565: sqlite.DeleteStmtLimited.Where.expr:type_name -> sqlite.Expr
+	39,  // 566: sqlite.DeleteStmtLimited.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	333, // 567: sqlite.DeleteStmtLimited.Alt1.offset:type_name -> sqlite.DeleteStmtLimited.Alt1.Offset
+	334, // 568: sqlite.DeleteStmtLimited.Alt1.comma:type_name -> sqlite.DeleteStmtLimited.Alt1.Comma
+	56,  // 569: sqlite.DeleteStmtLimited.Alt1.Offset.expr:type_name -> sqlite.Expr
+	56,  // 570: sqlite.DeleteStmtLimited.Alt1.Comma.expr:type_name -> sqlite.Expr
+	189, // 571: sqlite.InsertStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 572: sqlite.InsertStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	191, // 573: sqlite.InsertStmt.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
+	160, // 574: sqlite.InsertStmt.Alt1.insert_keyword:type_name -> sqlite.InsertKeyword
+	341, // 575: sqlite.InsertStmt.Alt1.insert_or:type_name -> sqlite.InsertStmt.Alt1.InsertOr
+	61,  // 576: sqlite.InsertStmt.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 577: sqlite.InsertStmt.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	86,  // 578: sqlite.InsertStmt.As.alias:type_name -> sqlite.Alias
+	73,  // 579: sqlite.InsertStmt.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 580: sqlite.InsertStmt.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	343, // 581: sqlite.InsertStmt.Alt2.values_left_parenthesis:type_name -> sqlite.InsertStmt.Alt2.ValuesLeftParenthesis
+	344, // 582: sqlite.InsertStmt.Alt2.seq1:type_name -> sqlite.InsertStmt.Alt2.Seq1
+	345, // 583: sqlite.InsertStmt.Alt2.default_values:type_name -> sqlite.InsertStmt.Alt2.DefaultValues
+	342, // 584: sqlite.InsertStmt.Alt1.InsertOr.alt1:type_name -> sqlite.InsertStmt.Alt1.InsertOr.Alt1
+	97,  // 585: sqlite.InsertStmt.Alt1.InsertOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
+	143, // 586: sqlite.InsertStmt.Alt1.InsertOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
+	155, // 587: sqlite.InsertStmt.Alt1.InsertOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
+	191, // 588: sqlite.InsertStmt.Alt1.InsertOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
+	195, // 589: sqlite.InsertStmt.Alt1.InsertOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
+	56,  // 590: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 591: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	346, // 592: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.comma_left_parenthesis:type_name -> sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis
+	50,  // 593: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.upsert_clause:type_name -> sqlite.UpsertClause
+	23,  // 594: sqlite.InsertStmt.Alt2.Seq1.select_stmt:type_name -> sqlite.SelectStmt
+	50,  // 595: sqlite.InsertStmt.Alt2.Seq1.upsert_clause:type_name -> sqlite.UpsertClause
+	56,  // 596: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 597: sqlite.InsertStmt.Alt2.ValuesLeftParenthesis.CommaLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	189, // 598: sqlite.UpdateStmt.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 599: sqlite.UpdateStmt.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	214, // 600: sqlite.UpdateStmt.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
+	353, // 601: sqlite.UpdateStmt.Alt1.update_or:type_name -> sqlite.UpdateStmt.Alt1.UpdateOr
+	73,  // 602: sqlite.UpdateStmt.Alt2.column_name:type_name -> sqlite.ColumnName
+	51,  // 603: sqlite.UpdateStmt.Alt2.column_name_list:type_name -> sqlite.ColumnNameList
+	355, // 604: sqlite.UpdateStmt.Comma.alt1:type_name -> sqlite.UpdateStmt.Comma.Alt1
+	138, // 605: sqlite.UpdateStmt.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
+	56,  // 606: sqlite.UpdateStmt.Comma.expr:type_name -> sqlite.Expr
+	356, // 607: sqlite.UpdateStmt.From.alt1:type_name -> sqlite.UpdateStmt.From.Alt1
+	56,  // 608: sqlite.UpdateStmt.Where.expr:type_name -> sqlite.Expr
+	354, // 609: sqlite.UpdateStmt.Alt1.UpdateOr.alt1:type_name -> sqlite.UpdateStmt.Alt1.UpdateOr.Alt1
+	97,  // 610: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
+	143, // 611: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
+	155, // 612: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
+	191, // 613: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
+	195, // 614: sqlite.UpdateStmt.Alt1.UpdateOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
+	73,  // 615: sqlite.UpdateStmt.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
+	51,  // 616: sqlite.UpdateStmt.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
+	357, // 617: sqlite.UpdateStmt.From.Alt1.seq1:type_name -> sqlite.UpdateStmt.From.Alt1.Seq1
+	36,  // 618: sqlite.UpdateStmt.From.Alt1.join_clause:type_name -> sqlite.JoinClause
+	35,  // 619: sqlite.UpdateStmt.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
+	189, // 620: sqlite.UpdateStmtLimited.With.recursive_keyword:type_name -> sqlite.RecursiveKeyword
+	28,  // 621: sqlite.UpdateStmtLimited.With.common_table_expression:type_name -> sqlite.CommonTableExpression
+	214, // 622: sqlite.UpdateStmtLimited.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
+	366, // 623: sqlite.UpdateStmtLimited.Alt1.update_or:type_name -> sqlite.UpdateStmtLimited.Alt1.UpdateOr
+	73,  // 624: sqlite.UpdateStmtLimited.Alt2.column_name:type_name -> sqlite.ColumnName
+	51,  // 625: sqlite.UpdateStmtLimited.Alt2.column_name_list:type_name -> sqlite.ColumnNameList
+	368, // 626: sqlite.UpdateStmtLimited.Comma.alt1:type_name -> sqlite.UpdateStmtLimited.Comma.Alt1
+	138, // 627: sqlite.UpdateStmtLimited.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
+	56,  // 628: sqlite.UpdateStmtLimited.Comma.expr:type_name -> sqlite.Expr
+	369, // 629: sqlite.UpdateStmtLimited.From.alt1:type_name -> sqlite.UpdateStmtLimited.From.Alt1
+	56,  // 630: sqlite.UpdateStmtLimited.Where.expr:type_name -> sqlite.Expr
+	39,  // 631: sqlite.UpdateStmtLimited.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	371, // 632: sqlite.UpdateStmtLimited.Alt3.offset:type_name -> sqlite.UpdateStmtLimited.Alt3.Offset
+	372, // 633: sqlite.UpdateStmtLimited.Alt3.comma:type_name -> sqlite.UpdateStmtLimited.Alt3.Comma
+	367, // 634: sqlite.UpdateStmtLimited.Alt1.UpdateOr.alt1:type_name -> sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1
+	97,  // 635: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
+	143, // 636: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
+	155, // 637: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
+	191, // 638: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
+	195, // 639: sqlite.UpdateStmtLimited.Alt1.UpdateOr.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
+	73,  // 640: sqlite.UpdateStmtLimited.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
+	51,  // 641: sqlite.UpdateStmtLimited.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
+	370, // 642: sqlite.UpdateStmtLimited.From.Alt1.seq1:type_name -> sqlite.UpdateStmtLimited.From.Alt1.Seq1
+	36,  // 643: sqlite.UpdateStmtLimited.From.Alt1.join_clause:type_name -> sqlite.JoinClause
+	35,  // 644: sqlite.UpdateStmtLimited.From.Alt1.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
+	56,  // 645: sqlite.UpdateStmtLimited.Alt3.Offset.expr:type_name -> sqlite.Expr
+	56,  // 646: sqlite.UpdateStmtLimited.Alt3.Comma.expr:type_name -> sqlite.Expr
+	378, // 647: sqlite.TableOrSubquery.Seq1.seq1:type_name -> sqlite.TableOrSubquery.Seq1.Seq1
+	67,  // 648: sqlite.TableOrSubquery.Seq1.table_name:type_name -> sqlite.TableName
+	379, // 649: sqlite.TableOrSubquery.Seq1.seq2:type_name -> sqlite.TableOrSubquery.Seq1.Seq2
+	380, // 650: sqlite.TableOrSubquery.Seq1.alt1:type_name -> sqlite.TableOrSubquery.Seq1.Alt1
+	383, // 651: sqlite.TableOrSubquery.Seq2.seq1:type_name -> sqlite.TableOrSubquery.Seq2.Seq1
+	76,  // 652: sqlite.TableOrSubquery.Seq2.table_function_name:type_name -> sqlite.TableFunctionName
+	167, // 653: sqlite.TableOrSubquery.Seq2.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	384, // 654: sqlite.TableOrSubquery.Seq2.seq2:type_name -> sqlite.TableOrSubquery.Seq2.Seq2
+	194, // 655: sqlite.TableOrSubquery.Seq2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	385, // 656: sqlite.TableOrSubquery.Seq2.seq3:type_name -> sqlite.TableOrSubquery.Seq2.Seq3
+	23,  // 657: sqlite.TableOrSubquery.LeftParenthesis.select_stmt:type_name -> sqlite.SelectStmt
+	194, // 658: sqlite.TableOrSubquery.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	35,  // 659: sqlite.TableOrSubquery.LeftParenthesis2.table_or_subquery:type_name -> sqlite.TableOrSubquery
+	194, // 660: sqlite.TableOrSubquery.LeftParenthesis2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	36,  // 661: sqlite.TableOrSubquery.LeftParenthesis3.join_clause:type_name -> sqlite.JoinClause
+	194, // 662: sqlite.TableOrSubquery.LeftParenthesis3.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	61,  // 663: sqlite.TableOrSubquery.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 664: sqlite.TableOrSubquery.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	102, // 665: sqlite.TableOrSubquery.Seq1.Seq2.as_keyword:type_name -> sqlite.AsKeyword
+	75,  // 666: sqlite.TableOrSubquery.Seq1.Seq2.table_alias:type_name -> sqlite.TableAlias
+	381, // 667: sqlite.TableOrSubquery.Seq1.Alt1.indexed_by:type_name -> sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy
+	382, // 668: sqlite.TableOrSubquery.Seq1.Alt1.not_indexed:type_name -> sqlite.TableOrSubquery.Seq1.Alt1.NotIndexed
+	68,  // 669: sqlite.TableOrSubquery.Seq1.Alt1.IndexedBy.index_name:type_name -> sqlite.IndexName
+	61,  // 670: sqlite.TableOrSubquery.Seq2.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 671: sqlite.TableOrSubquery.Seq2.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	56,  // 672: sqlite.TableOrSubquery.Seq2.Seq2.expr:type_name -> sqlite.Expr
+	102, // 673: sqlite.TableOrSubquery.Seq2.Seq3.as_keyword:type_name -> sqlite.AsKeyword
+	75,  // 674: sqlite.TableOrSubquery.Seq2.Seq3.table_alias:type_name -> sqlite.TableAlias
+	37,  // 675: sqlite.JoinClause.Seq1.join_operator:type_name -> sqlite.JoinOperator
+	35,  // 676: sqlite.JoinClause.Seq1.table_or_subquery:type_name -> sqlite.TableOrSubquery
+	38,  // 677: sqlite.JoinClause.Seq1.join_constraint:type_name -> sqlite.JoinConstraint
+	176, // 678: sqlite.JoinOperator.Seq1.natural_keyword:type_name -> sqlite.NaturalKeyword
+	388, // 679: sqlite.JoinOperator.Seq1.alt1:type_name -> sqlite.JoinOperator.Seq1.Alt1
+	165, // 680: sqlite.JoinOperator.Seq1.join_keyword:type_name -> sqlite.JoinKeyword
+	389, // 681: sqlite.JoinOperator.Seq1.Alt1.seq1:type_name -> sqlite.JoinOperator.Seq1.Alt1.Seq1
+	159, // 682: sqlite.JoinOperator.Seq1.Alt1.inner_keyword:type_name -> sqlite.InnerKeyword
+	115, // 683: sqlite.JoinOperator.Seq1.Alt1.cross_keyword:type_name -> sqlite.CrossKeyword
+	390, // 684: sqlite.JoinOperator.Seq1.Alt1.Seq1.alt1:type_name -> sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1
+	183, // 685: sqlite.JoinOperator.Seq1.Alt1.Seq1.outer_keyword:type_name -> sqlite.OuterKeyword
+	166, // 686: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.left_keyword:type_name -> sqlite.LeftKeyword
+	193, // 687: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.right_keyword:type_name -> sqlite.RightKeyword
+	147, // 688: sqlite.JoinOperator.Seq1.Alt1.Seq1.Alt1.full_keyword:type_name -> sqlite.FullKeyword
+	56,  // 689: sqlite.JoinConstraint.On.expr:type_name -> sqlite.Expr
+	73,  // 690: sqlite.JoinConstraint.UsingLeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 691: sqlite.JoinConstraint.UsingLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	66,  // 692: sqlite.OrderingTerm.Collate.collation_name:type_name -> sqlite.CollationName
+	103, // 693: sqlite.OrderingTerm.Alt1.asc_keyword:type_name -> sqlite.AscKeyword
+	123, // 694: sqlite.OrderingTerm.Alt1.desc_keyword:type_name -> sqlite.DescKeyword
+	396, // 695: sqlite.OrderingTerm.Alt2.nulls_first:type_name -> sqlite.OrderingTerm.Alt2.NullsFirst
+	397, // 696: sqlite.OrderingTerm.Alt2.nulls_last:type_name -> sqlite.OrderingTerm.Alt2.NullsLast
+	94,  // 697: sqlite.ColumnConstraint.Constraint.name:type_name -> sqlite.Name
+	400, // 698: sqlite.ColumnConstraint.Alt1.primary_key:type_name -> sqlite.ColumnConstraint.Alt1.PrimaryKey
+	401, // 699: sqlite.ColumnConstraint.Alt1.not_null:type_name -> sqlite.ColumnConstraint.Alt1.NotNull
+	402, // 700: sqlite.ColumnConstraint.Alt1.unique:type_name -> sqlite.ColumnConstraint.Alt1.Unique
+	403, // 701: sqlite.ColumnConstraint.Alt1.check_left_parenthesis:type_name -> sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis
+	404, // 702: sqlite.ColumnConstraint.Alt1.default:type_name -> sqlite.ColumnConstraint.Alt1.Default
+	405, // 703: sqlite.ColumnConstraint.Alt1.collate:type_name -> sqlite.ColumnConstraint.Alt1.Collate
+	44,  // 704: sqlite.ColumnConstraint.Alt1.foreign_key_clause:type_name -> sqlite.ForeignKeyClause
+	406, // 705: sqlite.ColumnConstraint.Alt1.seq1:type_name -> sqlite.ColumnConstraint.Alt1.Seq1
+	407, // 706: sqlite.ColumnConstraint.Alt1.PrimaryKey.alt1:type_name -> sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1
+	43,  // 707: sqlite.ColumnConstraint.Alt1.PrimaryKey.conflict_clause:type_name -> sqlite.ConflictClause
+	105, // 708: sqlite.ColumnConstraint.Alt1.PrimaryKey.autoincrement_keyword:type_name -> sqlite.AutoincrementKeyword
+	43,  // 709: sqlite.ColumnConstraint.Alt1.NotNull.conflict_clause:type_name -> sqlite.ConflictClause
+	43,  // 710: sqlite.ColumnConstraint.Alt1.Unique.conflict_clause:type_name -> sqlite.ConflictClause
+	56,  // 711: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 712: sqlite.ColumnConstraint.Alt1.CheckLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	408, // 713: sqlite.ColumnConstraint.Alt1.Default.alt1:type_name -> sqlite.ColumnConstraint.Alt1.Default.Alt1
+	66,  // 714: sqlite.ColumnConstraint.Alt1.Collate.collation_name:type_name -> sqlite.CollationName
+	410, // 715: sqlite.ColumnConstraint.Alt1.Seq1.generated_always:type_name -> sqlite.ColumnConstraint.Alt1.Seq1.GeneratedAlways
+	102, // 716: sqlite.ColumnConstraint.Alt1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
+	167, // 717: sqlite.ColumnConstraint.Alt1.Seq1.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	56,  // 718: sqlite.ColumnConstraint.Alt1.Seq1.expr:type_name -> sqlite.Expr
+	194, // 719: sqlite.ColumnConstraint.Alt1.Seq1.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	411, // 720: sqlite.ColumnConstraint.Alt1.Seq1.alt1:type_name -> sqlite.ColumnConstraint.Alt1.Seq1.Alt1
+	103, // 721: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1.asc_keyword:type_name -> sqlite.AscKeyword
+	123, // 722: sqlite.ColumnConstraint.Alt1.PrimaryKey.Alt1.desc_keyword:type_name -> sqlite.DescKeyword
+	409, // 723: sqlite.ColumnConstraint.Alt1.Default.Alt1.left_parenthesis:type_name -> sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis
+	58,  // 724: sqlite.ColumnConstraint.Alt1.Default.Alt1.literal_value:type_name -> sqlite.LiteralValue
+	59,  // 725: sqlite.ColumnConstraint.Alt1.Default.Alt1.signed_number:type_name -> sqlite.SignedNumber
+	56,  // 726: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 727: sqlite.ColumnConstraint.Alt1.Default.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	201, // 728: sqlite.ColumnConstraint.Alt1.Seq1.Alt1.stored_keyword:type_name -> sqlite.StoredKeyword
+	219, // 729: sqlite.ColumnConstraint.Alt1.Seq1.Alt1.virtual_keyword:type_name -> sqlite.VirtualKeyword
+	94,  // 730: sqlite.TableConstraint.Constraint.name:type_name -> sqlite.Name
+	414, // 731: sqlite.TableConstraint.Alt1.primary_key_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis
+	415, // 732: sqlite.TableConstraint.Alt1.unique_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.UniqueLeftParenthesis
+	416, // 733: sqlite.TableConstraint.Alt1.check_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.CheckLeftParenthesis
+	417, // 734: sqlite.TableConstraint.Alt1.foreign_key_left_parenthesis:type_name -> sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis
+	47,  // 735: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
+	194, // 736: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	43,  // 737: sqlite.TableConstraint.Alt1.PrimaryKeyLeftParenthesis.conflict_clause:type_name -> sqlite.ConflictClause
+	47,  // 738: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
+	194, // 739: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	43,  // 740: sqlite.TableConstraint.Alt1.UniqueLeftParenthesis.conflict_clause:type_name -> sqlite.ConflictClause
+	56,  // 741: sqlite.TableConstraint.Alt1.CheckLeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 742: sqlite.TableConstraint.Alt1.CheckLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	73,  // 743: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 744: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	44,  // 745: sqlite.TableConstraint.Alt1.ForeignKeyLeftParenthesis.foreign_key_clause:type_name -> sqlite.ForeignKeyClause
+	419, // 746: sqlite.ConflictClause.OnConflict.alt1:type_name -> sqlite.ConflictClause.OnConflict.Alt1
+	195, // 747: sqlite.ConflictClause.OnConflict.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
+	97,  // 748: sqlite.ConflictClause.OnConflict.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
+	143, // 749: sqlite.ConflictClause.OnConflict.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
+	155, // 750: sqlite.ConflictClause.OnConflict.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
+	191, // 751: sqlite.ConflictClause.OnConflict.Alt1.replace_keyword:type_name -> sqlite.ReplaceKeyword
+	73,  // 752: sqlite.ForeignKeyClause.LeftParenthesis.column_name:type_name -> sqlite.ColumnName
+	194, // 753: sqlite.ForeignKeyClause.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	423, // 754: sqlite.ForeignKeyClause.Alt1.on:type_name -> sqlite.ForeignKeyClause.Alt1.On
+	424, // 755: sqlite.ForeignKeyClause.Alt1.match:type_name -> sqlite.ForeignKeyClause.Alt1.Match
+	177, // 756: sqlite.ForeignKeyClause.Seq1.not_keyword:type_name -> sqlite.NotKeyword
+	120, // 757: sqlite.ForeignKeyClause.Seq1.deferrable_keyword:type_name -> sqlite.DeferrableKeyword
+	430, // 758: sqlite.ForeignKeyClause.Seq1.initially:type_name -> sqlite.ForeignKeyClause.Seq1.Initially
+	425, // 759: sqlite.ForeignKeyClause.Alt1.On.alt1:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt1
+	426, // 760: sqlite.ForeignKeyClause.Alt1.On.alt2:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2
+	94,  // 761: sqlite.ForeignKeyClause.Alt1.Match.name:type_name -> sqlite.Name
+	122, // 762: sqlite.ForeignKeyClause.Alt1.On.Alt1.delete_keyword:type_name -> sqlite.DeleteKeyword
+	214, // 763: sqlite.ForeignKeyClause.Alt1.On.Alt1.update_keyword:type_name -> sqlite.UpdateKeyword
+	427, // 764: sqlite.ForeignKeyClause.Alt1.On.Alt2.set_null:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.SetNull
+	428, // 765: sqlite.ForeignKeyClause.Alt1.On.Alt2.set_default:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.SetDefault
+	109, // 766: sqlite.ForeignKeyClause.Alt1.On.Alt2.cascade_keyword:type_name -> sqlite.CascadeKeyword
+	192, // 767: sqlite.ForeignKeyClause.Alt1.On.Alt2.restrict_keyword:type_name -> sqlite.RestrictKeyword
+	429, // 768: sqlite.ForeignKeyClause.Alt1.On.Alt2.no_action:type_name -> sqlite.ForeignKeyClause.Alt1.On.Alt2.NoAction
+	431, // 769: sqlite.ForeignKeyClause.Seq1.Initially.alt1:type_name -> sqlite.ForeignKeyClause.Seq1.Initially.Alt1
+	121, // 770: sqlite.ForeignKeyClause.Seq1.Initially.Alt1.deferred_keyword:type_name -> sqlite.DeferredKeyword
+	156, // 771: sqlite.ForeignKeyClause.Seq1.Initially.Alt1.immediate_keyword:type_name -> sqlite.ImmediateKeyword
+	436, // 772: sqlite.TypeName.Alt1.left_parenthesis:type_name -> sqlite.TypeName.Alt1.LeftParenthesis
+	437, // 773: sqlite.TypeName.Alt1.left_parenthesis2:type_name -> sqlite.TypeName.Alt1.LeftParenthesis2
+	59,  // 774: sqlite.TypeName.Alt1.LeftParenthesis.signed_number:type_name -> sqlite.SignedNumber
+	194, // 775: sqlite.TypeName.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	59,  // 776: sqlite.TypeName.Alt1.LeftParenthesis2.signed_number:type_name -> sqlite.SignedNumber
+	113, // 777: sqlite.TypeName.Alt1.LeftParenthesis2.comma_keyword:type_name -> sqlite.CommaKeyword
+	59,  // 778: sqlite.TypeName.Alt1.LeftParenthesis2.signed_number_2:type_name -> sqlite.SignedNumber
+	194, // 779: sqlite.TypeName.Alt1.LeftParenthesis2.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	73,  // 780: sqlite.IndexedColumn.Alt1.column_name:type_name -> sqlite.ColumnName
+	56,  // 781: sqlite.IndexedColumn.Alt1.expr:type_name -> sqlite.Expr
+	66,  // 782: sqlite.IndexedColumn.Collate.collation_name:type_name -> sqlite.CollationName
+	103, // 783: sqlite.IndexedColumn.Alt2.asc_keyword:type_name -> sqlite.AscKeyword
+	123, // 784: sqlite.IndexedColumn.Alt2.desc_keyword:type_name -> sqlite.DescKeyword
+	61,  // 785: sqlite.QualifiedTableName.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 786: sqlite.QualifiedTableName.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	86,  // 787: sqlite.QualifiedTableName.As.alias:type_name -> sqlite.Alias
+	444, // 788: sqlite.QualifiedTableName.Alt1.indexed_by:type_name -> sqlite.QualifiedTableName.Alt1.IndexedBy
+	445, // 789: sqlite.QualifiedTableName.Alt1.not_indexed:type_name -> sqlite.QualifiedTableName.Alt1.NotIndexed
+	68,  // 790: sqlite.QualifiedTableName.Alt1.IndexedBy.index_name:type_name -> sqlite.IndexName
+	104, // 791: sqlite.ReturningClause.Alt1.asterisk_keyword:type_name -> sqlite.AsteriskKeyword
+	447, // 792: sqlite.ReturningClause.Alt1.seq1:type_name -> sqlite.ReturningClause.Alt1.Seq1
+	56,  // 793: sqlite.ReturningClause.Alt1.Seq1.expr:type_name -> sqlite.Expr
+	448, // 794: sqlite.ReturningClause.Alt1.Seq1.seq1:type_name -> sqlite.ReturningClause.Alt1.Seq1.Seq1
+	102, // 795: sqlite.ReturningClause.Alt1.Seq1.Seq1.as_keyword:type_name -> sqlite.AsKeyword
+	74,  // 796: sqlite.ReturningClause.Alt1.Seq1.Seq1.column_alias:type_name -> sqlite.ColumnAlias
+	47,  // 797: sqlite.UpsertClause.LeftParenthesis.indexed_column:type_name -> sqlite.IndexedColumn
+	194, // 798: sqlite.UpsertClause.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	451, // 799: sqlite.UpsertClause.LeftParenthesis.where:type_name -> sqlite.UpsertClause.LeftParenthesis.Where
+	178, // 800: sqlite.UpsertClause.Alt1.nothing_keyword:type_name -> sqlite.NothingKeyword
+	452, // 801: sqlite.UpsertClause.Alt1.update_set:type_name -> sqlite.UpsertClause.Alt1.UpdateSet
+	56,  // 802: sqlite.UpsertClause.LeftParenthesis.Where.expr:type_name -> sqlite.Expr
+	453, // 803: sqlite.UpsertClause.Alt1.UpdateSet.alt1:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Alt1
+	138, // 804: sqlite.UpsertClause.Alt1.UpdateSet.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
+	56,  // 805: sqlite.UpsertClause.Alt1.UpdateSet.expr:type_name -> sqlite.Expr
+	454, // 806: sqlite.UpsertClause.Alt1.UpdateSet.comma:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Comma
+	455, // 807: sqlite.UpsertClause.Alt1.UpdateSet.where:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Where
+	73,  // 808: sqlite.UpsertClause.Alt1.UpdateSet.Alt1.column_name:type_name -> sqlite.ColumnName
+	51,  // 809: sqlite.UpsertClause.Alt1.UpdateSet.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
+	456, // 810: sqlite.UpsertClause.Alt1.UpdateSet.Comma.alt1:type_name -> sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1
+	138, // 811: sqlite.UpsertClause.Alt1.UpdateSet.Comma.equals_sign_keyword:type_name -> sqlite.EqualsSignKeyword
+	56,  // 812: sqlite.UpsertClause.Alt1.UpdateSet.Comma.expr:type_name -> sqlite.Expr
+	56,  // 813: sqlite.UpsertClause.Alt1.UpdateSet.Where.expr:type_name -> sqlite.Expr
+	73,  // 814: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1.column_name:type_name -> sqlite.ColumnName
+	51,  // 815: sqlite.UpsertClause.Alt1.UpdateSet.Comma.Alt1.column_name_list:type_name -> sqlite.ColumnNameList
+	56,  // 816: sqlite.WindowDefn.PartitionBy.expr:type_name -> sqlite.Expr
+	39,  // 817: sqlite.WindowDefn.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	77,  // 818: sqlite.OverClause.Alt1.window_name:type_name -> sqlite.WindowName
+	460, // 819: sqlite.OverClause.Alt1.left_parenthesis:type_name -> sqlite.OverClause.Alt1.LeftParenthesis
+	78,  // 820: sqlite.OverClause.Alt1.LeftParenthesis.base_window_name:type_name -> sqlite.BaseWindowName
+	461, // 821: sqlite.OverClause.Alt1.LeftParenthesis.partition_by:type_name -> sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy
+	462, // 822: sqlite.OverClause.Alt1.LeftParenthesis.order_by:type_name -> sqlite.OverClause.Alt1.LeftParenthesis.OrderBy
+	54,  // 823: sqlite.OverClause.Alt1.LeftParenthesis.frame_spec:type_name -> sqlite.FrameSpec
+	194, // 824: sqlite.OverClause.Alt1.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	56,  // 825: sqlite.OverClause.Alt1.LeftParenthesis.PartitionBy.expr:type_name -> sqlite.Expr
+	39,  // 826: sqlite.OverClause.Alt1.LeftParenthesis.OrderBy.ordering_term:type_name -> sqlite.OrderingTerm
+	188, // 827: sqlite.FrameSpec.Alt1.range_keyword:type_name -> sqlite.RangeKeyword
+	196, // 828: sqlite.FrameSpec.Alt1.rows_keyword:type_name -> sqlite.RowsKeyword
+	153, // 829: sqlite.FrameSpec.Alt1.groups_keyword:type_name -> sqlite.GroupsKeyword
+	466, // 830: sqlite.FrameSpec.Alt2.between:type_name -> sqlite.FrameSpec.Alt2.Between
+	467, // 831: sqlite.FrameSpec.Alt2.unbounded_preceding:type_name -> sqlite.FrameSpec.Alt2.UnboundedPreceding
+	468, // 832: sqlite.FrameSpec.Alt2.seq1:type_name -> sqlite.FrameSpec.Alt2.Seq1
+	469, // 833: sqlite.FrameSpec.Alt2.current_row:type_name -> sqlite.FrameSpec.Alt2.CurrentRow
+	480, // 834: sqlite.FrameSpec.Alt3.exclude_no_others:type_name -> sqlite.FrameSpec.Alt3.ExcludeNoOthers
+	481, // 835: sqlite.FrameSpec.Alt3.exclude_current_row:type_name -> sqlite.FrameSpec.Alt3.ExcludeCurrentRow
+	482, // 836: sqlite.FrameSpec.Alt3.exclude_group:type_name -> sqlite.FrameSpec.Alt3.ExcludeGroup
+	483, // 837: sqlite.FrameSpec.Alt3.exclude_ties:type_name -> sqlite.FrameSpec.Alt3.ExcludeTies
+	470, // 838: sqlite.FrameSpec.Alt2.Between.alt1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1
+	101, // 839: sqlite.FrameSpec.Alt2.Between.and_keyword:type_name -> sqlite.AndKeyword
+	471, // 840: sqlite.FrameSpec.Alt2.Between.alt2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2
+	56,  // 841: sqlite.FrameSpec.Alt2.Seq1.expr:type_name -> sqlite.Expr
+	186, // 842: sqlite.FrameSpec.Alt2.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
+	472, // 843: sqlite.FrameSpec.Alt2.Between.Alt1.unbounded_preceding:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.UnboundedPreceding
+	473, // 844: sqlite.FrameSpec.Alt2.Between.Alt1.seq1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.Seq1
+	474, // 845: sqlite.FrameSpec.Alt2.Between.Alt1.current_row:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.CurrentRow
+	475, // 846: sqlite.FrameSpec.Alt2.Between.Alt1.seq2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt1.Seq2
+	476, // 847: sqlite.FrameSpec.Alt2.Between.Alt2.seq1:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.Seq1
+	477, // 848: sqlite.FrameSpec.Alt2.Between.Alt2.current_row:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.CurrentRow
+	478, // 849: sqlite.FrameSpec.Alt2.Between.Alt2.seq2:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.Seq2
+	479, // 850: sqlite.FrameSpec.Alt2.Between.Alt2.unbounded_following:type_name -> sqlite.FrameSpec.Alt2.Between.Alt2.UnboundedFollowing
+	56,  // 851: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1.expr:type_name -> sqlite.Expr
+	186, // 852: sqlite.FrameSpec.Alt2.Between.Alt1.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
+	56,  // 853: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2.expr:type_name -> sqlite.Expr
+	145, // 854: sqlite.FrameSpec.Alt2.Between.Alt1.Seq2.following_keyword:type_name -> sqlite.FollowingKeyword
+	56,  // 855: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1.expr:type_name -> sqlite.Expr
+	186, // 856: sqlite.FrameSpec.Alt2.Between.Alt2.Seq1.preceding_keyword:type_name -> sqlite.PrecedingKeyword
+	56,  // 857: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2.expr:type_name -> sqlite.Expr
+	145, // 858: sqlite.FrameSpec.Alt2.Between.Alt2.Seq2.following_keyword:type_name -> sqlite.FollowingKeyword
+	502, // 859: sqlite.Expr.Seq1.seq1:type_name -> sqlite.Expr.Seq1.Seq1
+	73,  // 860: sqlite.Expr.Seq1.column_name:type_name -> sqlite.ColumnName
+	92,  // 861: sqlite.Expr.Seq2.unary_operator:type_name -> sqlite.UnaryOperator
+	56,  // 862: sqlite.Expr.Seq2.expr:type_name -> sqlite.Expr
+	56,  // 863: sqlite.Expr.Seq3.expr:type_name -> sqlite.Expr
+	93,  // 864: sqlite.Expr.Seq3.binary_operator:type_name -> sqlite.BinaryOperator
+	56,  // 865: sqlite.Expr.Seq3.expr_2:type_name -> sqlite.Expr
+	87,  // 866: sqlite.Expr.Seq4.function_name:type_name -> sqlite.FunctionName
+	167, // 867: sqlite.Expr.Seq4.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	57,  // 868: sqlite.Expr.Seq4.function_arguments:type_name -> sqlite.FunctionArguments
+	194, // 869: sqlite.Expr.Seq4.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	55,  // 870: sqlite.Expr.Seq4.filter_clause:type_name -> sqlite.FilterClause
+	53,  // 871: sqlite.Expr.Seq4.over_clause:type_name -> sqlite.OverClause
+	56,  // 872: sqlite.Expr.LeftParenthesis.expr:type_name -> sqlite.Expr
+	194, // 873: sqlite.Expr.LeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	56,  // 874: sqlite.Expr.CastLeftParenthesis.expr:type_name -> sqlite.Expr
+	102, // 875: sqlite.Expr.CastLeftParenthesis.as_keyword:type_name -> sqlite.AsKeyword
+	46,  // 876: sqlite.Expr.CastLeftParenthesis.type_name:type_name -> sqlite.TypeName
+	194, // 877: sqlite.Expr.CastLeftParenthesis.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	56,  // 878: sqlite.Expr.Seq5.expr:type_name -> sqlite.Expr
+	111, // 879: sqlite.Expr.Seq5.collate_keyword:type_name -> sqlite.CollateKeyword
+	66,  // 880: sqlite.Expr.Seq5.collation_name:type_name -> sqlite.CollationName
+	56,  // 881: sqlite.Expr.Seq6.expr:type_name -> sqlite.Expr
+	177, // 882: sqlite.Expr.Seq6.not_keyword:type_name -> sqlite.NotKeyword
+	504, // 883: sqlite.Expr.Seq6.alt1:type_name -> sqlite.Expr.Seq6.Alt1
+	56,  // 884: sqlite.Expr.Seq6.expr_2:type_name -> sqlite.Expr
+	505, // 885: sqlite.Expr.Seq6.escape:type_name -> sqlite.Expr.Seq6.Escape
+	56,  // 886: sqlite.Expr.Seq7.expr:type_name -> sqlite.Expr
+	164, // 887: sqlite.Expr.Seq7.isnull_keyword:type_name -> sqlite.IsnullKeyword
+	56,  // 888: sqlite.Expr.Seq8.expr:type_name -> sqlite.Expr
+	179, // 889: sqlite.Expr.Seq8.notnull_keyword:type_name -> sqlite.NotnullKeyword
+	56,  // 890: sqlite.Expr.Seq9.expr:type_name -> sqlite.Expr
+	177, // 891: sqlite.Expr.Seq9.not_keyword:type_name -> sqlite.NotKeyword
+	180, // 892: sqlite.Expr.Seq9.null_keyword:type_name -> sqlite.NullKeyword
+	56,  // 893: sqlite.Expr.Seq10.expr:type_name -> sqlite.Expr
+	163, // 894: sqlite.Expr.Seq10.is_keyword:type_name -> sqlite.IsKeyword
+	177, // 895: sqlite.Expr.Seq10.not_keyword:type_name -> sqlite.NotKeyword
+	506, // 896: sqlite.Expr.Seq10.distinct_from:type_name -> sqlite.Expr.Seq10.DistinctFrom
+	56,  // 897: sqlite.Expr.Seq10.expr_2:type_name -> sqlite.Expr
+	56,  // 898: sqlite.Expr.Seq11.expr:type_name -> sqlite.Expr
+	177, // 899: sqlite.Expr.Seq11.not_keyword:type_name -> sqlite.NotKeyword
+	108, // 900: sqlite.Expr.Seq11.between_keyword:type_name -> sqlite.BetweenKeyword
+	56,  // 901: sqlite.Expr.Seq11.expr_2:type_name -> sqlite.Expr
+	101, // 902: sqlite.Expr.Seq11.and_keyword:type_name -> sqlite.AndKeyword
+	56,  // 903: sqlite.Expr.Seq11.expr_3:type_name -> sqlite.Expr
+	56,  // 904: sqlite.Expr.Seq12.expr:type_name -> sqlite.Expr
+	177, // 905: sqlite.Expr.Seq12.not_keyword:type_name -> sqlite.NotKeyword
+	157, // 906: sqlite.Expr.Seq12.in_keyword:type_name -> sqlite.InKeyword
+	167, // 907: sqlite.Expr.Seq12.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	507, // 908: sqlite.Expr.Seq12.alt1:type_name -> sqlite.Expr.Seq12.Alt1
+	194, // 909: sqlite.Expr.Seq12.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	56,  // 910: sqlite.Expr.Seq13.expr:type_name -> sqlite.Expr
+	177, // 911: sqlite.Expr.Seq13.not_keyword:type_name -> sqlite.NotKeyword
+	157, // 912: sqlite.Expr.Seq13.in_keyword:type_name -> sqlite.InKeyword
+	509, // 913: sqlite.Expr.Seq13.seq1:type_name -> sqlite.Expr.Seq13.Seq1
+	67,  // 914: sqlite.Expr.Seq13.table_name:type_name -> sqlite.TableName
+	56,  // 915: sqlite.Expr.Seq14.expr:type_name -> sqlite.Expr
+	177, // 916: sqlite.Expr.Seq14.not_keyword:type_name -> sqlite.NotKeyword
+	157, // 917: sqlite.Expr.Seq14.in_keyword:type_name -> sqlite.InKeyword
+	510, // 918: sqlite.Expr.Seq14.seq1:type_name -> sqlite.Expr.Seq14.Seq1
+	76,  // 919: sqlite.Expr.Seq14.table_function_name:type_name -> sqlite.TableFunctionName
+	167, // 920: sqlite.Expr.Seq14.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	511, // 921: sqlite.Expr.Seq14.seq2:type_name -> sqlite.Expr.Seq14.Seq2
+	194, // 922: sqlite.Expr.Seq14.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	177, // 923: sqlite.Expr.Seq15.not_keyword:type_name -> sqlite.NotKeyword
+	142, // 924: sqlite.Expr.Seq15.exists_keyword:type_name -> sqlite.ExistsKeyword
+	167, // 925: sqlite.Expr.Seq15.left_parenthesis_keyword:type_name -> sqlite.LeftParenthesisKeyword
+	23,  // 926: sqlite.Expr.Seq15.select_stmt:type_name -> sqlite.SelectStmt
+	194, // 927: sqlite.Expr.Seq15.right_parenthesis_keyword:type_name -> sqlite.RightParenthesisKeyword
+	56,  // 928: sqlite.Expr.Case.expr:type_name -> sqlite.Expr
+	220, // 929: sqlite.Expr.Case.when_keyword:type_name -> sqlite.WhenKeyword
+	56,  // 930: sqlite.Expr.Case.expr_2:type_name -> sqlite.Expr
+	206, // 931: sqlite.Expr.Case.then_keyword:type_name -> sqlite.ThenKeyword
+	56,  // 932: sqlite.Expr.Case.expr_3:type_name -> sqlite.Expr
+	512, // 933: sqlite.Expr.Case.when:type_name -> sqlite.Expr.Case.When
+	513, // 934: sqlite.Expr.Case.else:type_name -> sqlite.Expr.Case.Else
+	136, // 935: sqlite.Expr.Case.end_keyword:type_name -> sqlite.EndKeyword
+	503, // 936: sqlite.Expr.Seq1.Seq1.seq1:type_name -> sqlite.Expr.Seq1.Seq1.Seq1
+	67,  // 937: sqlite.Expr.Seq1.Seq1.table_name:type_name -> sqlite.TableName
+	148, // 938: sqlite.Expr.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 939: sqlite.Expr.Seq1.Seq1.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 940: sqlite.Expr.Seq1.Seq1.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	172, // 941: sqlite.Expr.Seq6.Alt1.like_keyword:type_name -> sqlite.LikeKeyword
+	149, // 942: sqlite.Expr.Seq6.Alt1.glob_keyword:type_name -> sqlite.GlobKeyword
+	190, // 943: sqlite.Expr.Seq6.Alt1.regexp_keyword:type_name -> sqlite.RegexpKeyword
+	174, // 944: sqlite.Expr.Seq6.Alt1.match_keyword:type_name -> sqlite.MatchKeyword
+	56,  // 945: sqlite.Expr.Seq6.Escape.expr:type_name -> sqlite.Expr
+	23,  // 946: sqlite.Expr.Seq12.Alt1.select_stmt:type_name -> sqlite.SelectStmt
+	508, // 947: sqlite.Expr.Seq12.Alt1.seq1:type_name -> sqlite.Expr.Seq12.Alt1.Seq1
+	56,  // 948: sqlite.Expr.Seq12.Alt1.Seq1.expr:type_name -> sqlite.Expr
+	61,  // 949: sqlite.Expr.Seq13.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 950: sqlite.Expr.Seq13.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	61,  // 951: sqlite.Expr.Seq14.Seq1.schema_name:type_name -> sqlite.SchemaName
+	148, // 952: sqlite.Expr.Seq14.Seq1.full_stop_keyword:type_name -> sqlite.FullStopKeyword
+	56,  // 953: sqlite.Expr.Seq14.Seq2.expr:type_name -> sqlite.Expr
+	56,  // 954: sqlite.Expr.Case.When.expr:type_name -> sqlite.Expr
+	206, // 955: sqlite.Expr.Case.When.then_keyword:type_name -> sqlite.ThenKeyword
+	56,  // 956: sqlite.Expr.Case.When.expr_2:type_name -> sqlite.Expr
+	56,  // 957: sqlite.Expr.Case.Else.expr:type_name -> sqlite.Expr
+	134, // 958: sqlite.FunctionArguments.Seq1.distinct_keyword:type_name -> sqlite.DistinctKeyword
+	56,  // 959: sqlite.FunctionArguments.Seq1.expr:type_name -> sqlite.Expr
+	185, // 960: sqlite.SignedNumber.Alt1.plus_sign_keyword:type_name -> sqlite.PlusSignKeyword
+	154, // 961: sqlite.SignedNumber.Alt1.hyphen_minus_keyword:type_name -> sqlite.HyphenMinusKeyword
+	155, // 962: sqlite.RaiseFunction.Alt1.ignore_keyword:type_name -> sqlite.IgnoreKeyword
+	517, // 963: sqlite.RaiseFunction.Alt1.seq1:type_name -> sqlite.RaiseFunction.Alt1.Seq1
+	518, // 964: sqlite.RaiseFunction.Alt1.Seq1.alt1:type_name -> sqlite.RaiseFunction.Alt1.Seq1.Alt1
+	113, // 965: sqlite.RaiseFunction.Alt1.Seq1.comma_keyword:type_name -> sqlite.CommaKeyword
+	88,  // 966: sqlite.RaiseFunction.Alt1.Seq1.error_message:type_name -> sqlite.ErrorMessage
+	195, // 967: sqlite.RaiseFunction.Alt1.Seq1.Alt1.rollback_keyword:type_name -> sqlite.RollbackKeyword
+	97,  // 968: sqlite.RaiseFunction.Alt1.Seq1.Alt1.abort_keyword:type_name -> sqlite.AbortKeyword
+	143, // 969: sqlite.RaiseFunction.Alt1.Seq1.Alt1.fail_keyword:type_name -> sqlite.FailKeyword
+	90,  // 970: sqlite.NumericLiteral.FullStop.digit:type_name -> sqlite.Digit
+	521, // 971: sqlite.NumericLiteral.E.alt1:type_name -> sqlite.NumericLiteral.E.Alt1
+	90,  // 972: sqlite.NumericLiteral.E.digit:type_name -> sqlite.Digit
+	90,  // 973: sqlite.NumericLiteral.E.digit_2:type_name -> sqlite.Digit
+	185, // 974: sqlite.NumericLiteral.E.Alt1.plus_sign_keyword:type_name -> sqlite.PlusSignKeyword
+	154, // 975: sqlite.NumericLiteral.E.Alt1.hyphen_minus_keyword:type_name -> sqlite.HyphenMinusKeyword
+	94,  // 976: sqlite.BindParameter.Colon.name:type_name -> sqlite.Name
+	94,  // 977: sqlite.BindParameter.CommercialAt.name:type_name -> sqlite.Name
+	94,  // 978: sqlite.BindParameter.DollarSign.name:type_name -> sqlite.Name
+	979, // [979:979] is the sub-list for method output_type
+	979, // [979:979] is the sub-list for method input_type
+	979, // [979:979] is the sub-list for extension type_name
+	979, // [979:979] is the sub-list for extension extendee
+	0,   // [0:979] is the sub-list for field type_name
 }
 
 func init() { file_sqlite_proto_init() }
@@ -34250,7 +34208,7 @@ func file_sqlite_proto_init() {
 		(*BinaryOperator_AndKeyword)(nil),
 		(*BinaryOperator_OrKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[223].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[222].OneofWrappers = []any{
 		(*SqlStmt_Alt1_AlterTableStmt)(nil),
 		(*SqlStmt_Alt1_AnalyzeStmt)(nil),
 		(*SqlStmt_Alt1_AttachStmt)(nil),
@@ -34279,33 +34237,33 @@ func file_sqlite_proto_init() {
 		(*SqlStmt_Alt1_UpdateStmtLimited)(nil),
 		(*SqlStmt_Alt1_VacuumStmt)(nil),
 	}
-	file_sqlite_proto_msgTypes[225].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[224].OneofWrappers = []any{
 		(*BeginStmt_Alt1_DeferredKeyword)(nil),
 		(*BeginStmt_Alt1_ImmediateKeyword)(nil),
 		(*BeginStmt_Alt1_ExclusiveKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[226].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[225].OneofWrappers = []any{
 		(*CommitStmt_Alt1_CommitKeyword)(nil),
 		(*CommitStmt_Alt1_EndKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[229].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[228].OneofWrappers = []any{
 		(*AnalyzeStmt_Alt1_SchemaName)(nil),
 		(*AnalyzeStmt_Alt1_IndexOrTableName)(nil),
 		(*AnalyzeStmt_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[231].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[230].OneofWrappers = []any{
 		(*ReindexStmt_Alt1_CollationName)(nil),
 		(*ReindexStmt_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[234].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[233].OneofWrappers = []any{
 		(*ReindexStmt_Alt1_Seq1_Alt1_TableName)(nil),
 		(*ReindexStmt_Alt1_Seq1_Alt1_IndexName)(nil),
 	}
-	file_sqlite_proto_msgTypes[236].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[235].OneofWrappers = []any{
 		(*PragmaStmt_Alt1_EqualsSign_)(nil),
 		(*PragmaStmt_Alt1_LeftParenthesis_)(nil),
 	}
-	file_sqlite_proto_msgTypes[248].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[247].OneofWrappers = []any{
 		(*AlterTableStmt_Alt1_RenameTo_)(nil),
 		(*AlterTableStmt_Alt1_Rename_)(nil),
 		(*AlterTableStmt_Alt1_Add_)(nil),
@@ -34314,170 +34272,170 @@ func file_sqlite_proto_init() {
 		(*AlterTableStmt_Alt1_DropConstraint_)(nil),
 		(*AlterTableStmt_Alt1_AlterColumn_)(nil),
 	}
-	file_sqlite_proto_msgTypes[256].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[255].OneofWrappers = []any{
 		(*AlterTableStmt_Alt1_AlterColumn_Alt1_SetNotNull_)(nil),
 		(*AlterTableStmt_Alt1_AlterColumn_Alt1_DropNotNull_)(nil),
 	}
-	file_sqlite_proto_msgTypes[259].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[258].OneofWrappers = []any{
 		(*CreateTableStmt_Alt1_TempKeyword)(nil),
 		(*CreateTableStmt_Alt1_TemporaryKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[262].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[261].OneofWrappers = []any{
 		(*CreateTableStmt_Alt2_As_)(nil),
 		(*CreateTableStmt_Alt2_LeftParenthesis_)(nil),
 	}
-	file_sqlite_proto_msgTypes[269].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[268].OneofWrappers = []any{
 		(*CreateTriggerStmt_Alt1_TempKeyword)(nil),
 		(*CreateTriggerStmt_Alt1_TemporaryKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[272].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[271].OneofWrappers = []any{
 		(*CreateTriggerStmt_Alt2_BeforeKeyword)(nil),
 		(*CreateTriggerStmt_Alt2_AfterKeyword)(nil),
 		(*CreateTriggerStmt_Alt2_InsteadOf_)(nil),
 	}
-	file_sqlite_proto_msgTypes[273].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[272].OneofWrappers = []any{
 		(*CreateTriggerStmt_Alt3_DeleteKeyword)(nil),
 		(*CreateTriggerStmt_Alt3_InsertKeyword)(nil),
 		(*CreateTriggerStmt_Alt3_Update_)(nil),
 	}
-	file_sqlite_proto_msgTypes[276].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[275].OneofWrappers = []any{
 		(*CreateTriggerStmt_Alt4_UpdateStmt)(nil),
 		(*CreateTriggerStmt_Alt4_InsertStmt)(nil),
 		(*CreateTriggerStmt_Alt4_DeleteStmt)(nil),
 		(*CreateTriggerStmt_Alt4_SelectStmt)(nil),
 	}
-	file_sqlite_proto_msgTypes[281].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[280].OneofWrappers = []any{
 		(*CreateTriggerStmt_Seq2_Alt1_UpdateStmt)(nil),
 		(*CreateTriggerStmt_Seq2_Alt1_InsertStmt)(nil),
 		(*CreateTriggerStmt_Seq2_Alt1_DeleteStmt)(nil),
 		(*CreateTriggerStmt_Seq2_Alt1_SelectStmt)(nil),
 	}
-	file_sqlite_proto_msgTypes[282].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[281].OneofWrappers = []any{
 		(*CreateViewStmt_Alt1_TempKeyword)(nil),
 		(*CreateViewStmt_Alt1_TemporaryKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[294].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[293].OneofWrappers = []any{
 		(*SelectStmt_Limit_Alt1_Offset_)(nil),
 		(*SelectStmt_Limit_Alt1_Comma_)(nil),
 	}
-	file_sqlite_proto_msgTypes[299].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[298].OneofWrappers = []any{
 		(*SelectCore_Select_Alt1_DistinctKeyword)(nil),
 		(*SelectCore_Select_Alt1_AllKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[304].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[303].OneofWrappers = []any{
 		(*SelectCore_Select_From_Alt1_Seq1_)(nil),
 		(*SelectCore_Select_From_Alt1_JoinClause)(nil),
 	}
-	file_sqlite_proto_msgTypes[313].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[312].OneofWrappers = []any{
 		(*FactoredSelectStmt_Limit_Alt1_Offset_)(nil),
 		(*FactoredSelectStmt_Limit_Alt1_Comma_)(nil),
 	}
-	file_sqlite_proto_msgTypes[321].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[320].OneofWrappers = []any{
 		(*CommonTableExpression_Alt1_NotMaterialized_)(nil),
 		(*CommonTableExpression_Alt1_MaterializedKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[323].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[322].OneofWrappers = []any{
 		(*WithClause_Alt1_NotMaterialized_)(nil),
 		(*WithClause_Alt1_MaterializedKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[326].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[325].OneofWrappers = []any{
 		(*WithClause_Comma_Alt1_NotMaterialized_)(nil),
 		(*WithClause_Comma_Alt1_MaterializedKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[333].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[332].OneofWrappers = []any{
 		(*DeleteStmtLimited_Alt1_Offset_)(nil),
 		(*DeleteStmtLimited_Alt1_Comma_)(nil),
 	}
-	file_sqlite_proto_msgTypes[337].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[336].OneofWrappers = []any{
 		(*InsertStmt_Alt1_ReplaceKeyword)(nil),
 		(*InsertStmt_Alt1_InsertKeyword)(nil),
 		(*InsertStmt_Alt1_InsertOr_)(nil),
 	}
-	file_sqlite_proto_msgTypes[341].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[340].OneofWrappers = []any{
 		(*InsertStmt_Alt2_ValuesLeftParenthesis_)(nil),
 		(*InsertStmt_Alt2_Seq1_)(nil),
 		(*InsertStmt_Alt2_DefaultValues_)(nil),
 	}
-	file_sqlite_proto_msgTypes[343].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[342].OneofWrappers = []any{
 		(*InsertStmt_Alt1_InsertOr_Alt1_AbortKeyword)(nil),
 		(*InsertStmt_Alt1_InsertOr_Alt1_FailKeyword)(nil),
 		(*InsertStmt_Alt1_InsertOr_Alt1_IgnoreKeyword)(nil),
 		(*InsertStmt_Alt1_InsertOr_Alt1_ReplaceKeyword)(nil),
 		(*InsertStmt_Alt1_InsertOr_Alt1_RollbackKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[349].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[348].OneofWrappers = []any{
 		(*UpdateStmt_Alt1_UpdateKeyword)(nil),
 		(*UpdateStmt_Alt1_UpdateOr_)(nil),
 	}
-	file_sqlite_proto_msgTypes[350].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[349].OneofWrappers = []any{
 		(*UpdateStmt_Alt2_ColumnName)(nil),
 		(*UpdateStmt_Alt2_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[355].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[354].OneofWrappers = []any{
 		(*UpdateStmt_Alt1_UpdateOr_Alt1_AbortKeyword)(nil),
 		(*UpdateStmt_Alt1_UpdateOr_Alt1_FailKeyword)(nil),
 		(*UpdateStmt_Alt1_UpdateOr_Alt1_IgnoreKeyword)(nil),
 		(*UpdateStmt_Alt1_UpdateOr_Alt1_ReplaceKeyword)(nil),
 		(*UpdateStmt_Alt1_UpdateOr_Alt1_RollbackKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[356].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[355].OneofWrappers = []any{
 		(*UpdateStmt_Comma_Alt1_ColumnName)(nil),
 		(*UpdateStmt_Comma_Alt1_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[357].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[356].OneofWrappers = []any{
 		(*UpdateStmt_From_Alt1_Seq1_)(nil),
 		(*UpdateStmt_From_Alt1_JoinClause)(nil),
 	}
-	file_sqlite_proto_msgTypes[360].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[359].OneofWrappers = []any{
 		(*UpdateStmtLimited_Alt1_UpdateKeyword)(nil),
 		(*UpdateStmtLimited_Alt1_UpdateOr_)(nil),
 	}
-	file_sqlite_proto_msgTypes[361].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[360].OneofWrappers = []any{
 		(*UpdateStmtLimited_Alt2_ColumnName)(nil),
 		(*UpdateStmtLimited_Alt2_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[366].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[365].OneofWrappers = []any{
 		(*UpdateStmtLimited_Alt3_Offset_)(nil),
 		(*UpdateStmtLimited_Alt3_Comma_)(nil),
 	}
-	file_sqlite_proto_msgTypes[368].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[367].OneofWrappers = []any{
 		(*UpdateStmtLimited_Alt1_UpdateOr_Alt1_AbortKeyword)(nil),
 		(*UpdateStmtLimited_Alt1_UpdateOr_Alt1_FailKeyword)(nil),
 		(*UpdateStmtLimited_Alt1_UpdateOr_Alt1_IgnoreKeyword)(nil),
 		(*UpdateStmtLimited_Alt1_UpdateOr_Alt1_ReplaceKeyword)(nil),
 		(*UpdateStmtLimited_Alt1_UpdateOr_Alt1_RollbackKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[369].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[368].OneofWrappers = []any{
 		(*UpdateStmtLimited_Comma_Alt1_ColumnName)(nil),
 		(*UpdateStmtLimited_Comma_Alt1_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[370].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[369].OneofWrappers = []any{
 		(*UpdateStmtLimited_From_Alt1_Seq1_)(nil),
 		(*UpdateStmtLimited_From_Alt1_JoinClause)(nil),
 	}
-	file_sqlite_proto_msgTypes[381].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[380].OneofWrappers = []any{
 		(*TableOrSubquery_Seq1_Alt1_IndexedBy_)(nil),
 		(*TableOrSubquery_Seq1_Alt1_NotIndexed_)(nil),
 	}
-	file_sqlite_proto_msgTypes[389].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[388].OneofWrappers = []any{
 		(*JoinOperator_Seq1_Alt1_Seq1_)(nil),
 		(*JoinOperator_Seq1_Alt1_InnerKeyword)(nil),
 		(*JoinOperator_Seq1_Alt1_CrossKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[391].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[390].OneofWrappers = []any{
 		(*JoinOperator_Seq1_Alt1_Seq1_Alt1_LeftKeyword)(nil),
 		(*JoinOperator_Seq1_Alt1_Seq1_Alt1_RightKeyword)(nil),
 		(*JoinOperator_Seq1_Alt1_Seq1_Alt1_FullKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[395].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[394].OneofWrappers = []any{
 		(*OrderingTerm_Alt1_AscKeyword)(nil),
 		(*OrderingTerm_Alt1_DescKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[396].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[395].OneofWrappers = []any{
 		(*OrderingTerm_Alt2_NullsFirst_)(nil),
 		(*OrderingTerm_Alt2_NullsLast_)(nil),
 	}
-	file_sqlite_proto_msgTypes[400].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[399].OneofWrappers = []any{
 		(*ColumnConstraint_Alt1_PrimaryKey_)(nil),
 		(*ColumnConstraint_Alt1_NotNull_)(nil),
 		(*ColumnConstraint_Alt1_Unique_)(nil),
@@ -34487,140 +34445,140 @@ func file_sqlite_proto_init() {
 		(*ColumnConstraint_Alt1_ForeignKeyClause)(nil),
 		(*ColumnConstraint_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[408].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[407].OneofWrappers = []any{
 		(*ColumnConstraint_Alt1_PrimaryKey_Alt1_AscKeyword)(nil),
 		(*ColumnConstraint_Alt1_PrimaryKey_Alt1_DescKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[409].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[408].OneofWrappers = []any{
 		(*ColumnConstraint_Alt1_Default_Alt1_LeftParenthesis_)(nil),
 		(*ColumnConstraint_Alt1_Default_Alt1_LiteralValue)(nil),
 		(*ColumnConstraint_Alt1_Default_Alt1_SignedNumber)(nil),
 	}
-	file_sqlite_proto_msgTypes[412].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[411].OneofWrappers = []any{
 		(*ColumnConstraint_Alt1_Seq1_Alt1_StoredKeyword)(nil),
 		(*ColumnConstraint_Alt1_Seq1_Alt1_VirtualKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[414].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[413].OneofWrappers = []any{
 		(*TableConstraint_Alt1_PrimaryKeyLeftParenthesis_)(nil),
 		(*TableConstraint_Alt1_UniqueLeftParenthesis_)(nil),
 		(*TableConstraint_Alt1_CheckLeftParenthesis_)(nil),
 		(*TableConstraint_Alt1_ForeignKeyLeftParenthesis_)(nil),
 	}
-	file_sqlite_proto_msgTypes[420].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[419].OneofWrappers = []any{
 		(*ConflictClause_OnConflict_Alt1_RollbackKeyword)(nil),
 		(*ConflictClause_OnConflict_Alt1_AbortKeyword)(nil),
 		(*ConflictClause_OnConflict_Alt1_FailKeyword)(nil),
 		(*ConflictClause_OnConflict_Alt1_IgnoreKeyword)(nil),
 		(*ConflictClause_OnConflict_Alt1_ReplaceKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[422].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[421].OneofWrappers = []any{
 		(*ForeignKeyClause_Alt1_On_)(nil),
 		(*ForeignKeyClause_Alt1_Match_)(nil),
 	}
-	file_sqlite_proto_msgTypes[426].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[425].OneofWrappers = []any{
 		(*ForeignKeyClause_Alt1_On_Alt1_DeleteKeyword)(nil),
 		(*ForeignKeyClause_Alt1_On_Alt1_UpdateKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[427].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[426].OneofWrappers = []any{
 		(*ForeignKeyClause_Alt1_On_Alt2_SetNull_)(nil),
 		(*ForeignKeyClause_Alt1_On_Alt2_SetDefault_)(nil),
 		(*ForeignKeyClause_Alt1_On_Alt2_CascadeKeyword)(nil),
 		(*ForeignKeyClause_Alt1_On_Alt2_RestrictKeyword)(nil),
 		(*ForeignKeyClause_Alt1_On_Alt2_NoAction_)(nil),
 	}
-	file_sqlite_proto_msgTypes[432].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[431].OneofWrappers = []any{
 		(*ForeignKeyClause_Seq1_Initially_Alt1_DeferredKeyword)(nil),
 		(*ForeignKeyClause_Seq1_Initially_Alt1_ImmediateKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[436].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[435].OneofWrappers = []any{
 		(*TypeName_Alt1_LeftParenthesis_)(nil),
 		(*TypeName_Alt1_LeftParenthesis2_)(nil),
 	}
-	file_sqlite_proto_msgTypes[439].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[438].OneofWrappers = []any{
 		(*IndexedColumn_Alt1_ColumnName)(nil),
 		(*IndexedColumn_Alt1_Expr)(nil),
 	}
-	file_sqlite_proto_msgTypes[441].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[440].OneofWrappers = []any{
 		(*IndexedColumn_Alt2_AscKeyword)(nil),
 		(*IndexedColumn_Alt2_DescKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[444].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[443].OneofWrappers = []any{
 		(*QualifiedTableName_Alt1_IndexedBy_)(nil),
 		(*QualifiedTableName_Alt1_NotIndexed_)(nil),
 	}
-	file_sqlite_proto_msgTypes[447].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[446].OneofWrappers = []any{
 		(*ReturningClause_Alt1_AsteriskKeyword)(nil),
 		(*ReturningClause_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[451].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[450].OneofWrappers = []any{
 		(*UpsertClause_Alt1_NothingKeyword)(nil),
 		(*UpsertClause_Alt1_UpdateSet_)(nil),
 	}
-	file_sqlite_proto_msgTypes[454].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[453].OneofWrappers = []any{
 		(*UpsertClause_Alt1_UpdateSet_Alt1_ColumnName)(nil),
 		(*UpsertClause_Alt1_UpdateSet_Alt1_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[457].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[456].OneofWrappers = []any{
 		(*UpsertClause_Alt1_UpdateSet_Comma_Alt1_ColumnName)(nil),
 		(*UpsertClause_Alt1_UpdateSet_Comma_Alt1_ColumnNameList)(nil),
 	}
-	file_sqlite_proto_msgTypes[460].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[459].OneofWrappers = []any{
 		(*OverClause_Alt1_WindowName)(nil),
 		(*OverClause_Alt1_LeftParenthesis_)(nil),
 	}
-	file_sqlite_proto_msgTypes[464].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[463].OneofWrappers = []any{
 		(*FrameSpec_Alt1_RangeKeyword)(nil),
 		(*FrameSpec_Alt1_RowsKeyword)(nil),
 		(*FrameSpec_Alt1_GroupsKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[465].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[464].OneofWrappers = []any{
 		(*FrameSpec_Alt2_Between_)(nil),
 		(*FrameSpec_Alt2_UnboundedPreceding_)(nil),
 		(*FrameSpec_Alt2_Seq1_)(nil),
 		(*FrameSpec_Alt2_CurrentRow_)(nil),
 	}
-	file_sqlite_proto_msgTypes[466].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[465].OneofWrappers = []any{
 		(*FrameSpec_Alt3_ExcludeNoOthers_)(nil),
 		(*FrameSpec_Alt3_ExcludeCurrentRow_)(nil),
 		(*FrameSpec_Alt3_ExcludeGroup_)(nil),
 		(*FrameSpec_Alt3_ExcludeTies_)(nil),
 	}
-	file_sqlite_proto_msgTypes[471].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[470].OneofWrappers = []any{
 		(*FrameSpec_Alt2_Between_Alt1_UnboundedPreceding_)(nil),
 		(*FrameSpec_Alt2_Between_Alt1_Seq1_)(nil),
 		(*FrameSpec_Alt2_Between_Alt1_CurrentRow_)(nil),
 		(*FrameSpec_Alt2_Between_Alt1_Seq2_)(nil),
 	}
-	file_sqlite_proto_msgTypes[472].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[471].OneofWrappers = []any{
 		(*FrameSpec_Alt2_Between_Alt2_Seq1_)(nil),
 		(*FrameSpec_Alt2_Between_Alt2_CurrentRow_)(nil),
 		(*FrameSpec_Alt2_Between_Alt2_Seq2_)(nil),
 		(*FrameSpec_Alt2_Between_Alt2_UnboundedFollowing_)(nil),
 	}
-	file_sqlite_proto_msgTypes[505].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[504].OneofWrappers = []any{
 		(*Expr_Seq6_Alt1_LikeKeyword)(nil),
 		(*Expr_Seq6_Alt1_GlobKeyword)(nil),
 		(*Expr_Seq6_Alt1_RegexpKeyword)(nil),
 		(*Expr_Seq6_Alt1_MatchKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[508].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[507].OneofWrappers = []any{
 		(*Expr_Seq12_Alt1_SelectStmt)(nil),
 		(*Expr_Seq12_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[516].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[515].OneofWrappers = []any{
 		(*SignedNumber_Alt1_PlusSignKeyword)(nil),
 		(*SignedNumber_Alt1_HyphenMinusKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[517].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[516].OneofWrappers = []any{
 		(*RaiseFunction_Alt1_IgnoreKeyword)(nil),
 		(*RaiseFunction_Alt1_Seq1_)(nil),
 	}
-	file_sqlite_proto_msgTypes[519].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[518].OneofWrappers = []any{
 		(*RaiseFunction_Alt1_Seq1_Alt1_RollbackKeyword)(nil),
 		(*RaiseFunction_Alt1_Seq1_Alt1_AbortKeyword)(nil),
 		(*RaiseFunction_Alt1_Seq1_Alt1_FailKeyword)(nil),
 	}
-	file_sqlite_proto_msgTypes[522].OneofWrappers = []any{
+	file_sqlite_proto_msgTypes[521].OneofWrappers = []any{
 		(*NumericLiteral_E_Alt1_PlusSignKeyword)(nil),
 		(*NumericLiteral_E_Alt1_HyphenMinusKeyword)(nil),
 	}
@@ -34630,7 +34588,7 @@ func file_sqlite_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sqlite_proto_rawDesc), len(file_sqlite_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   527,
+			NumMessages:   526,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

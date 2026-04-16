@@ -49,35 +49,35 @@ func TestRender_BeginImmediateTransaction(t *testing.T) {
 func TestRender_DropTable(t *testing.T) {
 	got, err := RenderSQL(&sqlitepb.DropTableStmt{
 		TableName: &sqlitepb.TableName{
-			Name: &sqlitepb.Name{XKeyword: &sqlitepb.XKeyword{}},
+			Name: &sqlitepb.Name{Value: "widgets"},
 		},
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if got != "DROP TABLE x" {
-		t.Errorf("got %q, want %q", got, "DROP TABLE x")
+	if got != "DROP TABLE widgets" {
+		t.Errorf("got %q, want %q", got, "DROP TABLE widgets")
 	}
 }
 
 func TestRender_DropTableIfExistsSchemaDot(t *testing.T) {
-	// DROP TABLE IF EXISTS x.x
+	// DROP TABLE IF EXISTS main.widgets
 	got, err := RenderSQL(&sqlitepb.DropTableStmt{
 		IfExists: &sqlitepb.DropTableStmt_IfExists{},
 		Seq1: &sqlitepb.DropTableStmt_Seq1{
 			SchemaName: &sqlitepb.SchemaName{
-				Name: &sqlitepb.Name{XKeyword: &sqlitepb.XKeyword{}},
+				Name: &sqlitepb.Name{Value: "main"},
 			},
 			FullStopKeyword: &sqlitepb.FullStopKeyword{},
 		},
 		TableName: &sqlitepb.TableName{
-			Name: &sqlitepb.Name{XKeyword: &sqlitepb.XKeyword{}},
+			Name: &sqlitepb.Name{Value: "widgets"},
 		},
 	})
 	if err != nil {
 		t.Fatal(err)
 	}
-	want := "DROP TABLE IF EXISTS x.x"
+	want := "DROP TABLE IF EXISTS main.widgets"
 	if got != want {
 		t.Errorf("got %q, want %q", got, want)
 	}
