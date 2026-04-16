@@ -20,15 +20,7 @@ message WindowDefn {
 
     ByKeyword by_keyword = 2;
 
-    Expr expr = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
-    }
+    repeated Expr expr = 3;
   }
 
   message Seq2 {
@@ -36,14 +28,6 @@ message WindowDefn {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 }

@@ -21,13 +21,11 @@ message CreateIndexStmt {
 
   LeftParenthesisKeyword left_parenthesis_keyword = 9;
 
-  IndexedColumn indexed_column = 10;
+  repeated IndexedColumn indexed_column = 10;
 
-  repeated Seq3 seq3 = 11;
+  RightParenthesisKeyword right_parenthesis_keyword = 11;
 
-  RightParenthesisKeyword right_parenthesis_keyword = 12;
-
-  Seq4 seq4 = 13;
+  Seq3 seq3 = 12;
 
   message Seq1 {
     IfKeyword if_keyword = 1;
@@ -44,12 +42,6 @@ message CreateIndexStmt {
   }
 
   message Seq3 {
-    CommaKeyword comma_keyword = 1;
-
-    IndexedColumn indexed_column = 2;
-  }
-
-  message Seq4 {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;

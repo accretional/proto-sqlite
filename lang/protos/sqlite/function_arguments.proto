@@ -12,14 +12,6 @@ message FunctionArguments {
   message Seq1 {
     DistinctKeyword distinct_keyword = 1;
 
-    Expr expr = 2;
-
-    repeated Seq1 seq1 = 3;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
-    }
+    repeated Expr expr = 2;
   }
 }

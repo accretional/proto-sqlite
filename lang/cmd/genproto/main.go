@@ -49,6 +49,8 @@ func main() {
 	}
 	ast.Language = *pkgName
 
+	ast.Root = compiler.CollapseCommaList(ast.Root)
+
 	fdp, err := compiler.Compile(ast, compiler.Options{
 		Package:   *pkgName,
 		GoPackage: *goPkg,

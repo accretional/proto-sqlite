@@ -92,15 +92,7 @@ message CreateTriggerStmt {
       message Seq1 {
         OfKeyword of_keyword = 1;
 
-        ColumnName column_name = 2;
-
-        repeated Seq1 seq1 = 3;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          ColumnName column_name = 2;
-        }
+        repeated ColumnName column_name = 2;
       }
     }
   }

@@ -55,23 +55,15 @@ message CreateTableStmt {
     message Seq2 {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-      ColumnDef column_def = 2;
+      repeated ColumnDef column_def = 2;
 
       repeated Seq1 seq1 = 3;
 
-      repeated Seq2 seq2 = 4;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-      TableOptions table_options = 6;
+      TableOptions table_options = 5;
 
       message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        ColumnDef column_def = 2;
-      }
-
-      message Seq2 {
         CommaKeyword comma_keyword = 1;
 
         TableConstraint table_constraint = 2;

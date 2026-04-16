@@ -26,15 +26,7 @@ message InsertStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Alt1 {
@@ -84,17 +76,9 @@ message InsertStmt {
   message Seq4 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Alt2 {
@@ -111,38 +95,22 @@ message InsertStmt {
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-      Expr expr = 3;
+      repeated Expr expr = 3;
 
-      repeated Seq1 seq1 = 4;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
+      repeated Seq1 seq1 = 5;
 
-      repeated Seq2 seq2 = 6;
-
-      UpsertClause upsert_clause = 7;
+      UpsertClause upsert_clause = 6;
 
       message Seq1 {
         CommaKeyword comma_keyword = 1;
 
-        Expr expr = 2;
-      }
-
-      message Seq2 {
-        CommaKeyword comma_keyword = 1;
-
         LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-        Expr expr = 3;
+        repeated Expr expr = 3;
 
-        repeated Seq1 seq1 = 4;
-
-        RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          Expr expr = 2;
-        }
+        RightParenthesisKeyword right_parenthesis_keyword = 4;
       }
     }
 

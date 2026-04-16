@@ -46,16 +46,8 @@ message CreateViewStmt {
   message Seq3 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 }

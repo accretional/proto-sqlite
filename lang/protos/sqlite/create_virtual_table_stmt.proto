@@ -43,15 +43,7 @@ message CreateVirtualTableStmt {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
 
     message Seq1 {
-      ModuleArgument module_argument = 1;
-
-      repeated Seq1 seq1 = 2;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        ModuleArgument module_argument = 2;
-      }
+      repeated ModuleArgument module_argument = 1;
     }
   }
 }

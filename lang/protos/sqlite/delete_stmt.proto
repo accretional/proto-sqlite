@@ -20,15 +20,7 @@ message DeleteStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Seq2 {

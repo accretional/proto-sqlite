@@ -3,15 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message SqlStmtList {
-  SqlStmt sql_stmt = 1;
-
-  repeated Seq1 seq1 = 2;
-
-  message Seq1 {
-    SemicolonKeyword semicolon_keyword = 1;
-
-    SqlStmt sql_stmt = 2;
-  }
+  repeated SqlStmt sql_stmt = 1;
 }
 
 message SqlStmt {
@@ -565,23 +557,15 @@ message CreateTableStmt {
     message Seq2 {
       LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-      ColumnDef column_def = 2;
+      repeated ColumnDef column_def = 2;
 
       repeated Seq1 seq1 = 3;
 
-      repeated Seq2 seq2 = 4;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-      TableOptions table_options = 6;
+      TableOptions table_options = 5;
 
       message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        ColumnDef column_def = 2;
-      }
-
-      message Seq2 {
         CommaKeyword comma_keyword = 1;
 
         TableConstraint table_constraint = 2;
@@ -609,13 +593,11 @@ message CreateIndexStmt {
 
   LeftParenthesisKeyword left_parenthesis_keyword = 9;
 
-  IndexedColumn indexed_column = 10;
+  repeated IndexedColumn indexed_column = 10;
 
-  repeated Seq3 seq3 = 11;
+  RightParenthesisKeyword right_parenthesis_keyword = 11;
 
-  RightParenthesisKeyword right_parenthesis_keyword = 12;
-
-  Seq4 seq4 = 13;
+  Seq3 seq3 = 12;
 
   message Seq1 {
     IfKeyword if_keyword = 1;
@@ -632,12 +614,6 @@ message CreateIndexStmt {
   }
 
   message Seq3 {
-    CommaKeyword comma_keyword = 1;
-
-    IndexedColumn indexed_column = 2;
-  }
-
-  message Seq4 {
     WhereKeyword where_keyword = 1;
 
     Expr expr = 2;
@@ -734,15 +710,7 @@ message CreateTriggerStmt {
       message Seq1 {
         OfKeyword of_keyword = 1;
 
-        ColumnName column_name = 2;
-
-        repeated Seq1 seq1 = 3;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          ColumnName column_name = 2;
-        }
+        repeated ColumnName column_name = 2;
       }
     }
   }
@@ -836,17 +804,9 @@ message CreateViewStmt {
   message Seq3 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 }
 
@@ -891,15 +851,7 @@ message CreateVirtualTableStmt {
     RightParenthesisKeyword right_parenthesis_keyword = 3;
 
     message Seq1 {
-      ModuleArgument module_argument = 1;
-
-      repeated Seq1 seq1 = 2;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        ModuleArgument module_argument = 2;
-      }
+      repeated ModuleArgument module_argument = 1;
     }
   }
 }
@@ -920,15 +872,7 @@ message SelectStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Seq2 {
@@ -942,15 +886,7 @@ message SelectStmt {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 
   message Seq4 {
@@ -994,17 +930,15 @@ message SelectCore {
 
     Alt1 alt1 = 2;
 
-    ResultColumn result_column = 3;
+    repeated ResultColumn result_column = 3;
 
-    repeated Seq1 seq1 = 4;
+    Seq1 seq1 = 4;
 
     Seq2 seq2 = 5;
 
     Seq3 seq3 = 6;
 
     Seq4 seq4 = 7;
-
-    Seq5 seq5 = 8;
 
     message Alt1 {
       oneof value {
@@ -1015,12 +949,6 @@ message SelectCore {
     }
 
     message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ResultColumn result_column = 2;
-    }
-
-    message Seq2 {
       FromKeyword from_keyword = 1;
 
       Alt1 alt1 = 2;
@@ -1033,50 +961,34 @@ message SelectCore {
         }
 
         message Seq1 {
-          TableOrSubquery table_or_subquery = 1;
-
-          repeated Seq1 seq1 = 2;
-
-          message Seq1 {
-            CommaKeyword comma_keyword = 1;
-
-            TableOrSubquery table_or_subquery = 2;
-          }
+          repeated TableOrSubquery table_or_subquery = 1;
         }
       }
     }
 
-    message Seq3 {
+    message Seq2 {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
     }
 
-    message Seq4 {
+    message Seq3 {
       GroupKeyword group_keyword = 1;
 
       ByKeyword by_keyword = 2;
 
-      Expr expr = 3;
+      repeated Expr expr = 3;
 
-      repeated Seq1 seq1 = 4;
-
-      Seq2 seq2 = 5;
+      Seq1 seq1 = 4;
 
       message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        Expr expr = 2;
-      }
-
-      message Seq2 {
         HavingKeyword having_keyword = 1;
 
         Expr expr = 2;
       }
     }
 
-    message Seq5 {
+    message Seq4 {
       WindowKeyword window_keyword = 1;
 
       WindowName window_name = 2;
@@ -1104,36 +1016,20 @@ message SelectCore {
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-    Expr expr = 3;
+    repeated Expr expr = 3;
 
-    repeated Seq1 seq1 = 4;
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-    RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-    repeated Seq2 seq2 = 6;
+    repeated Seq1 seq1 = 5;
 
     message Seq1 {
       CommaKeyword comma_keyword = 1;
 
-      Expr expr = 2;
-    }
-
-    message Seq2 {
-      CommaKeyword comma_keyword = 1;
-
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-      Expr expr = 3;
+      repeated Expr expr = 3;
 
-      repeated Seq1 seq1 = 4;
-
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        Expr expr = 2;
-      }
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
     }
   }
 }
@@ -1154,15 +1050,7 @@ message FactoredSelectStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Seq2 {
@@ -1176,15 +1064,7 @@ message FactoredSelectStmt {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 
   message Seq4 {
@@ -1282,17 +1162,9 @@ message CommonTableExpression {
   message Seq1 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Alt1 {
@@ -1392,15 +1264,7 @@ message DeleteStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Seq2 {
@@ -1436,15 +1300,7 @@ message DeleteStmtLimited {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Seq2 {
@@ -1458,15 +1314,7 @@ message DeleteStmtLimited {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 
   message Alt1 {
@@ -1514,15 +1362,7 @@ message InsertStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Alt1 {
@@ -1572,17 +1412,9 @@ message InsertStmt {
   message Seq4 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Alt2 {
@@ -1599,38 +1431,22 @@ message InsertStmt {
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-      Expr expr = 3;
+      repeated Expr expr = 3;
 
-      repeated Seq1 seq1 = 4;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
+      repeated Seq1 seq1 = 5;
 
-      repeated Seq2 seq2 = 6;
-
-      UpsertClause upsert_clause = 7;
+      UpsertClause upsert_clause = 6;
 
       message Seq1 {
         CommaKeyword comma_keyword = 1;
 
-        Expr expr = 2;
-      }
-
-      message Seq2 {
-        CommaKeyword comma_keyword = 1;
-
         LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-        Expr expr = 3;
+        repeated Expr expr = 3;
 
-        repeated Seq1 seq1 = 4;
-
-        RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          Expr expr = 2;
-        }
+        RightParenthesisKeyword right_parenthesis_keyword = 4;
       }
     }
 
@@ -1676,15 +1492,7 @@ message UpdateStmt {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Alt1 {
@@ -1756,15 +1564,7 @@ message UpdateStmt {
       }
 
       message Seq1 {
-        TableOrSubquery table_or_subquery = 1;
-
-        repeated Seq1 seq1 = 2;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          TableOrSubquery table_or_subquery = 2;
-        }
+        repeated TableOrSubquery table_or_subquery = 1;
       }
     }
   }
@@ -1812,15 +1612,7 @@ message UpdateStmtLimited {
 
     RecursiveKeyword recursive_keyword = 2;
 
-    CommonTableExpression common_table_expression = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      CommonTableExpression common_table_expression = 2;
-    }
+    repeated CommonTableExpression common_table_expression = 3;
   }
 
   message Alt1 {
@@ -1892,15 +1684,7 @@ message UpdateStmtLimited {
       }
 
       message Seq1 {
-        TableOrSubquery table_or_subquery = 1;
-
-        repeated Seq1 seq1 = 2;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          TableOrSubquery table_or_subquery = 2;
-        }
+        repeated TableOrSubquery table_or_subquery = 1;
       }
     }
   }
@@ -1916,15 +1700,7 @@ message UpdateStmtLimited {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 
   message Alt3 {
@@ -2025,15 +1801,7 @@ message TableOrSubquery {
     }
 
     message Seq2 {
-      Expr expr = 1;
-
-      repeated Seq1 seq1 = 2;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        Expr expr = 2;
-      }
+      repeated Expr expr = 1;
     }
 
     message Seq3 {
@@ -2054,17 +1822,9 @@ message TableOrSubquery {
   message Seq4 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    TableOrSubquery table_or_subquery = 2;
+    repeated TableOrSubquery table_or_subquery = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      TableOrSubquery table_or_subquery = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Seq5 {
@@ -2150,17 +1910,9 @@ message JoinConstraint {
 
     LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-    ColumnName column_name = 3;
+    repeated ColumnName column_name = 3;
 
-    repeated Seq1 seq1 = 4;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
   }
 }
 
@@ -2379,19 +2131,11 @@ message TableConstraint {
 
       LeftParenthesisKeyword left_parenthesis_keyword = 3;
 
-      IndexedColumn indexed_column = 4;
+      repeated IndexedColumn indexed_column = 4;
 
-      repeated Seq1 seq1 = 5;
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 6;
-
-      ConflictClause conflict_clause = 7;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        IndexedColumn indexed_column = 2;
-      }
+      ConflictClause conflict_clause = 6;
     }
 
     message Seq2 {
@@ -2399,19 +2143,11 @@ message TableConstraint {
 
       LeftParenthesisKeyword left_parenthesis_keyword = 2;
 
-      IndexedColumn indexed_column = 3;
+      repeated IndexedColumn indexed_column = 3;
 
-      repeated Seq1 seq1 = 4;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
-
-      ConflictClause conflict_clause = 6;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        IndexedColumn indexed_column = 2;
-      }
+      ConflictClause conflict_clause = 5;
     }
 
     message Seq3 {
@@ -2431,19 +2167,11 @@ message TableConstraint {
 
       LeftParenthesisKeyword left_parenthesis_keyword = 3;
 
-      ColumnName column_name = 4;
+      repeated ColumnName column_name = 4;
 
-      repeated Seq1 seq1 = 5;
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 6;
-
-      ForeignKeyClause foreign_key_clause = 7;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        ColumnName column_name = 2;
-      }
+      ForeignKeyClause foreign_key_clause = 6;
     }
   }
 }
@@ -2488,17 +2216,9 @@ message ForeignKeyClause {
   message Seq1 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    ColumnName column_name = 2;
+    repeated ColumnName column_name = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      ColumnName column_name = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Alt1 {
@@ -2737,9 +2457,7 @@ message QualifiedTableName {
 message ReturningClause {
   ReturningKeyword returning_keyword = 1;
 
-  Alt1 alt1 = 2;
-
-  repeated Seq1 seq1 = 3;
+  repeated Alt1 alt1 = 2;
 
   message Alt1 {
     oneof value {
@@ -2760,32 +2478,6 @@ message ReturningClause {
       }
     }
   }
-
-  message Seq1 {
-    CommaKeyword comma_keyword = 1;
-
-    Alt1 alt1 = 2;
-
-    message Alt1 {
-      oneof value {
-        AsteriskKeyword asterisk_keyword = 1;
-
-        Seq1 seq1 = 2;
-      }
-
-      message Seq1 {
-        Expr expr = 1;
-
-        Seq1 seq1 = 2;
-
-        message Seq1 {
-          AsKeyword as_keyword = 1;
-
-          ColumnAlias column_alias = 2;
-        }
-      }
-    }
-  }
 }
 
 message UpsertClause {
@@ -2802,21 +2494,13 @@ message UpsertClause {
   message Seq1 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    IndexedColumn indexed_column = 2;
+    repeated IndexedColumn indexed_column = 2;
 
-    repeated Seq1 seq1 = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
 
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    Seq2 seq2 = 5;
+    Seq1 seq1 = 4;
 
     message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      IndexedColumn indexed_column = 2;
-    }
-
-    message Seq2 {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
@@ -2883,17 +2567,9 @@ message UpsertClause {
 message ColumnNameList {
   LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-  ColumnName column_name = 2;
+  repeated ColumnName column_name = 2;
 
-  repeated Seq1 seq1 = 3;
-
-  RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-  message Seq1 {
-    CommaKeyword comma_keyword = 1;
-
-    ColumnName column_name = 2;
-  }
+  RightParenthesisKeyword right_parenthesis_keyword = 3;
 }
 
 message WindowDefn {
@@ -2914,15 +2590,7 @@ message WindowDefn {
 
     ByKeyword by_keyword = 2;
 
-    Expr expr = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
-    }
+    repeated Expr expr = 3;
   }
 
   message Seq2 {
@@ -2930,15 +2598,7 @@ message WindowDefn {
 
     ByKeyword by_keyword = 2;
 
-    OrderingTerm ordering_term = 3;
-
-    repeated Seq1 seq1 = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      OrderingTerm ordering_term = 2;
-    }
+    repeated OrderingTerm ordering_term = 3;
   }
 }
 
@@ -2972,15 +2632,7 @@ message OverClause {
 
         ByKeyword by_keyword = 2;
 
-        Expr expr = 3;
-
-        repeated Seq1 seq1 = 4;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          Expr expr = 2;
-        }
+        repeated Expr expr = 3;
       }
 
       message Seq2 {
@@ -2988,15 +2640,7 @@ message OverClause {
 
         ByKeyword by_keyword = 2;
 
-        OrderingTerm ordering_term = 3;
-
-        repeated Seq1 seq1 = 4;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          OrderingTerm ordering_term = 2;
-        }
+        repeated OrderingTerm ordering_term = 3;
       }
     }
   }
@@ -3280,17 +2924,9 @@ message Expr {
   message Seq5 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    Expr expr = 2;
+    repeated Expr expr = 2;
 
-    repeated Seq1 seq1 = 3;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
-    }
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
   }
 
   message Seq6 {
@@ -3418,15 +3054,7 @@ message Expr {
       }
 
       message Seq1 {
-        Expr expr = 1;
-
-        repeated Seq1 seq1 = 2;
-
-        message Seq1 {
-          CommaKeyword comma_keyword = 1;
-
-          Expr expr = 2;
-        }
+        repeated Expr expr = 1;
       }
     }
   }
@@ -3473,15 +3101,7 @@ message Expr {
     }
 
     message Seq2 {
-      Expr expr = 1;
-
-      repeated Seq1 seq1 = 2;
-
-      message Seq1 {
-        CommaKeyword comma_keyword = 1;
-
-        Expr expr = 2;
-      }
+      repeated Expr expr = 1;
     }
   }
 
@@ -3544,15 +3164,7 @@ message FunctionArguments {
   message Seq1 {
     DistinctKeyword distinct_keyword = 1;
 
-    Expr expr = 2;
-
-    repeated Seq1 seq1 = 3;
-
-    message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
-    }
+    repeated Expr expr = 2;
   }
 }
 

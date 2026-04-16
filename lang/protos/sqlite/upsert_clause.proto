@@ -16,21 +16,13 @@ message UpsertClause {
   message Seq1 {
     LeftParenthesisKeyword left_parenthesis_keyword = 1;
 
-    IndexedColumn indexed_column = 2;
+    repeated IndexedColumn indexed_column = 2;
 
-    repeated Seq1 seq1 = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 3;
 
-    RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-    Seq2 seq2 = 5;
+    Seq1 seq1 = 4;
 
     message Seq1 {
-      CommaKeyword comma_keyword = 1;
-
-      IndexedColumn indexed_column = 2;
-    }
-
-    message Seq2 {
       WhereKeyword where_keyword = 1;
 
       Expr expr = 2;
