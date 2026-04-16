@@ -260,6 +260,71 @@ func TestServerQuery_TypedTwoStmtSemicolonSeparator(t *testing.T) {
 	}
 }
 
+func TestServerQuery_TypedInsertValuesTwoRows(t *testing.T) {
+	// Typed INSERT INTO stress_ins (a, b) VALUES ('hello','world'),
+	// ('foo','bar') — exercises three separator/prefix paths in one
+	// statement: the column-name list, the first values tuple expr
+	// list, and the repeated CommaLeftParenthesis tuple (each of which
+	// carries its own inner expr list). Setup and verification use raw
+	// SQL so the typed INSERT is the only subject under test.
+	client := startInProc(t)
+	ctx := context.Background()
+
+	if _, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "CREATE TABLE stress_ins (a TEXT, b TEXT);",
+		},
+	}); err != nil {
+		t.Fatalf("setup CREATE: %v", err)
+	}
+	t.Cleanup(func() {
+		_, _ = client.Query(ctx, &sqlitepb.QueryRequest{
+			Body: &sqlitepb.QueryRequest_Sql{Sql: "DROP TABLE stress_ins;"},
+		})
+	})
+
+	resp, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Stmts{
+			Stmts: &sqlitepb.SqlStmtList{
+				SqlStmt: []*sqlitepb.SqlStmt{{
+					Alt1: &sqlitepb.SqlStmt_Alt1{
+						Value: &sqlitepb.SqlStmt_Alt1_InsertStmt{
+							InsertStmt: insertTwoRows(),
+						},
+					},
+				}},
+			},
+		},
+	})
+	if err != nil {
+		t.Fatalf("typed INSERT: %v", err)
+	}
+	if len(resp.GetColumn()) != 0 || len(resp.GetRow()) != 0 {
+		t.Errorf("INSERT should be empty, got cols=%v rows=%d",
+			resp.GetColumn(), len(resp.GetRow()))
+	}
+
+	check, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "SELECT a, b FROM stress_ins ORDER BY a;",
+		},
+	})
+	if err != nil {
+		t.Fatalf("verify SELECT: %v", err)
+	}
+	if n := len(check.GetRow()); n != 2 {
+		t.Fatalf("expected 2 rows, got %d", n)
+	}
+	r0 := check.GetRow()[0].GetCell()
+	r1 := check.GetRow()[1].GetCell()
+	if !eq(r0, []string{"foo", "bar"}) {
+		t.Errorf("row 0: got %v, want [foo bar]", r0)
+	}
+	if !eq(r1, []string{"hello", "world"}) {
+		t.Errorf("row 1: got %v, want [hello world]", r1)
+	}
+}
+
 func TestServerQuery_EmptyBody(t *testing.T) {
 	client := startInProc(t)
 

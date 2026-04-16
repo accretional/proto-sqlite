@@ -78,6 +78,80 @@ func TestRender_SqlStmtListSemicolonSeparator(t *testing.T) {
 	}
 }
 
+// strLiteralExpr wraps a raw SQL string-literal token (quotes included)
+// in the Expr → LiteralValue → StringLiteral chain. The StringLiteral's
+// scalar `value` is emitted verbatim by the renderer, so callers must
+// supply the surrounding single quotes.
+func strLiteralExpr(tok string) *sqlitepb.Expr {
+	return &sqlitepb.Expr{
+		Value: &sqlitepb.Expr_LiteralValue{
+			LiteralValue: &sqlitepb.LiteralValue{
+				Value: &sqlitepb.LiteralValue_StringLiteral{
+					StringLiteral: &sqlitepb.StringLiteral{Value: tok},
+				},
+			},
+		},
+	}
+}
+
+// insertTwoRows builds:
+//
+//	INSERT INTO stress_ins (a, b) VALUES ('hello', 'world'), ('foo', 'bar')
+//
+// This shape touches four distinct separator/prefix paths at once:
+//   - ","  in the column-name list (InsertStmt.LeftParenthesis.column_name)
+//   - "VALUES (" prefix on InsertStmt.Alt2.ValuesLeftParenthesis
+//   - ","  between exprs inside the first values tuple
+//   - ", (" prefix on each CommaLeftParenthesis tuple, plus ","
+//     between its inner exprs
+func insertTwoRows() *sqlitepb.InsertStmt {
+	return &sqlitepb.InsertStmt{
+		Alt1: &sqlitepb.InsertStmt_Alt1{
+			Value: &sqlitepb.InsertStmt_Alt1_InsertKeyword{
+				InsertKeyword: &sqlitepb.InsertKeyword{},
+			},
+		},
+		IntoKeyword: &sqlitepb.IntoKeyword{},
+		TableName:   &sqlitepb.TableName{Name: &sqlitepb.Name{Value: "stress_ins"}},
+		LeftParenthesis: &sqlitepb.InsertStmt_LeftParenthesis{
+			ColumnName: []*sqlitepb.ColumnName{
+				{Name: &sqlitepb.Name{Value: "a"}},
+				{Name: &sqlitepb.Name{Value: "b"}},
+			},
+			RightParenthesisKeyword: &sqlitepb.RightParenthesisKeyword{},
+		},
+		Alt2: &sqlitepb.InsertStmt_Alt2{
+			Value: &sqlitepb.InsertStmt_Alt2_ValuesLeftParenthesis_{
+				ValuesLeftParenthesis: &sqlitepb.InsertStmt_Alt2_ValuesLeftParenthesis{
+					Expr: []*sqlitepb.Expr{
+						strLiteralExpr("'hello'"),
+						strLiteralExpr("'world'"),
+					},
+					RightParenthesisKeyword: &sqlitepb.RightParenthesisKeyword{},
+					CommaLeftParenthesis: []*sqlitepb.InsertStmt_Alt2_ValuesLeftParenthesis_CommaLeftParenthesis{{
+						Expr: []*sqlitepb.Expr{
+							strLiteralExpr("'foo'"),
+							strLiteralExpr("'bar'"),
+						},
+						RightParenthesisKeyword: &sqlitepb.RightParenthesisKeyword{},
+					}},
+				},
+			},
+		},
+	}
+}
+
+func TestRender_InsertValuesTwoRows(t *testing.T) {
+	got, err := RenderSQL(insertTwoRows())
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := "INSERT INTO stress_ins (a, b) VALUES ('hello', 'world'), ('foo', 'bar')"
+	if got != want {
+		t.Errorf("\n got  %q\n want %q", got, want)
+	}
+}
+
 func TestRender_CreateTableTwoColumns(t *testing.T) {
 	stmt := &sqlitepb.CreateTableStmt{
 		TableKeyword: &sqlitepb.TableKeyword{},
