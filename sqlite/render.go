@@ -43,7 +43,11 @@ func renderMessage(m protoreflect.Message, toks *[]string) error {
 		val := m.Get(fd)
 		if fd.IsList() {
 			list := val.List()
+			sep := sqlitepb.FieldSeparator[fqn+"."+string(fd.Name())]
 			for j := 0; j < list.Len(); j++ {
+				if j > 0 && sep != "" {
+					*toks = append(*toks, sep)
+				}
 				if err := renderValue(fd, list.Get(j), toks); err != nil {
 					return err
 				}

@@ -39,10 +39,6 @@ func TestRender_CreateTableSingleColumn(t *testing.T) {
 }
 
 func TestRender_CreateTableTwoColumns(t *testing.T) {
-	t.Skip("comma-separator gap: CollapseCommaList drops the ',' terminal " +
-		"when rewriting 'X (, X)*' → 'repeated X', so the renderer emits " +
-		"space-separated values. Fix: record separator metadata during the " +
-		"collapse and generate a MessageSeparator map alongside MessagePrefix.")
 	stmt := &sqlitepb.CreateTableStmt{
 		TableKeyword: &sqlitepb.TableKeyword{},
 		TableName:    &sqlitepb.TableName{Name: &sqlitepb.Name{Value: "foo"}},
