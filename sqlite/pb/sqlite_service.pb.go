@@ -21,6 +21,139 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+// Value is a typed SQL parameter. Use in QueryRequest.param for
+// positional ? binding. Named parameters are out of scope.
+type Value struct {
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// Types that are valid to be assigned to V:
+	//
+	//	*Value_Text
+	//	*Value_Integer
+	//	*Value_Real
+	//	*Value_Blob
+	//	*Value_Null
+	V             isValue_V `protobuf_oneof:"v"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Value) Reset() {
+	*x = Value{}
+	mi := &file_sqlite_service_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Value) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Value) ProtoMessage() {}
+
+func (x *Value) ProtoReflect() protoreflect.Message {
+	mi := &file_sqlite_service_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Value.ProtoReflect.Descriptor instead.
+func (*Value) Descriptor() ([]byte, []int) {
+	return file_sqlite_service_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Value) GetV() isValue_V {
+	if x != nil {
+		return x.V
+	}
+	return nil
+}
+
+func (x *Value) GetText() string {
+	if x != nil {
+		if x, ok := x.V.(*Value_Text); ok {
+			return x.Text
+		}
+	}
+	return ""
+}
+
+func (x *Value) GetInteger() int64 {
+	if x != nil {
+		if x, ok := x.V.(*Value_Integer); ok {
+			return x.Integer
+		}
+	}
+	return 0
+}
+
+func (x *Value) GetReal() float64 {
+	if x != nil {
+		if x, ok := x.V.(*Value_Real); ok {
+			return x.Real
+		}
+	}
+	return 0
+}
+
+func (x *Value) GetBlob() []byte {
+	if x != nil {
+		if x, ok := x.V.(*Value_Blob); ok {
+			return x.Blob
+		}
+	}
+	return nil
+}
+
+func (x *Value) GetNull() bool {
+	if x != nil {
+		if x, ok := x.V.(*Value_Null); ok {
+			return x.Null
+		}
+	}
+	return false
+}
+
+type isValue_V interface {
+	isValue_V()
+}
+
+type Value_Text struct {
+	Text string `protobuf:"bytes,1,opt,name=text,proto3,oneof"`
+}
+
+type Value_Integer struct {
+	Integer int64 `protobuf:"varint,2,opt,name=integer,proto3,oneof"`
+}
+
+type Value_Real struct {
+	Real float64 `protobuf:"fixed64,3,opt,name=real,proto3,oneof"`
+}
+
+type Value_Blob struct {
+	Blob []byte `protobuf:"bytes,4,opt,name=blob,proto3,oneof"`
+}
+
+type Value_Null struct {
+	// null: set true to pass SQL NULL. false is not a valid state.
+	Null bool `protobuf:"varint,5,opt,name=null,proto3,oneof"`
+}
+
+func (*Value_Text) isValue_V() {}
+
+func (*Value_Integer) isValue_V() {}
+
+func (*Value_Real) isValue_V() {}
+
+func (*Value_Blob) isValue_V() {}
+
+func (*Value_Null) isValue_V() {}
+
 type QueryRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// Optional Unix Domain Socket path to a running sqlited daemon. When
@@ -40,14 +173,22 @@ type QueryRequest struct {
 	// trusted callers only; no server-side allowlist is enforced.
 	// Ignored when socket_uri is set (UDS daemons have a fixed db at
 	// startup via --db).
-	DbPath        string `protobuf:"bytes,4,opt,name=db_path,json=dbPath,proto3" json:"db_path,omitempty"`
+	DbPath string `protobuf:"bytes,4,opt,name=db_path,json=dbPath,proto3" json:"db_path,omitempty"`
+	// Positional parameters bound to ? placeholders in the rendered SQL,
+	// left-to-right. Substitution happens server-side before execution,
+	// so the UDS daemon receives already-bound SQL. Named parameters
+	// (:name, @name, $name) are out of scope — positional ? only.
+	// Transactions (BEGIN;...;COMMIT;) within a single Query call work
+	// because the entire payload goes to one sqlite3 invocation.
+	// Cross-call sessions are not supported.
+	Param         []*Value `protobuf:"bytes,5,rep,name=param,proto3" json:"param,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *QueryRequest) Reset() {
 	*x = QueryRequest{}
-	mi := &file_sqlite_service_proto_msgTypes[0]
+	mi := &file_sqlite_service_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -59,7 +200,7 @@ func (x *QueryRequest) String() string {
 func (*QueryRequest) ProtoMessage() {}
 
 func (x *QueryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_service_proto_msgTypes[0]
+	mi := &file_sqlite_service_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -72,7 +213,7 @@ func (x *QueryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRequest.ProtoReflect.Descriptor instead.
 func (*QueryRequest) Descriptor() ([]byte, []int) {
-	return file_sqlite_service_proto_rawDescGZIP(), []int{0}
+	return file_sqlite_service_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *QueryRequest) GetSocketUri() string {
@@ -114,6 +255,13 @@ func (x *QueryRequest) GetDbPath() string {
 	return ""
 }
 
+func (x *QueryRequest) GetParam() []*Value {
+	if x != nil {
+		return x.Param
+	}
+	return nil
+}
+
 type isQueryRequest_Body interface {
 	isQueryRequest_Body()
 }
@@ -144,7 +292,7 @@ type QueryResponse struct {
 
 func (x *QueryResponse) Reset() {
 	*x = QueryResponse{}
-	mi := &file_sqlite_service_proto_msgTypes[1]
+	mi := &file_sqlite_service_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -156,7 +304,7 @@ func (x *QueryResponse) String() string {
 func (*QueryResponse) ProtoMessage() {}
 
 func (x *QueryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_service_proto_msgTypes[1]
+	mi := &file_sqlite_service_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -169,7 +317,7 @@ func (x *QueryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryResponse.ProtoReflect.Descriptor instead.
 func (*QueryResponse) Descriptor() ([]byte, []int) {
-	return file_sqlite_service_proto_rawDescGZIP(), []int{1}
+	return file_sqlite_service_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *QueryResponse) GetColumn() []string {
@@ -198,7 +346,7 @@ type Row struct {
 
 func (x *Row) Reset() {
 	*x = Row{}
-	mi := &file_sqlite_service_proto_msgTypes[2]
+	mi := &file_sqlite_service_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -210,7 +358,7 @@ func (x *Row) String() string {
 func (*Row) ProtoMessage() {}
 
 func (x *Row) ProtoReflect() protoreflect.Message {
-	mi := &file_sqlite_service_proto_msgTypes[2]
+	mi := &file_sqlite_service_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -223,7 +371,7 @@ func (x *Row) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Row.ProtoReflect.Descriptor instead.
 func (*Row) Descriptor() ([]byte, []int) {
-	return file_sqlite_service_proto_rawDescGZIP(), []int{2}
+	return file_sqlite_service_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Row) GetCell() [][]byte {
@@ -244,13 +392,21 @@ var File_sqlite_service_proto protoreflect.FileDescriptor
 
 const file_sqlite_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"\x8f\x01\n" +
+	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"\x80\x01\n" +
+	"\x05Value\x12\x14\n" +
+	"\x04text\x18\x01 \x01(\tH\x00R\x04text\x12\x1a\n" +
+	"\ainteger\x18\x02 \x01(\x03H\x00R\ainteger\x12\x14\n" +
+	"\x04real\x18\x03 \x01(\x01H\x00R\x04real\x12\x14\n" +
+	"\x04blob\x18\x04 \x01(\fH\x00R\x04blob\x12\x14\n" +
+	"\x04null\x18\x05 \x01(\bH\x00R\x04nullB\x03\n" +
+	"\x01v\"\xb4\x01\n" +
 	"\fQueryRequest\x12\x1d\n" +
 	"\n" +
 	"socket_uri\x18\x01 \x01(\tR\tsocketUri\x12\x12\n" +
 	"\x03sql\x18\x02 \x01(\tH\x00R\x03sql\x12+\n" +
 	"\x05stmts\x18\x03 \x01(\v2\x13.sqlite.SqlStmtListH\x00R\x05stmts\x12\x17\n" +
-	"\adb_path\x18\x04 \x01(\tR\x06dbPathB\x06\n" +
+	"\adb_path\x18\x04 \x01(\tR\x06dbPath\x12#\n" +
+	"\x05param\x18\x05 \x03(\v2\r.sqlite.ValueR\x05paramB\x06\n" +
 	"\x04body\"F\n" +
 	"\rQueryResponse\x12\x16\n" +
 	"\x06column\x18\x01 \x03(\tR\x06column\x12\x1d\n" +
@@ -273,23 +429,25 @@ func file_sqlite_service_proto_rawDescGZIP() []byte {
 	return file_sqlite_service_proto_rawDescData
 }
 
-var file_sqlite_service_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_sqlite_service_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_sqlite_service_proto_goTypes = []any{
-	(*QueryRequest)(nil),  // 0: sqlite.QueryRequest
-	(*QueryResponse)(nil), // 1: sqlite.QueryResponse
-	(*Row)(nil),           // 2: sqlite.Row
-	(*SqlStmtList)(nil),   // 3: sqlite.SqlStmtList
+	(*Value)(nil),         // 0: sqlite.Value
+	(*QueryRequest)(nil),  // 1: sqlite.QueryRequest
+	(*QueryResponse)(nil), // 2: sqlite.QueryResponse
+	(*Row)(nil),           // 3: sqlite.Row
+	(*SqlStmtList)(nil),   // 4: sqlite.SqlStmtList
 }
 var file_sqlite_service_proto_depIdxs = []int32{
-	3, // 0: sqlite.QueryRequest.stmts:type_name -> sqlite.SqlStmtList
-	2, // 1: sqlite.QueryResponse.row:type_name -> sqlite.Row
-	0, // 2: sqlite.Sqlite.Query:input_type -> sqlite.QueryRequest
-	1, // 3: sqlite.Sqlite.Query:output_type -> sqlite.QueryResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	4, // 0: sqlite.QueryRequest.stmts:type_name -> sqlite.SqlStmtList
+	0, // 1: sqlite.QueryRequest.param:type_name -> sqlite.Value
+	3, // 2: sqlite.QueryResponse.row:type_name -> sqlite.Row
+	1, // 3: sqlite.Sqlite.Query:input_type -> sqlite.QueryRequest
+	2, // 4: sqlite.Sqlite.Query:output_type -> sqlite.QueryResponse
+	4, // [4:5] is the sub-list for method output_type
+	3, // [3:4] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_sqlite_service_proto_init() }
@@ -299,6 +457,13 @@ func file_sqlite_service_proto_init() {
 	}
 	file_sqlite_proto_init()
 	file_sqlite_service_proto_msgTypes[0].OneofWrappers = []any{
+		(*Value_Text)(nil),
+		(*Value_Integer)(nil),
+		(*Value_Real)(nil),
+		(*Value_Blob)(nil),
+		(*Value_Null)(nil),
+	}
+	file_sqlite_service_proto_msgTypes[1].OneofWrappers = []any{
 		(*QueryRequest_Sql)(nil),
 		(*QueryRequest_Stmts)(nil),
 	}
@@ -308,7 +473,7 @@ func file_sqlite_service_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sqlite_service_proto_rawDesc), len(file_sqlite_service_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

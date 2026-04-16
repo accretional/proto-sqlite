@@ -13,6 +13,19 @@ service Sqlite {
   rpc Query(QueryRequest) returns (QueryResponse);
 }
 
+// Value is a typed SQL parameter. Use in QueryRequest.param for
+// positional ? binding. Named parameters are out of scope.
+message Value {
+  oneof v {
+    string text    = 1;
+    int64  integer = 2;
+    double real    = 3;
+    bytes  blob    = 4;
+    // null: set true to pass SQL NULL. false is not a valid state.
+    bool   null    = 5;
+  }
+}
+
 message QueryRequest {
   // Optional Unix Domain Socket path to a running sqlited daemon. When
   // non-empty, the server forwards the rendered SQL over this UDS and
@@ -37,6 +50,15 @@ message QueryRequest {
   // Ignored when socket_uri is set (UDS daemons have a fixed db at
   // startup via --db).
   string db_path = 4;
+
+  // Positional parameters bound to ? placeholders in the rendered SQL,
+  // left-to-right. Substitution happens server-side before execution,
+  // so the UDS daemon receives already-bound SQL. Named parameters
+  // (:name, @name, $name) are out of scope — positional ? only.
+  // Transactions (BEGIN;...;COMMIT;) within a single Query call work
+  // because the entire payload goes to one sqlite3 invocation.
+  // Cross-call sessions are not supported.
+  repeated Value param = 5;
 }
 
 message QueryResponse {

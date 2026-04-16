@@ -36,6 +36,14 @@ func (s *Server) Query(ctx context.Context, req *sqlitepb.QueryRequest) (*sqlite
 		return nil, status.Error(codes.InvalidArgument, "QueryRequest.body is required")
 	}
 
+	if params := req.GetParam(); len(params) > 0 {
+		var err error
+		sql, err = bindParams(sql, params)
+		if err != nil {
+			return nil, status.Errorf(codes.InvalidArgument, "bind params: %v", err)
+		}
+	}
+
 	if uri := req.GetSocketUri(); uri != "" {
 		out, err := queryOverUDS(ctx, uri, sql)
 		if err != nil {

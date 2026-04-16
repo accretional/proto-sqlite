@@ -365,6 +365,40 @@ func TestServerQuery_DbPath(t *testing.T) {
 	}
 }
 
+func TestServerQuery_ParamBinding(t *testing.T) {
+	// End-to-end: param binding substitutes ? placeholders before exec.
+	// Uses the embedded example db (widgets table: id, name, qty).
+	client := startInProc(t)
+	ctx := context.Background()
+
+	// text param filters by name
+	resp, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body:  &sqlitepb.QueryRequest_Sql{Sql: "SELECT id, qty FROM widgets WHERE name = ?;"},
+		Param: []*sqlitepb.Value{{V: &sqlitepb.Value_Text{Text: "gizmo"}}},
+	})
+	if err != nil {
+		t.Fatalf("Query: %v", err)
+	}
+	if n := len(resp.GetRow()); n != 1 {
+		t.Fatalf("rows: got %d, want 1", n)
+	}
+	if got := resp.GetRow()[0].GetCell(); !eqCells(got, "2", "7") {
+		t.Errorf("row: got %v, want [2 7]", got)
+	}
+
+	// integer param filters by qty; quote-inside-text param is safe
+	resp2, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body:  &sqlitepb.QueryRequest_Sql{Sql: "SELECT name FROM widgets WHERE qty > ?;"},
+		Param: []*sqlitepb.Value{{V: &sqlitepb.Value_Integer{Integer: 5}}},
+	})
+	if err != nil {
+		t.Fatalf("Query: %v", err)
+	}
+	if n := len(resp2.GetRow()); n != 2 {
+		t.Fatalf("rows: got %d, want 2", n)
+	}
+}
+
 func TestServerQuery_EmptyBody(t *testing.T) {
 	client := startInProc(t)
 
