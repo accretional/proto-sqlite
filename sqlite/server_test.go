@@ -3,6 +3,7 @@ package sqliteembed
 import (
 	"context"
 	"net"
+	"os/exec"
 	"testing"
 
 	"google.golang.org/grpc"
@@ -322,6 +323,45 @@ func TestServerQuery_TypedInsertValuesTwoRows(t *testing.T) {
 	}
 	if !eq(r1, []string{"hello", "world"}) {
 		t.Errorf("row 1: got %v, want [hello world]", r1)
+	}
+}
+
+func TestServerQuery_DbPath(t *testing.T) {
+	// Create a temp db with a known schema distinct from the embedded
+	// example.db, issue a query with db_path set, and verify the right
+	// db was queried.
+	bin, _, err := ResolveBackend("", "")
+	if err != nil {
+		t.Fatalf("resolve backend: %v", err)
+	}
+	dir := t.TempDir()
+	dbPath := dir + "/custom.db"
+	setup := "CREATE TABLE things (label TEXT); INSERT INTO things VALUES ('alpha'),('beta');"
+	if out, err2 := exec.CommandContext(context.Background(), bin, dbPath, setup).CombinedOutput(); err2 != nil {
+		t.Fatalf("setup custom db: %v (out=%q)", err2, out)
+	}
+
+	client := startInProc(t)
+	resp, err := client.Query(context.Background(), &sqlitepb.QueryRequest{
+		DbPath: dbPath,
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "SELECT label FROM things ORDER BY label;",
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query: %v", err)
+	}
+	if got, want := resp.GetColumn(), []string{"label"}; !eq(got, want) {
+		t.Errorf("columns: got %v, want %v", got, want)
+	}
+	if n := len(resp.GetRow()); n != 2 {
+		t.Fatalf("rows: got %d, want 2", n)
+	}
+	if got := resp.GetRow()[0].GetCell(); !eq(got, []string{"alpha"}) {
+		t.Errorf("row 0: got %v, want [alpha]", got)
+	}
+	if got := resp.GetRow()[1].GetCell(); !eq(got, []string{"beta"}) {
+		t.Errorf("row 1: got %v, want [beta]", got)
 	}
 }
 

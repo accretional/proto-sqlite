@@ -45,9 +45,9 @@ func (s *Server) Query(ctx context.Context, req *sqlitepb.QueryRequest) (*sqlite
 		return parseCSV(out)
 	}
 
-	bin, db, err := extract()
+	bin, db, err := ResolveBackend("", req.GetDbPath())
 	if err != nil {
-		return nil, status.Errorf(codes.Internal, "extract embedded sqlite: %v", err)
+		return nil, status.Errorf(codes.Internal, "resolve sqlite backend: %v", err)
 	}
 	out, err := exec.CommandContext(ctx, bin, "-csv", "-header", db, sql).CombinedOutput()
 	if err != nil {

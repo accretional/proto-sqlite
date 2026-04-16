@@ -34,7 +34,13 @@ type QueryRequest struct {
 	//
 	//	*QueryRequest_Sql
 	//	*QueryRequest_Stmts
-	Body          isQueryRequest_Body `protobuf_oneof:"body"`
+	Body isQueryRequest_Body `protobuf_oneof:"body"`
+	// Optional path to a SQLite database file. Empty string uses the
+	// embedded example.db. Accepts arbitrary filesystem paths — for
+	// trusted callers only; no server-side allowlist is enforced.
+	// Ignored when socket_uri is set (UDS daemons have a fixed db at
+	// startup via --db).
+	DbPath        string `protobuf:"bytes,4,opt,name=db_path,json=dbPath,proto3" json:"db_path,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -99,6 +105,13 @@ func (x *QueryRequest) GetStmts() *SqlStmtList {
 		}
 	}
 	return nil
+}
+
+func (x *QueryRequest) GetDbPath() string {
+	if x != nil {
+		return x.DbPath
+	}
+	return ""
 }
 
 type isQueryRequest_Body interface {
@@ -221,12 +234,13 @@ var File_sqlite_service_proto protoreflect.FileDescriptor
 
 const file_sqlite_service_proto_rawDesc = "" +
 	"\n" +
-	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"v\n" +
+	"\x14sqlite_service.proto\x12\x06sqlite\x1a\fsqlite.proto\"\x8f\x01\n" +
 	"\fQueryRequest\x12\x1d\n" +
 	"\n" +
 	"socket_uri\x18\x01 \x01(\tR\tsocketUri\x12\x12\n" +
 	"\x03sql\x18\x02 \x01(\tH\x00R\x03sql\x12+\n" +
-	"\x05stmts\x18\x03 \x01(\v2\x13.sqlite.SqlStmtListH\x00R\x05stmtsB\x06\n" +
+	"\x05stmts\x18\x03 \x01(\v2\x13.sqlite.SqlStmtListH\x00R\x05stmts\x12\x17\n" +
+	"\adb_path\x18\x04 \x01(\tR\x06dbPathB\x06\n" +
 	"\x04body\"F\n" +
 	"\rQueryResponse\x12\x16\n" +
 	"\x06column\x18\x01 \x03(\tR\x06column\x12\x1d\n" +

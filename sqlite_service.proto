@@ -30,6 +30,13 @@ message QueryRequest {
     // printer lands.
     SqlStmtList stmts = 3;
   }
+
+  // Optional path to a SQLite database file. Empty string uses the
+  // embedded example.db. Accepts arbitrary filesystem paths — for
+  // trusted callers only; no server-side allowlist is enforced.
+  // Ignored when socket_uri is set (UDS daemons have a fixed db at
+  // startup via --db).
+  string db_path = 4;
 }
 
 message QueryResponse {
