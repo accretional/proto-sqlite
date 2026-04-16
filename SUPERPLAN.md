@@ -4,46 +4,92 @@ Cross-repo plan for eliminating hand-written stmt protos in proto-sqlite by
 mechanically deriving them from the EBNF grammar. Spans four repos:
 
 - **proto-sqlite** (this repo) — consumer
-- **gluon** (`/Volumes/wd_office_1/repos/gluon`) — hosts `Metaparser` service
-- **proto-expr** (`github.com/accretional/proto-expr`) — S-expr body encoding
-- **proto-type** (`github.com/accretional/proto-type`) — `Typer.Resolve`
+- **gluon** (`/Volumes/wd_office_1/repos/gluon`) — hosts `Metaparser`,
+  `Transformer`, and the v2 descriptor protos
+- **proto-expr** (`github.com/accretional/proto-expr`) — hosts the
+  `Protosh.Run` scripting runtime and the `Data` / `ScriptDescriptor` types
+- **proto-type** (`github.com/accretional/proto-type`) — hosts `Typer.Resolve`
 
 ## Vision
 
+The end-to-end pipeline is a sequence of gRPC calls threaded together
+by proto-expr's Protosh runtime:
+
 ```
-                                                       ┌─► keywords (dedup'd,
-                                                       │    _kw-suffixed on name
-                                                       │    collisions)
-sqlite.ebnf ─► lexkit.Parse ─► GrammarDescriptor ──────┤
-                                (with Expression body) │
-                                          │            └─► one DescriptorProto per
-                                          │                 production (alt→oneof,
-                                          ▼                 rep→repeated, opt→optional,
-                                   Metaparser.Proto          nonterm→typed field,
-                                          │                 Data.type resolved via Typer)
-                                          ▼
-                                FileDescriptorProto ─► protoc ─► Go types
-                                                                  │
-                                                                  ▼
-                                                         Sqlite.Query gRPC server
+sqlite.ebnf
+  │
+  ▼                                          ┌──────────────────────────┐
+Metaparser.ReadBytes → TextDescriptor        │  Metaparser.Transform    │
+Metaparser.ReadString → DocumentDescriptor   │  runs a ScriptDescriptor │
+Metaparser.EBNF → GrammarDescriptor          │  over the ASTDescriptor: │
+Metaparser.CST → ASTDescriptor ──────────────►  • Filter / Replace via  │
+                                             │    astkit://<Method>     │
+                                             │  • Resolve proto types   │
+                                             │    via typer://Resolve   │
+                                             │  • Lower to proto via    │
+                                             │    protoc://Compile      │
+                                             └──────────────┬───────────┘
+                                                            │
+                                                            ▼
+                                                   FileDescriptorProto
+                                                            │
+                                                 protoc → Go types
+                                                            │
+                                                            ▼
+                                                Sqlite.Query gRPC server
 ```
 
 The Sqlite service takes a typed `SqlStmtList` over the wire, serializes it
 back to SQL text, shells out to the embedded `sqlite3`, returns rows.
 
-## Data model (cross-repo)
+## Architecture (v2)
 
-### proto-expr — already exists
+### proto-expr — the driver
 
-```proto
-message Data { string type = 1; oneof encoding { string text = 2; bytes binary = 3; } }
-message Expression {
-  message Cell { Expression lhs = 1; Expression rhs = 2; }
-  oneof content { string str = 1; string uri = 2; Data data = 3; Cell cell = 4; }
-}
-```
+Provides `Data`, `ScriptDescriptor`, `StatementDescriptor`,
+`DispatchDescriptor`, and the `Protosh.Run` runtime. A script is a
+sequence of statements over a register map: Import, const/mutable
+Variable, Dispatch, Expression (not yet implemented).
 
-S-expr encoding conventions for EBNF RHS:
+Dispatch URIs are exact-match and pluggable — each host registers
+handlers before calling `Run`. The convention for per-dispatch params
+is to pack them into `Data.type` as `k=v,k2=v2`; the runtime preserves
+caller-supplied `Data.type` across register resolution so the script
+can pass small parameters without an extra plumbing layer. See
+`proto-expr/README.md` for the detailed contract.
+
+### gluon v2 — Metaparser + astkit
+
+- `v2/metaparser` exposes 5 RPCs: `ReadBytes`, `ReadString`, `EBNF`,
+  `CST`, `Transform`.
+- `Transform(ASTDescriptor, script_textproto)` embeds Protosh as a
+  library. It pre-populates the `ast` register with the request's
+  `ASTNode` (bare, not the full descriptor) and wires the Transformer
+  service under URIs of the form `astkit://<Method>`. See
+  `v2/metaparser/transform.go`.
+- `v2/astkit` is a language-agnostic set of `ASTNode` tree operations
+  (Walk, Find, FindAll, Count, ReplaceKind, ReplaceValue, Filter) with
+  both a pure-Go API and a gRPC `Transformer` service. It's the first
+  set of handlers the Transform RPC wires in.
+
+### proto-type — typed lookups
+
+`Typer.Resolve(Type{name}) → DescriptorProto` against a
+`FileDescriptorSet` registry. Used by the (TBD) proto-lowering
+handler to embed typed fields when the grammar references a non-local
+type.
+
+### proto-sqlite — consumer
+
+Calls `Metaparser.ReadString` → `EBNF` → `CST` → `Transform` on
+`sqlite.ebnf` + a lowering script, writes the resulting
+`FileDescriptorProto` to `protos/sqlite_stmts.proto`, runs protoc,
+uses the generated types in `sqlite/server.go`.
+
+## S-expression conventions (EBNF RHS)
+
+Used inside `ProductionDescriptor.body` (proto-expr `Expression`):
+
 - `("seq" . args)` — concatenation
 - `("alt" . args)` — alternation → `oneof`
 - `("opt" . body)` — `[x]` → optional / singular presence
@@ -52,54 +98,6 @@ S-expr encoding conventions for EBNF RHS:
 - `("nonterm" . "savepoint_name")` — identifier → field of that message type
 
 `Cell` is right-nested: `(a b c)` = `Cell{a, Cell{b, Cell{c, nil}}}`.
-
-### proto-type — needs work
-
-Today `typer.proto` references `DescriptorProto` without an import and
-`Type` is just `string name`. We'll:
-1. Add `import "google/protobuf/descriptor.proto";` to typer.proto.
-2. Keep `Type { string name = 1; }` (sufficient for v1 — a fully-qualified
-   name is enough to look up a DescriptorProto in a registry).
-3. Implement a Go server (`proto-type/cmd/typer`) that resolves names
-   against a `FileDescriptorSet` registry. Seed with well-known types
-   (`google.protobuf.*`) and let callers register additional sets.
-
-### gluon — two changes
-
-1. **Extend `ProductionDescriptor`** (`grammar.proto`):
-   ```proto
-   import "github.com/accretional/proto-expr/expression.proto";
-   message ProductionDescriptor {
-     string name = 1;
-     TokenDescriptor token = 2;          // keep; raw RHS string
-     proto_expr.Expression body = 3;     // NEW: structured RHS
-   }
-   ```
-   Populate `body` inside `lexkit.Parse` by running the same parser that
-   builds the internal `lexkit.Expr` tree, then walking that tree into
-   the S-expr encoding above. Keep `token` for backcompat.
-
-2. **Add Metaparser service** (new file `metaparser.proto` in gluon):
-   ```proto
-   import "google/protobuf/descriptor.proto";
-   service Metaparser {
-     rpc Proto(LanguageDescriptor) returns (google.protobuf.FileDescriptorProto);
-   }
-   ```
-   Go implementation under `gluon/metaparser/`:
-   - For each production, emit `DescriptorProto{name: PascalCase(prod.name)}`.
-   - Walk `prod.body`:
-     - `seq` children become sequential fields (field numbers 1..N).
-     - `alt` becomes a `oneof` with one field per variant.
-     - `rep` sets `LABEL_REPEATED` on the wrapped field.
-     - `opt` in proto3 is implicit (all singular fields are optional); we
-       still set `proto3_optional = true` for clarity on scalar fields.
-     - `term "FOO"` → refer to a dedup'd keyword message `message FooKw {}`.
-     - `nonterm "foo"` → field typed `.sqlite.Foo`.
-     - `data` → call `Typer.Resolve(Data.type)` to get the referenced
-       DescriptorProto; embed by name.
-   - Emit the union `message SqlStmt { oneof stmt { ... } }` from the
-     top-level `sql_stmt` alternation.
 
 ## Name-collision rules
 
@@ -111,24 +109,37 @@ Today `typer.proto` references `DescriptorProto` without an import and
 - Recursive productions (`expr`) are allowed directly — proto3 supports
   recursive message types natively.
 
-## Phases and ordering
+## Status
 
-1. **proto-type** — add import, implement Typer server + in-memory registry, unit tests.
-2. **proto-expr** — no changes; use as-is.
-3. **gluon** — extend `ProductionDescriptor`, write `Expr→Expression` serializer, add `metaparser.proto` + Go implementation, tests on the EBNF self-grammar.
-4. **proto-sqlite** — call Metaparser on the sqlite `LanguageDescriptor`, write result to `protos/sqlite_stmts.proto`, wire protoc into `build.sh`, use generated types in `sqlite/server.go`.
+- ✅ Screenshots, EBNF subset, gengrammar round-trip.
+- ✅ proto-type Typer service (task #10).
+- ✅ gluon `ProductionDescriptor.body` + v1 Metaparser (tasks #11, #12).
+- ✅ gluon v2 descriptor protos, ReadBytes/ReadString/EBNF/CST RPCs
+  (tasks #14–#18).
+- ✅ gluon v2 `astkit` package + Transformer service (tasks #19, #20).
+- ✅ proto-expr `Protosh.Run` scripting runtime (task #21).
+- ✅ gluon v2 `Metaparser.Transform` RPC wrapping Protosh.Run (task #22).
+- ⏳ The proto-lowering handler (grammar/AST → `FileDescriptorProto`).
+  Open question: does it live as a `protoc://Compile` handler inside
+  gluon v2's Transform wiring, or as its own standalone RPC? Either
+  way it replaces v1's `metaparser.Build`.
+- ⏳ Wire the v2 pipeline into proto-sqlite (task #13 was against v1;
+  will need to rewire once the lowering handler lands). Task #8 —
+  stmt protos + Sqlite.Query — is the consumer end.
 
 ## Risks / open questions
 
-- **Expr is currently internal to lexkit.** Exposing its shape in proto-expr form may leak implementation detail; acceptable since proto-expr is explicitly designed as a universal AST carrier.
-- **Recursive `expr` with 30+ alternation arms** produces a large oneof. Works; noisy. v1 acceptable.
-- **Field numbering stability**: Metaparser assigns 1..N in source order. Any edit to `sqlite.ebnf` can renumber fields. Acceptable while the grammar is under active development; before public release we'll need stable field-number assignments (probably a checked-in `.fieldmap` textproto).
-- **proto-type scope**: `Type{string name}` is minimal. If dynamic type resolution later needs versioning, parameters, or generics, Type grows. Not blocking.
-
-## Status (see task list for current state)
-
-- ✅ Screenshots, ebnf subset, gengrammar round-trip.
-- ⏳ SUPERPLAN (this doc).
-- ⏳ proto-type Typer.
-- ⏳ gluon ProductionDescriptor.body + Metaparser.
-- ⏳ proto-sqlite wiring.
+- **Where does the proto-lowering handler live?** Current leaning: a
+  new handler package in gluon (or a fresh `proto-compile` repo) that
+  registers under `protoc://Compile` inside `Transform`'s host wiring.
+  Keeps the Transform RPC the single entry point for proto-sqlite.
+- **Recursive `expr` with 30+ alternation arms** produces a large
+  oneof. Works; noisy. v1 acceptable.
+- **Field numbering stability**: lowering assigns 1..N in source
+  order. Any edit to `sqlite.ebnf` can renumber fields. Acceptable
+  while the grammar is under active development; before public
+  release we'll need stable assignments (probably a checked-in
+  `.fieldmap` textproto).
+- **proto-type scope**: `Type{string name}` is minimal. If dynamic
+  type resolution later needs versioning, parameters, or generics,
+  `Type` grows. Not blocking.
