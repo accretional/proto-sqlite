@@ -126,6 +126,72 @@ func TestServerQuery_TypedDropTableIfExists(t *testing.T) {
 	}
 }
 
+func TestServerQuery_TypedCreateTableTwoColumns(t *testing.T) {
+	// Typed SqlStmtList → rendered to "CREATE TABLE <name> (a TEXT, b
+	// INTEGER)" → executed against the example db. Verifies the
+	// separator-interleave path end-to-end: without it the rendered SQL
+	// would be "(a TEXT b INTEGER)" and sqlite3 would reject it.
+	client := startInProc(t)
+
+	ctx := context.Background()
+	resp, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Stmts{
+			Stmts: &sqlitepb.SqlStmtList{
+				SqlStmt: []*sqlitepb.SqlStmt{{
+					Alt1: &sqlitepb.SqlStmt_Alt1{
+						Value: &sqlitepb.SqlStmt_Alt1_CreateTableStmt{
+							CreateTableStmt: &sqlitepb.CreateTableStmt{
+								TableKeyword: &sqlitepb.TableKeyword{},
+								TableName:    &sqlitepb.TableName{Name: &sqlitepb.Name{Value: "typed_ct"}},
+								Alt2: &sqlitepb.CreateTableStmt_Alt2{
+									Value: &sqlitepb.CreateTableStmt_Alt2_LeftParenthesis_{
+										LeftParenthesis: &sqlitepb.CreateTableStmt_Alt2_LeftParenthesis{
+											ColumnDef: []*sqlitepb.ColumnDef{
+												{
+													ColumnName: &sqlitepb.ColumnName{Name: &sqlitepb.Name{Value: "a"}},
+													TypeName:   &sqlitepb.TypeName{Name: &sqlitepb.Name{Value: "TEXT"}},
+												},
+												{
+													ColumnName: &sqlitepb.ColumnName{Name: &sqlitepb.Name{Value: "b"}},
+													TypeName:   &sqlitepb.TypeName{Name: &sqlitepb.Name{Value: "INTEGER"}},
+												},
+											},
+											RightParenthesisKeyword: &sqlitepb.RightParenthesisKeyword{},
+										},
+									},
+								},
+							},
+						},
+					},
+				}},
+			},
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query CREATE TABLE: %v", err)
+	}
+	if len(resp.GetColumn()) != 0 || len(resp.GetRow()) != 0 {
+		t.Errorf("CREATE TABLE should be empty, got cols=%v rows=%d",
+			resp.GetColumn(), len(resp.GetRow()))
+	}
+
+	// Confirm via raw SQL that the table actually landed.
+	check, err := client.Query(ctx, &sqlitepb.QueryRequest{
+		Body: &sqlitepb.QueryRequest_Sql{
+			Sql: "SELECT name FROM sqlite_master WHERE type='table' AND name='typed_ct';",
+		},
+	})
+	if err != nil {
+		t.Fatalf("Query sqlite_master: %v", err)
+	}
+	if n := len(check.GetRow()); n != 1 {
+		t.Fatalf("expected 1 row for typed_ct, got %d", n)
+	}
+	if got := check.GetRow()[0].GetCell()[0]; got != "typed_ct" {
+		t.Errorf("name: got %q, want %q", got, "typed_ct")
+	}
+}
+
 func TestServerQuery_EmptyBody(t *testing.T) {
 	client := startInProc(t)
 
