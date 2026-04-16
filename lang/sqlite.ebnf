@@ -532,7 +532,10 @@ alias = name ;
 function_name = name ;
 error_message = string_literal ;
 
-numeric_literal = name ;
+numeric_literal = digit , { digit } ,
+  [ "." , { digit } ] ,
+  [ "E" , [ "+" | "-" ] , digit , { digit } ] ;
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 bind_parameter = "?" | ":" , name | "@" , name | "$" , name ;
 unary_operator = "-" | "+" | "~" | "NOT" ;
 binary_operator = "||" | "*" | "/" | "%" | "+" | "-"

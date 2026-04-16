@@ -47194,21 +47194,586 @@ productions: {
   name: "numeric_literal"
   token: {
     chars: {
-      ascii: LATIN_SMALL_LETTER_N
+      ascii: LATIN_SMALL_LETTER_D
     }
     chars: {
-      ascii: LATIN_SMALL_LETTER_A
+      ascii: LATIN_SMALL_LETTER_I
     }
     chars: {
-      ascii: LATIN_SMALL_LETTER_M
+      ascii: LATIN_SMALL_LETTER_G
     }
     chars: {
-      ascii: LATIN_SMALL_LETTER_E
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_T
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_D
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_G
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_T
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: LINE_FEED
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_SQUARE_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: FULL_STOP
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_D
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_G
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_T
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_SQUARE_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: LINE_FEED
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_SQUARE_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: LATIN_CAPITAL_LETTER_E
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_SQUARE_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: PLUS_SIGN
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: HYPHEN_MINUS
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_SQUARE_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_D
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_G
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_T
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: COMMA
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LEFT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_D
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_G
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_I
+    }
+    chars: {
+      ascii: LATIN_SMALL_LETTER_T
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_CURLY_BRACKET
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: RIGHT_SQUARE_BRACKET
     }
   }
   body: {
-    nonterminal: {
-      name: "name"
+    sequence: {
+      items: {
+        nonterminal: {
+          name: "digit"
+        }
+      }
+      items: {
+        repetition: {
+          body: {
+            nonterminal: {
+              name: "digit"
+            }
+          }
+        }
+      }
+      items: {
+        optional: {
+          body: {
+            sequence: {
+              items: {
+                terminal: {
+                  literal: "."
+                }
+              }
+              items: {
+                repetition: {
+                  body: {
+                    nonterminal: {
+                      name: "digit"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      items: {
+        optional: {
+          body: {
+            sequence: {
+              items: {
+                terminal: {
+                  literal: "E"
+                }
+              }
+              items: {
+                optional: {
+                  body: {
+                    alternation: {
+                      variants: {
+                        terminal: {
+                          literal: "+"
+                        }
+                      }
+                      variants: {
+                        terminal: {
+                          literal: "-"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              items: {
+                nonterminal: {
+                  name: "digit"
+                }
+              }
+              items: {
+                repetition: {
+                  body: {
+                    nonterminal: {
+                      name: "digit"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+productions: {
+  name: "digit"
+  token: {
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_ZERO
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_ONE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_TWO
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_THREE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_FOUR
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_FIVE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_SIX
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_SEVEN
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_EIGHT
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: VERTICAL_LINE
+    }
+    chars: {
+      ascii: SPACE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+    chars: {
+      ascii: DIGIT_NINE
+    }
+    chars: {
+      ascii: QUOTATION_MARK
+    }
+  }
+  body: {
+    alternation: {
+      variants: {
+        terminal: {
+          literal: "0"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "1"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "2"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "3"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "4"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "5"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "6"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "7"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "8"
+        }
+      }
+      variants: {
+        terminal: {
+          literal: "9"
+        }
+      }
     }
   }
 }

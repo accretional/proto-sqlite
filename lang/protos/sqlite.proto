@@ -3747,7 +3747,61 @@ message ErrorMessage {
 }
 
 message NumericLiteral {
-  Name name = 1;
+  Digit digit = 1;
+
+  repeated Digit digit_2 = 2;
+
+  Seq1 seq1 = 3;
+
+  Seq2 seq2 = 4;
+
+  message Seq1 {
+    FullStopKeyword full_stop_keyword = 1;
+
+    repeated Digit digit = 2;
+  }
+
+  message Seq2 {
+    EKeyword e_keyword = 1;
+
+    Alt1 alt1 = 2;
+
+    Digit digit = 3;
+
+    repeated Digit digit_2 = 4;
+
+    message Alt1 {
+      oneof value {
+        PlusSignKeyword plus_sign_keyword = 1;
+
+        HyphenMinusKeyword hyphen_minus_keyword = 2;
+      }
+    }
+  }
+}
+
+message Digit {
+  oneof value {
+    DigitZeroKeyword digit_zero_keyword = 1;
+
+    DigitOneKeyword digit_one_keyword = 2;
+
+    DigitTwoKeyword digit_two_keyword = 3;
+
+    DigitThreeKeyword digit_three_keyword = 4;
+
+    DigitFourKeyword digit_four_keyword = 5;
+
+    DigitFiveKeyword digit_five_keyword = 6;
+
+    DigitSixKeyword digit_six_keyword = 7;
+
+    DigitSevenKeyword digit_seven_keyword = 8;
+
+    DigitEightKeyword digit_eight_keyword = 9;
+
+    DigitNineKeyword digit_nine_keyword = 10;
+  }
 }
 
 message BindParameter {
@@ -4000,6 +4054,36 @@ message DescKeyword {
 message DetachKeyword {
 }
 
+message DigitEightKeyword {
+}
+
+message DigitFiveKeyword {
+}
+
+message DigitFourKeyword {
+}
+
+message DigitNineKeyword {
+}
+
+message DigitOneKeyword {
+}
+
+message DigitSevenKeyword {
+}
+
+message DigitSixKeyword {
+}
+
+message DigitThreeKeyword {
+}
+
+message DigitTwoKeyword {
+}
+
+message DigitZeroKeyword {
+}
+
 message DistinctKeyword {
 }
 
@@ -4010,6 +4094,9 @@ message DollarSignKeyword {
 }
 
 message DropKeyword {
+}
+
+message EKeyword {
 }
 
 message EachKeyword {
