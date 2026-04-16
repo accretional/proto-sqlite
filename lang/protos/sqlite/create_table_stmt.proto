@@ -3,19 +3,17 @@ syntax = "proto3";
 package sqlite;
 
 message CreateTableStmt {
-  CreateKeyword create_keyword = 1;
+  Alt1 alt1 = 1;
 
-  Alt1 alt1 = 2;
+  TableKeyword table_keyword = 2;
 
-  TableKeyword table_keyword = 3;
+  IfNotExists if_not_exists = 3;
 
-  IfNotExists if_not_exists = 4;
+  Seq1 seq1 = 4;
 
-  Seq1 seq1 = 5;
+  TableName table_name = 5;
 
-  TableName table_name = 6;
-
-  Alt2 alt2 = 7;
+  Alt2 alt2 = 6;
 
   message Alt1 {
     oneof value {
@@ -26,11 +24,6 @@ message CreateTableStmt {
   }
 
   message IfNotExists {
-    IfKeyword if_keyword = 1;
-
-    NotKeyword not_keyword = 2;
-
-    ExistsKeyword exists_keyword = 3;
   }
 
   message Seq1 {
@@ -47,26 +40,20 @@ message CreateTableStmt {
     }
 
     message As {
-      AsKeyword as_keyword = 1;
-
-      SelectStmt select_stmt = 2;
+      SelectStmt select_stmt = 1;
     }
 
     message LeftParenthesis {
-      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+      repeated ColumnDef column_def = 1;
 
-      repeated ColumnDef column_def = 2;
+      repeated Comma comma = 2;
 
-      repeated Comma comma = 3;
+      RightParenthesisKeyword right_parenthesis_keyword = 3;
 
-      RightParenthesisKeyword right_parenthesis_keyword = 4;
-
-      TableOptions table_options = 5;
+      TableOptions table_options = 4;
 
       message Comma {
-        CommaKeyword comma_keyword = 1;
-
-        TableConstraint table_constraint = 2;
+        TableConstraint table_constraint = 1;
       }
     }
   }

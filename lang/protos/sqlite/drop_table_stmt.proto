@@ -3,20 +3,13 @@ syntax = "proto3";
 package sqlite;
 
 message DropTableStmt {
-  DropKeyword drop_keyword = 1;
+  IfExists if_exists = 1;
 
-  TableKeyword table_keyword = 2;
+  Seq1 seq1 = 2;
 
-  IfExists if_exists = 3;
-
-  Seq1 seq1 = 4;
-
-  TableName table_name = 5;
+  TableName table_name = 3;
 
   message IfExists {
-    IfKeyword if_keyword = 1;
-
-    ExistsKeyword exists_keyword = 2;
   }
 
   message Seq1 {

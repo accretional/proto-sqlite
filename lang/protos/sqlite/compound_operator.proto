@@ -14,8 +14,5 @@ message CompoundOperator {
   }
 
   message UnionAll {
-    UnionKeyword union_keyword = 1;
-
-    AllKeyword all_keyword = 2;
   }
 }

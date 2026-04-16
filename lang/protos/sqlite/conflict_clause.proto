@@ -6,11 +6,7 @@ message ConflictClause {
   OnConflict on_conflict = 1;
 
   message OnConflict {
-    OnKeyword on_keyword = 1;
-
-    ConflictKeyword conflict_keyword = 2;
-
-    Alt1 alt1 = 3;
+    Alt1 alt1 = 1;
 
     message Alt1 {
       oneof value {

@@ -16,16 +16,12 @@ message DeleteStmt {
   ReturningClause returning_clause = 6;
 
   message With {
-    WithKeyword with_keyword = 1;
+    RecursiveKeyword recursive_keyword = 1;
 
-    RecursiveKeyword recursive_keyword = 2;
-
-    repeated CommonTableExpression common_table_expression = 3;
+    repeated CommonTableExpression common_table_expression = 2;
   }
 
   message Where {
-    WhereKeyword where_keyword = 1;
-
-    Expr expr = 2;
+    Expr expr = 1;
   }
 }

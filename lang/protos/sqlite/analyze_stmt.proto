@@ -3,9 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message AnalyzeStmt {
-  AnalyzeKeyword analyze_keyword = 1;
-
-  Alt1 alt1 = 2;
+  Alt1 alt1 = 1;
 
   message Alt1 {
     oneof value {

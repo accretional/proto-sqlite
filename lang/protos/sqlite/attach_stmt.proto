@@ -3,13 +3,11 @@ syntax = "proto3";
 package sqlite;
 
 message AttachStmt {
-  AttachKeyword attach_keyword = 1;
+  DatabaseKeyword database_keyword = 1;
 
-  DatabaseKeyword database_keyword = 2;
+  Expr expr = 2;
 
-  Expr expr = 3;
+  AsKeyword as_keyword = 3;
 
-  AsKeyword as_keyword = 4;
-
-  SchemaName schema_name = 5;
+  SchemaName schema_name = 4;
 }

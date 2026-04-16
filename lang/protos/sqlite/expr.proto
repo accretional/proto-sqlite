@@ -96,25 +96,19 @@ message Expr {
   }
 
   message LeftParenthesis {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    repeated Expr expr = 1;
 
-    repeated Expr expr = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
   }
 
   message CastLeftParenthesis {
-    CastKeyword cast_keyword = 1;
+    Expr expr = 1;
 
-    LeftParenthesisKeyword left_parenthesis_keyword = 2;
+    AsKeyword as_keyword = 2;
 
-    Expr expr = 3;
+    TypeName type_name = 3;
 
-    AsKeyword as_keyword = 4;
-
-    TypeName type_name = 5;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 6;
+    RightParenthesisKeyword right_parenthesis_keyword = 4;
   }
 
   message Seq5 {
@@ -149,9 +143,7 @@ message Expr {
     }
 
     message Escape {
-      EscapeKeyword escape_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
   }
 
@@ -187,9 +179,6 @@ message Expr {
     Expr expr_2 = 5;
 
     message DistinctFrom {
-      DistinctKeyword distinct_keyword = 1;
-
-      FromKeyword from_keyword = 2;
     }
   }
 
@@ -292,38 +281,32 @@ message Expr {
   }
 
   message Case {
-    CaseKeyword case_keyword = 1;
+    Expr expr = 1;
 
-    Expr expr = 2;
+    WhenKeyword when_keyword = 2;
 
-    WhenKeyword when_keyword = 3;
+    Expr expr_2 = 3;
 
-    Expr expr_2 = 4;
+    ThenKeyword then_keyword = 4;
 
-    ThenKeyword then_keyword = 5;
+    Expr expr_3 = 5;
 
-    Expr expr_3 = 6;
+    repeated When when = 6;
 
-    repeated When when = 7;
+    Else else = 7;
 
-    Else else = 8;
-
-    EndKeyword end_keyword = 9;
+    EndKeyword end_keyword = 8;
 
     message When {
-      WhenKeyword when_keyword = 1;
+      Expr expr = 1;
 
-      Expr expr = 2;
+      ThenKeyword then_keyword = 2;
 
-      ThenKeyword then_keyword = 3;
-
-      Expr expr_2 = 4;
+      Expr expr_2 = 3;
     }
 
     message Else {
-      ElseKeyword else_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
   }
 }

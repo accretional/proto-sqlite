@@ -24,25 +24,17 @@ message DeleteStmtLimited {
   Alt1 alt1 = 10;
 
   message With {
-    WithKeyword with_keyword = 1;
+    RecursiveKeyword recursive_keyword = 1;
 
-    RecursiveKeyword recursive_keyword = 2;
-
-    repeated CommonTableExpression common_table_expression = 3;
+    repeated CommonTableExpression common_table_expression = 2;
   }
 
   message Where {
-    WhereKeyword where_keyword = 1;
-
-    Expr expr = 2;
+    Expr expr = 1;
   }
 
   message OrderBy {
-    OrderKeyword order_keyword = 1;
-
-    ByKeyword by_keyword = 2;
-
-    repeated OrderingTerm ordering_term = 3;
+    repeated OrderingTerm ordering_term = 1;
   }
 
   message Alt1 {
@@ -53,15 +45,11 @@ message DeleteStmtLimited {
     }
 
     message Offset {
-      OffsetKeyword offset_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
 
     message Comma {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
   }
 }

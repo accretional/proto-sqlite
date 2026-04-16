@@ -3,9 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message OverClause {
-  OverKeyword over_keyword = 1;
-
-  Alt1 alt1 = 2;
+  Alt1 alt1 = 1;
 
   message Alt1 {
     oneof value {
@@ -15,32 +13,22 @@ message OverClause {
     }
 
     message LeftParenthesis {
-      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+      BaseWindowName base_window_name = 1;
 
-      BaseWindowName base_window_name = 2;
+      PartitionBy partition_by = 2;
 
-      PartitionBy partition_by = 3;
+      OrderBy order_by = 3;
 
-      OrderBy order_by = 4;
+      FrameSpec frame_spec = 4;
 
-      FrameSpec frame_spec = 5;
-
-      RightParenthesisKeyword right_parenthesis_keyword = 6;
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
 
       message PartitionBy {
-        PartitionKeyword partition_keyword = 1;
-
-        ByKeyword by_keyword = 2;
-
-        repeated Expr expr = 3;
+        repeated Expr expr = 1;
       }
 
       message OrderBy {
-        OrderKeyword order_keyword = 1;
-
-        ByKeyword by_keyword = 2;
-
-        repeated OrderingTerm ordering_term = 3;
+        repeated OrderingTerm ordering_term = 1;
       }
     }
   }

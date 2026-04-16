@@ -3,9 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message ReleaseStmt {
-  ReleaseKeyword release_keyword = 1;
+  SavepointKeyword savepoint_keyword = 1;
 
-  SavepointKeyword savepoint_keyword = 2;
-
-  SavepointName savepoint_name = 3;
+  SavepointName savepoint_name = 2;
 }

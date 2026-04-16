@@ -17,23 +17,19 @@ message TypeName {
     }
 
     message LeftParenthesis {
-      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+      SignedNumber signed_number = 1;
 
-      SignedNumber signed_number = 2;
-
-      RightParenthesisKeyword right_parenthesis_keyword = 3;
+      RightParenthesisKeyword right_parenthesis_keyword = 2;
     }
 
     message LeftParenthesis2 {
-      LeftParenthesisKeyword left_parenthesis_keyword = 1;
+      SignedNumber signed_number = 1;
 
-      SignedNumber signed_number = 2;
+      CommaKeyword comma_keyword = 2;
 
-      CommaKeyword comma_keyword = 3;
+      SignedNumber signed_number_2 = 3;
 
-      SignedNumber signed_number_2 = 4;
-
-      RightParenthesisKeyword right_parenthesis_keyword = 5;
+      RightParenthesisKeyword right_parenthesis_keyword = 4;
     }
   }
 }

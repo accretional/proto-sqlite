@@ -26,11 +26,9 @@ message UpdateStmt {
   ReturningClause returning_clause = 11;
 
   message With {
-    WithKeyword with_keyword = 1;
+    RecursiveKeyword recursive_keyword = 1;
 
-    RecursiveKeyword recursive_keyword = 2;
-
-    repeated CommonTableExpression common_table_expression = 3;
+    repeated CommonTableExpression common_table_expression = 2;
   }
 
   message Alt1 {
@@ -41,11 +39,7 @@ message UpdateStmt {
     }
 
     message UpdateOr {
-      UpdateKeyword update_keyword = 1;
-
-      OrKeyword or_keyword = 2;
-
-      Alt1 alt1 = 3;
+      Alt1 alt1 = 1;
 
       message Alt1 {
         oneof value {
@@ -72,13 +66,11 @@ message UpdateStmt {
   }
 
   message Comma {
-    CommaKeyword comma_keyword = 1;
+    Alt1 alt1 = 1;
 
-    Alt1 alt1 = 2;
+    EqualsSignKeyword equals_sign_keyword = 2;
 
-    EqualsSignKeyword equals_sign_keyword = 3;
-
-    Expr expr = 4;
+    Expr expr = 3;
 
     message Alt1 {
       oneof value {
@@ -90,9 +82,7 @@ message UpdateStmt {
   }
 
   message From {
-    FromKeyword from_keyword = 1;
-
-    Alt1 alt1 = 2;
+    Alt1 alt1 = 1;
 
     message Alt1 {
       oneof value {
@@ -108,8 +98,6 @@ message UpdateStmt {
   }
 
   message Where {
-    WhereKeyword where_keyword = 1;
-
-    Expr expr = 2;
+    Expr expr = 1;
   }
 }

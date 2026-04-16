@@ -3,30 +3,19 @@ syntax = "proto3";
 package sqlite;
 
 message CreateVirtualTableStmt {
-  CreateKeyword create_keyword = 1;
+  IfNotExists if_not_exists = 1;
 
-  VirtualKeyword virtual_keyword = 2;
+  Seq1 seq1 = 2;
 
-  TableKeyword table_keyword = 3;
+  TableName table_name = 3;
 
-  IfNotExists if_not_exists = 4;
+  UsingKeyword using_keyword = 4;
 
-  Seq1 seq1 = 5;
+  ModuleName module_name = 5;
 
-  TableName table_name = 6;
-
-  UsingKeyword using_keyword = 7;
-
-  ModuleName module_name = 8;
-
-  LeftParenthesis left_parenthesis = 9;
+  LeftParenthesis left_parenthesis = 6;
 
   message IfNotExists {
-    IfKeyword if_keyword = 1;
-
-    NotKeyword not_keyword = 2;
-
-    ExistsKeyword exists_keyword = 3;
   }
 
   message Seq1 {
@@ -36,11 +25,9 @@ message CreateVirtualTableStmt {
   }
 
   message LeftParenthesis {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    Seq1 seq1 = 1;
 
-    Seq1 seq1 = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
 
     message Seq1 {
       repeated ModuleArgument module_argument = 1;

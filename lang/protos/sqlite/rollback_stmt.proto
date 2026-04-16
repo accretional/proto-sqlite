@@ -3,17 +3,13 @@ syntax = "proto3";
 package sqlite;
 
 message RollbackStmt {
-  RollbackKeyword rollback_keyword = 1;
+  TransactionKeyword transaction_keyword = 1;
 
-  TransactionKeyword transaction_keyword = 2;
-
-  To to = 3;
+  To to = 2;
 
   message To {
-    ToKeyword to_keyword = 1;
+    SavepointKeyword savepoint_keyword = 1;
 
-    SavepointKeyword savepoint_keyword = 2;
-
-    SavepointName savepoint_name = 3;
+    SavepointName savepoint_name = 2;
   }
 }

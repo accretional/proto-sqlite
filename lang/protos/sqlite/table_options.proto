@@ -14,28 +14,11 @@ message TableOptions {
   }
 
   message WithoutRowid {
-    WithoutKeyword without_keyword = 1;
-
-    RowidKeyword rowid_keyword = 2;
   }
 
   message WithoutRowidCommaStrict {
-    WithoutKeyword without_keyword = 1;
-
-    RowidKeyword rowid_keyword = 2;
-
-    CommaKeyword comma_keyword = 3;
-
-    StrictKeyword strict_keyword = 4;
   }
 
   message StrictCommaWithoutRowid {
-    StrictKeyword strict_keyword = 1;
-
-    CommaKeyword comma_keyword = 2;
-
-    WithoutKeyword without_keyword = 3;
-
-    RowidKeyword rowid_keyword = 4;
   }
 }

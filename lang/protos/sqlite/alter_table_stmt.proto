@@ -3,15 +3,11 @@ syntax = "proto3";
 package sqlite;
 
 message AlterTableStmt {
-  AlterKeyword alter_keyword = 1;
+  Seq1 seq1 = 1;
 
-  TableKeyword table_keyword = 2;
+  TableName table_name = 2;
 
-  Seq1 seq1 = 3;
-
-  TableName table_name = 4;
-
-  Alt1 alt1 = 5;
+  Alt1 alt1 = 3;
 
   message Seq1 {
     SchemaName schema_name = 1;
@@ -37,75 +33,53 @@ message AlterTableStmt {
     }
 
     message RenameTo {
-      RenameKeyword rename_keyword = 1;
-
-      ToKeyword to_keyword = 2;
-
-      NewTableName new_table_name = 3;
+      NewTableName new_table_name = 1;
     }
 
     message Rename {
-      RenameKeyword rename_keyword = 1;
+      ColumnKeyword column_keyword = 1;
 
-      ColumnKeyword column_keyword = 2;
+      ColumnName column_name = 2;
 
-      ColumnName column_name = 3;
+      ToKeyword to_keyword = 3;
 
-      ToKeyword to_keyword = 4;
-
-      NewColumnName new_column_name = 5;
+      NewColumnName new_column_name = 4;
     }
 
     message Add {
-      AddKeyword add_keyword = 1;
+      ColumnKeyword column_keyword = 1;
 
-      ColumnKeyword column_keyword = 2;
-
-      ColumnDef column_def = 3;
+      ColumnDef column_def = 2;
     }
 
     message AddConstraint {
-      AddKeyword add_keyword = 1;
+      ConstraintName constraint_name = 1;
 
-      ConstraintKeyword constraint_keyword = 2;
+      CheckKeyword check_keyword = 2;
 
-      ConstraintName constraint_name = 3;
+      LeftParenthesisKeyword left_parenthesis_keyword = 3;
 
-      CheckKeyword check_keyword = 4;
+      Expr expr = 4;
 
-      LeftParenthesisKeyword left_parenthesis_keyword = 5;
+      RightParenthesisKeyword right_parenthesis_keyword = 5;
 
-      Expr expr = 6;
-
-      RightParenthesisKeyword right_parenthesis_keyword = 7;
-
-      ConflictClause conflict_clause = 8;
+      ConflictClause conflict_clause = 6;
     }
 
     message Drop {
-      DropKeyword drop_keyword = 1;
+      ColumnKeyword column_keyword = 1;
 
-      ColumnKeyword column_keyword = 2;
-
-      ColumnName column_name = 3;
+      ColumnName column_name = 2;
     }
 
     message DropConstraint {
-      DropKeyword drop_keyword = 1;
-
-      ConstraintKeyword constraint_keyword = 2;
-
-      ConstraintName constraint_name = 3;
+      ConstraintName constraint_name = 1;
     }
 
     message AlterColumn {
-      AlterKeyword alter_keyword = 1;
+      ColumnName column_name = 1;
 
-      ColumnKeyword column_keyword = 2;
-
-      ColumnName column_name = 3;
-
-      Alt1 alt1 = 4;
+      Alt1 alt1 = 2;
 
       message Alt1 {
         oneof value {
@@ -115,21 +89,10 @@ message AlterTableStmt {
         }
 
         message SetNotNull {
-          SetKeyword set_keyword = 1;
-
-          NotKeyword not_keyword = 2;
-
-          NullKeyword null_keyword = 3;
-
-          ConflictClause conflict_clause = 4;
+          ConflictClause conflict_clause = 1;
         }
 
         message DropNotNull {
-          DropKeyword drop_keyword = 1;
-
-          NotKeyword not_keyword = 2;
-
-          NullKeyword null_keyword = 3;
         }
       }
     }

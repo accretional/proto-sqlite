@@ -14,20 +14,14 @@ message BindParameter {
   }
 
   message Colon {
-    ColonKeyword colon_keyword = 1;
-
-    Name name = 2;
+    Name name = 1;
   }
 
   message CommercialAt {
-    CommercialAtKeyword commercial_at_keyword = 1;
-
-    Name name = 2;
+    Name name = 1;
   }
 
   message DollarSign {
-    DollarSignKeyword dollar_sign_keyword = 1;
-
-    Name name = 2;
+    Name name = 1;
   }
 }

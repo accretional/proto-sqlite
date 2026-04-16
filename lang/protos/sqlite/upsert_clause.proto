@@ -3,29 +3,21 @@ syntax = "proto3";
 package sqlite;
 
 message UpsertClause {
-  OnKeyword on_keyword = 1;
+  LeftParenthesis left_parenthesis = 1;
 
-  ConflictKeyword conflict_keyword = 2;
+  DoKeyword do_keyword = 2;
 
-  LeftParenthesis left_parenthesis = 3;
-
-  DoKeyword do_keyword = 4;
-
-  Alt1 alt1 = 5;
+  Alt1 alt1 = 3;
 
   message LeftParenthesis {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    repeated IndexedColumn indexed_column = 1;
 
-    repeated IndexedColumn indexed_column = 2;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
 
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
-
-    Where where = 4;
+    Where where = 3;
 
     message Where {
-      WhereKeyword where_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
   }
 
@@ -37,19 +29,15 @@ message UpsertClause {
     }
 
     message UpdateSet {
-      UpdateKeyword update_keyword = 1;
+      Alt1 alt1 = 1;
 
-      SetKeyword set_keyword = 2;
+      EqualsSignKeyword equals_sign_keyword = 2;
 
-      Alt1 alt1 = 3;
+      Expr expr = 3;
 
-      EqualsSignKeyword equals_sign_keyword = 4;
+      repeated Comma comma = 4;
 
-      Expr expr = 5;
-
-      repeated Comma comma = 6;
-
-      Where where = 7;
+      Where where = 5;
 
       message Alt1 {
         oneof value {
@@ -60,13 +48,11 @@ message UpsertClause {
       }
 
       message Comma {
-        CommaKeyword comma_keyword = 1;
+        Alt1 alt1 = 1;
 
-        Alt1 alt1 = 2;
+        EqualsSignKeyword equals_sign_keyword = 2;
 
-        EqualsSignKeyword equals_sign_keyword = 3;
-
-        Expr expr = 4;
+        Expr expr = 3;
 
         message Alt1 {
           oneof value {
@@ -78,9 +64,7 @@ message UpsertClause {
       }
 
       message Where {
-        WhereKeyword where_keyword = 1;
-
-        Expr expr = 2;
+        Expr expr = 1;
       }
     }
   }

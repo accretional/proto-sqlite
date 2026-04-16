@@ -12,19 +12,15 @@ message NumericLiteral {
   E e = 4;
 
   message FullStop {
-    FullStopKeyword full_stop_keyword = 1;
-
-    repeated Digit digit = 2;
+    repeated Digit digit = 1;
   }
 
   message E {
-    EKeyword e_keyword = 1;
+    Alt1 alt1 = 1;
 
-    Alt1 alt1 = 2;
+    Digit digit = 2;
 
-    Digit digit = 3;
-
-    repeated Digit digit_2 = 4;
+    repeated Digit digit_2 = 3;
 
     message Alt1 {
       oneof value {

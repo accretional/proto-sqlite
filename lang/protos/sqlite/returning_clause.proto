@@ -3,9 +3,7 @@ syntax = "proto3";
 package sqlite;
 
 message ReturningClause {
-  ReturningKeyword returning_keyword = 1;
-
-  repeated Alt1 alt1 = 2;
+  repeated Alt1 alt1 = 1;
 
   message Alt1 {
     oneof value {

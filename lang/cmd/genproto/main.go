@@ -51,6 +51,7 @@ func main() {
 
 	ast.Root = compiler.CollapseCommaList(ast.Root)
 	ast.Root = compiler.NameSequence(ast.Root)
+	ast.Root = compiler.StripKeywords(ast.Root)
 
 	fdp, err := compiler.Compile(ast, compiler.Options{
 		Package:   *pkgName,
@@ -90,6 +91,9 @@ func main() {
 	}
 	splits := mergeproto.Split([]*mergeproto.File{parsed})
 
+	if err := os.RemoveAll(*splitDir); err != nil {
+		log.Fatalf("rm %s: %v", *splitDir, err)
+	}
 	if err := os.MkdirAll(*splitDir, 0o755); err != nil {
 		log.Fatalf("mkdir %s: %v", *splitDir, err)
 	}

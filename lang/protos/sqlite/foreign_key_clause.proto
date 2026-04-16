@@ -3,22 +3,18 @@ syntax = "proto3";
 package sqlite;
 
 message ForeignKeyClause {
-  ReferencesKeyword references_keyword = 1;
+  ForeignTable foreign_table = 1;
 
-  ForeignTable foreign_table = 2;
+  LeftParenthesis left_parenthesis = 2;
 
-  LeftParenthesis left_parenthesis = 3;
+  repeated Alt1 alt1 = 3;
 
-  repeated Alt1 alt1 = 4;
-
-  Seq1 seq1 = 5;
+  Seq1 seq1 = 4;
 
   message LeftParenthesis {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    repeated ColumnName column_name = 1;
 
-    repeated ColumnName column_name = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
   }
 
   message Alt1 {
@@ -29,11 +25,9 @@ message ForeignKeyClause {
     }
 
     message On {
-      OnKeyword on_keyword = 1;
+      Alt1 alt1 = 1;
 
-      Alt1 alt1 = 2;
-
-      Alt2 alt2 = 3;
+      Alt2 alt2 = 2;
 
       message Alt1 {
         oneof value {
@@ -57,29 +51,18 @@ message ForeignKeyClause {
         }
 
         message SetNull {
-          SetKeyword set_keyword = 1;
-
-          NullKeyword null_keyword = 2;
         }
 
         message SetDefault {
-          SetKeyword set_keyword = 1;
-
-          DefaultKeyword default_keyword = 2;
         }
 
         message NoAction {
-          NoKeyword no_keyword = 1;
-
-          ActionKeyword action_keyword = 2;
         }
       }
     }
 
     message Match {
-      MatchKeyword match_keyword = 1;
-
-      Name name = 2;
+      Name name = 1;
     }
   }
 
@@ -91,9 +74,7 @@ message ForeignKeyClause {
     Initially initially = 3;
 
     message Initially {
-      InitiallyKeyword initially_keyword = 1;
-
-      Alt1 alt1 = 2;
+      Alt1 alt1 = 1;
 
       message Alt1 {
         oneof value {

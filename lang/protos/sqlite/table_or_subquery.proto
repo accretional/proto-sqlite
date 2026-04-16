@@ -44,17 +44,10 @@ message TableOrSubquery {
       }
 
       message IndexedBy {
-        IndexedKeyword indexed_keyword = 1;
-
-        ByKeyword by_keyword = 2;
-
-        IndexName index_name = 3;
+        IndexName index_name = 1;
       }
 
       message NotIndexed {
-        NotKeyword not_keyword = 1;
-
-        IndexedKeyword indexed_keyword = 2;
       }
     }
   }
@@ -90,26 +83,20 @@ message TableOrSubquery {
   }
 
   message LeftParenthesis {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    SelectStmt select_stmt = 1;
 
-    SelectStmt select_stmt = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
   }
 
   message LeftParenthesis2 {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    repeated TableOrSubquery table_or_subquery = 1;
 
-    repeated TableOrSubquery table_or_subquery = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
   }
 
   message LeftParenthesis3 {
-    LeftParenthesisKeyword left_parenthesis_keyword = 1;
+    JoinClause join_clause = 1;
 
-    JoinClause join_clause = 2;
-
-    RightParenthesisKeyword right_parenthesis_keyword = 3;
+    RightParenthesisKeyword right_parenthesis_keyword = 2;
   }
 }

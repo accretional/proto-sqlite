@@ -60,8 +60,5 @@ message BinaryOperator {
   }
 
   message IsNot {
-    IsKeyword is_keyword = 1;
-
-    NotKeyword not_keyword = 2;
   }
 }

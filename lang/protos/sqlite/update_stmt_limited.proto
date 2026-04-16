@@ -34,11 +34,9 @@ message UpdateStmtLimited {
   Alt3 alt3 = 15;
 
   message With {
-    WithKeyword with_keyword = 1;
+    RecursiveKeyword recursive_keyword = 1;
 
-    RecursiveKeyword recursive_keyword = 2;
-
-    repeated CommonTableExpression common_table_expression = 3;
+    repeated CommonTableExpression common_table_expression = 2;
   }
 
   message Alt1 {
@@ -49,11 +47,7 @@ message UpdateStmtLimited {
     }
 
     message UpdateOr {
-      UpdateKeyword update_keyword = 1;
-
-      OrKeyword or_keyword = 2;
-
-      Alt1 alt1 = 3;
+      Alt1 alt1 = 1;
 
       message Alt1 {
         oneof value {
@@ -80,13 +74,11 @@ message UpdateStmtLimited {
   }
 
   message Comma {
-    CommaKeyword comma_keyword = 1;
+    Alt1 alt1 = 1;
 
-    Alt1 alt1 = 2;
+    EqualsSignKeyword equals_sign_keyword = 2;
 
-    EqualsSignKeyword equals_sign_keyword = 3;
-
-    Expr expr = 4;
+    Expr expr = 3;
 
     message Alt1 {
       oneof value {
@@ -98,9 +90,7 @@ message UpdateStmtLimited {
   }
 
   message From {
-    FromKeyword from_keyword = 1;
-
-    Alt1 alt1 = 2;
+    Alt1 alt1 = 1;
 
     message Alt1 {
       oneof value {
@@ -116,17 +106,11 @@ message UpdateStmtLimited {
   }
 
   message Where {
-    WhereKeyword where_keyword = 1;
-
-    Expr expr = 2;
+    Expr expr = 1;
   }
 
   message OrderBy {
-    OrderKeyword order_keyword = 1;
-
-    ByKeyword by_keyword = 2;
-
-    repeated OrderingTerm ordering_term = 3;
+    repeated OrderingTerm ordering_term = 1;
   }
 
   message Alt3 {
@@ -137,15 +121,11 @@ message UpdateStmtLimited {
     }
 
     message Offset {
-      OffsetKeyword offset_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
 
     message Comma {
-      CommaKeyword comma_keyword = 1;
-
-      Expr expr = 2;
+      Expr expr = 1;
     }
   }
 }

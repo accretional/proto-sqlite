@@ -3,36 +3,29 @@ syntax = "proto3";
 package sqlite;
 
 message CreateIndexStmt {
-  CreateKeyword create_keyword = 1;
+  UniqueKeyword unique_keyword = 1;
 
-  UniqueKeyword unique_keyword = 2;
+  IndexKeyword index_keyword = 2;
 
-  IndexKeyword index_keyword = 3;
+  IfNotExists if_not_exists = 3;
 
-  IfNotExists if_not_exists = 4;
+  Seq1 seq1 = 4;
 
-  Seq1 seq1 = 5;
+  IndexName index_name = 5;
 
-  IndexName index_name = 6;
+  OnKeyword on_keyword = 6;
 
-  OnKeyword on_keyword = 7;
+  TableName table_name = 7;
 
-  TableName table_name = 8;
+  LeftParenthesisKeyword left_parenthesis_keyword = 8;
 
-  LeftParenthesisKeyword left_parenthesis_keyword = 9;
+  repeated IndexedColumn indexed_column = 9;
 
-  repeated IndexedColumn indexed_column = 10;
+  RightParenthesisKeyword right_parenthesis_keyword = 10;
 
-  RightParenthesisKeyword right_parenthesis_keyword = 11;
-
-  Where where = 12;
+  Where where = 11;
 
   message IfNotExists {
-    IfKeyword if_keyword = 1;
-
-    NotKeyword not_keyword = 2;
-
-    ExistsKeyword exists_keyword = 3;
   }
 
   message Seq1 {
@@ -42,8 +35,6 @@ message CreateIndexStmt {
   }
 
   message Where {
-    WhereKeyword where_keyword = 1;
-
-    Expr expr = 2;
+    Expr expr = 1;
   }
 }

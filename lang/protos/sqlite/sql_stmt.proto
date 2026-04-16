@@ -8,14 +8,9 @@ message SqlStmt {
   Alt1 alt1 = 2;
 
   message Explain {
-    ExplainKeyword explain_keyword = 1;
-
-    QueryPlan query_plan = 2;
+    QueryPlan query_plan = 1;
 
     message QueryPlan {
-      QueryKeyword query_keyword = 1;
-
-      PlanKeyword plan_keyword = 2;
     }
   }
 
