@@ -14,14 +14,16 @@ service Sqlite {
 }
 
 message QueryRequest {
+  // TODO:Claude - point SQLite binary to this, and refactor for field number changes if necessary
+  string socket_uri = 1;
   oneof body {
     // Raw SQL — forwarded verbatim to sqlite3.
-    string sql = 1;
+    string sql = 2;
 
     // Typed CST — server must render back to SQL text. Not yet
     // implemented; returns UNIMPLEMENTED until the SqlStmtList → SQL
     // printer lands.
-    SqlStmtList stmts = 2;
+    SqlStmtList stmts = 3;
   }
 }
 
