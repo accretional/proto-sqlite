@@ -1,0 +1,7989 @@
+name: "lang/sqlite.ebnf"
+lex: {
+  name: "iso-14977"
+  symbols: {
+    delimiter: {
+      kind: WHITESPACE
+      symbol: " "
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: WHITESPACE
+      symbol: "\t"
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: WHITESPACE
+      symbol: "\n"
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: WHITESPACE
+      symbol: "\r"
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: DEFINITION
+      symbol: "="
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: CONCATENATION
+      symbol: ","
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: TERMINATION
+      symbol: ";"
+    }
+  }
+  symbols: {
+    delimiter: {
+      kind: ALTERNATION
+      symbol: "|"
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: OPTIONAL
+      begin: "["
+      end: "]"
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: REPETITION
+      begin: "{"
+      end: "}"
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: GROUP
+      begin: "("
+      end: ")"
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: TERMINAL
+      begin: "\""
+      end: "\""
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: TERMINAL
+      begin: "'"
+      end: "'"
+    }
+  }
+  symbols: {
+    scoper: {
+      kind: COMMENT
+      begin: "(*"
+      end: "*)"
+    }
+  }
+}
+rules: {
+  name: "sql_stmt_list"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "sql_stmt"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ";"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "sql_stmt"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "sql_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "EXPLAIN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "QUERY"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "PLAN"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "alter_table_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "analyze_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "attach_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "begin_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "commit_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "create_index_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "create_table_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "create_trigger_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "create_view_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "create_virtual_table_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "delete_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "delete_stmt_limited"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "detach_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "drop_index_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "drop_table_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "drop_trigger_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "drop_view_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "insert_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "pragma_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "reindex_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "release_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "rollback_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "savepoint_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "select_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "update_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "update_stmt_limited"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "vacuum_stmt"
+      }
+    }
+  }
+}
+rules: {
+  name: "begin_stmt"
+  expressions: {
+    terminal: "BEGIN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DEFERRED"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "IMMEDIATE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "EXCLUSIVE"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TRANSACTION"
+      }
+    }
+  }
+}
+rules: {
+  name: "commit_stmt"
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "COMMIT"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "END"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TRANSACTION"
+      }
+    }
+  }
+}
+rules: {
+  name: "rollback_stmt"
+  expressions: {
+    terminal: "ROLLBACK"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TRANSACTION"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TO"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "SAVEPOINT"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "savepoint_name"
+      }
+    }
+  }
+}
+rules: {
+  name: "savepoint_stmt"
+  expressions: {
+    terminal: "SAVEPOINT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "savepoint_name"
+  }
+}
+rules: {
+  name: "release_stmt"
+  expressions: {
+    terminal: "RELEASE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "SAVEPOINT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "savepoint_name"
+  }
+}
+rules: {
+  name: "attach_stmt"
+  expressions: {
+    terminal: "ATTACH"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DATABASE"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "schema_name"
+  }
+}
+rules: {
+  name: "detach_stmt"
+  expressions: {
+    terminal: "DETACH"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DATABASE"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "schema_name"
+  }
+}
+rules: {
+  name: "vacuum_stmt"
+  expressions: {
+    terminal: "VACUUM"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "INTO"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "filename"
+      }
+    }
+  }
+}
+rules: {
+  name: "analyze_stmt"
+  expressions: {
+    terminal: "ANALYZE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "index_or_table_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_or_index_name"
+      }
+    }
+  }
+}
+rules: {
+  name: "reindex_stmt"
+  expressions: {
+    terminal: "REINDEX"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "collation_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "schema_name"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "."
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "table_name"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "index_name"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "pragma_stmt"
+  expressions: {
+    terminal: "PRAGMA"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "pragma_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "="
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "pragma_value"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "pragma_value"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "drop_table_stmt"
+  expressions: {
+    terminal: "DROP"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TABLE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+}
+rules: {
+  name: "drop_index_stmt"
+  expressions: {
+    terminal: "DROP"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "INDEX"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "index_name"
+  }
+}
+rules: {
+  name: "drop_view_stmt"
+  expressions: {
+    terminal: "DROP"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "VIEW"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "view_name"
+  }
+}
+rules: {
+  name: "drop_trigger_stmt"
+  expressions: {
+    terminal: "DROP"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TRIGGER"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "trigger_name"
+  }
+}
+rules: {
+  name: "alter_table_stmt"
+  expressions: {
+    terminal: "ALTER"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TABLE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "RENAME"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "TO"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "new_table_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "RENAME"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "COLUMN"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "TO"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "new_column_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "ADD"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "COLUMN"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_def"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "ADD"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "CONSTRAINT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "constraint_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "CHECK"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DROP"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "COLUMN"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DROP"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "CONSTRAINT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "constraint_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "ALTER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "COLUMN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "SET"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "NOT"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "NULL"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "conflict_clause"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "DROP"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "NOT"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "NULL"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "create_table_stmt"
+  expressions: {
+    terminal: "CREATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TEMP"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "TEMPORARY"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TABLE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "select_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_def"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_def"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "table_constraint"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "table_options"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "create_index_stmt"
+  expressions: {
+    terminal: "CREATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "UNIQUE"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "INDEX"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "index_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ON"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "indexed_column"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "indexed_column"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+}
+rules: {
+  name: "create_trigger_stmt"
+  expressions: {
+    terminal: "CREATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TEMP"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "TEMPORARY"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TRIGGER"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "trigger_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "BEFORE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "AFTER"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "INSTEAD"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "OF"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "DELETE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "INSERT"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "OF"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "column_name"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ON"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "FOR"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EACH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "ROW"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHEN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "BEGIN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "update_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "insert_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "delete_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "select_stmt"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ";"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "update_stmt"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "insert_stmt"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "delete_stmt"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "select_stmt"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ";"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "END"
+  }
+}
+rules: {
+  name: "create_view_stmt"
+  expressions: {
+    terminal: "CREATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "TEMP"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "TEMPORARY"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "VIEW"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "view_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_stmt"
+  }
+}
+rules: {
+  name: "create_virtual_table_stmt"
+  expressions: {
+    terminal: "CREATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "VIRTUAL"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "TABLE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "IF"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "EXISTS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "USING"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "module_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "module_argument"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "module_argument"
+              }
+            }
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "select_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_core"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "compound_operator"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "select_core"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ORDER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "ordering_term"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "LIMIT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                terminal: "OFFSET"
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "select_core"
+  expressions: {
+    terminal: "SELECT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DISTINCT"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "ALL"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "result_column"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "result_column"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "FROM"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "table_or_subquery"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "table_or_subquery"
+              }
+            }
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "join_clause"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "GROUP"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "HAVING"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WINDOW"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "window_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "window_defn"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "window_name"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "AS"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "window_defn"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "VALUES"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "factored_select_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_core"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "compound_operator"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "select_core"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ORDER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "ordering_term"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "LIMIT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                terminal: "OFFSET"
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "result_column"
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "AS"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_alias"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "*"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "."
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "*"
+  }
+}
+rules: {
+  name: "compound_operator"
+  expressions: {
+    terminal: "UNION"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "UNION"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ALL"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "INTERSECT"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "EXCEPT"
+  }
+}
+rules: {
+  name: "common_table_expression"
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "MATERIALIZED"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "MATERIALIZED"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_stmt"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "with_clause"
+  expressions: {
+    terminal: "WITH"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "RECURSIVE"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "cte_table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "MATERIALIZED"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "MATERIALIZED"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_stmt"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "cte_table_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "NOT"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "MATERIALIZED"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "MATERIALIZED"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "select_stmt"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "delete_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "DELETE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "FROM"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "qualified_table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "returning_clause"
+      }
+    }
+  }
+}
+rules: {
+  name: "delete_stmt_limited"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "DELETE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "FROM"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "qualified_table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "returning_clause"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ORDER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "ordering_term"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "LIMIT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "OFFSET"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "insert_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "REPLACE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "INSERT"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "INSERT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "OR"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "ABORT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FAIL"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "IGNORE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "REPLACE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "ROLLBACK"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "INTO"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "alias"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "VALUES"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "("
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: ")"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "upsert_clause"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "select_stmt"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "upsert_clause"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DEFAULT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "VALUES"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "returning_clause"
+      }
+    }
+  }
+}
+rules: {
+  name: "update_stmt"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "OR"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "ABORT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FAIL"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "IGNORE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "REPLACE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "ROLLBACK"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "qualified_table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "SET"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "column_name_list"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "="
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "column_name"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "column_name_list"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "="
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "FROM"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "table_or_subquery"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "table_or_subquery"
+              }
+            }
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "join_clause"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "returning_clause"
+      }
+    }
+  }
+}
+rules: {
+  name: "update_stmt_limited"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WITH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "RECURSIVE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "common_table_expression"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "common_table_expression"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "OR"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "ABORT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FAIL"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "IGNORE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "REPLACE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "ROLLBACK"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "qualified_table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "SET"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "column_name_list"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "="
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "column_name"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "column_name_list"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "="
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "FROM"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "table_or_subquery"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "table_or_subquery"
+              }
+            }
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "join_clause"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "WHERE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "returning_clause"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ORDER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "ordering_term"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "LIMIT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "OFFSET"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "table_or_subquery"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "AS"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_alias"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "INDEXED"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "index_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "INDEXED"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_function_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "AS"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_alias"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_stmt"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_or_subquery"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_or_subquery"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "join_clause"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "join_clause"
+  expressions: {
+    nonterminal: "table_or_subquery"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "join_operator"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_or_subquery"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "join_constraint"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "join_operator"
+  expressions: {
+    terminal: ","
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NATURAL"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "LEFT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "RIGHT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FULL"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "OUTER"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "INNER"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "CROSS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "JOIN"
+  }
+}
+rules: {
+  name: "join_constraint"
+  expressions: {
+    terminal: "ON"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "USING"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "column_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "ordering_term"
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "COLLATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "collation_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ASC"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DESC"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NULLS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "FIRST"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "NULLS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "LAST"
+      }
+    }
+  }
+}
+rules: {
+  name: "column_def"
+  expressions: {
+    nonterminal: "column_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "type_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "column_constraint"
+      }
+    }
+  }
+}
+rules: {
+  name: "column_constraint"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "CONSTRAINT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "PRIMARY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "KEY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "ASC"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "DESC"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "AUTOINCREMENT"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NULL"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UNIQUE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "CHECK"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DEFAULT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "("
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: ")"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "literal_value"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "signed_number"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "COLLATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "collation_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "foreign_key_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "GENERATED"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "ALWAYS"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "STORED"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "VIRTUAL"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "table_constraint"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "CONSTRAINT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "PRIMARY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "KEY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "indexed_column"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "indexed_column"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UNIQUE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "indexed_column"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "indexed_column"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "conflict_clause"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "CHECK"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "FOREIGN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "KEY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "foreign_key_clause"
+      }
+    }
+  }
+}
+rules: {
+  name: "conflict_clause"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ON"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "CONFLICT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "ROLLBACK"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "ABORT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FAIL"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "IGNORE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "REPLACE"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "foreign_key_clause"
+  expressions: {
+    terminal: "REFERENCES"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "foreign_table"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: "ON"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "DELETE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "UPDATE"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "SET"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "NULL"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "SET"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "DEFAULT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "CASCADE"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "RESTRICT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "NO"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "ACTION"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "MATCH"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "NOT"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "DEFERRABLE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "INITIALLY"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                terminal: "DEFERRED"
+              }
+              body: {
+                delimiter: ALTERNATION
+              }
+              body: {
+                terminal: "IMMEDIATE"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "table_options"
+  expressions: {
+    terminal: "WITHOUT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ROWID"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "STRICT"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "WITHOUT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ROWID"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ","
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "STRICT"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "STRICT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ","
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "WITHOUT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ROWID"
+  }
+}
+rules: {
+  name: "type_name"
+  expressions: {
+    nonterminal: "name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "signed_number"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "signed_number"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "signed_number"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "indexed_column"
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "column_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "COLLATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "collation_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ASC"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "DESC"
+      }
+    }
+  }
+}
+rules: {
+  name: "qualified_table_name"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "AS"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "alias"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "INDEXED"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "index_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "NOT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "INDEXED"
+      }
+    }
+  }
+}
+rules: {
+  name: "returning_clause"
+  expressions: {
+    terminal: "RETURNING"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "*"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            scoper: {
+              kind: OPTIONAL
+              body: {
+                terminal: "AS"
+              }
+            }
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "column_alias"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "*"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: OPTIONAL
+              body: {
+                scoper: {
+                  kind: OPTIONAL
+                  body: {
+                    terminal: "AS"
+                  }
+                }
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "column_alias"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "upsert_clause"
+  expressions: {
+    terminal: "ON"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "CONFLICT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "indexed_column"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "indexed_column"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "WHERE"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "DO"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "NOTHING"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UPDATE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "SET"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "column_name"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "column_name_list"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "="
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: GROUP
+              body: {
+                nonterminal: "column_name"
+              }
+              body: {
+                delimiter: ALTERNATION
+              }
+              body: {
+                nonterminal: "column_name_list"
+              }
+            }
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "="
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "WHERE"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "column_name_list"
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "column_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "column_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "window_defn"
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "base_window_name"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "PARTITION"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ORDER"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "BY"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "ordering_term"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "frame_spec"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "over_clause"
+  expressions: {
+    terminal: "OVER"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        nonterminal: "window_name"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "("
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "base_window_name"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "PARTITION"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "BY"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "expr"
+              }
+            }
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "ORDER"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "BY"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "ordering_term"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            scoper: {
+              kind: REPETITION
+              body: {
+                terminal: ","
+              }
+              body: {
+                delimiter: CONCATENATION
+              }
+              body: {
+                nonterminal: "ordering_term"
+              }
+            }
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "frame_spec"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ")"
+      }
+    }
+  }
+}
+rules: {
+  name: "frame_spec"
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "RANGE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "ROWS"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "GROUPS"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "BETWEEN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "UNBOUNDED"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "PRECEDING"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "PRECEDING"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "CURRENT"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "ROW"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "FOLLOWING"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "AND"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "PRECEDING"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "CURRENT"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "ROW"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "FOLLOWING"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "UNBOUNDED"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "FOLLOWING"
+          }
+        }
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "UNBOUNDED"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "PRECEDING"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "PRECEDING"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "CURRENT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "ROW"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "EXCLUDE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "NO"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "OTHERS"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "EXCLUDE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "CURRENT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "ROW"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "EXCLUDE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "GROUP"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "EXCLUDE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "TIES"
+      }
+    }
+  }
+}
+rules: {
+  name: "filter_clause"
+  expressions: {
+    terminal: "FILTER"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "WHERE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "expr"
+  expressions: {
+    nonterminal: "literal_value"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "bind_parameter"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            nonterminal: "schema_name"
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            terminal: "."
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "table_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "column_name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "unary_operator"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "binary_operator"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "function_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "function_arguments"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "filter_clause"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "over_clause"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "CAST"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "type_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "COLLATE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "collation_name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "LIKE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "GLOB"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "REGEXP"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "MATCH"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ESCAPE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "ISNULL"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "NOTNULL"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "NOT"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "NULL"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "IS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DISTINCT"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "FROM"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "BETWEEN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "AND"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "IN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "select_stmt"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "IN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "IN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "schema_name"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "."
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "table_function_name"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            terminal: ","
+          }
+          body: {
+            delimiter: CONCATENATION
+          }
+          body: {
+            nonterminal: "expr"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "NOT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "EXISTS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "select_stmt"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "CASE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "WHEN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "THEN"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: "WHEN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: "THEN"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "ELSE"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "END"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "raise_function"
+  }
+}
+rules: {
+  name: "function_arguments"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "DISTINCT"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "expr"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "expr"
+      }
+    }
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "*"
+  }
+}
+rules: {
+  name: "literal_value"
+  expressions: {
+    nonterminal: "numeric_literal"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "string_literal"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "blob_literal"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "NULL"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "TRUE"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "FALSE"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "CURRENT_TIME"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "CURRENT_DATE"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "CURRENT_TIMESTAMP"
+  }
+}
+rules: {
+  name: "signed_number"
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "+"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        terminal: "-"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "numeric_literal"
+  }
+}
+rules: {
+  name: "raise_function"
+  expressions: {
+    terminal: "RAISE"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "("
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: GROUP
+      body: {
+        terminal: "IGNORE"
+      }
+      body: {
+        delimiter: ALTERNATION
+      }
+      body: {
+        scoper: {
+          kind: GROUP
+          body: {
+            terminal: "ROLLBACK"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "ABORT"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "FAIL"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        terminal: ","
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "error_message"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: ")"
+  }
+}
+rules: {
+  name: "schema_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "savepoint_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "filename"
+  expressions: {
+    nonterminal: "string_literal"
+  }
+}
+rules: {
+  name: "index_or_table_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "table_or_index_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "collation_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "table_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "index_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "view_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "trigger_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "pragma_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "pragma_value"
+  expressions: {
+    nonterminal: "signed_number"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    nonterminal: "string_literal"
+  }
+}
+rules: {
+  name: "column_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "column_alias"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "table_alias"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "table_function_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "window_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "base_window_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "cte_table_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "new_table_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "new_column_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "constraint_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "module_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "module_argument"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "foreign_table"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "alias"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "function_name"
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "error_message"
+  expressions: {
+    nonterminal: "string_literal"
+  }
+}
+rules: {
+  name: "numeric_literal"
+  expressions: {
+    nonterminal: "digit"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: REPETITION
+      body: {
+        nonterminal: "digit"
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "."
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            nonterminal: "digit"
+          }
+        }
+      }
+    }
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    scoper: {
+      kind: OPTIONAL
+      body: {
+        terminal: "E"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: OPTIONAL
+          body: {
+            terminal: "+"
+          }
+          body: {
+            delimiter: ALTERNATION
+          }
+          body: {
+            terminal: "-"
+          }
+        }
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        nonterminal: "digit"
+      }
+      body: {
+        delimiter: CONCATENATION
+      }
+      body: {
+        scoper: {
+          kind: REPETITION
+          body: {
+            nonterminal: "digit"
+          }
+        }
+      }
+    }
+  }
+}
+rules: {
+  name: "digit"
+  expressions: {
+    terminal: "0"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "1"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "2"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "3"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "4"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "5"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "6"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "7"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "8"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "9"
+  }
+}
+rules: {
+  name: "bind_parameter"
+  expressions: {
+    terminal: "?"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: ":"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "@"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "name"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "$"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    nonterminal: "name"
+  }
+}
+rules: {
+  name: "unary_operator"
+  expressions: {
+    terminal: "-"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "+"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "~"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "NOT"
+  }
+}
+rules: {
+  name: "binary_operator"
+  expressions: {
+    terminal: "||"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "*"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "/"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "%"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "+"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "-"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "<<"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: ">>"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "&"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "|"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "<"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "<="
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: ">"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: ">="
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "="
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "=="
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "!="
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "<>"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "IS"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "IS"
+  }
+  expressions: {
+    delimiter: CONCATENATION
+  }
+  expressions: {
+    terminal: "NOT"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "IN"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "LIKE"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "GLOB"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "MATCH"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "REGEXP"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "AND"
+  }
+  expressions: {
+    delimiter: ALTERNATION
+  }
+  expressions: {
+    terminal: "OR"
+  }
+}
+rules: {
+  name: "name"
+  expressions: {
+    terminal: "x"
+  }
+}
+rules: {
+  name: "string_literal"
+  expressions: {
+    terminal: "x"
+  }
+}
+rules: {
+  name: "blob_literal"
+  expressions: {
+    terminal: "x"
+  }
+}
