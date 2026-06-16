@@ -20,9 +20,8 @@ message QueryRequest {
     // Raw SQL — forwarded verbatim to sqlite3.
     string sql = 2;
 
-    // Typed CST — server must render back to SQL text. Not yet
-    // implemented; returns UNIMPLEMENTED until the SqlStmtList → SQL
-    // printer lands.
+    // Typed CST — the server renders it back to SQL text (via
+    // sqliteembed.RenderSQL) and executes it. Fully supported.
     SqlStmtList stmts = 3;
   }
 }
