@@ -28,8 +28,33 @@ func RenderSQL(msg proto.Message) (string, error) {
 	return joinTokens(toks), nil
 }
 
+// atomicMessages are productions that denote a single lexical token but are
+// structurally decomposed into several terminal children — e.g. a numeric
+// literal is a sequence of Digit productions ("1","0","2","4"). Their whole
+// subtree renders to one space-free token, so joinTokens never inserts spaces
+// inside them (which would turn 1024 into "1 0 2 4"). Multi-character operators
+// such as "<=" or "||" are single keyword messages already, so they need no
+// entry here.
+var atomicMessages = map[string]bool{
+	".sqlite.NumericLiteral": true,
+}
+
 func renderMessage(m protoreflect.Message, toks *[]string) error {
 	fqn := "." + string(m.Descriptor().FullName())
+	// A lexically-atomic production renders its subtree into one token with no
+	// internal spacing.
+	if atomicMessages[fqn] {
+		var sub []string
+		if err := renderFields(m, fqn, &sub); err != nil {
+			return err
+		}
+		*toks = append(*toks, strings.Join(sub, ""))
+		return nil
+	}
+	return renderFields(m, fqn, toks)
+}
+
+func renderFields(m protoreflect.Message, fqn string, toks *[]string) error {
 	if prefix, ok := sqlitepb.MessagePrefix[fqn]; ok {
 		*toks = append(*toks, prefix...)
 	}
